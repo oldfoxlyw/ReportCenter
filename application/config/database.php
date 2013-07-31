@@ -45,24 +45,120 @@
 | the active record class
 */
 
-$active_group = 'default';
+$active_group = 'webdb';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = '';
-$db['default']['password'] = '';
-$db['default']['database'] = '';
-$db['default']['dbdriver'] = 'mysql';
-$db['default']['dbprefix'] = '';
-$db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = TRUE;
-$db['default']['cache_on'] = FALSE;
-$db['default']['cachedir'] = '';
-$db['default']['char_set'] = 'utf8';
-$db['default']['dbcollat'] = 'utf8_general_ci';
-$db['default']['swap_pre'] = '';
-$db['default']['autoinit'] = TRUE;
-$db['default']['stricton'] = FALSE;
+$db['webdb']['hostname'] = 'localhost';
+$db['webdb']['username'] = 'root';
+$db['webdb']['password'] = '84@41%%wi96^4';
+$db['webdb']['database'] = 'agent1_web_db';
+$db['webdb']['dbdriver'] = 'mysql';
+$db['webdb']['dbprefix'] = '';
+$db['webdb']['pconnect'] = FALSE;
+$db['webdb']['db_debug'] = TRUE;
+$db['webdb']['cache_on'] = FALSE;
+$db['webdb']['cachedir'] = '';
+$db['webdb']['char_set'] = 'utf8';
+$db['webdb']['dbcollat'] = 'utf8_general_ci';
+$db['webdb']['swap_pre'] = '';
+$db['webdb']['autoinit'] = TRUE;
+$db['webdb']['stricton'] = FALSE;
+
+$db['accountdb']['hostname'] = 'localhost';
+$db['accountdb']['username'] = 'root';
+$db['accountdb']['password'] = '84@41%%wi96^4';
+$db['accountdb']['database'] = 'agent1_account_db';
+$db['accountdb']['dbdriver'] = 'mysql';
+$db['accountdb']['dbprefix'] = '';
+$db['accountdb']['pconnect'] = FALSE;
+$db['accountdb']['db_debug'] = TRUE;
+$db['accountdb']['cache_on'] = FALSE;
+$db['accountdb']['cachedir'] = '';
+$db['accountdb']['char_set'] = 'utf8';
+$db['accountdb']['dbcollat'] = 'utf8_general_ci';
+$db['accountdb']['swap_pre'] = '';
+$db['accountdb']['autoinit'] = TRUE;
+$db['accountdb']['stricton'] = FALSE;
+
+$db['productdb']['hostname'] = 'localhost';
+$db['productdb']['username'] = 'root';
+$db['productdb']['password'] = '84@41%%wi96^4';
+$db['productdb']['database'] = 'agent1_product_db';
+$db['productdb']['dbdriver'] = 'mysql';
+$db['productdb']['dbprefix'] = '';
+$db['productdb']['pconnect'] = FALSE;
+$db['productdb']['db_debug'] = TRUE;
+$db['productdb']['cache_on'] = FALSE;
+$db['productdb']['cachedir'] = '';
+$db['productdb']['char_set'] = 'utf8';
+$db['productdb']['dbcollat'] = 'utf8_general_ci';
+$db['productdb']['swap_pre'] = '';
+$db['productdb']['autoinit'] = TRUE;
+$db['productdb']['stricton'] = FALSE;
+
+$db['fundsdb']['hostname'] = 'localhost';
+$db['fundsdb']['username'] = 'root';
+$db['fundsdb']['password'] = '84@41%%wi96^4';
+$db['fundsdb']['database'] = 'agent1_funds_flow_db';
+$db['fundsdb']['dbdriver'] = 'mysql';
+$db['fundsdb']['dbprefix'] = '';
+$db['fundsdb']['pconnect'] = FALSE;
+$db['fundsdb']['db_debug'] = TRUE;
+$db['fundsdb']['cache_on'] = FALSE;
+$db['fundsdb']['cachedir'] = '';
+$db['fundsdb']['char_set'] = 'utf8';
+$db['fundsdb']['dbcollat'] = 'utf8_general_ci';
+$db['fundsdb']['swap_pre'] = '';
+$db['fundsdb']['autoinit'] = TRUE;
+$db['fundsdb']['stricton'] = FALSE;
+
+$db['logdb']['hostname'] = 'localhost';
+$db['logdb']['username'] = 'root';
+$db['logdb']['password'] = '84@41%%wi96^4';
+$db['logdb']['database'] = 'agent1_log_db_201201';
+$db['logdb']['dbdriver'] = 'mysql';
+$db['logdb']['dbprefix'] = '';
+$db['logdb']['pconnect'] = FALSE;
+$db['logdb']['db_debug'] = TRUE;
+$db['logdb']['cache_on'] = FALSE;
+$db['logdb']['cachedir'] = '';
+$db['logdb']['char_set'] = 'utf8';
+$db['logdb']['dbcollat'] = 'utf8_general_ci';
+$db['logdb']['swap_pre'] = '';
+$db['logdb']['autoinit'] = TRUE;
+$db['logdb']['stricton'] = FALSE;
+
+$db['adminlog']['hostname'] = 'localhost';
+$db['adminlog']['username'] = 'root';
+$db['adminlog']['password'] = '84@41%%wi96^4';
+$db['adminlog']['database'] = 'agent1_adminlog_db';
+$db['adminlog']['dbdriver'] = 'mysql';
+$db['adminlog']['dbprefix'] = '';
+$db['adminlog']['pconnect'] = FALSE;
+$db['adminlog']['db_debug'] = TRUE;
+$db['adminlog']['cache_on'] = FALSE;
+$db['adminlog']['cachedir'] = '';
+$db['adminlog']['char_set'] = 'utf8';
+$db['adminlog']['dbcollat'] = 'utf8_general_ci';
+$db['adminlog']['swap_pre'] = '';
+$db['adminlog']['autoinit'] = TRUE;
+$db['adminlog']['stricton'] = FALSE;
+
+$db['logcachedb']['hostname'] = 'localhost';
+$db['logcachedb']['username'] = 'root';
+$db['logcachedb']['password'] = '84@41%%wi96^4';
+$db['logcachedb']['database'] = 'agent1_log_db';
+$db['logcachedb']['dbdriver'] = 'mysql';
+$db['logcachedb']['dbprefix'] = '';
+$db['logcachedb']['pconnect'] = FALSE;
+$db['logcachedb']['db_debug'] = TRUE;
+$db['logcachedb']['cache_on'] = FALSE;
+$db['logcachedb']['cachedir'] = '';
+$db['logcachedb']['char_set'] = 'utf8';
+$db['logcachedb']['dbcollat'] = 'utf8_general_ci';
+$db['logcachedb']['swap_pre'] = '';
+$db['logcachedb']['autoinit'] = TRUE;
+$db['logcachedb']['stricton'] = FALSE;
 
 
 /* End of file database.php */

@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteBase /ReportCenter/
+RewriteCond $1 !^(index\.php|resources|robot\.txt|documents)
+RewriteRule ^(.*)$ index.php/$1 [L]
