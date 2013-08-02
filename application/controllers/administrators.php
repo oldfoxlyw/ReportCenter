@@ -14,8 +14,23 @@ class Administrators extends CI_Controller
 	
 	public function index()
 	{
+		$data = array(
+			'admin'					=>	$this->user,
+			'page_name'			=>	$this->pageName
+		);
+		$this->render->render($this->pageName, $data);
+	}
+	
+	public function lists()
+	{
 		$this->load->model('madmin');
+		$this->load->model('utils/return_format');
 		
+		$sEcho = $this->input->get_post('sEcho');
+		$offset = $this->input->get_post('iDisplayStart');
+		$limit = $this->input->get_post('iDisplayLength');
+		$keyword = $this->input->get_post('sSearch');
+
 		$parameter = null;
 		if($this->user->user_founder != '1')
 		{
@@ -23,11 +38,39 @@ class Administrators extends CI_Controller
 				'GUID'		=>	$this->user->GUID
 			);
 		}
-		$result = $this->madmin->read($parameter);
+		
+		$extension = null;
+		if(!empty($keyword))
+		{
+			$like = array(
+				array('GUID', $keyword),
+				array('user_name', $keyword),
+				array('permission_name', $keyword)
+			);
+			$extension['like'] = $like;
+		}
+		$count = $this->madmin->count($parameter);
+		$result = $this->madmin->read($parameter, $extension, $limit, $offset);
+		$data = array(
+			'sEcho'							=>	$sEcho,
+			'iTotalRecords'				=>	$count,
+			'iTotalDisplayRecords'	=>	$count,
+			'aaData'						=>	$result
+		);
+		
+		echo $this->return_format->format($data);
+	}
+	
+	public function add()
+	{
+		$this->load->model('mpermission');
+		$permissions = $this->mpermission->read();
+		$this->pageName = 'administrators_add';
+		
 		$data = array(
 			'admin'					=>	$this->user,
 			'page_name'			=>	$this->pageName,
-			'result'					=>	$result,
+			'permissions'		=>	$permissions
 		);
 		$this->render->render($this->pageName, $data);
 	}
@@ -36,11 +79,14 @@ class Administrators extends CI_Controller
 	{
 		if(!empty($adminId))
 		{
+			$this->pageName = 'administrators_add';
 			if($this->user->user_founder != '1' && $this->user->GUID != $adminId)
 			{
 				showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
 			}
 			$this->load->model('madmin');
+			$this->load->model('mpermission');
+			$permissions = $this->mpermission->read();
 			$result = $this->madmin->read(array(
 				'GUID'		=>	$adminId
 			));
@@ -54,9 +100,14 @@ class Administrators extends CI_Controller
 				'page_name'			=>	$this->pageName,
 				'edit'					=>	'1',
 				'admin_id'			=>	$adminId,
-				'value'					=>	$result
+				'value'					=>	$result,
+				'permissions'		=>	$permissions
 			);
 			$this->render->render($this->pageName, $data);
+		}
+		else
+		{
+			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'administrators', true, 5);
 		}
 	}
 	
@@ -82,8 +133,12 @@ class Administrators extends CI_Controller
 				}
 			}
 			$this->madmin->delete($adminId);
+			redirect('administrators');
 		}
-		redirect('account');
+		else
+		{
+			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'administrators', true, 5);
+		}
 	}
 	
 	public function submit()
@@ -95,6 +150,7 @@ class Administrators extends CI_Controller
 		$adminId = $this->input->post('adminId', TRUE);
 		$adminAccount = $this->input->post('adminAccount', TRUE);
 		$adminPass = $this->input->post('adminPass', TRUE);
+		$userPermission = $this->input->post('userPermission', TRUE);
 
 		if($this->user->user_founder != '1' && $this->user->GUID != $adminId)
 		{
@@ -107,7 +163,8 @@ class Administrators extends CI_Controller
 		}
 		
 		$row = array(
-			'user_name'		=>	$adminAccount
+			'user_name'			=>	$adminAccount,
+			'user_permission'	=>	$userPermission
 		);
 		
 		if(!empty($edit))

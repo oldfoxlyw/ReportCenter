@@ -12,27 +12,19 @@
                 <h5>管理员列表</h5>
               </div>
               <div class="widget-content nopadding">
-                <table class="table table-bordered data-table">
+                <table class="table table-bordered data-table" id="listTable">
                   <thead>
                     <tr>
-                      <th>Rendering engine</th>
-                      <th>Browser</th>
-                      <th>Platform(s)</th>
-                      <th>Engine version</th>
+                      <th>GUID</th>
+                      <th>用户名</th>
+                      <th>角色权限</th>
+                      <th>帐号状态</th>
+                      <th>-</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="gradeU">
-                      <td>Other browsers</td>
-                      <td>All others</td>
-                      <td>-</td>
-                      <td class="center">-</td>
-                    </tr>
-                    <tr class="gradeU">
-                      <td>Other browsers</td>
-                      <td>All others</td>
-                      <td>-</td>
-                      <td class="center">-</td>
+                    <tr class="gradeA">
+                      <td colspan="5">载入中...</td>
                     </tr>
                   </tbody>
                 </table>
@@ -42,25 +34,47 @@
         </div>
     </div>
 </div>
-<link rel="stylesheet" href="<?php echo base_url('resources/css/uniform.css'); ?>" />
 <link rel="stylesheet" href="<?php echo base_url('resources/css/select2.css'); ?>" />
 <script src="<?php echo base_url('resources/js/jquery.min.js'); ?>"></script> 
 <script src="<?php echo base_url('resources/js/jquery.ui.custom.js'); ?>"></script> 
 <script src="<?php echo base_url('resources/js/bootstrap.min.js'); ?>"></script> 
-<script src="<?php echo base_url('resources/js/jquery.uniform.js'); ?>"></script> 
 <script src="<?php echo base_url('resources/js/select2.min.js'); ?>"></script> 
 <script src="<?php echo base_url('resources/js/jquery.dataTables.min.js'); ?>"></script> 
 <script src="<?php echo base_url('resources/js/matrix.js'); ?>"></script> 
 <script type="text/javascript">
 $(function() {
-	$('.data-table').dataTable({
+	$('#listTable').dataTable({
+		"bAutoWidth": false,
 		"bJQueryUI": true,
 		"bStateSave": true,
 		"sPaginationType": "full_numbers",
-		"sDom": '<"H"lr>t<"F"fp>'
+		"sDom": '<"H"lr>t<"F"fp>',
+		"bProcessing": true,
+		"bServerSide": true,
+		"sAjaxSource": "<?php echo site_url('administrators/lists'); ?>",
+		"sServerMethod": "POST",
+		"aoColumns": [
+			{"mData": "GUID", "width": 300, "bSortable": false},
+			{"mData": "user_name"},
+			{"mData": "permission_name"},
+			{
+				"mData": "user_freezed",
+				"fnRender": function(obj) {
+					if(obj.aData.user_freezed == "1") {
+						return "<span class=\"label label-important\">冻结</span>"
+					} else {
+						return "<span class=\"label label-success\">正常</span>"
+					}
+				}
+			},
+			{
+				"mData": null,
+				"fnRender": function(obj) {
+					return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('administrators/edit') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\"><li><a href=\"<?php echo site_url('administrators/edit') ?>/" + obj.aData.GUID + "\">编辑</a></li><li><a href=\"#\">冻结</a></li><li class=\"divider\"></li><li><a href=\"#\">删除</a></li></ul></div>";
+				}
+			}
+		]
 	});
-	
-	$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
 	
 	$('select').select2();
 	

@@ -2,10 +2,10 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 require_once('ICrud.php');
 
-class Madmin extends CI_Model implements ICrud
+class Mpermission extends CI_Model implements ICrud
 {
 	
-	private $accountTable = 'scc_user_permission';
+	private $accountTable = 'scc_permission';
 	private $webdb = null;
 	
 	public function __construct()
@@ -25,13 +25,7 @@ class Madmin extends CI_Model implements ICrud
 		}
 		if(!empty($extension))
 		{
-			if(!empty($extension['like']))
-			{
-				foreach($extension['like'] as $like)
-				{
-					$this->webdb->or_like($like[0], $like[1]);
-				}
-			}
+			
 		}
 		return $this->webdb->count_all_results($this->accountTable);
 	}
@@ -40,8 +34,6 @@ class Madmin extends CI_Model implements ICrud
 	{
 		if(!empty($row))
 		{
-			$this->load->library('Guid');
-			$row['GUID'] = $this->guid->toString();
 			if($this->webdb->insert($this->accountTable, $row))
 			{
 				return $this->webdb->insert_id();
@@ -68,17 +60,7 @@ class Madmin extends CI_Model implements ICrud
 		}
 		if(!empty($extension))
 		{
-			if(!empty($extension['like']))
-			{
-				foreach($extension['like'] as $like)
-				{
-					$this->webdb->or_like($like[0], $like[1]);
-				}
-			}
-			if(!empty($extension['order_by']))
-			{
-				$this->webdb->order_by($extension['order_by'][0], $extension['order_by'][1]);
-			}
+			
 		}
 		if($limit==0 && $offset==0) {
 			$query = $this->webdb->get($this->accountTable);
@@ -96,7 +78,7 @@ class Madmin extends CI_Model implements ICrud
 	{
 		if(!empty($id) && !empty($row))
 		{
-			$this->webdb->where('GUID', $id);
+			$this->webdb->where('persmission_id', $id);
 			return $this->webdb->update($this->accountTable, $row);
 		}
 		else
@@ -109,7 +91,7 @@ class Madmin extends CI_Model implements ICrud
 	{
 		if(!empty($id))
 		{
-			$this->webdb->where('GUID', $id);
+			$this->webdb->where('persmission_id', $id);
 			return $this->webdb->delete($this->accountTable);
 		}
 		else
