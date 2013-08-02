@@ -73,7 +73,24 @@ $(function() {
 					return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('administrators/edit') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\"><li><a href=\"<?php echo site_url('administrators/edit') ?>/" + obj.aData.GUID + "\">编辑</a></li><li><a href=\"#\">冻结</a></li><li class=\"divider\"></li><li><a href=\"#\">删除</a></li></ul></div>";
 				}
 			}
-		]
+		],
+		"oLanguage": {  
+			"sProcessing":   "处理中...",
+			"sLengthMenu":   "显示 _MENU_ 项结果",
+			"sZeroRecords":  "没有匹配结果",
+			"sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+			"sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
+			"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+			"sInfoPostFix":  "",
+			"sSearch":       "搜索:",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "首页",
+				"sPrevious": "上页",
+				"sNext":     "下页",
+				"sLast":     "末页"
+			}
+		}
 	});
 	
 	$('select').select2();

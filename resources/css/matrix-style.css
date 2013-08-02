@@ -962,6 +962,13 @@ span.icon .checker {
 .dataTables_length div {
 	vertical-align: middle;
 }
+.dataTables_processing {
+	color: #878787;
+	margin: 7px 5px 0;
+	position: absolute;
+	left:200px;
+	top: 0;
+}
 .dataTables_paginate {
 	line-height: 16px;
 	text-align: right;
