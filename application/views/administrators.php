@@ -5,32 +5,35 @@
   	</div>
     <div class="container-fluid">
         <hr>
-        <div class="row-fluid">
-        <div class="span12">
-            <div class="widget-box">
-              <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-                <h5>管理员列表</h5>
-              </div>
-              <div class="widget-content nopadding">
-                <table class="table table-bordered data-table" id="listTable">
-                  <thead>
-                    <tr>
-                      <th>GUID</th>
-                      <th>用户名</th>
-                      <th>角色权限</th>
-                      <th>帐号状态</th>
-                      <th>-</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="gradeA">
-                      <td colspan="5">载入中...</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+        <div class="row-fluid" style="text-align:right;">
+        	<button onclick="location.href='<?php echo site_url('administrators/add'); ?>'" class="btn btn-success">添加管理员</button>
         </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                  <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                    <h5>管理员列表</h5>
+                  </div>
+                  <div class="widget-content nopadding">
+                    <table class="table table-bordered data-table" id="listTable">
+                      <thead>
+                        <tr>
+                          <th>GUID</th>
+                          <th>用户名</th>
+                          <th>角色权限</th>
+                          <th>帐号状态</th>
+                          <th>-</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="gradeA">
+                          <td colspan="5">载入中...</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
