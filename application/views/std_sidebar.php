@@ -13,9 +13,9 @@
     </li>
     <li class="submenu"><a href="#"><i class="icon icon-file"></i><span>用户数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
-        <li><a href="index2.html">服务器注册用户数</a></li>
+        <li><a href="<?php echo site_url('account/register_account'); ?>">服务器注册用户数</a></li>
         <li><a href="gallery.html">创建角色数</a></li>
-        <li><a href="calendar.html">新增注册用户</a></li>
+        <li><a href="<?php echo site_url('account/register_new_account'); ?>">新增注册用户</a></li>
         <li><a href="invoice.html">新创建角色数</a></li>
         <li><a href="chat.html">服务器活跃用户数</a></li>
         <li><a href="chat.html">服务器付费用户数</a></li>

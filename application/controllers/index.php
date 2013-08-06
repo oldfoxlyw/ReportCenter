@@ -2,14 +2,19 @@
 
 class Index extends CI_Controller
 {
+	private $pageName = 'index';
+	private $user = null;
+	
 	public function __construct()
 	{
 		parent::__construct ();
+		$this->load->model('utils/check_user', 'check');
+		$this->user = $this->check->validate();
 	}
 	
 	public function index()
 	{
-		$this->render->render('index');
+		$this->render->render($this->pageName);
 	}
 	
 	public function lists($provider = 'highchart')
@@ -20,7 +25,7 @@ class Index extends CI_Controller
 		$currentTime = time();
 		$lastTime = $currentTime - 86400;
 		$lastDate = date('Y-m-d', $lastTime) . ' 23:59:59';
-		$sevenDaysAgoTime = $lastTime - 6 * 86400;
+		$sevenDaysAgoTime = $lastTime - 7 * 86400;
 		$sevenDaysAgoDate = date('Y-m-d', $sevenDaysAgoTime) . ' 00:00:00';
 		
 		$parameter = array(

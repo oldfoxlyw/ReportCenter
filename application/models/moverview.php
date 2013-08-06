@@ -60,6 +60,10 @@ class Moverview extends CI_Model implements ICrud
 		}
 		if(!empty($extension))
 		{
+			if(!empty($extension['select']) && is_array($extension['select']))
+			{
+				$this->webdb->select($extension['select']);
+			}
 			if(!empty($extension['order_by']))
 			{
 				$this->webdb->order_by($extension['order_by'][0], $extension['order_by'][1]);

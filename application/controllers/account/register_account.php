@@ -1,0 +1,78 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+class Register_account extends CI_Controller
+{
+	private $pageName = 'account/register_account';
+	private $user = null;
+
+	public function __construct()
+	{
+		parent::__construct ();
+		$this->load->model('utils/check_user', 'check');
+		$this->user = $this->check->validate();
+	}
+	
+	public function index()
+	{
+		$this->render->render($this->pageName);
+	}
+	
+	public function lists($provider = 'highchart')
+	{
+		$this->load->model('moverview');
+		$this->load->model('utils/return_format');
+		
+		$startTime = $this->input->post('startTime');
+		$endTime = $this->input->post('endTime');
+		
+		if(empty($startTime) || empty($endTime))
+		{
+			$endTime = time() - 86400;
+			$startTime = $endTime - 7 * 86400;
+			$startTime = date('Y-m-d', $startTime);
+			$endTime = date('Y-m-d', $endTime);
+		}
+		else
+		{
+			$start = strtotime($startTime);
+			$end = strtotime($endTime);
+			if($start > $end || empty($start) || empty($end))
+			{
+				
+			}
+		}
+		$parameter = array(
+			'log_date >='		=>	$startTime,
+			'log_date <='		=>	$endTime
+		);
+		$extension = array(
+			'select'		=>	array(
+				'log_date',
+				'server_name',
+				'reg_account'
+			)
+		);
+		$result = $this->moverview->read($parameter, $extension);
+		
+		$data = array();
+		$data['axis'] = array();
+		
+		foreach($result as $row)
+		{
+			if(empty($data[$row->server_name]))
+			{
+				$data[$row->server_name] = array();
+			}
+			array_push($data[$row->server_name], $row);
+			
+			if(!in_array($row->log_date, $data['axis']))
+			{
+				array_push($data['axis'], $row->log_date);
+			}
+		}
+		
+		echo $this->return_format->format($data);
+	}
+}
+
+?>
