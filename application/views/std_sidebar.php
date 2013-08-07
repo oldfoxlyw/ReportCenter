@@ -1,9 +1,9 @@
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
-    <li class="active"><a href="<?php echo site_url('index'); ?>"><i class="icon icon-home"></i><span>总览</span></a></li>
-    <li> <a href="widgets.html"><i class="icon icon-inbox"></i><span>权限设置</span></a> </li>
-    <li> <a href="<?php echo site_url('administrators'); ?>"><i class="icon icon-signal"></i><span>管理员设置</span></a></li>
+    <li<?php if($page_name == 'index'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('index'); ?>"><i class="icon icon-home"></i><span>总览</span></a></li>
+    <li<?php if($page_name == 'permission'): ?> class="active"<?php endif; ?>><a href="widgets.html"><i class="icon icon-inbox"></i><span>权限设置</span></a> </li>
+    <li<?php if($page_name == 'administrators'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('administrators'); ?>"><i class="icon icon-signal"></i><span>管理员设置</span></a></li>
     <li class="submenu"><a href="#"><i class="icon icon-th-list"></i><span>用户在线数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
         <li><a href="form-common.html">即时在线数据</a></li>
@@ -13,14 +13,14 @@
     </li>
     <li class="submenu"><a href="#"><i class="icon icon-file"></i><span>用户数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
-        <li><a href="<?php echo site_url('account/register_account'); ?>">服务器注册用户数</a></li>
+        <li<?php if($page_name == 'account/register_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/register_account'); ?>">服务器注册用户数</a></li>
         <li><a href="gallery.html">创建角色数</a></li>
-        <li><a href="<?php echo site_url('account/register_new_account'); ?>">新增注册用户</a></li>
+        <li<?php if($page_name == 'account/register_new_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/register_new_account'); ?>">新增注册用户</a></li>
         <li><a href="invoice.html">新创建角色数</a></li>
-        <li><a href="chat.html">服务器活跃用户数</a></li>
-        <li><a href="chat.html">服务器付费用户数</a></li>
-        <li><a href="chat.html">服务器流失用户数</a></li>
-        <li><a href="chat.html">服务器回流用户数</a></li>
+        <li><a href="<?php echo site_url('account/active_account'); ?>">服务器活跃用户数</a></li>
+        <li><a href="<?php echo site_url('account/pay_account'); ?>">服务器付费用户数</a></li>
+        <li><a href="<?php echo site_url('account/flowover_account'); ?>">服务器流失用户数</a></li>
+        <li><a href="<?php echo site_url('account/reflow_account'); ?>">服务器回流用户数</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>付费/消费数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>

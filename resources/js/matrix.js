@@ -1,7 +1,9 @@
 
 $(document).ready(function(){
-
 	
+	var li = $('.submenu > ul').find('li.active');
+	li.parent().show();
+	li.parent().parent().addClass('open');
 	
 	// === Sidebar navigation === //
 	

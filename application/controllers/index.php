@@ -14,7 +14,11 @@ class Index extends CI_Controller
 	
 	public function index()
 	{
-		$this->render->render($this->pageName);
+		$data = array(
+			'admin'			=>	$this->user,
+			'page_name'	=>	$this->pageName
+		);
+		$this->render->render($this->pageName, $data);
 	}
 	
 	public function lists($provider = 'highchart')

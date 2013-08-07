@@ -8,7 +8,43 @@
 <!--Action boxes-->
 <div class="container-fluid">
 <!--End-Action boxes-->    
-
+	<div class="row-fluid">
+        	<div class="widget-box">
+              <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                <h5>搜索</h5>
+              </div>
+              <div class="widget-content nopadding">
+                  <form action="" method="post" class="form-horizontal">
+                  	<div class="span6">
+                        <div class="control-group">
+                            <label class="control-label">开始时间(yyyy-mm-dd)</label>
+                            <div class="controls">
+                                <div data-date="<?php echo date('Y-m-d', $current_time - 7 * 86400); ?>" class="input-append date datepicker">
+                                    <input type="text" id="startTime" name="startTime" value="<?php echo date('Y-m-d', $current_time - 7 * 86400); ?>"  data-date-format="yyyy-mm-dd" class="span11" >
+                                    <span class="add-on"><i class="icon-th"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  	<div class="span6">
+                        <div class="control-group">
+                            <label class="control-label">结束时间(yyyy-mm-dd)</label>
+                            <div class="controls">
+                                <div data-date="<?php echo date('Y-m-d', $current_time - 86400); ?>" class="input-append date datepicker">
+                                    <input type="text" id="endTime" name="endTime" value="<?php echo date('Y-m-d', $current_time - 86400); ?>"  data-date-format="yyyy-mm-dd" class="span11" >
+                                    <span class="add-on"><i class="icon-th"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear:both"></div>
+                    <div class="form-actions">
+                      <button id="btnSearch" type="button" class="btn btn-success">搜索</button>
+                    </div>
+                  </form>
+              </div>
+            </div>
+        </div>
 <!--Chart-box-->    
     <div class="row-fluid">
       <div class="widget-box">
@@ -37,14 +73,26 @@
 <!--End-Chart-box-->
 </div>
 </div>
+<link rel="stylesheet" href="<?php echo base_url('resources/css/datepicker.css'); ?>" />
 <script src="<?php echo base_url('resources/js/jquery.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/bootstrap.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/matrix.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/highcharts.js'); ?>"></script>
+<script src="<?php echo base_url('resources/js/bootstrap-datepicker.js'); ?>"></script>
 
 <script type="text/javascript">
 $(function() {
-	$.post("<?php echo site_url('account/register_new_account/lists/highchart'); ?>", {}, onData);
+	$.post("<?php echo site_url('account/register_new_account/lists/highchart'); ?>", {
+		"startTime": $("#startTime").val(),
+		"endTime": $("#endTime").val()
+	}, onData);
+	
+	$("#btnSearch").click(function() {
+		$.post("<?php echo site_url('account/register_new_account/lists/highchart'); ?>", {
+			"startTime": $("#startTime").val(),
+			"endTime": $("#endTime").val()
+		}, onData);
+	});
 });
 
 function onData(data) {

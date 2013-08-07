@@ -14,7 +14,12 @@ class Register_new_account extends CI_Controller
 	
 	public function index()
 	{
-		$this->render->render($this->pageName);
+		$data = array(
+			'admin'			=>	$this->user,
+			'page_name'	=>	$this->pageName,
+			'current_time'		=>	time(),
+		);
+		$this->render->render($this->pageName, $data);
 	}
 	
 	public function lists($provider = 'highchart')
@@ -34,8 +39,8 @@ class Register_new_account extends CI_Controller
 		}
 		else
 		{
-			$start = strtotime($startTime);
-			$end = strtotime($endTime);
+			$start = strtotime($startTime . ' 00:00:00');
+			$end = strtotime($endTime . ' 23:59:59');
 			if($start > $end || empty($start) || empty($end))
 			{
 				
