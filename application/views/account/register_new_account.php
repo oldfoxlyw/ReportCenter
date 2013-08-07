@@ -82,6 +82,7 @@
 
 <script type="text/javascript">
 $(function() {
+    $('.datepicker').datepicker();
 	$.post("<?php echo site_url('account/register_new_account/lists/highchart'); ?>", {
 		"startTime": $("#startTime").val(),
 		"endTime": $("#endTime").val()
