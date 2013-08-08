@@ -17,10 +17,10 @@
         <li><a href="gallery.html">创建角色数</a></li>
         <li<?php if($page_name == 'account/register_new_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/register_new_account'); ?>">新增注册用户</a></li>
         <li><a href="invoice.html">新创建角色数</a></li>
-        <li><a href="<?php echo site_url('account/active_account'); ?>">服务器活跃用户数</a></li>
-        <li><a href="<?php echo site_url('account/pay_account'); ?>">服务器付费用户数</a></li>
-        <li><a href="<?php echo site_url('account/flowover_account'); ?>">服务器流失用户数</a></li>
-        <li><a href="<?php echo site_url('account/reflow_account'); ?>">服务器回流用户数</a></li>
+        <li<?php if($page_name == 'account/active_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/active_account'); ?>">服务器活跃用户数</a></li>
+        <li<?php if($page_name == 'account/pay_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/pay_account'); ?>">服务器付费用户数</a></li>
+        <li<?php if($page_name == 'account/flowover_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/flowover_account'); ?>">服务器流失用户数</a></li>
+        <li<?php if($page_name == 'account/reflow_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/reflow_account'); ?>">服务器回流用户数</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>付费/消费数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
