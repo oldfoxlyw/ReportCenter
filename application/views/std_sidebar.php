@@ -39,7 +39,7 @@
     <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>游戏管理员</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
         <li><a href="error403.html">开/停服务器</a></li>
-        <li><a href="error404.html">发布游戏公告</a></li>
+        <li<?php if($page_name == 'master/send_message'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/send_message'); ?>">发布游戏公告</a></li>
         <li><a href="error404.html">发放游戏道具</a></li>
       </ul>
     </li>
