@@ -95,10 +95,9 @@
 
 <script type="text/javascript">
 var dataTableHandler;
-
 $(function() {
     $('.datepicker').datepicker();
-	$.post("<?php echo site_url('account/active_account/lists/highchart'); ?>", {
+	$.post("<?php echo site_url('account/modify_new_account/lists/highchart'); ?>", {
 		"startTime": $("#startTime").val(),
 		"endTime": $("#endTime").val()
 	}, onData);
@@ -106,7 +105,7 @@ $(function() {
 	$("#btnSearch").click(function() {
 		dataTableHandler.fnDestroy();
 		$('#listTable').empty();
-		$.post("<?php echo site_url('account/active_account/lists/highchart'); ?>", {
+		$.post("<?php echo site_url('account/modify_new_account/lists/highchart'); ?>", {
 			"startTime": $("#startTime").val(),
 			"endTime": $("#endTime").val()
 		}, onData);
@@ -123,11 +122,9 @@ function onData(data) {
 	var column = [];
 	var aaData = [];
 	var series = [];
-	
 	column.push({
 		"sTitle": "服务器名"
 	});
-	
 	for(var i in json.axis)
 	{
 		column.push({
@@ -148,7 +145,7 @@ function onData(data) {
 			{
 				if(json[i][j])
 				{
-					rowData.push(parseInt(json[i][j].active_account));
+					rowData.push(parseInt(json[i][j].modify_new_account));
 				}
 				else
 				{
@@ -157,7 +154,7 @@ function onData(data) {
 			}
 			for(var j in json[i])
 			{
-				data.push(parseInt(json[i][j].active_account));
+				data.push(parseInt(json[i][j].modify_new_account));
 			}
 			aaData.push(rowData);
 			obj.data = data;
@@ -174,7 +171,7 @@ function onData(data) {
 			enabled: false
 		},
 		title: {
-			text: '活跃人数变化趋势图'
+			text: '新增改名人数变化趋势图'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
@@ -184,7 +181,7 @@ function onData(data) {
 		},
 		yAxis: {
 			title: {
-				text: '活跃人数'
+				text: '新增改名人数'
 			},
 			plotLines: [{
 				value: 0,
@@ -237,5 +234,7 @@ function onData(data) {
 			}
 		}
 	});
+	
+	$("select").select2();
 }
 </script>

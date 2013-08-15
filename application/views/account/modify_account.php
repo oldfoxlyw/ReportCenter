@@ -1,14 +1,12 @@
 <div id="content">
 <!--breadcrumbs-->
-<div id="content-header">
-    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a></div>
-</div>
-<!--End-breadcrumbs-->
-
-<!--Action boxes-->
-<div class="container-fluid">
-<!--End-Action boxes-->    
-	<div class="row-fluid">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a></div>
+    </div>
+    <!--End-breadcrumbs-->
+    
+    <div class="container-fluid">  
+    	<div class="row-fluid">
         	<div class="widget-box">
               <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
                 <h5>搜索</h5>
@@ -45,60 +43,57 @@
               </div>
             </div>
         </div>
-<!--Chart-box-->    
-    <div class="row-fluid">
-      <div class="widget-box">
-          <div class="widget-title">
-            <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#tab1">图表</a></li>
-              <li><a data-toggle="tab" href="#tab2">数据</a></li>
-            </ul>
-          </div>
-          <div class="widget-content nopadding tab-content">
-            <div id="tab1" class="tab-pane active">
-                <div class="widget-content">
-                    <div class="row-fluid">
-                        <div class="span9">
-                          <div id="chartRegCount"></div>
-                        </div>
-                        <div class="span3">
-                          <ul class="site-stats">
-                            <li class="bg_lh"><i class="icon-user"></i> <strong>2540</strong> <small>Total Users</small></li>
-                            <li class="bg_lh"><i class="icon-plus"></i> <strong>120</strong> <small>New Users </small></li>
-                            <li class="bg_lh"><i class="icon-shopping-cart"></i> <strong>656</strong> <small>Total Shop</small></li>
-                            <li class="bg_lh"><i class="icon-tag"></i> <strong>9540</strong> <small>Total Orders</small></li>
-                            <li class="bg_lh"><i class="icon-repeat"></i> <strong>10</strong> <small>Pending Orders</small></li>
-                            <li class="bg_lh"><i class="icon-globe"></i> <strong>8540</strong> <small>Online Orders</small></li>
-                          </ul>
-                        </div>
-                      </div>
+        <div class="row-fluid">
+        	<div class="widget-box">
+              <div class="widget-title">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a data-toggle="tab" href="#tab1">图表</a></li>
+                  <li><a data-toggle="tab" href="#tab2">数据</a></li>
+                </ul>
+              </div>
+              <div class="widget-content nopadding tab-content">
+                <div id="tab1" class="tab-pane active">
+                	<div class="widget-content">
+                        <div class="row-fluid">
+                            <div class="span9">
+                              <div id="chartRegCount"></div>
+                            </div>
+                            <div class="span3">
+                              <ul class="site-stats">
+                                <li class="bg_lh"><i class="icon-user"></i> <strong>2540</strong> <small>Total Users</small></li>
+                                <li class="bg_lh"><i class="icon-plus"></i> <strong>120</strong> <small>New Users </small></li>
+                                <li class="bg_lh"><i class="icon-shopping-cart"></i> <strong>656</strong> <small>Total Shop</small></li>
+                                <li class="bg_lh"><i class="icon-tag"></i> <strong>9540</strong> <small>Total Orders</small></li>
+                                <li class="bg_lh"><i class="icon-repeat"></i> <strong>10</strong> <small>Pending Orders</small></li>
+                                <li class="bg_lh"><i class="icon-globe"></i> <strong>8540</strong> <small>Online Orders</small></li>
+                              </ul>
+                            </div>
+                          </div>
+                    </div>
                 </div>
+                <div id="tab2" class="tab-pane">
+                	<table class="table table-bordered data-table" id="listTable"></table>
+                </div>
+              </div>
             </div>
-            <div id="tab2" class="tab-pane">
-                <table class="table table-bordered data-table" id="listTable"></table>
-            </div>
-          </div>
         </div>
     </div>
-<!--End-Chart-box-->
-</div>
 </div>
 <link rel="stylesheet" href="<?php echo base_url('resources/css/datepicker.css'); ?>" />
 <link rel="stylesheet" href="<?php echo base_url('resources/css/select2.css'); ?>" />
 <script src="<?php echo base_url('resources/js/jquery.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/bootstrap.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/matrix.js'); ?>"></script>
+<script src="<?php echo base_url('resources/js/select2.min.js'); ?>"></script> 
 <script src="<?php echo base_url('resources/js/highcharts.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/bootstrap-datepicker.js'); ?>"></script>
-<script src="<?php echo base_url('resources/js/select2.min.js'); ?>"></script>
-<script src="<?php echo base_url('resources/js/jquery.dataTables.min.js'); ?>"></script>
-
+<script src="<?php echo base_url('resources/js/jquery.dataTables.min.js'); ?>"></script> 
 <script type="text/javascript">
 var dataTableHandler;
 
 $(function() {
     $('.datepicker').datepicker();
-	$.post("<?php echo site_url('account/active_account/lists/highchart'); ?>", {
+	$.post("<?php echo site_url('account/modify_account/lists/highchart'); ?>", {
 		"startTime": $("#startTime").val(),
 		"endTime": $("#endTime").val()
 	}, onData);
@@ -106,7 +101,7 @@ $(function() {
 	$("#btnSearch").click(function() {
 		dataTableHandler.fnDestroy();
 		$('#listTable').empty();
-		$.post("<?php echo site_url('account/active_account/lists/highchart'); ?>", {
+		$.post("<?php echo site_url('account/modify_account/lists/highchart'); ?>", {
 			"startTime": $("#startTime").val(),
 			"endTime": $("#endTime").val()
 		}, onData);
@@ -123,11 +118,9 @@ function onData(data) {
 	var column = [];
 	var aaData = [];
 	var series = [];
-	
 	column.push({
 		"sTitle": "服务器名"
 	});
-	
 	for(var i in json.axis)
 	{
 		column.push({
@@ -148,7 +141,7 @@ function onData(data) {
 			{
 				if(json[i][j])
 				{
-					rowData.push(parseInt(json[i][j].active_account));
+					rowData.push(parseInt(json[i][j].modify_account));
 				}
 				else
 				{
@@ -157,7 +150,7 @@ function onData(data) {
 			}
 			for(var j in json[i])
 			{
-				data.push(parseInt(json[i][j].active_account));
+				data.push(parseInt(json[i][j].modify_account));
 			}
 			aaData.push(rowData);
 			obj.data = data;
@@ -174,7 +167,7 @@ function onData(data) {
 			enabled: false
 		},
 		title: {
-			text: '活跃人数变化趋势图'
+			text: '改名总人数变化趋势图'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
@@ -184,7 +177,7 @@ function onData(data) {
 		},
 		yAxis: {
 			title: {
-				text: '活跃人数'
+				text: '改名总人数'
 			},
 			plotLines: [{
 				value: 0,
@@ -237,5 +230,7 @@ function onData(data) {
 			}
 		}
 	});
+	
+	$("select").select2();
 }
 </script>
