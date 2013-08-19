@@ -31,16 +31,16 @@
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>游戏行为监控</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
-        <li><a href="error403.html">职业数量分布</a></li>
-        <li><a href="error404.html">等级分布</a></li>
-        <li><a href="error404.html">角色游戏进度</a></li>
+        <li<?php if($page_name == 'behavior/job'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('behavior/job'); ?>">职业数量分布</a></li>
+        <li<?php if($page_name == 'behavior/level'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('behavior/level'); ?>">等级分布</a></li>
+        <li<?php if($page_name == 'behavior/progress'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('behavior/progress'); ?>">角色游戏进度</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>游戏管理员</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
-        <li><a href="error403.html">开/停服务器</a></li>
+        <li<?php if($page_name == 'master/server'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/server'); ?>">开/停服务器</a></li>
         <li<?php if($page_name == 'master/send_message'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/send_message'); ?>">发布游戏公告</a></li>
-        <li><a href="error404.html">发放游戏道具</a></li>
+        <li<?php if($page_name == 'master/grant'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/grant'); ?>">发放游戏道具</a></li>
       </ul>
     </li>
     <li class="content"> <span>Monthly Bandwidth Transfer</span>
