@@ -82,14 +82,14 @@ var dataTableHandler;
 
 $(function() {
     $('.datepicker').datepicker();
-	$.post("<?php echo site_url('behavior/job/lists/highchart'); ?>", {
+	$.post("<?php echo site_url('behavior/level/lists/highchart'); ?>", {
 			"server_id": $("#serverId").val()
 		}, onData);
 	
 	$("#btnSearch").click(function() {
 		dataTableHandler.fnDestroy();
 		$('#listTable').empty();
-		$.post("<?php echo site_url('behavior/job/lists/highchart'); ?>", {
+		$.post("<?php echo site_url('behavior/level/lists/highchart'); ?>", {
 			"server_id": $("#serverId").val()
 		}, onData);
 	});
@@ -101,40 +101,41 @@ function onData(data) {
 		return;
 	}
 	var json = eval("(" + data + ")");
-	for(var i = 0; i < json.length; i++)
+	
+	for(var i = 0; i < json.data.length; i++)
 	{
-		json[i][1] = parseFloat(json[i][1]);
+		json.data[i] = parseInt(json.data[i]);
 	}
 	
 	$('#chartRegCount').highcharts({
 		chart: {
-			height: 500
+			type: 'bar',
+			height: 600
 		},
 		title: {
-			text: '职业人数分布图'
+			text: '人物等级分布图'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
 		},
-		tooltip: {
-			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		xAxis: [{
+			categories: json.category,
+			reversed: false
+		}],
+		yAxis: {
+			title: {
+				text: null
+			},
+			min: 0
 		},
 		plotOptions: {
-			pie: {
-				allowPointSelect: true,
-				cursor: 'pointer',
-				dataLabels: {
-					enabled: true,
-					color: '#000000',
-					connectorColor: '#000000',
-					format: '<b>{point.name}</b>: {point.percentage:.1f}%'
-				}
+			series: {
+				stacking: 'normal'
 			}
 		},
 		series: [{
-			type: 'pie',
-			name: '职业人数分布',
-			data: json
+			name: $("#serverId").find("option:selected").text(),
+			data: json.data
 		}]
 	});
 	
@@ -144,9 +145,9 @@ function onData(data) {
 		"bStateSave": true,
 		"sPaginationType": "full_numbers",
 		"sDom": '<"H"lr>t<"F"fp>',
-        "aaData": json,
+        "aaData": json.result,
         "aoColumns": [{
-			'sTitle': '职业'
+			'sTitle': '等级'
 		},{
 			'sTitle': '人数'
 		}],

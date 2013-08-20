@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Job extends CI_Controller
+class Level extends CI_Controller
 {
-	private $pageName = 'behavior/job';
+	private $pageName = 'behavior/level';
 	private $user = null;
 
 	public function __construct()
@@ -33,19 +33,29 @@ class Job extends CI_Controller
 		$serverId = $this->input->post('server_id');
 		if(!empty($serverId))
 		{
-			$sql = "SELECT `account_job`, count(*) as `count` FROM `web_account` WHERE `server_id`='{$serverId}' GROUP BY `account_job`";
+			$sql = "SELECT `account_level`, count(*) as `count` FROM `web_account` WHERE `server_id`='{$serverId}' GROUP BY `account_level`";
 		}
 		else
 		{
-			$sql = "SELECT `account_job`, count(*) as `count` FROM `web_account` GROUP BY `account_job`";
+			$sql = "SELECT `account_level`, count(*) as `count` FROM `web_account` GROUP BY `account_level`";
 		}
 		$result = $accountdb->query($sql)->result_array();
+		
+		$category = array();
+		$data = array();
 		for($i=0; $i<count($result); $i++)
 		{
 			$result[$i] = array_values($result[$i]);
+			array_push($category, $result[$i][0]);
+			array_push($data, $result[$i][1]);
 		}
 		
-		echo $this->return_format->format($result);
+		$parameter = array(
+			'category'		=>	$category,
+			'data'			=>	$data,
+			'result'			=>	$result
+		); 
+		echo $this->return_format->format($parameter);
 	}
 }
 
