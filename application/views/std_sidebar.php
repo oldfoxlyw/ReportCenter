@@ -6,9 +6,9 @@
     <li<?php if($page_name == 'administrators'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('administrators'); ?>"><i class="icon icon-signal"></i><span>管理员设置</span></a></li>
     <li class="submenu"><a href="#"><i class="icon icon-th-list"></i><span>用户在线数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
-        <li><a href="form-common.html">即时在线数据</a></li>
-        <li><a href="form-validation.html">最高在线数据</a></li>
-        <li><a href="form-wizard.html">平均在线数据</a></li>
+        <li<?php if($page_name == 'account/current_online'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/current_online'); ?>">即时在线数据</a></li>
+        <li<?php if($page_name == 'account/max_online'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/max_online'); ?>">最高在线数据</a></li>
+        <li<?php if($page_name == 'account/avg_online'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/avg_online'); ?>">平均在线数据</a></li>
       </ul>
     </li>
     <li class="submenu"><a href="#"><i class="icon icon-file"></i><span>用户数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>

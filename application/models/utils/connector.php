@@ -28,8 +28,11 @@ class Connector extends CI_Model {
 			{
 				$postPath = $controller;
 			}
-				
-			$parameter['code'] = $this->hash($parameter);
+			
+			if(!empty($parameter))
+			{
+				$parameter['code'] = $this->hash($parameter);
+			}
 				
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $postPath . '?' . $this->getQueryString($parameter));
