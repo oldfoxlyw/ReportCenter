@@ -54,7 +54,7 @@ class Max_online extends CI_Controller
 				$result = $this->monlinecount->read($parameter);
 				foreach($result as $row)
 				{
-					$data[intval($row->log_count)] = $row;
+					$data[intval($row->log_hour)] = $row;
 				}
 			}
 			elseif ($type == '2')
@@ -76,7 +76,7 @@ class Max_online extends CI_Controller
 
 				foreach($result as $row)
 				{
-					$data[intval($row->max_count)] = $row;
+					$data[intval($row->log_date)] = $row;
 				}
 			}
 			elseif ($type == '3')
@@ -98,7 +98,7 @@ class Max_online extends CI_Controller
 
 				foreach($result as $row)
 				{
-					$data[intval($row->max_count)] = $row;
+					$data[intval($row->log_date)] = $row;
 				}
 			}
 			
