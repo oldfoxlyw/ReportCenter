@@ -106,7 +106,7 @@ $(function() {
     $('.datepicker').datepicker();
 	
 	$("#btnSearch").click(function() {
-		dataTableHandler.fnDestroy();
+		if(dataTableHandler) dataTableHandler.fnDestroy();
 		$('#listTable').empty();
 		$.post("<?php echo site_url('account/max_online/lists/highchart'); ?>", {
 			"serverId": $("#serverId").val(),
