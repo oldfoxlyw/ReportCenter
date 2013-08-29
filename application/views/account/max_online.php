@@ -114,8 +114,9 @@ $(function() {
 		//dataTableHandler.fnDestroy();
 		$('#listTable').empty();
 		$.post("<?php echo site_url('account/max_online/lists/highchart'); ?>", {
+			"serverId": $("#serverId").val(),
 			"startTime": $("#startTime").val(),
-			"endTime": $("#endTime").val()
+			"type": $("#type").val()
 		}, onData);
 	});
 });
