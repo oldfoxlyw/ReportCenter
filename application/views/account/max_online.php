@@ -152,7 +152,7 @@ function onData(data) {
 			{
 				if(json[i][j])
 				{
-					rowData.push(parseInt(json[i][j].log_count));
+					rowData.push(json[i][j].log_count);
 				}
 				else
 				{
