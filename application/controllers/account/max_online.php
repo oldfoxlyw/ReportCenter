@@ -44,16 +44,27 @@ class Max_online extends CI_Controller
 					'server_id'			=>	$serverId,
 					'log_date'			=>	$startTime
 				);
+				$result = $this->monlinecount->read($parameter);
 			}
 			elseif ($type == '2')
 			{
-				$date = date('Y-m-d', strtotime("{$startTime} 00:00:00 Sunday"));
-				echo $date;
+				$endDate = date('Y-m-d', strtotime("{$startTime} 00:00:00 Sunday"));
+				$startDate = date('Y-m-d', strtotime("{$endDate} 00:00:00 - 6 days"));
+				
+				$parameter = array(
+					'server_id'				=>	$serverId,
+					'log_date >='		=>	$startDate,
+					'log_date <='		=>	$endDate
+				);
+				$sql = "SELECT `server_id`, `log_date`, MAX(`log_count`) FROM `log_online_count` WHERE `server_id`='{$serverId}' AND `log_date`>='{$startDate}' AND `log_date`<='{$endDate}' GROUP BY `log_date`";
+				$result = $this->monlinecount->query($sql);
 			}
 			elseif ($type == '3')
 			{
 				
 			}
+			
+			echo json_encode($result);
 		}
 	}
 }

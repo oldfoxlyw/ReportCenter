@@ -11,7 +11,7 @@ class Moverview extends CI_Model implements ICrud
 	public function __construct()
 	{
 		parent::__construct();
-		$this->webdb = $this->load->database('logcachedb', TRUE);
+		$this->logcachedb = $this->load->database('logcachedb', TRUE);
 	}
 	
 	public function count($parameter = null, $extension = null)
@@ -20,23 +20,23 @@ class Moverview extends CI_Model implements ICrud
 		{
 			foreach($parameter as $key=>$value)
 			{
-				$this->webdb->where($key, $value);
+				$this->logcachedb->where($key, $value);
 			}
 		}
 		if(!empty($extension))
 		{
 			
 		}
-		return $this->webdb->count_all_results($this->accountTable);
+		return $this->logcachedb->count_all_results($this->accountTable);
 	}
 	
 	public function create($row)
 	{
 		if(!empty($row))
 		{
-			if($this->webdb->insert($this->accountTable, $row))
+			if($this->logcachedb->insert($this->accountTable, $row))
 			{
-				return $this->webdb->insert_id();
+				return $this->logcachedb->insert_id();
 			}
 			else
 			{
@@ -55,24 +55,24 @@ class Moverview extends CI_Model implements ICrud
 		{
 			foreach($parameter as $key=>$value)
 			{
-				$this->webdb->where($key, $value);
+				$this->logcachedb->where($key, $value);
 			}
 		}
 		if(!empty($extension))
 		{
 			if(!empty($extension['select']) && is_array($extension['select']))
 			{
-				$this->webdb->select($extension['select']);
+				$this->logcachedb->select($extension['select']);
 			}
 			if(!empty($extension['order_by']))
 			{
-				$this->webdb->order_by($extension['order_by'][0], $extension['order_by'][1]);
+				$this->logcachedb->order_by($extension['order_by'][0], $extension['order_by'][1]);
 			}
 		}
 		if($limit==0 && $offset==0) {
-			$query = $this->webdb->get($this->accountTable);
+			$query = $this->logcachedb->get($this->accountTable);
 		} else {
-			$query = $this->webdb->get($this->accountTable, $limit, $offset);
+			$query = $this->logcachedb->get($this->accountTable, $limit, $offset);
 		}
 		if($query->num_rows() > 0) {
 			return $query->result();
@@ -85,8 +85,8 @@ class Moverview extends CI_Model implements ICrud
 	{
 		if(!empty($id) && !empty($row))
 		{
-			$this->webdb->where('id', $id);
-			return $this->webdb->update($this->accountTable, $row);
+			$this->logcachedb->where('id', $id);
+			return $this->logcachedb->update($this->accountTable, $row);
 		}
 		else
 		{
@@ -98,8 +98,8 @@ class Moverview extends CI_Model implements ICrud
 	{
 		if(!empty($id))
 		{
-			$this->webdb->where('id', $id);
-			return $this->webdb->delete($this->accountTable);
+			$this->logcachedb->where('id', $id);
+			return $this->logcachedb->delete($this->accountTable);
 		}
 		else
 		{

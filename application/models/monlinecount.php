@@ -11,7 +11,7 @@ class Monlinecount extends CI_Model implements ICrud
 	public function __construct()
 	{
 		parent::__construct();
-		$this->webdb = $this->load->database('logcachedb', TRUE);
+		$this->logcachedb = $this->load->database('logcachedb', TRUE);
 	}
 	
 	public function count($parameter = null, $extension = null)
@@ -20,23 +20,23 @@ class Monlinecount extends CI_Model implements ICrud
 		{
 			foreach($parameter as $key=>$value)
 			{
-				$this->webdb->where($key, $value);
+				$this->logcachedb->where($key, $value);
 			}
 		}
 		if(!empty($extension))
 		{
 			
 		}
-		return $this->webdb->count_all_results($this->accountTable);
+		return $this->logcachedb->count_all_results($this->accountTable);
 	}
 	
 	public function create($row)
 	{
 		if(!empty($row))
 		{
-			if($this->webdb->insert($this->accountTable, $row))
+			if($this->logcachedb->insert($this->accountTable, $row))
 			{
-				return $this->webdb->insert_id();
+				return $this->logcachedb->insert_id();
 			}
 			else
 			{
@@ -55,28 +55,28 @@ class Monlinecount extends CI_Model implements ICrud
 		{
 			foreach($parameter as $key=>$value)
 			{
-				$this->webdb->where($key, $value);
+				$this->logcachedb->where($key, $value);
 			}
 		}
 		if(!empty($extension))
 		{
 			if(!empty($extension['select']) && is_array($extension['select']))
 			{
-				$this->webdb->select($extension['select']);
+				$this->logcachedb->select($extension['select']);
 			}
 			if(!empty($extension['group_by']))
 			{
-				$this->webdb->group_by($extension['group_by'][0], $extension['group_by'][1]);
+				$this->logcachedb->group_by($extension['group_by'][0], $extension['group_by'][1]);
 			}
 			if(!empty($extension['order_by']))
 			{
-				$this->webdb->order_by($extension['order_by'][0], $extension['order_by'][1]);
+				$this->logcachedb->order_by($extension['order_by'][0], $extension['order_by'][1]);
 			}
 		}
 		if($limit==0 && $offset==0) {
-			$query = $this->webdb->get($this->accountTable);
+			$query = $this->logcachedb->get($this->accountTable);
 		} else {
-			$query = $this->webdb->get($this->accountTable, $limit, $offset);
+			$query = $this->logcachedb->get($this->accountTable, $limit, $offset);
 		}
 		if($query->num_rows() > 0) {
 			return $query->result();
@@ -89,10 +89,10 @@ class Monlinecount extends CI_Model implements ICrud
 	{
 		if(!empty($id) && is_array($id) && !empty($row))
 		{
-			$this->webdb->where('server_id', $id['server_id']);
-			$this->webdb->where('log_date', $id['log_date']);
-			$this->webdb->where('log_hour', $id['log_hour']);
-			return $this->webdb->update($this->accountTable, $row);
+			$this->logcachedb->where('server_id', $id['server_id']);
+			$this->logcachedb->where('log_date', $id['log_date']);
+			$this->logcachedb->where('log_hour', $id['log_hour']);
+			return $this->logcachedb->update($this->accountTable, $row);
 		}
 		else
 		{
@@ -104,15 +104,28 @@ class Monlinecount extends CI_Model implements ICrud
 	{
 		if(!empty($id) && is_array($id))
 		{
-			$this->webdb->where('server_id', $id['server_id']);
-			$this->webdb->where('log_date', $id['log_date']);
-			$this->webdb->where('log_hour', $id['log_hour']);
-			return $this->webdb->delete($this->accountTable);
+			$this->logcachedb->where('server_id', $id['server_id']);
+			$this->logcachedb->where('log_date', $id['log_date']);
+			$this->logcachedb->where('log_hour', $id['log_hour']);
+			return $this->logcachedb->delete($this->accountTable);
 		}
 		else
 		{
 			return false;
 		}
+	}
+	
+	public function query($sql)
+	{
+		if(!empty($sql))
+		{
+			$query = $this->logcachedb->query($sql);
+			if($query->num_rows() > 0)
+			{
+				return $query->result();
+			}
+		}
+		return false;
 	}
 }
 
