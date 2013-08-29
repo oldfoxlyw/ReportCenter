@@ -139,7 +139,7 @@ function onData(data) {
 	for(var i in json.axis)
 	{
 		column.push({
-			"sTitle": json.axis[i]
+			"sTitle": json.axis[i] + "时"
 		});
 	}
 	for(var i in json)
