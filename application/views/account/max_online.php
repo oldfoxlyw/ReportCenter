@@ -152,11 +152,11 @@ function onData(data) {
 			{
 				if(json[i][j])
 				{
-					rowData.push(json[i][j].log_count);
+					rowData.push(parseInt(json[i][j].log_count));
 				}
 				else
 				{
-					rowData.push("-");
+					rowData.push(0);
 				}
 			}
 			for(var j in json[i])
