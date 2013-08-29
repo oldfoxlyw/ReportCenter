@@ -104,14 +104,9 @@ var dataTableHandler;
 
 $(function() {
     $('.datepicker').datepicker();
-	$.post("<?php echo site_url('account/max_online/lists/highchart'); ?>", {
-		"serverId": $("#serverId").val(),
-		"startTime": $("#startTime").val(),
-		"type": $("#type").val()
-	}, onData);
 	
 	$("#btnSearch").click(function() {
-		//dataTableHandler.fnDestroy();
+		dataTableHandler.fnDestroy();
 		$('#listTable').empty();
 		$.post("<?php echo site_url('account/max_online/lists/highchart'); ?>", {
 			"serverId": $("#serverId").val(),
@@ -139,7 +134,7 @@ function onData(data) {
 	for(var i in json.axis)
 	{
 		column.push({
-			"sTitle": json.axis[i] + "时"
+			"sTitle": json.axis[i]
 		});
 	}
 	for(var i in json)
