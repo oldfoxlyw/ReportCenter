@@ -19,7 +19,7 @@
                 <div class="control-group">
                     <label class="control-label">选择服务器</label>
                     <div class="controls">
-                        <select id="serverIp" name="serverIp" class="span5">
+                        <select id="serverIp" name="serverIp">
                         <?php foreach($server_result as $server): ?>
                             <option value="http://<?php echo $server->server_ip; ?>:<?php echo $server->server_port; ?>"><?php echo $server->server_name; ?></option>
                         <?php endforeach; ?>

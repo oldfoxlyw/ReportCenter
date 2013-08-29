@@ -16,7 +16,7 @@
                     <div class="control-group">
                         <label class="control-label">选择服务器</label>
                         <div class="controls">
-                            <select id="serverId" name="serverId" class="span5" >
+                            <select id="serverId" name="serverId" >
                             	<option value="0">全部</option>
                             <?php foreach($server as $row): ?>
                             	<option value="<?php echo $row->account_server_id; ?>"><?php echo $row->server_name; ?></option>

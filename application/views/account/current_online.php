@@ -9,29 +9,29 @@
 <div class="container-fluid">
 <!--End-Action boxes-->    
 	<div class="row-fluid">
-        	<div class="widget-box">
-              <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                <h5>搜索</h5>
-              </div>
-              <div class="widget-content nopadding">
-                  <form action="" method="post" class="form-horizontal">
-                    <div class="control-group">
-                        <label class="control-label">选择服务器</label>
-                        <div class="controls">
-                            <select id="serverIp" name="serverIp" class="span5">
-                            <?php foreach($server_result as $server): ?>
-                                <option value="http://<?php echo $server->server_ip; ?>:<?php echo $server->server_port; ?>"><?php echo $server->server_name; ?></option>
-                            <?php endforeach; ?>
-                            </select>
-                        </div>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>搜索</h5>
+          </div>
+          <div class="widget-content nopadding">
+              <form action="" method="post" class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label">选择服务器</label>
+                    <div class="controls">
+                        <select id="serverIp" name="serverIp">
+                        <?php foreach($server_result as $server): ?>
+                            <option value="http://<?php echo $server->server_ip; ?>:<?php echo $server->server_port; ?>"><?php echo $server->server_name; ?></option>
+                        <?php endforeach; ?>
+                        </select>
                     </div>
-                    <div class="form-actions">
-                      <button id="btnSearch" type="button" class="btn btn-success">提交</button>
-                    </div>
-                  </form>
-              </div>
-            </div>
+                </div>
+                <div class="form-actions">
+                  <button id="btnSearch" type="button" class="btn btn-success">提交</button>
+                </div>
+              </form>
+          </div>
         </div>
+    </div>
 <!--Chart-box-->    
     <div class="row-fluid">
       <div class="widget-box">
@@ -50,10 +50,12 @@
 <!--End-Chart-box-->
 </div>
 </div>
+<link rel="stylesheet" href="<?php echo base_url('resources/css/select2.css'); ?>" />
 <script src="<?php echo base_url('resources/js/jquery.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/bootstrap.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/matrix.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/highcharts.js'); ?>"></script>
+<script src="<?php echo base_url('resources/js/select2.min.js'); ?>"></script>
 
 <script type="text/javascript">
 $(function() {
@@ -86,7 +88,7 @@ $(function() {
 										series.addPoint([x, y], true, true);
 									}
 								});
-							}, 2000);
+							}, 5000);
 						}
 					}
 				},
@@ -140,5 +142,6 @@ $(function() {
 			};
 		$('#chartRegCount').highcharts(options);
 	});
+	$("select").select2();
 });
 </script>
