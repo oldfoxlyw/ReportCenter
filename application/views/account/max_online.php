@@ -148,7 +148,7 @@ function onData(data) {
 			var rowData = [];
 			
 			rowData.push(i);
-			for(var j = 0; j < column.length; j++)
+			for(var j = 0; j < json[i].length; j++)
 			{
 				if(json[i][j])
 				{
