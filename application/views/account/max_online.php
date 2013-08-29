@@ -111,7 +111,7 @@ $(function() {
 	}, onData);
 	
 	$("#btnSearch").click(function() {
-		dataTableHandler.fnDestroy();
+		//dataTableHandler.fnDestroy();
 		$('#listTable').empty();
 		$.post("<?php echo site_url('account/max_online/lists/highchart'); ?>", {
 			"startTime": $("#startTime").val(),
