@@ -135,7 +135,7 @@ function onData(data) {
 	for(var i in json.axis)
 	{
 		column.push({
-			"sTitle": json.axis[i] + "时"
+			"sTitle": json.axis[i] + ""
 		});
 	}
 	for(var i in json)
@@ -148,23 +148,14 @@ function onData(data) {
 			var rowData = [];
 			
 			rowData.push(i);
-			for(var j = 0; j < json[i].length; j++)
-			{
-				if(json[i][j])
-				{
-					rowData.push(parseInt(json[i][j].log_count));
-				}
-				else
-				{
-					rowData.push(0);
-				}
-			}
 			for(var j in json[i])
 			{
 				if(json[i][j]) {
 					data.push(parseInt(json[i][j].log_count));
+					rowData.push(parseInt(json[i][j].log_count));
 				} else {
 					data.push(null);
+					rowData.push(0);
 				}
 			}
 			aaData.push(rowData);
