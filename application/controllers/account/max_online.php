@@ -40,11 +40,12 @@ class Max_online extends CI_Controller
 		{
 			$data = array();
 			$data['axis'] = array();
+			$data[$serverId] = array();
 			if($type == '1')
 			{
 				for($i=0; $i<24; $i++)
 				{
-					$data[$i] = array();
+					$data[$serverId][$i] = array();
 					array_push($data['axis'], $i);
 				}
 				$parameter = array(
@@ -54,7 +55,7 @@ class Max_online extends CI_Controller
 				$result = $this->monlinecount->read($parameter);
 				foreach($result as $row)
 				{
-					$data[intval($row->log_hour)] = $row;
+					$data[$serverId][intval($row->log_hour)] = $row;
 				}
 			}
 			elseif ($type == '2')
@@ -67,7 +68,7 @@ class Max_online extends CI_Controller
 				for($i=$startTimestamp; $i<=$endTimestamp; $i+=86400)
 				{
 					$current = date('Y-m-d', $i);
-					$data[$current] = array();
+					$data[$serverId][$current] = array();
 					array_push($data['axis'], $current);
 				}
 				
@@ -76,7 +77,7 @@ class Max_online extends CI_Controller
 
 				foreach($result as $row)
 				{
-					$data[intval($row->log_date)] = $row;
+					$data[$serverId][intval($row->log_date)] = $row;
 				}
 			}
 			elseif ($type == '3')
@@ -89,7 +90,7 @@ class Max_online extends CI_Controller
 				for($i=$startTimestamp; $i<=$endTimestamp; $i+=86400)
 				{
 					$current = date('Y-m-d', $i);
-					$data[$current] = array();
+					$data[$serverId][$current] = array();
 					array_push($data['axis'], $current);
 				}
 
@@ -98,7 +99,7 @@ class Max_online extends CI_Controller
 
 				foreach($result as $row)
 				{
-					$data[intval($row->log_date)] = $row;
+					$data[$serverId][intval($row->log_date)] = $row;
 				}
 			}
 			
