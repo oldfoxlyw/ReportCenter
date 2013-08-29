@@ -39,9 +39,9 @@ class Max_online extends CI_Controller
 		if (! empty ( $serverId ) && ! empty ( $startTime ) && ! empty ( $type ))
 		{
 			$data = array();
+			$data['axis'] = array();
 			if($type == '1')
 			{
-				$data['axis'] = array();
 				for($i=0; $i<24; $i++)
 				{
 					$data[$i] = array();
@@ -59,22 +59,50 @@ class Max_online extends CI_Controller
 			}
 			elseif ($type == '2')
 			{
-				$endDate = date('Y-m-d', strtotime("{$startTime} 00:00:00 Sunday"));
-				$startDate = date('Y-m-d', strtotime("{$endDate} 00:00:00 - 6 days"));
+				$endTimestamp = strtotime("{$startTime} 00:00:00 Sunday");
+				$endDate = date('Y-m-d', $endTimestamp);
+				$startTimestamp = strtotime("{$endDate} 00:00:00 - 6 days");
+				$startDate = date('Y-m-d', $startTimestamp);
 				
-				$sql = "SELECT `server_id`, `log_date`, MAX(`log_count`) FROM `log_online_count` WHERE `server_id`='{$serverId}' AND `log_date`>='{$startDate}' AND `log_date`<='{$endDate}' GROUP BY `log_date`";
+				for($i=$startTimestamp; $i<=$endTimestamp; $i+=86400)
+				{
+					$current = date('Y-m-d', $i);
+					$data[$current] = array();
+					array_push($data['axis'], $current);
+				}
+				
+				$sql = "SELECT `server_id`, `log_date`, MAX(`log_count`) as `max_count` FROM `log_online_count` WHERE `server_id`='{$serverId}' AND `log_date`>='{$startDate}' AND `log_date`<='{$endDate}' GROUP BY `log_date`";
 				$result = $this->monlinecount->query($sql);
+
+				foreach($result as $row)
+				{
+					$data[intval($row->max_count)] = $row;
+				}
 			}
 			elseif ($type == '3')
 			{
 				$startDate = date('Y-m', strtotime("{$startTime} 00:00:00")) . '-01';
+				$startTimestamp = strtotime($startDate);
 				$endDate = date('Y-m-d', strtotime($startTime) + 30 * 86400);
+				$endTimestamp = strtotime($endDate);
 
-				$sql = "SELECT `server_id`, `log_date`, MAX(`log_count`) FROM `log_online_count` WHERE `server_id`='{$serverId}' AND `log_date`>='{$startDate}' AND `log_date`<='{$endDate}' GROUP BY `log_date`";
+				for($i=$startTimestamp; $i<=$endTimestamp; $i+=86400)
+				{
+					$current = date('Y-m-d', $i);
+					$data[$current] = array();
+					array_push($data['axis'], $current);
+				}
+
+				$sql = "SELECT `server_id`, `log_date`, MAX(`log_count`) as `max_count` FROM `log_online_count` WHERE `server_id`='{$serverId}' AND `log_date`>='{$startDate}' AND `log_date`<='{$endDate}' GROUP BY `log_date`";
 				$result = $this->monlinecount->query($sql);
+
+				foreach($result as $row)
+				{
+					$data[intval($row->max_count)] = $row;
+				}
 			}
 			
-			echo json_encode($result);
+			echo json_encode($data);
 		}
 	}
 }
