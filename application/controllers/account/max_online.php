@@ -86,7 +86,7 @@ class Max_online extends CI_Controller
 
 				foreach($result as $row)
 				{
-					$data[$serverId][intval($row->log_date)] = $row;
+					$data[$serverId][$row->log_date] = $row;
 				}
 			}
 			elseif ($type == '3')
@@ -108,7 +108,7 @@ class Max_online extends CI_Controller
 
 				foreach($result as $row)
 				{
-					$data[$serverId][intval($row->log_date)] = $row;
+					$data[$serverId][$row->log_date] = $row;
 				}
 			}
 			
