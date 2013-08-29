@@ -182,7 +182,7 @@ function onData(data) {
 			enabled: false
 		},
 		title: {
-			text: '活跃人数变化趋势图'
+			text: '最高在线图'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
@@ -192,7 +192,7 @@ function onData(data) {
 		},
 		yAxis: {
 			title: {
-				text: '活跃人数'
+				text: '在线人数'
 			},
 			plotLines: [{
 				value: 0,

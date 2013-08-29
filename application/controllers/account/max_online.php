@@ -38,13 +38,24 @@ class Max_online extends CI_Controller
 		
 		if (! empty ( $serverId ) && ! empty ( $startTime ) && ! empty ( $type ))
 		{
+			$data = array();
 			if($type == '1')
 			{
+				$data['axis'] = array();
+				for($i=0; $i<24; $i++)
+				{
+					$data[$i] = array();
+					array_push($data['axis'], $i);
+				}
 				$parameter = array(
 					'server_id'			=>	$serverId,
 					'log_date'			=>	$startTime
 				);
 				$result = $this->monlinecount->read($parameter);
+				foreach($result as $row)
+				{
+					$data[intval($row->log_count)] = $row;
+				}
 			}
 			elseif ($type == '2')
 			{
