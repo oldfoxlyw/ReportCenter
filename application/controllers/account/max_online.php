@@ -74,7 +74,7 @@ class Max_online extends CI_Controller
 					array_push($data['axis'], $current);
 				}
 				
-				$sql = "SELECT `server_id`, `log_date`, MAX(`log_count`) as `max_count` FROM `log_online_count` WHERE `server_id`='{$serverId}' AND `log_date`>='{$startDate}' AND `log_date`<='{$endDate}' GROUP BY `log_date`";
+				$sql = "SELECT `server_id`, `log_date`, MAX(`log_count`) as `log_count` FROM `log_online_count` WHERE `server_id`='{$serverId}' AND `log_date`>='{$startDate}' AND `log_date`<='{$endDate}' GROUP BY `log_date`";
 				$result = $this->monlinecount->query($sql);
 
 				foreach($result as $row)
@@ -99,7 +99,7 @@ class Max_online extends CI_Controller
 					array_push($data['axis'], $current);
 				}
 
-				$sql = "SELECT `server_id`, `log_date`, MAX(`log_count`) as `max_count` FROM `log_online_count` WHERE `server_id`='{$serverId}' AND `log_date`>='{$startDate}' AND `log_date`<='{$endDate}' GROUP BY `log_date`";
+				$sql = "SELECT `server_id`, `log_date`, MAX(`log_count`) as `log_count` FROM `log_online_count` WHERE `server_id`='{$serverId}' AND `log_date`>='{$startDate}' AND `log_date`<='{$endDate}' GROUP BY `log_date`";
 				$result = $this->monlinecount->query($sql);
 
 				foreach($result as $row)

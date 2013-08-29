@@ -156,7 +156,7 @@ function onData(data) {
 			{
 				if(json[i][j])
 				{
-					rowData.push(parseInt(json[i][j].active_account));
+					rowData.push(parseInt(json[i][j].log_count));
 				}
 				else
 				{
@@ -165,7 +165,7 @@ function onData(data) {
 			}
 			for(var j in json[i])
 			{
-				data.push(parseInt(json[i][j].active_account));
+				data.push(parseInt(json[i][j].log_count));
 			}
 			aaData.push(rowData);
 			obj.data = data;
