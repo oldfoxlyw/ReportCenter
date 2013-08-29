@@ -165,7 +165,11 @@ function onData(data) {
 			}
 			for(var j in json[i])
 			{
-				data.push(parseInt(json[i][j].log_count));
+				if(json[i][j]) {
+					data.push(parseInt(json[i][j].log_count));
+				} else {
+					data.push(null);
+				}
 			}
 			aaData.push(rowData);
 			obj.data = data;
