@@ -28,7 +28,7 @@ class Avg_online extends CI_Controller
 		$this->render->render ( $this->pageName, $data );
 	}
 
-	public function lists()
+	public function lists($provider = 'highchart')
 	{
 		$this->load->model ( 'monlinecount' );
 		

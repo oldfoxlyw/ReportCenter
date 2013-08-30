@@ -95,7 +95,7 @@ $(function() {
 	$("#btnSearch").click(function() {
 		if(dataTableHandler) dataTableHandler.fnDestroy();
 		$('#listTable').empty();
-		$.post("<?php echo site_url('account/max_online/lists/highchart'); ?>", {
+		$.post("<?php echo site_url('account/avg_online/lists/highchart'); ?>", {
 			"serverId": $("#serverId").val(),
 			"startTime": $("#startTime").val(),
 			"type": $("#type").val()
