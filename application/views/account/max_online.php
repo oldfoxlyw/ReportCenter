@@ -182,12 +182,6 @@ function onData(data) {
 		tooltip: {
 			crosshairs: [true, true]
 		},
-		legend: {
-			layout: 'vertical',
-			align: 'right',
-			verticalAlign: 'middle',
-			borderWidth: 1
-		},
 		plotOptions: {
 			line: {
 				dataLabels: {
