@@ -38,7 +38,6 @@
                     <label class="control-label">单位</label>
                     <div class="controls">
                         <select id="type" name="type">
-                            <option value="1">天</option>
                             <option value="2">周</option>
                             <option value="3">月</option>
                         </select>
@@ -161,7 +160,7 @@ function onData(data) {
 			enabled: false
 		},
 		title: {
-			text: '最高在线图'
+			text: '平均在线图'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
