@@ -21,6 +21,7 @@
         <li<?php if($page_name == 'account/pay_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/pay_account'); ?>">服务器付费用户数</a></li>
         <li<?php if($page_name == 'account/flowover_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/flowover_account'); ?>">服务器流失用户数</a></li>
         <li<?php if($page_name == 'account/reflow_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/reflow_account'); ?>">服务器回流用户数</a></li>
+        <li<?php if($page_name == 'account/flowover_account_detail'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/flowover_account_detail'); ?>">服务器流失用户详情</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>付费/消费数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>

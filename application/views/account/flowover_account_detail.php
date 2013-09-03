@@ -54,7 +54,17 @@
             <div id="tab1" class="tab-pane active">
                 <div class="widget-content">
                     <div class="row-fluid">
-                        <div id="chartRegCount"></div>
+                        <div id="chartRegCount1"></div>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div class="row-fluid">
+                        <div id="chartRegCount2"></div>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div class="row-fluid">
+                        <div id="chartRegCount3"></div>
                     </div>
                 </div>
             </div>
@@ -104,14 +114,30 @@ function onData(data) {
 	
 	var jobCategory = [];
 	var jobData = [];
+	var levelCategory = [];
+	var levelData = [];
+	var missionCategory = [];
+	var missionData = [];
 	if(json.job) {
 		for(var i in json.job) {
 			jobCategory.push(json.job[i][0]);
 			jobData.push(parseInt(json.job[i][1]));
 		}
 	}
+	if(json.level) {
+		for(var i in json.level) {
+			levelCategory.push(json.level[i][0]);
+			levelData.push(parseInt(json.level[i][1]));
+		}
+	}
+	if(json.mission) {
+		for(var i in json.jobmission {
+			missionCategory.push(json.mission[i][0]);
+			missionData.push(parseInt(json.mission[i][1]));
+		}
+	}
 	
-	$('#chartRegCount').highcharts({
+	$('#chartRegCount1').highcharts({
 		chart: {
 			type: 'bar',
 			height: 600
@@ -140,6 +166,68 @@ function onData(data) {
 		series: [{
 			name: $("#serverId").find("option:selected").text(),
 			data: jobData
+		}]
+	});
+	$('#chartRegCount2').highcharts({
+		chart: {
+			type: 'bar',
+			height: 600
+		},
+		title: {
+			text: '玩家流失分布图（等级）'
+		},
+		subtitle: {
+			text: '数据来源：数据统计平台'
+		},
+		xAxis: [{
+			categories: levelCategory,
+			reversed: false
+		}],
+		yAxis: {
+			title: {
+				text: null
+			},
+			min: 0
+		},
+		plotOptions: {
+			series: {
+				stacking: 'normal'
+			}
+		},
+		series: [{
+			name: $("#serverId").find("option:selected").text(),
+			data: levelData
+		}]
+	});
+	$('#chartRegCount3').highcharts({
+		chart: {
+			type: 'bar',
+			height: 600
+		},
+		title: {
+			text: '玩家流失分布图（任务）'
+		},
+		subtitle: {
+			text: '数据来源：数据统计平台'
+		},
+		xAxis: [{
+			categories: missionCategory,
+			reversed: false
+		}],
+		yAxis: {
+			title: {
+				text: null
+			},
+			min: 0
+		},
+		plotOptions: {
+			series: {
+				stacking: 'normal'
+			}
+		},
+		series: [{
+			name: $("#serverId").find("option:selected").text(),
+			data: missionData
 		}]
 	});
 	/*
