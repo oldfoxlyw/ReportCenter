@@ -107,7 +107,7 @@ function onData(data) {
 	if(json.job) {
 		for(var i in json.job) {
 			jobCategory.push(json.job[i][0]);
-			jobData.push(json.job[i][1]);
+			jobData.push(parseInt(json.job[i][1]));
 		}
 	}
 	
