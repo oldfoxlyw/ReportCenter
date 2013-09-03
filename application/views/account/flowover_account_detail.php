@@ -102,93 +102,47 @@ function onData(data) {
 	}
 	var json = eval("(" + data + ")");
 	
-	var column = [];
-	var aaData = [];
-	var series = [];
-	
-	column.push({
-		"sTitle": "服务器名"
-	});
-	
-	for(var i in json.axis)
-	{
-		column.push({
-			"sTitle": json.axis[i]
-		});
-	}
-	
-	for(var i in json)
-	{
-		if(i != "axis")
-		{
-			var obj = {};
-			obj.name = i;
-			var data = [];
-			var rowData = [];
-			
-			rowData.push(i);
-			for(var j = 0; j < column.length; j++)
-			{
-				if(json[i][j])
-				{
-					rowData.push(parseInt(json[i][j].flowover_account));
-				}
-				else
-				{
-					rowData.push("-");
-				}
-			}
-			aaData.push(rowData);
-			
-			for(var j in json[i])
-			{
-				data.push(parseInt(json[i][j].flowover_account));
-			}
-			obj.data = data;
-			
-			series.push(obj);
+	var jobCategory = [];
+	var jobData = [];
+	if(json.job) {
+		for(var i in json.job) {
+			jobCategory.push(json.job[i][0]);
+			jobData.push(json.job[i][1]);
 		}
 	}
 	
 	$('#chartRegCount').highcharts({
 		chart: {
-			height: 500
-		},
-		credits: {
-			enabled: false
+			type: 'bar',
+			height: 600
 		},
 		title: {
-			text: '流失用户数变化趋势图'
+			text: '玩家流失分布图（职业）'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
 		},
-		xAxis: {
-			categories: json.axis
-		},
+		xAxis: [{
+			categories: jobCategory,
+			reversed: false
+		}],
 		yAxis: {
 			title: {
-				text: '流失用户数'
+				text: null
 			},
-			plotLines: [{
-				value: 0,
-				width: 2,
-				color: '#808080'
-			}]
-		},
-		tooltip: {
-			crosshairs: [true, true]
+			min: 0
 		},
 		plotOptions: {
-			line: {
-				dataLabels: {
-					enabled: true
-				}
+			series: {
+				stacking: 'normal'
 			}
 		},
-		series: series
+		series: [{
+			name: $("#serverId").find("option:selected").text(),
+			data: jobData
+		}]
 	});
-	
+	/*
 	dataTableHandler = $('#listTable').dataTable({
 		"bAutoWidth": false,
 		"bJQueryUI": true,
@@ -215,5 +169,6 @@ function onData(data) {
 			}
 		}
 	});
+	*/
 }
 </script>

@@ -21,7 +21,7 @@ class Flowover_account_detail extends CI_Controller
 			'admin'					=>	$this->user,
 			'page_name'			=>	$this->pageName,
 			'current_time'		=>	time(),
-			'server_result' 		=> $serverResult 
+			'server_result' 		=> 	$serverResult 
 		);
 		$this->render->render($this->pageName, $data);
 	}
