@@ -25,8 +25,8 @@
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>付费/消费数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
-        <li><a href="error403.html">充值记录</a></li>
-        <li><a href="error404.html">消费记录</a></li>
+        <li<?php if($page_name == 'order/recharge'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/recharge'); ?>">充值记录</a></li>
+        <li<?php if($page_name == 'order/consume'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/consume'); ?>">消费记录</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>游戏行为监控</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
