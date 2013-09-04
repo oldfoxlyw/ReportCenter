@@ -113,7 +113,8 @@ function onData(data) {
 	}
 	var json = eval("(" + data + ")");
 	
-	var jobColumn = [];
+	var jobColumn = [{"sTitle":"职业"}, {"sTitle":"人数"}];
+	var jobaaData = [];
 	var jobCategory = [];
 	var jobData = [];
 	var levelCategory = [];
@@ -122,9 +123,9 @@ function onData(data) {
 	var missionData = [];
 	if(json.job) {
 		for(var i in json.job) {
-			jobColumn.push({"sTitle": json.job[i][0]});
 			jobCategory.push(json.job[i][0]);
 			jobData.push(parseInt(json.job[i][1]));
+			jobaaData.push(json.job[i]);
 		}
 	}
 	if(json.level) {
@@ -240,7 +241,7 @@ function onData(data) {
 		"bStateSave": true,
 		"sPaginationType": "full_numbers",
 		"sDom": '<"H"lr>t<"F"fp>',
-        "aaData": [jobData],
+        "aaData": jobaaData,
         "aoColumns": jobColumn,
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
