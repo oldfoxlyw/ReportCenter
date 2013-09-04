@@ -43,7 +43,8 @@ class Flowover_account_detail extends CI_Controller
 				$startTime = date ( 'Y-m-d', $startTime );
 			}
 			$parameter = array (
-				'date' => $startTime 
+				'date'			=>	$startTime,
+				'server_id'		=>	$serverId
 			);
 			$result = $this->mflowoverdetail->read ( $parameter );
 			$result = $result [0];
@@ -71,11 +72,11 @@ class Flowover_account_detail extends CI_Controller
 			}
 			
 			$parameter = array (
-				'date' => $startTime,
-				'server_id' => $serverId,
-				'job' => $jobArray,
-				'level' => $levelArray,
-				'mission' => $missionArray 
+				'date'			=>	$startTime,
+				'server_id'		=>	$serverId,
+				'job'				=>	$jobArray,
+				'level'			=>	$levelArray,
+				'mission'		=>	$missionArray 
 			);
 			
 			echo $this->return_format->format ( $parameter );
