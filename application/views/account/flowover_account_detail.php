@@ -92,6 +92,7 @@ var dataTableHandler;
 
 $(function() {
     $('.datepicker').datepicker();
+	$("select").select2();
 	
 	$("#btnSearch").click(function() {
 		if(dataTableHandler) {
@@ -259,5 +260,6 @@ function onData(data) {
 			}
 		}
 	});
+	$("select").select2();
 }
 </script>
