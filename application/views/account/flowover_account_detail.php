@@ -112,6 +112,7 @@ function onData(data) {
 	}
 	var json = eval("(" + data + ")");
 	
+	var jobColumn = [];
 	var jobCategory = [];
 	var jobData = [];
 	var levelCategory = [];
@@ -120,6 +121,7 @@ function onData(data) {
 	var missionData = [];
 	if(json.job) {
 		for(var i in json.job) {
+			jobColumn.push({"sTitle": json.job[i][0]});
 			jobCategory.push(json.job[i][0]);
 			jobData.push(parseInt(json.job[i][1]));
 		}
@@ -237,8 +239,8 @@ function onData(data) {
 		"bStateSave": true,
 		"sPaginationType": "full_numbers",
 		"sDom": '<"H"lr>t<"F"fp>',
-        "aaData": jobData,
-        "aoColumns": jobCategory,
+        "aaData": [jobData],
+        "aoColumns": jobColumn,
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
 			"sLengthMenu":   "显示 _MENU_ 项结果",
