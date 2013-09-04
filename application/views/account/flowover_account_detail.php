@@ -69,7 +69,21 @@
                 </div>
             </div>
             <div id="tab2" class="tab-pane">
-                <table class="table table-bordered data-table" id="listTable"></table>
+                <div class="widget-content">
+                    <div class="row-fluid">
+                		<table class="table table-bordered data-table" id="listTable1"></table>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div class="row-fluid">
+                		<table class="table table-bordered data-table" id="listTable2"></table>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div class="row-fluid">
+                		<table class="table table-bordered data-table" id="listTable3"></table>
+                    </div>
+                </div>
             </div>
           </div>
         </div>
@@ -88,17 +102,27 @@
 <script src="<?php echo base_url('resources/js/jquery.dataTables.min.js'); ?>"></script>
 
 <script type="text/javascript">
-var dataTableHandler;
+var dataTableHandler1;
+var dataTableHandler2;
+var dataTableHandler3;
 
 $(function() {
     $('.datepicker').datepicker();
 	$("select").select2();
 	
 	$("#btnSearch").click(function() {
-		if(dataTableHandler) {
-			dataTableHandler.fnDestroy();
+		if(dataTableHandler1) {
+			dataTableHandler1.fnDestroy();
 		}
-		$('#listTable').empty();
+		if(dataTableHandler2) {
+			dataTableHandler2.fnDestroy();
+		}
+		if(dataTableHandler3) {
+			dataTableHandler3.fnDestroy();
+		}
+		$('#listTable1').empty();
+		$('#listTable2').empty();
+		$('#listTable3').empty();
 		$.post("<?php echo site_url('account/flowover_account_detail/lists/highchart'); ?>", {
 			"startTime": $("#startTime").val(),
 			"serverId": $("#serverId").val()
@@ -117,8 +141,12 @@ function onData(data) {
 	var jobaaData = [];
 	var jobCategory = [];
 	var jobData = [];
+	var levelColumn = [{"sTitle":"等级"}, {"sTitle":"人数"}];
+	var levelaaData = [];
 	var levelCategory = [];
 	var levelData = [];
+	var missionColumn = [{"sTitle":"任务"}, {"sTitle":"人数"}];
+	var missionaaData = [];
 	var missionCategory = [];
 	var missionData = [];
 	if(json.job) {
@@ -132,12 +160,14 @@ function onData(data) {
 		for(var i in json.level) {
 			levelCategory.push(json.level[i][0]);
 			levelData.push(parseInt(json.level[i][1]));
+			levelaaData.push(json.level[i]);
 		}
 	}
 	if(json.mission) {
 		for(var i in json.mission) {
 			missionCategory.push(json.mission[i][0]);
 			missionData.push(parseInt(json.mission[i][1]));
+			missionaaData.push(json.mission[i]);
 		}
 	}
 	
@@ -235,7 +265,7 @@ function onData(data) {
 		}]
 	});
 	
-	dataTableHandler = $('#listTable').dataTable({
+	dataTableHandler1 = $('#listTable1').dataTable({
 		"bAutoWidth": false,
 		"bJQueryUI": true,
 		"bStateSave": true,
@@ -243,6 +273,58 @@ function onData(data) {
 		"sDom": '<"H"lr>t<"F"fp>',
         "aaData": jobaaData,
         "aoColumns": jobColumn,
+		"oLanguage": {  
+			"sProcessing":   "处理中...",
+			"sLengthMenu":   "显示 _MENU_ 项结果",
+			"sZeroRecords":  "没有匹配结果",
+			"sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+			"sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
+			"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+			"sInfoPostFix":  "",
+			"sSearch":       "搜索:",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "首页",
+				"sPrevious": "上页",
+				"sNext":     "下页",
+				"sLast":     "末页"
+			}
+		}
+	});
+	dataTableHandler2 = $('#listTable2').dataTable({
+		"bAutoWidth": false,
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers",
+		"sDom": '<"H"lr>t<"F"fp>',
+        "aaData": levelaaData,
+        "aoColumns": levelColumn,
+		"oLanguage": {  
+			"sProcessing":   "处理中...",
+			"sLengthMenu":   "显示 _MENU_ 项结果",
+			"sZeroRecords":  "没有匹配结果",
+			"sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+			"sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
+			"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+			"sInfoPostFix":  "",
+			"sSearch":       "搜索:",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "首页",
+				"sPrevious": "上页",
+				"sNext":     "下页",
+				"sLast":     "末页"
+			}
+		}
+	});
+	dataTableHandler3 = $('#listTable3').dataTable({
+		"bAutoWidth": false,
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers",
+		"sDom": '<"H"lr>t<"F"fp>',
+        "aaData": missionaaData,
+        "aoColumns": missionColumn,
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
 			"sLengthMenu":   "显示 _MENU_ 项结果",
