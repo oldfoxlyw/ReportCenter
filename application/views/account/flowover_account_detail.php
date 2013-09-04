@@ -230,15 +230,15 @@ function onData(data) {
 			data: missionData
 		}]
 	});
-	/*
+	
 	dataTableHandler = $('#listTable').dataTable({
 		"bAutoWidth": false,
 		"bJQueryUI": true,
 		"bStateSave": true,
 		"sPaginationType": "full_numbers",
 		"sDom": '<"H"lr>t<"F"fp>',
-        "aaData": aaData,
-        "aoColumns": column,
+        "aaData": jobData,
+        "aoColumns": jobCategory,
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
 			"sLengthMenu":   "显示 _MENU_ 项结果",
@@ -257,6 +257,5 @@ function onData(data) {
 			}
 		}
 	});
-	*/
 }
 </script>
