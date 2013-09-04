@@ -131,7 +131,7 @@ function onData(data) {
 		}
 	}
 	if(json.mission) {
-		for(var i in json.jobmission) {
+		for(var i in json.mission) {
 			missionCategory.push(json.mission[i][0]);
 			missionData.push(parseInt(json.mission[i][1]));
 		}
