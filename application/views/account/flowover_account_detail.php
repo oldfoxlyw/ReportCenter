@@ -266,9 +266,8 @@ function onData(data) {
 	});
 	
 	dataTableHandler1 = $('#listTable1').dataTable({
-		"bAutoWidth": false,
+		"bAutoWidth": true,
 		"bJQueryUI": true,
-		"bStateSave": true,
 		"sPaginationType": "full_numbers",
 		"sDom": '<"H"lr>t<"F"fp>',
         "aaData": jobaaData,
