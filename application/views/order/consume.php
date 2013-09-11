@@ -120,11 +120,11 @@ function onData(data) {
 			"sTitle": "操作名称"
 		},
 		{
-			"sTitle": "数量"
+			"sTitle": "消耗绿钻"
 		}];
 		
 		var obj = {};
-		obj.name = "服务器";
+		obj.name = "消耗绿钻";
 		var data = [];
 		for(var i in json.data)
 		{
@@ -140,7 +140,7 @@ function onData(data) {
 		series.push(obj);
 	} else {
 		column.push({
-			"sTitle": "服务器名"
+			"sTitle": "消耗绿钻"
 		});
 	}
 	$('#chartRegCount').highcharts({
@@ -152,7 +152,7 @@ function onData(data) {
 			enabled: false
 		},
 		title: {
-			text: '最高在线图'
+			text: '消耗绿钻统计图'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
@@ -163,7 +163,7 @@ function onData(data) {
 		yAxis: {
 			min: 0,
 			title: {
-				text: '在线人数'
+				text: '消耗绿钻'
 			}
 		},
 		tooltip: {
