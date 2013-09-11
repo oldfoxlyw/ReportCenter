@@ -115,9 +115,13 @@ function onData(data) {
 	var series = [];
 	
 	if(json.type == '0') {
-		column.push({
+		column = [
+		{
 			"sTitle": "操作名称"
-		});
+		},
+		{
+			"sTitle": "数量"
+		}];
 	
 		for(var i in json.axis)
 		{
@@ -128,58 +132,23 @@ function onData(data) {
 		var obj = {};
 		obj.name = "服务器";
 		var data = [];
-		var rowData = [];
-		rowData.push("服务器");
 		for(var i in json.data)
 		{
+			var rowData = [];
 			if(json.data[i]) {
 				data.push(parseInt(json.data[i].spend_special_gold));
+				rowData.push(parseInt(json.data[i].action_name));
 				rowData.push(parseInt(json.data[i].spend_special_gold));
 			}
+			aaData.push(rowData);
 		}
-		aaData.push(rowData);
 		obj.data = data;
-		
 		series.push(obj);
 	} else {
 		column.push({
 			"sTitle": "服务器名"
 		});
 	}
-	console.log({
-		chart: {
-			type: 'column',
-			height: 500
-		},
-		credits: {
-			enabled: false
-		},
-		title: {
-			text: '最高在线图'
-		},
-		subtitle: {
-			text: '数据来源：数据统计平台'
-		},
-		xAxis: {
-			categories: json.axis
-		},
-		yAxis: {
-			min: 0,
-			title: {
-				text: '在线人数'
-			}
-		},
-		tooltip: {
-			crosshairs: [true, true]
-		},
-//		plotOptions: {
-//			column: {
-//				pointPadding: .2,
-//				borderWidth: 0
-//			}
-//		},
-		series: series
-	});
 	$('#chartRegCount').highcharts({
 		chart: {
 			type: 'column',
