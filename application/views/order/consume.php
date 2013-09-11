@@ -132,7 +132,7 @@ function onData(data) {
 		rowData.push("服务器");
 		for(var i in json.data)
 		{
-			if(json[i]) {
+			if(json.data[i]) {
 				data.push(parseInt(json.data[i].spend_special_gold));
 				rowData.push(parseInt(json.data[i].spend_special_gold));
 			}
