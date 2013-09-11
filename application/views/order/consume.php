@@ -125,29 +125,22 @@ function onData(data) {
 				"sTitle": json.axis[i]
 			});
 		}
+		var obj = {};
+		obj.name = "服务器";
+		var data = [];
+		var rowData = [];
+		rowData.push("服务器");
 		for(var i in json.data)
 		{
-			var obj = {};
-			obj.name = i;
-			var data = [];
-			var rowData = [];
-			
-			rowData.push(i);
-			
 			if(json[i]) {
-				data.push(parseInt(json[i].spend_special_gold));
-				rowData.push(parseInt(json[i].spend_special_gold));
-			} else {
-				data.push(null);
-				rowData.push(0);
+				data.push(parseInt(json.data[i].spend_special_gold));
+				rowData.push(parseInt(json.data[i].spend_special_gold));
 			}
-			
-			aaData.push(rowData);
-			obj.data = data;
-			
-			series.push(obj);
 		}
-		console.log(series);
+		aaData.push(rowData);
+		obj.data = data;
+		
+		series.push(obj);
 	} else {
 		column.push({
 			"sTitle": "服务器名"
