@@ -146,7 +146,40 @@ function onData(data) {
 			"sTitle": "服务器名"
 		});
 	}
-	
+	console.log({
+		chart: {
+			type: 'column',
+			height: 500
+		},
+		credits: {
+			enabled: false
+		},
+		title: {
+			text: '最高在线图'
+		},
+		subtitle: {
+			text: '数据来源：数据统计平台'
+		},
+		xAxis: {
+			categories: json.axis
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: '在线人数'
+			}
+		},
+		tooltip: {
+			crosshairs: [true, true]
+		},
+//		plotOptions: {
+//			column: {
+//				pointPadding: .2,
+//				borderWidth: 0
+//			}
+//		},
+		series: series
+	});
 	$('#chartRegCount').highcharts({
 		chart: {
 			type: 'column',
