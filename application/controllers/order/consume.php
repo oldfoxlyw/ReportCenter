@@ -38,10 +38,9 @@ class Consume extends CI_Controller
 		if(empty($playerId))
 		{
 			$sql = "SELECT `action_name`, SUM(`spend_special_gold`) as `spend_special_gold` FROM `log_consume` WHERE `server_id`='{$serverId}' GROUP BY `action_name`";
-			$query = $this->mconsume->query($sql);
-			if($query->num_rows() > 0)
+			$result = $this->mconsume->query($sql);
+			if($result !== FALSE)
 			{
-				$result = $query->result();
 				$axis = array();
 				foreach($result as $row)
 				{
@@ -56,7 +55,7 @@ class Consume extends CI_Controller
 			}
 			else
 			{
-				$parameter = FALSE;
+				$parameter = array();
 			}
 		}
 		else
