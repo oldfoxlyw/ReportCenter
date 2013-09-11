@@ -118,39 +118,40 @@ function onData(data) {
 		column.push({
 			"sTitle": "操作名称"
 		});
+	
+		for(var i in json.axis)
+		{
+			column.push({
+				"sTitle": json.axis[i]
+			});
+		}
+		for(var i in json.data)
+		{
+			var obj = {};
+			obj.name = i;
+			var data = [];
+			var rowData = [];
+			
+			rowData.push(i);
+			
+			if(json[i]) {
+				data.push(parseInt(json[i].spend_special_gold));
+				rowData.push(parseInt(json[i].spend_special_gold));
+			} else {
+				data.push(null);
+				rowData.push(0);
+			}
+			
+			aaData.push(rowData);
+			obj.data = data;
+			
+			series.push(obj);
+		}
+		console.log(series);
 	} else {
 		column.push({
 			"sTitle": "服务器名"
 		});
-	}
-	
-	for(var i in json.axis)
-	{
-		column.push({
-			"sTitle": json.axis[i] + ""
-		});
-	}
-	for(var i in json.data)
-	{
-		var obj = {};
-		obj.name = i;
-		var data = [];
-		var rowData = [];
-		
-		rowData.push(i);
-		
-		if(json[i]) {
-			data.push(parseInt(json[i].spend_special_gold));
-			rowData.push(parseInt(json[i].spend_special_gold));
-		} else {
-			data.push(null);
-			rowData.push(0);
-		}
-		
-		aaData.push(rowData);
-		obj.data = data;
-		
-		series.push(obj);
 	}
 	
 	$('#chartRegCount').highcharts({
