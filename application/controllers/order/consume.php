@@ -15,37 +15,56 @@ class Consume extends CI_Controller
 	public function index()
 	{
 		$this->load->model('mconsume');
+		$this->load->model('mserver');
 		
 		$serverResult = $this->mserver->read();
 		$data = array(
-			'admin'			=>	$this->user,
-			'page_name'	=>	$this->pageName,
-			'server'			=>	$serverResult
+			'admin'				=>	$this->user,
+			'page_name'		=>	$this->pageName,
+			'server_result'	=>	$serverResult
 		);
 		$this->render->render($this->pageName, $data);
 	}
 	
 	public function lists($provider = 'highchart')
 	{
+		$this->load->model('mconsume');
 		$this->load->model('utils/return_format');
-		$accountdb = $this->load->database('accountdb', TRUE);
+
+		$serverId = $this->input->post ( 'serverId' );
+		$playerId = $this->input->post ( 'playerId' );
+		$type = $this->input->post ( 'type' );
 		
-		$serverId = $this->input->post('server_id');
-		if(!empty($serverId))
+		if(empty($playerId))
 		{
-			$sql = "SELECT `account_job`, count(*) as `count` FROM `web_account` WHERE `server_id`='{$serverId}' GROUP BY `account_job`";
+			$sql = "SELECT `action_name`, SUM(`spend_special_gold`) as `spend_special_gold` FROM `log_consume` WHERE `server_id`='{$serverId}' GROUP BY `action_name`";
+			$query = $this->mconsume->query($sql);
+			if($query->num_rows() > 0)
+			{
+				$result = $query->result();
+				$axis = array();
+				foreach($result as $row)
+				{
+					array_push($axis, $row->action_name);
+				}
+				
+				$parameter = array(
+					'type'		=>	0,
+					'axis'		=>	$axis,
+					'data'		=>	$result
+				);
+			}
+			else
+			{
+				$parameter = FALSE;
+			}
 		}
 		else
 		{
-			$sql = "SELECT `account_job`, count(*) as `count` FROM `web_account` GROUP BY `account_job`";
-		}
-		$result = $accountdb->query($sql)->result_array();
-		for($i=0; $i<count($result); $i++)
-		{
-			$result[$i] = array_values($result[$i]);
+			
 		}
 		
-		echo $this->return_format->format($result);
+		echo $this->return_format->format($parameter);
 	}
 }
 
