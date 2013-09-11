@@ -122,13 +122,7 @@ function onData(data) {
 		{
 			"sTitle": "数量"
 		}];
-	
-		for(var i in json.axis)
-		{
-			column.push({
-				"sTitle": json.axis[i]
-			});
-		}
+		
 		var obj = {};
 		obj.name = "服务器";
 		var data = [];
