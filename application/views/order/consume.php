@@ -94,9 +94,9 @@ $(function() {
 	$("#btnSearch").click(function() {
 		if(dataTableHandler) dataTableHandler.fnDestroy();
 		$('#listTable').empty();
-		$.post("<?php echo site_url('account/max_online/lists/highchart'); ?>", {
+		$.post("<?php echo site_url('account/consume/lists/highchart'); ?>", {
 			"serverId": $("#serverId").val(),
-			"startTime": $("#startTime").val(),
+			"playerId": $("#playerId").val(),
 			"type": $("#type").val()
 		}, onData);
 	});
@@ -138,16 +138,15 @@ function onData(data) {
 		var rowData = [];
 		
 		rowData.push(i);
-		for(var j in json[i])
-		{
-			if(json[i][j]) {
-				data.push(parseInt(json[i].spend_special_gold));
-				rowData.push(parseInt(json[i].spend_special_gold));
-			} else {
-				data.push(null);
-				rowData.push(0);
-			}
+		
+		if(json[i]) {
+			data.push(parseInt(json[i].spend_special_gold));
+			rowData.push(parseInt(json[i].spend_special_gold));
+		} else {
+			data.push(null);
+			rowData.push(0);
 		}
+		
 		aaData.push(rowData);
 		obj.data = data;
 		
