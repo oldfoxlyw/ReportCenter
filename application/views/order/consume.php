@@ -131,7 +131,7 @@ function onData(data) {
 			var rowData = [];
 			if(json.data[i]) {
 				data.push(parseInt(json.data[i].spend_special_gold));
-				rowData.push(parseInt(json.data[i].action_name));
+				rowData.push(json.data[i].action_name);
 				rowData.push(parseInt(json.data[i].spend_special_gold));
 			}
 			aaData.push(rowData);
