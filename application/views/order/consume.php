@@ -29,7 +29,7 @@
                     <label class="control-label">玩家GUID</label>
                     <div class="controls">
                     	<input name="playerId" id="playerId" type="text" placeholder="15位数字" />
-                        <span class="help-block">如果此处留空，则按照操作名称进行统计</span>
+                        <span class="help-block">如果此处留空，则按照总数进行统计</span>
                     </div>
                 </div>
                 <div class="form-actions">
