@@ -33,34 +33,32 @@ class Consume extends CI_Controller
 
 		$serverId = $this->input->post ( 'serverId' );
 		$playerId = $this->input->post ( 'playerId' );
-		$type = $this->input->post ( 'type' );
 		
 		if(empty($playerId))
 		{
 			$sql = "SELECT `action_name`, SUM(`spend_special_gold`) as `spend_special_gold` FROM `log_consume` WHERE `server_id`='{$serverId}' GROUP BY `action_name`";
-			$result = $this->mconsume->query($sql);
-			if($result !== FALSE)
-			{
-				$axis = array();
-				foreach($result as $row)
-				{
-					array_push($axis, $row->action_name);
-				}
-				
-				$parameter = array(
-					'type'		=>	0,
-					'axis'		=>	$axis,
-					'data'		=>	$result
-				);
-			}
-			else
-			{
-				$parameter = array();
-			}
 		}
 		else
 		{
+			$sql = "SELECT `action_name`, SUM(`spend_special_gold`) as `spend_special_gold` FROM `log_consume` WHERE `server_id`='{$serverId}' AND `player_id`={$playerId} GROUP BY `action_name`";
+		}
+		$result = $this->mconsume->query($sql);
+		if($result !== FALSE)
+		{
+			$axis = array();
+			foreach($result as $row)
+			{
+				array_push($axis, $row->action_name);
+			}
 			
+			$parameter = array(
+				'axis'		=>	$axis,
+				'data'		=>	$result
+			);
+		}
+		else
+		{
+			$parameter = array();
 		}
 		
 		echo $this->return_format->format($parameter);

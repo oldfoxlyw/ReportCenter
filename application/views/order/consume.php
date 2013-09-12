@@ -32,16 +32,6 @@
                         <span class="help-block">如果此处留空，则按照操作名称进行统计</span>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label">单位</label>
-                    <div class="controls">
-                        <select id="type" name="type">
-                            <option value="1">天</option>
-                            <option value="2">周</option>
-                            <option value="3">月</option>
-                        </select>
-                    </div>
-                </div>
                 <div class="form-actions">
                   <button id="btnSearch" type="button" class="btn btn-success">提交</button>
                 </div>
@@ -114,35 +104,30 @@ function onData(data) {
 	var aaData = [];
 	var series = [];
 	
-	if(json.type == '0') {
-		column = [
-		{
-			"sTitle": "操作名称"
-		},
-		{
-			"sTitle": "消耗绿钻"
-		}];
-		
-		var obj = {};
-		obj.name = "消耗绿钻";
-		var data = [];
-		for(var i in json.data)
-		{
-			var rowData = [];
-			if(json.data[i]) {
-				data.push(parseInt(json.data[i].spend_special_gold));
-				rowData.push(json.data[i].action_name);
-				rowData.push(parseInt(json.data[i].spend_special_gold));
-			}
-			aaData.push(rowData);
+	column = [
+	{
+		"sTitle": "操作名称"
+	},
+	{
+		"sTitle": "消耗绿钻"
+	}];
+	
+	var obj = {};
+	obj.name = "消耗绿钻";
+	var data = [];
+	for(var i in json.data)
+	{
+		var rowData = [];
+		if(json.data[i]) {
+			data.push(parseInt(json.data[i].spend_special_gold));
+			rowData.push(json.data[i].action_name);
+			rowData.push(parseInt(json.data[i].spend_special_gold));
 		}
-		obj.data = data;
-		series.push(obj);
-	} else {
-		column.push({
-			"sTitle": "消耗绿钻"
-		});
+		aaData.push(rowData);
 	}
+	obj.data = data;
+	series.push(obj);
+	
 	$('#chartRegCount').highcharts({
 		chart: {
 			type: 'column',
@@ -167,14 +152,8 @@ function onData(data) {
 			}
 		},
 		tooltip: {
-			crosshairs: [true, true]
+			crosshairs: [false, true]
 		},
-//		plotOptions: {
-//			column: {
-//				pointPadding: .2,
-//				borderWidth: 0
-//			}
-//		},
 		series: series
 	});
 	dataTableHandler = $('#listTable').dataTable({
