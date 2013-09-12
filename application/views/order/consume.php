@@ -115,16 +115,20 @@ function onData(data) {
 	var obj = {};
 	obj.name = "消耗绿钻";
 	var data = [];
+	var total = 0;
 	for(var i in json.data)
 	{
 		var rowData = [];
 		if(json.data[i]) {
 			data.push(parseInt(json.data[i].spend_special_gold));
 			rowData.push(json.data[i].action_name);
-			rowData.push(parseInt(json.data[i].spend_special_gold));
+			var spend = parseInt(json.data[i].spend_special_gold);
+			rowData.push(spend);
+			total += spend;
 		}
 		aaData.push(rowData);
 	}
+	aaData.push(["总计", total]);
 	obj.data = data;
 	series.push(obj);
 	
