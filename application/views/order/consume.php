@@ -164,7 +164,7 @@ function onData(data) {
 		"bAutoWidth": false,
 		"bJQueryUI": true,
 		"bStateSave": true,
-		"iDisplayLength": 20
+		"iDisplayLength": 20,
 		"sPaginationType": "full_numbers",
 		"sDom": '<"H"lr>t<"F"fp>',
         "aaData": aaData,
