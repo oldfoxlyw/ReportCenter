@@ -9,7 +9,7 @@
         <div class="span12">
             <div class="widget-box">
                 <div class="widget-title"><span class="icon"><i class="icon-align-justify"></i></span>
-                	<h5>Personal-info</h5>
+                	<h5>基本信息</h5>
                 </div>
                 <div class="widget-content nopadding">
                     <form action="<?php echo site_url('administrators/submit'); ?>" method="post" class="form-horizontal">

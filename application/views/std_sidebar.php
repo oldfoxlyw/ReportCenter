@@ -2,7 +2,7 @@
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
     <li<?php if($page_name == 'index'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('index'); ?>"><i class="icon icon-home"></i><span>总览</span></a></li>
-    <li<?php if($page_name == 'permission'): ?> class="active"<?php endif; ?>><a href="widgets.html"><i class="icon icon-inbox"></i><span>权限设置</span></a> </li>
+    <li<?php if($page_name == 'permission'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('permission'); ?>"><i class="icon icon-inbox"></i><span>权限设置</span></a> </li>
     <li<?php if($page_name == 'administrators'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('administrators'); ?>"><i class="icon icon-signal"></i><span>管理员设置</span></a></li>
     <li class="submenu"><a href="#"><i class="icon icon-th-list"></i><span>用户在线数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
