@@ -109,29 +109,29 @@ function onData(data) {
 	
 	$('#chartRegCount').highcharts({
 		chart: {
-			type: 'bar',
-			height: 600
+			type: 'column',
+			height: 500
+		},
+		credits: {
+			enabled: false
 		},
 		title: {
-			text: '人物等级分布图'
+			text: '任务完成进度分布图'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
 		},
-		xAxis: [{
-			categories: json.category,
-			reversed: false
-		}],
-		yAxis: {
-			title: {
-				text: null
-			},
-			min: 0
+		xAxis: {
+			categories: json.category
 		},
-		plotOptions: {
-			series: {
-				stacking: 'normal'
+		yAxis: {
+			min: 0,
+			title: {
+				text: '完成人数'
 			}
+		},
+		tooltip: {
+			crosshairs: [false, true]
 		},
 		series: [{
 			name: $("#serverId").find("option:selected").text(),
@@ -147,7 +147,7 @@ function onData(data) {
 		"sDom": '<"H"lr>t<"F"fp>',
         "aaData": json.result,
         "aoColumns": [{
-			'sTitle': '等级'
+			'sTitle': '人物编号'
 		},{
 			'sTitle': '人数'
 		}],
