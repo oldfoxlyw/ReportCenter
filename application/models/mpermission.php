@@ -25,7 +25,16 @@ class Mpermission extends CI_Model implements ICrud
 		}
 		if(!empty($extension))
 		{
-			
+			if(!empty($extension))
+			{
+				if(!empty($extension['like']))
+				{
+					foreach($extension['like'] as $like)
+					{
+						$this->webdb->or_like($like[0], $like[1]);
+					}
+				}
+			}
 		}
 		return $this->webdb->count_all_results($this->accountTable);
 	}
@@ -60,7 +69,16 @@ class Mpermission extends CI_Model implements ICrud
 		}
 		if(!empty($extension))
 		{
-			
+			if(!empty($extension))
+			{
+				if(!empty($extension['like']))
+				{
+					foreach($extension['like'] as $like)
+					{
+						$this->webdb->or_like($like[0], $like[1]);
+					}
+				}
+			}
 		}
 		if($limit==0 && $offset==0) {
 			$query = $this->webdb->get($this->accountTable);
@@ -78,7 +96,7 @@ class Mpermission extends CI_Model implements ICrud
 	{
 		if(!empty($id) && !empty($row))
 		{
-			$this->webdb->where('persmission_id', $id);
+			$this->webdb->where('permission_id', $id);
 			return $this->webdb->update($this->accountTable, $row);
 		}
 		else
@@ -91,7 +109,7 @@ class Mpermission extends CI_Model implements ICrud
 	{
 		if(!empty($id))
 		{
-			$this->webdb->where('persmission_id', $id);
+			$this->webdb->where('permission_id', $id);
 			return $this->webdb->delete($this->accountTable);
 		}
 		else

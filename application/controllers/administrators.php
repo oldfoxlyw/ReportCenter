@@ -10,6 +10,7 @@ class Administrators extends CI_Controller
 		parent::__construct ();
 		$this->load->model('utils/check_user', 'check');
 		$this->user = $this->check->validate();
+		$this->check->permission($this->pageName);
 	}
 	
 	public function index()
@@ -63,9 +64,11 @@ class Administrators extends CI_Controller
 	
 	public function add()
 	{
+		$this->pageName = 'administrators_add';
+		$this->check->permission($this->pageName);
+		
 		$this->load->model('mpermission');
 		$permissions = $this->mpermission->read();
-		$this->pageName = 'administrators_add';
 		
 		$data = array(
 			'admin'					=>	$this->user,

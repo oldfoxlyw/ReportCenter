@@ -10,6 +10,7 @@ class Consume extends CI_Controller
 		parent::__construct ();
 		$this->load->model('utils/check_user', 'check');
 		$this->user = $this->check->validate();
+		$this->check->permission($this->pageName);
 	}
 	
 	public function index()

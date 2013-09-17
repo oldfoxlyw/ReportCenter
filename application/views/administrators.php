@@ -73,7 +73,7 @@ $(function() {
 			{
 				"mData": null,
 				"fnRender": function(obj) {
-					return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('administrators/edit') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\"><li><a href=\"#\">冻结</a></li><li class=\"divider\"></li><li><a href=\"#\">删除</a></li></ul></div>";
+					return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('administrators/edit') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\"><!--<li><a href=\"<?php echo site_url('administrators/freeze') ?>/" + obj.aData.GUID + "\">冻结</a></li><li class=\"divider\"></li>--><li><a href=\"<?php echo site_url('administrators/delete') ?>/" + obj.aData.GUID + "\">删除</a></li></ul></div>";
 				}
 			}
 		],

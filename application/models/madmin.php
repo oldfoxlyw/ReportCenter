@@ -4,7 +4,7 @@ require_once('ICrud.php');
 
 class Madmin extends CI_Model implements ICrud
 {
-	
+	private $table = 'scc_user';
 	private $accountTable = 'scc_user_permission';
 	private $webdb = null;
 	
@@ -33,7 +33,7 @@ class Madmin extends CI_Model implements ICrud
 				}
 			}
 		}
-		return $this->webdb->count_all_results($this->accountTable);
+		return $this->webdb->count_all_results($this->table);
 	}
 	
 	public function create($row)
@@ -42,7 +42,7 @@ class Madmin extends CI_Model implements ICrud
 		{
 			$this->load->library('Guid');
 			$row['GUID'] = $this->guid->toString();
-			if($this->webdb->insert($this->accountTable, $row))
+			if($this->webdb->insert($this->table, $row))
 			{
 				return $this->webdb->insert_id();
 			}
@@ -97,7 +97,7 @@ class Madmin extends CI_Model implements ICrud
 		if(!empty($id) && !empty($row))
 		{
 			$this->webdb->where('GUID', $id);
-			return $this->webdb->update($this->accountTable, $row);
+			return $this->webdb->update($this->table, $row);
 		}
 		else
 		{
@@ -110,7 +110,7 @@ class Madmin extends CI_Model implements ICrud
 		if(!empty($id))
 		{
 			$this->webdb->where('GUID', $id);
-			return $this->webdb->delete($this->accountTable);
+			return $this->webdb->delete($this->table);
 		}
 		else
 		{

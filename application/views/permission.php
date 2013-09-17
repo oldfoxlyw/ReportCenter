@@ -60,7 +60,7 @@ $(function() {
 			{
 				"mData": null,
 				"fnRender": function(obj) {
-					return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('permission/edit') ?>/" + obj.aData.permission_id + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\"><li><a href=\"#\">删除</a></li></ul></div>";
+					return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('permission/edit') ?>/" + obj.aData.permission_id + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\"><li><a href=\"<?php echo site_url('permission/delete') ?>/" + obj.aData.permission_id + "\">删除</a></li></ul></div>";
 				}
 			}
 		],

@@ -3,6 +3,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Check_user extends CI_Model {
 	
+	private $user = null;
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('madmin');
@@ -28,17 +29,31 @@ class Check_user extends CI_Model {
 			);
 			$result = $this->madmin->read($parameter);
 			if($result != FALSE) {
-				
-				return $result[0];
+				$this->user = $result[0];
+				return $this->user;
 			} else {
-
 				$this->resetCookie();
 				if($redirect)
 				{
 					showMessage(MESSAGE_TYPE_ERROR, 'USER_CHECK_INVALID', '', $redirectUrl, true, 5);
 				}
-				
 			}
+		}
+	}
+	
+	public function permission($permissionName)
+	{
+		if(!empty($this->user))
+		{
+			$permissionArray = explode(',', $this->user->permission_list);
+			if(!in_array($permissionName, $permissionArray))
+			{
+				showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', '', false);
+			}
+		}
+		else
+		{
+			showMessage(MESSAGE_TYPE_ERROR, 'ERROR_NO_USER', '', '', false);
 		}
 	}
 	

@@ -10,6 +10,7 @@ class Permission extends CI_Controller
 		parent::__construct ();
 		$this->load->model('utils/check_user', 'check');
 		$this->user = $this->check->validate();
+		$this->check->permission($this->pageName);
 	}
 	
 	public function index()
@@ -23,7 +24,7 @@ class Permission extends CI_Controller
 	
 	public function lists()
 	{
-		$this->load->model('madmin');
+		$this->load->model('mpermission');
 		$this->load->model('utils/return_format');
 		
 		$sEcho = $this->input->get_post('sEcho');
@@ -31,26 +32,16 @@ class Permission extends CI_Controller
 		$limit = $this->input->get_post('iDisplayLength');
 		$keyword = $this->input->get_post('sSearch');
 
-		$parameter = null;
-		if($this->user->user_founder != '1')
-		{
-			$parameter = array(
-				'GUID'		=>	$this->user->GUID
-			);
-		}
-		
 		$extension = null;
 		if(!empty($keyword))
 		{
 			$like = array(
-				array('GUID', $keyword),
-				array('user_name', $keyword),
 				array('permission_name', $keyword)
 			);
 			$extension['like'] = $like;
 		}
-		$count = $this->madmin->count($parameter);
-		$result = $this->madmin->read($parameter, $extension, $limit, $offset);
+		$count = $this->mpermission->count();
+		$result = $this->mpermission->read(null, $extension, $limit, $offset);
 		$data = array(
 			'sEcho'							=>	$sEcho,
 			'iTotalRecords'				=>	$count,
@@ -63,124 +54,144 @@ class Permission extends CI_Controller
 	
 	public function add()
 	{
-		$this->load->model('mpermission');
-		$permissions = $this->mpermission->read();
 		$this->pageName = 'permission_add';
+		$this->check->permission($this->pageName);
 		
 		$data = array(
 			'admin'					=>	$this->user,
 			'page_name'			=>	$this->pageName,
-			'permissions'		=>	$permissions
 		);
 		$this->render->render($this->pageName, $data);
 	}
 	
-	public function edit($adminId = 0)
+	public function edit($permissionId = 0)
 	{
-		if(!empty($adminId))
+		if(!empty($permissionId))
 		{
 			$this->pageName = 'permission_add';
-			if($this->user->user_founder != '1' && $this->user->GUID != $adminId)
-			{
-				showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'permission', true, 5);
-			}
-			$this->load->model('madmin');
 			$this->load->model('mpermission');
-			$permissions = $this->mpermission->read();
-			$result = $this->madmin->read(array(
-				'GUID'		=>	$adminId
+			$result = $this->mpermission->read(array(
+				'permission_id'		=>	$permissionId
 			));
 			if($result !== FALSE)
 			{
 				$result = $result[0];
+				$permissionList = explode(',', $result->permission_list);
+				$data = array(
+					'admin'							=>	$this->user,
+					'page_name'					=>	$this->pageName,
+					'edit'							=>	'1',
+					'old_permission_id'		=>	$permissionId,
+					'value'							=>	$result,
+					'permission_check'		=>	$permissionList
+				);
+				$this->render->render($this->pageName, $data);
 			}
-			
-			$data = array(
-				'admin'					=>	$this->user,
-				'page_name'			=>	$this->pageName,
-				'edit'					=>	'1',
-				'admin_id'			=>	$adminId,
-				'value'					=>	$result,
-				'permissions'		=>	$permissions
-			);
-			$this->render->render($this->pageName, $data);
 		}
 		else
 		{
-			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'administrators', true, 5);
+			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'permission', true, 5);
 		}
 	}
 	
-	public function delete($adminId = 0)
+	public function delete($permissionId = 0)
 	{
-		if(!empty($adminId))
+		if(!empty($permissionId))
 		{
-			if($this->user->user_founder != '1')
-			{
-				showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
-			}
-			$this->load->model('madmin');
+			$this->load->model('mpermission');
 			
-			$result = $this->madmin->read(array(
-				'GUID'		=>	$adminId
-			));
-			if(!empty($result))
-			{
-				$row = $result[0];
-				if($row->user_founder == '1')
-				{
-					showMessage(MESSAGE_TYPE_ERROR, 'USER_DELETE_FORBIDDEN', '', 'administrators', true, 5);
-				}
-			}
-			$this->madmin->delete($adminId);
-			redirect('administrators');
+			$this->mpermission->delete($permissionId);
+			redirect('permission');
 		}
 		else
 		{
-			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'administrators', true, 5);
+			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'permission', true, 5);
 		}
 	}
 	
 	public function submit()
 	{
-		$this->load->model('madmin');
-		$this->load->helper('security');
+		$this->load->model('mpermission');
 		
-		$edit = $this->input->post('edit', TRUE);
-		$adminId = $this->input->post('adminId', TRUE);
-		$adminAccount = $this->input->post('adminAccount', TRUE);
-		$adminPass = $this->input->post('adminPass', TRUE);
-		$userPermission = $this->input->post('userPermission', TRUE);
-
-		if($this->user->user_founder != '1' && $this->user->GUID != $adminId)
-		{
-			showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
-		}
+		$post = $this->input->post();
+		$edit = $post['edit'];
+		$oldPermissionId = $post['oldPermissionId'];
+		$permissionId = $post['permissionId'];
+		$permissionName = $post['permissionName'];
 		
-		if(empty($adminAccount) || (empty($edit) && empty($adminPass)))
-		{
-			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'administrators', true, 5);
-		}
-		
-		$row = array(
-			'user_name'			=>	$adminAccount,
-			'user_permission'	=>	$userPermission
+		$splice = array(
+			'edit',
+			'oldPermissionId',
+			'permissionId',
+			'permissionName',
+			'title-checkbox',
+			'global_config',
+			'online_config',
+			'user_config',
+			'order_config',
+			'behavior_config',
+			'master_config'
 		);
+		
+		foreach($post as $key => $value)
+		{
+			if(in_array($key, $splice))
+			{
+				unset($post[$key]);
+			}
+		}
+		$permission = implode(',', $post);
 		
 		if(!empty($edit))
 		{
-			if(!empty($adminPass))
+			if($oldPermissionId == $permissionId)
 			{
-				$row['user_pass'] = encrypt_pass($adminPass);
+				$parameter = array(
+					'permission_name'	=>	$permissionName,
+					'permission_list'		=>	$permission
+				);
 			}
-			$this->madmin->update($adminId, $row);
+			else
+			{
+				$result = $this->mpermission->read(array(
+					'permission_id'		=>	$permissionId
+				));
+				if(!empty($result))
+				{
+					showMessage(MESSAGE_TYPE_ERROR, 'PERMISSION_ID_EXIST', '', 'permission', true, 5);
+				}
+				else
+				{
+					$parameter = array(
+						'permission_id'			=>	$permissionId,
+						'permission_name'	=>	$permissionName,
+						'permission_list'		=>	$permission
+					);
+				}
+			}
+			$this->mpermission->update($oldPermissionId, $parameter);
 		}
 		else
 		{
-			$row['user_pass'] = encrypt_pass($adminPass);
-			$this->madmin->create($row);
+			$result = $this->mpermission->read(array(
+				'permission_id'		=>	$permissionId
+			));
+			if(!empty($result))
+			{
+				showMessage(MESSAGE_TYPE_ERROR, 'PERMISSION_ID_EXIST', '', 'permission', true, 5);
+			}
+			else
+			{
+				$parameter = array(
+					'permission_id'			=>	$permissionId,
+					'permission_name'	=>	$permissionName,
+					'permission_list'		=>	$permission
+				);
+				$this->mpermission->create($parameter);
+			}
 		}
-		redirect('administrators');
+		
+		redirect('permission');
 	}
 }
 
