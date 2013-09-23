@@ -5,6 +5,12 @@ $(document).ready(function(){
 	li.parent().show();
 	li.parent().parent().addClass('open');
 	
+	$('.submenu > ul').each(function() {
+		if($(this).find('li').length == 0) {
+			$(this).remove();
+		}
+	});
+	
 	// === Sidebar navigation === //
 	
 	$('.submenu > a').click(function(e)
