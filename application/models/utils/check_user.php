@@ -46,7 +46,7 @@ class Check_user extends CI_Model {
 		if(!empty($this->user))
 		{
 			$permissionArray = explode(',', $this->user->permission_list);
-			if(!in_array($permissionName, $permissionArray))
+			if(!in_array($permissionName, $permissionArray) && !in_array('All', $permissionArray))
 			{
 				showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', '', false);
 			}

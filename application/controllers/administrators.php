@@ -147,13 +147,27 @@ class Administrators extends CI_Controller
 	public function submit()
 	{
 		$this->load->model('madmin');
+		$this->load->model('mpartner');
 		$this->load->helper('security');
 		
-		$edit = $this->input->post('edit', TRUE);
-		$adminId = $this->input->post('adminId', TRUE);
-		$adminAccount = $this->input->post('adminAccount', TRUE);
+		$edit = $this->input->post('edit');
+		$adminId = $this->input->post('adminId');
+		$adminAccount = $this->input->post('adminAccount');
 		$adminPass = $this->input->post('adminPass', TRUE);
-		$userPermission = $this->input->post('userPermission', TRUE);
+		$userPermission = $this->input->post('userPermission');
+		$partnerKey = $this->input->post('partnerKey');
+		
+		$partnerKey = empty($partnerKey) ? 'default' : $partnerKey;
+		
+		$partnerResult = $this->mpartner->read(array(
+			'partner_key'		=>	$partnerKey
+		));
+		if($partnerResult === FALSE)
+		{
+			$this->mpartner->create(array(
+				'partner_key'		=>	$partnerKey
+			));
+		}
 
 		if($this->user->user_founder != '1' && $this->user->GUID != $adminId)
 		{
@@ -167,7 +181,8 @@ class Administrators extends CI_Controller
 		
 		$row = array(
 			'user_name'			=>	$adminAccount,
-			'user_permission'	=>	$userPermission
+			'user_permission'	=>	$userPermission,
+			'user_fromwhere'	=>	$partnerKey
 		);
 		
 		if(!empty($edit))
