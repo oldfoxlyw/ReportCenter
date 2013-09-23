@@ -80,7 +80,7 @@
 var dataTableHandler;
 
 $(function() {
-	$("#playerId").mask("999999999999999");
+	$("#playerId").mask("?999999999999999");
 	$("#btnSearch").click(function() {
 		if(dataTableHandler) dataTableHandler.fnDestroy();
 		$('#listTable').empty();
