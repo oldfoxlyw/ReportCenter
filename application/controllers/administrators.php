@@ -153,7 +153,7 @@ class Administrators extends CI_Controller
 		$edit = $this->input->post('edit');
 		$adminId = $this->input->post('adminId');
 		$adminAccount = $this->input->post('adminAccount');
-		$adminPass = $this->input->post('adminPass', TRUE);
+		$adminPass = $this->input->post('adminPass');
 		$userPermission = $this->input->post('userPermission');
 		$partnerKey = $this->input->post('partnerKey');
 		
@@ -162,7 +162,7 @@ class Administrators extends CI_Controller
 		$partnerResult = $this->mpartner->read(array(
 			'partner_key'		=>	$partnerKey
 		));
-		if($partnerResult === FALSE)
+		if(empty($partnerResult))
 		{
 			$this->mpartner->create(array(
 				'partner_key'		=>	$partnerKey

@@ -17,7 +17,10 @@ class Mpartner extends CI_Model implements ICrud
 	{
 		if(!empty($parameter))
 		{
-			
+			foreach($parameter as $key=>$value)
+			{
+				$this->webdb->where($key, $value);
+			}
 		}
 		if(!empty($extension))
 		{
@@ -42,7 +45,10 @@ class Mpartner extends CI_Model implements ICrud
 	{
 		if(!empty($parameter))
 		{
-			
+			foreach($parameter as $key=>$value)
+			{
+				$this->webdb->where($key, $value);
+			}
 		}
 		if(!empty($extension))
 		{

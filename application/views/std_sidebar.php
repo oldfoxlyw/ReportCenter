@@ -47,6 +47,7 @@ $permissionArray = explode(',', $admin->permission_list);
         <?php if(in_array('master/grant', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/grant'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/grant'); ?>">发放游戏道具</a></li><?php endif; ?>
       </ul>
     </li>
+    <!--
     <li class="content"> <span>Monthly Bandwidth Transfer</span>
       <div class="progress progress-mini progress-danger active progress-striped">
         <div style="width: 77%;" class="bar"></div>
@@ -61,6 +62,7 @@ $permissionArray = explode(',', $admin->permission_list);
       <span class="percent">87%</span>
       <div class="stat">604.44 / 4000 MB</div>
     </li>
+    -->
   </ul>
 </div>
 <!--sidebar-menu-->
