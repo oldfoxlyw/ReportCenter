@@ -46,27 +46,27 @@
                             <tr>
                               <td><input id="online_config" name="online_config" class="header_checkbox" type="checkbox" /></td>
                               <td><strong>用户在线数据</strong></td>
-                              <td><input id="current_online" name="current_online" value="current_online" type="checkbox"<?php if(in_array('current_online', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />即时在线数据</td>
-                              <td><input id="max_online" name="max_online" value="max_online" type="checkbox"<?php if(in_array('max_online', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />最高在线数据</td>
-                              <td><input id="avg_online" name="avg_online" value="avg_online" type="checkbox"<?php if(in_array('avg_online', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />平均在线数据</td>
+                              <td><input id="account_current_online" name="account_current_online" value="account/current_online" type="checkbox"<?php if(in_array('account/current_online', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />即时在线数据</td>
+                              <td><input id="account_max_online" name="account_max_online" value="account/max_online" type="checkbox"<?php if(in_array('account/max_online', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />最高在线数据</td>
+                              <td><input id="account_avg_online" name="account_avg_online" value="account/avg_online" type="checkbox"<?php if(in_array('account/avg_online', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />平均在线数据</td>
                               <td>&nbsp;</td>
                             </tr>
                             <tr>
                               <td rowspan="3"><input id="user_config" name="user_config" class="header_checkbox" type="checkbox" /></td>
                               <td rowspan="3"><strong>用户数据</strong></td>
-                              <td><input id="register_account" name="register_account" value="register_account" type="checkbox"<?php if(in_array('register_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器注册用户数</td>
-                              <td><input id="modify_account" name="modify_account" value="modify_account" type="checkbox"<?php if(in_array('modify_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />改名用户数</td>
-                              <td><input id="register_new_account" name="register_new_account" value="register_new_account" type="checkbox"<?php if(in_array('register_new_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />新增注册用户</td>
-                              <td><input id="modify_new_account" name="modify_new_account" value="modify_new_account" type="checkbox"<?php if(in_array('modify_new_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />新改名用户数</td>
+                              <td><input id="account_register_account" name="account_register_account" value="account/register_account" type="checkbox"<?php if(in_array('account/register_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器注册用户数</td>
+                              <td><input id="account_modify_account" name="account_modify_account" value="account/modify_account" type="checkbox"<?php if(in_array('account/modify_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />改名用户数</td>
+                              <td><input id="account_register_new_account" name="account_register_new_account" value="account/register_new_account" type="checkbox"<?php if(in_array('account/register_new_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />新增注册用户</td>
+                              <td><input id="account_modify_new_account" name="account_modify_new_account" value="account/modify_new_account" type="checkbox"<?php if(in_array('account/modify_new_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />新改名用户数</td>
                             </tr>
                             <tr>
-                              <td><input id="active_account" name="active_account" class="header_checkbox" value="active_account" type="checkbox"<?php if(in_array('active_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器活跃用户数</td>
-                              <td><input id="pay_account" name="pay_account" value="pay_account" type="checkbox"<?php if(in_array('pay_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器付费用户数</td>
-                              <td><input id="flowover_account" name="flowover_account" value="flowover_account" type="checkbox"<?php if(in_array('flowover_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器流失用户数</td>
-                              <td><input id="reflow_account" name="reflow_account" value="reflow_account" type="checkbox"<?php if(in_array('reflow_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器回流用户数</td>
+                              <td><input id="account_active_account" name="account_active_account" class="header_checkbox" value="account/active_account" type="checkbox"<?php if(in_array('account/active_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器活跃用户数</td>
+                              <td><input id="account_pay_account" name="account_pay_account" value="account/pay_account" type="checkbox"<?php if(in_array('account/pay_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器付费用户数</td>
+                              <td><input id="account_flowover_account" name="account_flowover_account" value="account/flowover_account" type="checkbox"<?php if(in_array('account/flowover_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器流失用户数</td>
+                              <td><input id="account_reflow_account" name="account_reflow_account" value="account/reflow_account" type="checkbox"<?php if(in_array('account/reflow_account', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器回流用户数</td>
                             </tr>
                             <tr>
-                              <td><input id="flowover_account_detail" name="flowover_account_detail" value="flowover_account_detail" type="checkbox"<?php if(in_array('flowover_account_detail', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器流失用户详情</td>
+                              <td><input id="account_flowover_account_detail" name="account_flowover_account_detail" value="account/flowover_account_detail" type="checkbox"<?php if(in_array('account/flowover_account_detail', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />服务器流失用户详情</td>
                               <td>&nbsp;</td>
                               <td>&nbsp;</td>
                               <td>&nbsp;</td>
