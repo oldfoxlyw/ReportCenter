@@ -2,7 +2,7 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 require_once('ICrud.php');
 
-class Madmin extends CI_Model implements ICrud
+class Mpartner extends CI_Model implements ICrud
 {
 	private $accountTable = 'scc_partner';
 	private $webdb = null;
