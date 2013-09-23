@@ -6,8 +6,9 @@ $(document).ready(function(){
 	li.parent().parent().addClass('open');
 	
 	$('.submenu > ul').each(function() {
-		if($(this).find('li').length == 0) {
-			$(this).remove();
+		console.log($(this).find('li').length);
+		if(!$(this).find('li').length) {
+			$(this).parent().remove();
 		}
 	});
 	
