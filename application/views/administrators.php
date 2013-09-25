@@ -22,12 +22,13 @@
                           <th>用户名</th>
                           <th>角色权限</th>
                           <th>帐号状态</th>
+                          <th>渠道编号</th>
                           <th>-</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr class="gradeA">
-                          <td colspan="5">载入中...</td>
+                          <td colspan="6">载入中...</td>
                         </tr>
                       </tbody>
                     </table>
@@ -70,6 +71,7 @@ $(function() {
 					}
 				}
 			},
+			{"mData": "user_fromwhere"},
 			{
 				"mData": null,
 				"fnRender": function(obj) {
