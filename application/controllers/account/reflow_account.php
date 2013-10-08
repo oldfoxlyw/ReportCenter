@@ -49,7 +49,8 @@ class Reflow_account extends CI_Controller
 		}
 		$parameter = array(
 			'log_date >='		=>	$startTime,
-			'log_date <='		=>	$endTime
+			'log_date <='		=>	$endTime,
+			'partner_key'			=>	$this->user->user_fromwhere
 		);
 		$extension = array(
 			'select'		=>	array(

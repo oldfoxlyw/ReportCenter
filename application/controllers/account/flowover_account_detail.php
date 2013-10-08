@@ -45,7 +45,8 @@ class Flowover_account_detail extends CI_Controller
 			}
 			$parameter = array (
 				'date'			=>	$startTime,
-				'server_id'		=>	$serverId
+				'server_id'		=>	$serverId,
+				'partner_key'=>	$this->user->user_fromwhere
 			);
 			$result = $this->mflowoverdetail->read ( $parameter );
 			$result = $result [0];
