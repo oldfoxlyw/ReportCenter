@@ -28,7 +28,7 @@ $permissionArray = explode(',', $admin->permission_list);
         <?php if(in_array('account/flowover_account_detail', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'account/flowover_account_detail'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/flowover_account_detail'); ?>">服务器流失用户详情</a></li><?php endif; ?>
       </ul>
     </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>消费数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
+    <li class="submenu"> <a href="#"><i class="icon icon-heart"></i><span>消费数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
         <?php if(in_array('order/consume', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/consume'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/consume'); ?>">消费总体统计</a></li><?php endif; ?>
         <?php if(in_array('order/buy_equipment', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/buy_equipment'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/buy_equipment'); ?>">购买装备消费统计</a></li><?php endif; ?>
@@ -41,7 +41,7 @@ $permissionArray = explode(',', $admin->permission_list);
         <?php if(in_array('behavior/progress', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'behavior/progress'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('behavior/progress'); ?>">角色游戏进度</a></li><?php endif; ?>
       </ul>
     </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>游戏管理员</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
+    <li class="submenu"> <a href="#"><i class="icon icon-envelope"></i><span>游戏管理员</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
         <?php if(in_array('master/server', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/server'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/server'); ?>">开/停服务器</a></li><?php endif; ?>
         <?php if(in_array('master/send_message', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/send_message'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/send_message'); ?>">发布游戏公告</a></li><?php endif; ?>
