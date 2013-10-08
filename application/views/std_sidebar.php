@@ -7,6 +7,7 @@ $permissionArray = explode(',', $admin->permission_list);
     <li<?php if($page_name == 'index'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('index'); ?>"><i class="icon icon-home"></i><span>总览</span></a></li>
     <?php if(in_array('permission', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'permission'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('permission'); ?>"><i class="icon icon-inbox"></i><span>权限设置</span></a> </li><?php endif; ?>
     <?php if(in_array('administrators', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'administrators'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('administrators'); ?>"><i class="icon icon-signal"></i><span>管理员设置</span></a></li><?php endif; ?>
+    <?php if(in_array('order/recharge', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/recharge'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/recharge'); ?>">充值记录</a></li><?php endif; ?>
     <li class="submenu"><a href="#"><i class="icon icon-th-list"></i><span>用户在线数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
         <?php if(in_array('account/current_online', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'account/current_online'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/current_online'); ?>">即时在线数据</a></li><?php endif; ?>
@@ -27,10 +28,10 @@ $permissionArray = explode(',', $admin->permission_list);
         <?php if(in_array('account/flowover_account_detail', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'account/flowover_account_detail'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/flowover_account_detail'); ?>">服务器流失用户详情</a></li><?php endif; ?>
       </ul>
     </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>付费/消费数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
+    <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>消费数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
-        <?php if(in_array('order/recharge', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/recharge'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/recharge'); ?>">充值记录</a></li><?php endif; ?>
-        <?php if(in_array('order/consume', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/consume'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/consume'); ?>">消费记录</a></li><?php endif; ?>
+        <?php if(in_array('order/consume', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/consume'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/consume'); ?>">消费总体统计</a></li><?php endif; ?>
+        <?php if(in_array('order/buy_equipment', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/buy_equipment'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/buy_equipment'); ?>">购买装备消费统计</a></li><?php endif; ?>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>游戏行为监控</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
