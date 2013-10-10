@@ -147,7 +147,7 @@ function onData(data) {
 		}
 	} else {
 		var items = {
-			name: equipmentType[i],
+			name: equipmentType[parseInt($("#itemType").val())],
 			data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 		};
 		series.push(items);
