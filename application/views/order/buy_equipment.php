@@ -93,6 +93,7 @@
 <script src="<?php echo base_url('resources/js/jquery.dataTables.min.js'); ?>"></script>
 
 <script type="text/javascript">
+var equipmentType = ["", "武器", "手套", "戒指", "衣服", "鞋子", "项链"];
 var dataTableHandler;
 
 $(function() {
@@ -128,6 +129,32 @@ function onData(data) {
 		"sTitle": "消耗绿钻"
 	}];
 	
+	var type = parseInt($("#itemType").val());
+	var series = [];
+	if(type == 0) {
+		for(var i = 1; i<=6, i++) {
+			var items = {
+				name: equipmentType[i],
+				data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+			};
+			series.push(items);
+		}
+		
+		for(var m in json) {
+			for(var k in json[m]) {
+				series[m].data[k] = json[m][k];
+			}
+		}
+	} else {
+		var items = {
+			name: equipmentType[i],
+			data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+		};
+		series.push(items);
+	}
+	
+	console.log(series);
+	/*
 	var obj = {};
 	obj.name = "消耗绿钻";
 	var data = [];
@@ -147,35 +174,64 @@ function onData(data) {
 	aaData.push(["总计", total]);
 	obj.data = data;
 	series.push(obj);
-	
+	*/
 	$('#chartRegCount').highcharts({
 		chart: {
-			type: 'column',
-			height: 500
-		},
-		credits: {
-			enabled: false
+			type: 'bar'
 		},
 		title: {
-			text: '消耗绿钻统计图'
+			text: '购买装备详细情况统计'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
 		},
 		xAxis: {
-			categories: json.axis
+			categories: ["1", "2", "3", "4", "5", "6", "7", "8",
+			"9", "10", "11", "12", "13", "14", "15", "16", "17",
+			"18", "19", "20", "21", "22", "23", "24", "25", "26",
+			"27", "28", "29", "30", "31", "32", "33", "34", "35",
+			"36", "37", "38", "39", "40"],
+			title: {
+				text: "等级"
+			}
 		},
 		yAxis: {
 			min: 0,
 			title: {
-				text: '消耗绿钻'
+				text: '人数',
+				align: 'high'
+			},
+			labels: {
+				overflow: 'justify'
 			}
 		},
 		tooltip: {
-			crosshairs: [false, true]
+			valueSuffix: ' 人'
+		},
+		plotOptions: {
+			bar: {
+				dataLabels: {
+					enabled: true
+				}
+			}
+		},
+		legend: {
+			layout: 'vertical',
+			align: 'right',
+			verticalAlign: 'top',
+			//x: -40,
+			//y: 100,
+			floating: true,
+			borderWidth: 1,
+			backgroundColor: '#FFFFFF',
+			shadow: true
+		},
+		credits: {
+			enabled: false
 		},
 		series: series
 	});
+/*
 	dataTableHandler = $('#listTable').dataTable({
 		"bAutoWidth": false,
 		"bJQueryUI": true,
@@ -203,6 +259,7 @@ function onData(data) {
 			}
 		}
 	});
+*/
 	$("select").select2();
 }
 </script>
