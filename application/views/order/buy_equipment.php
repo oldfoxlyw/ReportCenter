@@ -177,8 +177,8 @@ function onData(data) {
 	*/
 	$('#chartRegCount').highcharts({
 		chart: {
-			type: 'bar',
-			height: 600
+			type: 'column',
+			height: 500
 		},
 		title: {
 			text: '购买装备详细情况统计'
@@ -199,22 +199,11 @@ function onData(data) {
 		yAxis: {
 			min: 0,
 			title: {
-				text: '人数',
-				align: 'high'
-			},
-			labels: {
-				overflow: 'justify'
+				text: '人数'
 			}
 		},
 		tooltip: {
 			valueSuffix: ' 人'
-		},
-		plotOptions: {
-			bar: {
-				dataLabels: {
-					enabled: true
-				}
-			}
 		},
 		legend: {
 			layout: 'vertical',
