@@ -142,7 +142,7 @@ function onData(data) {
 		
 		for(var m in json) {
 			for(var k in json[m]) {
-				series[m].data[k] = json[m][k];
+				series[m].data[k] = parseInt(json[m][k]);
 			}
 		}
 	} else {
@@ -177,7 +177,8 @@ function onData(data) {
 	*/
 	$('#chartRegCount').highcharts({
 		chart: {
-			type: 'bar'
+			type: 'bar',
+			height: 600
 		},
 		title: {
 			text: '购买装备详细情况统计'
