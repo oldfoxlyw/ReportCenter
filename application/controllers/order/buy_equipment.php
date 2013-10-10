@@ -70,12 +70,12 @@ class Buy_equipment extends CI_Controller
 				}
 			} else
 			{
-				$detail = $detail->level_ {$itemType};
+				$detail = $detail->{$itemType};
 				$detail = explode ( ',', $detail );
 				foreach ( $detail as $row )
 				{
 					$row = explode ( ':', $row );
-					$parameter ["level_{$itemType}"] [$row [0]] = $row [1];
+					$parameter ["{$itemType}"] [$row [0]] = $row [1];
 				}
 			}
 		} else

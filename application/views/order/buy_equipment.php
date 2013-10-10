@@ -153,7 +153,6 @@ function onData(data) {
 		series.push(items);
 	}
 	
-	console.log(series);
 	/*
 	var obj = {};
 	obj.name = "消耗绿钻";
@@ -204,17 +203,6 @@ function onData(data) {
 		},
 		tooltip: {
 			valueSuffix: ' 人'
-		},
-		legend: {
-			layout: 'vertical',
-			align: 'right',
-			verticalAlign: 'top',
-			//x: -40,
-			//y: 100,
-			floating: true,
-			borderWidth: 1,
-			backgroundColor: '#FFFFFF',
-			shadow: true
 		},
 		credits: {
 			enabled: false
