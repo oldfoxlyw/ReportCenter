@@ -22,7 +22,8 @@ class Buy_equipment extends CI_Controller
 		$data = array (
 			'admin' => $this->user,
 			'page_name' => $this->pageName,
-			'server_result' => $serverResult 
+			'server_result' => $serverResult,
+			'current_time' => time () 
 		);
 		$this->render->render ( $this->pageName, $data );
 	}
@@ -36,39 +37,38 @@ class Buy_equipment extends CI_Controller
 		$logDate = $this->input->post ( 'startTime' );
 		$itemType = $this->input->post ( 'itemType' );
 		
-		$parameter = array(
-			'server_id'		=>	$serverId,
-			'date'			=>	$logDate,
-			'partner_key'	=>	$this->user->user_fromwhere
+		$parameter = array (
+			'server_id' => $serverId,
+			'date' => $logDate,
+			'partner_key' => $this->user->user_fromwhere 
 		);
 		$result = $this->mbuyequipment->read ( $parameter );
 		
-		$parameter = array();
+		$parameter = array ();
 		
 		if ($result !== FALSE)
 		{
-			$result = $result[0];
-			$detail = json_decode($result->level_detail);
-			if(empty($itemType))
+			$result = $result [0];
+			$detail = json_decode ( $result->level_detail );
+			if (empty ( $itemType ))
 			{
-				foreach($detail as $key => $value)
+				foreach ( $detail as $key => $value )
 				{
-					$value = explode(',', $value);
-					foreach($value as $row)
+					$value = explode ( ',', $value );
+					foreach ( $value as $row )
 					{
-						$row = explode(':', $row);
-						$parameter[$key][$row[0]] = $row[1];
+						$row = explode ( ':', $row );
+						$parameter [$key] [$row [0]] = $row [1];
 					}
 				}
-			}
-			else
+			} else
 			{
-				$detail = $detail->level_{$itemType};
-				$detail = explode(',', $detail);
-				foreach($detail as $row)
+				$detail = $detail->level_ {$itemType};
+				$detail = explode ( ',', $detail );
+				foreach ( $detail as $row )
 				{
-					$row = explode(':', $row);
-					$parameter["level_{$itemType}"][$row[0]] = $row[1];
+					$row = explode ( ':', $row );
+					$parameter ["level_{$itemType}"] [$row [0]] = $row [1];
 				}
 			}
 		} else
