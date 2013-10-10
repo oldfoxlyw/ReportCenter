@@ -132,7 +132,7 @@ function onData(data) {
 	var type = parseInt($("#itemType").val());
 	var series = [];
 	if(type == 0) {
-		for(var i = 1; i<=6, i++) {
+		for(var i = 1; i <= 6; i++) {
 			var items = {
 				name: equipmentType[i],
 				data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
