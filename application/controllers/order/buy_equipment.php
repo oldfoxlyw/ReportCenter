@@ -54,11 +54,18 @@ class Buy_equipment extends CI_Controller
 			{
 				foreach ( $detail as $key => $value )
 				{
-					$value = explode ( ',', $value );
-					foreach ( $value as $row )
+					if(!empty($value))
 					{
-						$row = explode ( ':', $row );
-						$parameter [$key] [$row [0]] = $row [1];
+						$value = explode ( ',', $value );
+						foreach ( $value as $row )
+						{
+							$row = explode ( ':', $row );
+							$parameter [$key] [$row [0]] = $row [1];
+						}
+					}
+					else
+					{
+						$parameter [$key] = "";
 					}
 				}
 			} else
