@@ -139,18 +139,17 @@ function onData(data) {
 			};
 			series.push(items);
 		}
-		
-		for(var m in json) {
-			for(var k in json[m]) {
-				series[m].data[k] = parseInt(json[m][k]);
-			}
-		}
 	} else {
 		var items = {
 			name: equipmentType[i],
 			data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 		};
 		series.push(items);
+	}
+	for(var m in json) {
+		for(var k in json[m]) {
+			series[m].data[k] = parseInt(json[m][k]);
+		}
 	}
 	
 	/*
