@@ -142,7 +142,7 @@ function onData(data) {
 		
 		for(var m in json) {
 			for(var k in json[m]) {
-				series[m-1].data[k] = parseInt(json[m][k]);
+				series[m-1].data[k-1] = parseInt(json[m][k]);
 			}
 		}
 	} else {
@@ -154,7 +154,7 @@ function onData(data) {
 		
 		for(var m in json) {
 			for(var k in json[m]) {
-				series[0].data[k] = parseInt(json[m][k]);
+				series[0].data[k-1] = parseInt(json[m][k]);
 			}
 		}
 	}
