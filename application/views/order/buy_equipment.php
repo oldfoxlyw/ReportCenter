@@ -141,6 +141,7 @@ function onData(data) {
 		}
 		
 		for(var m in json) {
+			console.log(m);
 			for(var k in json[m]) {
 				series[m].data[k] = parseInt(json[m][k]);
 			}
