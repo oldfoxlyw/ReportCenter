@@ -141,8 +141,9 @@ function onData(data) {
 		}
 		
 		for(var m in json) {
-			console.log(m);
+			m = parseInt(m);
 			for(var k in json[m]) {
+				k = parseInt(k);
 				series[m].data[k] = parseInt(json[m][k]);
 			}
 		}
@@ -154,7 +155,9 @@ function onData(data) {
 		series.push(items);
 		
 		for(var m in json) {
+			m = parseInt(m);
 			for(var k in json[m]) {
+				k = parseInt(k);
 				series[0].data[k] = parseInt(json[m][k]);
 			}
 		}
