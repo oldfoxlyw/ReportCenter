@@ -34,7 +34,8 @@ class Index extends CI_Controller
 		
 		$parameter = array(
 			'log_date >='		=>	$sevenDaysAgoDate,
-			'log_date <='		=>	$lastDate
+			'log_date <='		=>	$lastDate,
+			'partner_key'			=>	$this->user->user_fromwhere
 		);
 		$result = $this->moverview->read($parameter);
 		
