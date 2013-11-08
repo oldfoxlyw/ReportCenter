@@ -34,7 +34,7 @@ class Current_online extends CI_Controller
 
 		if(!empty($ip))
 		{
-			echo $this->connector->get($ip . '/get_online_count', null, FALSE);
+			echo $this->connector->post($ip . '/get_online_count', null, FALSE);
 		}
 	}
 }
