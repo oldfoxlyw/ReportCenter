@@ -51,7 +51,8 @@ class Consume extends CI_Controller
 			$axis = array();
 			for($i = 0; $i<count($result); $i++)
 			{
-				$result[$i]->action_name = lang('consume_' . $result[$i]->action_name);
+				$str = lang('consume_' . $result[$i]->action_name);
+				$result[$i]->action_name = $str ? $str : $result[$i]->action_name;
 				array_push($axis, $result[$i]->action_name );
 			}
 			
