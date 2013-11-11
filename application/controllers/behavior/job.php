@@ -28,6 +28,8 @@ class Job extends CI_Controller
 	
 	public function lists($provider = 'highchart')
 	{
+		$this->load->helper('language');
+		$this->lang->load('job');
 		$this->load->model('utils/return_format');
 		$accountdb = $this->load->database('accountdb', TRUE);
 		
@@ -43,6 +45,7 @@ class Job extends CI_Controller
 		$result = $accountdb->query($sql)->result_array();
 		for($i=0; $i<count($result); $i++)
 		{
+			$result[$i]['account_job'] = lang('behavior_job_' . $result[$i]['account_job']);
 			$result[$i] = array_values($result[$i]);
 		}
 		
