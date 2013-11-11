@@ -34,11 +34,11 @@ class Level extends CI_Controller
 		$serverId = $this->input->post('server_id');
 		if(!empty($serverId))
 		{
-			$sql = "SELECT `account_level`, count(*) as `count` FROM `web_account` WHERE `server_id`='{$serverId}' GROUP BY `account_level`";
+			$sql = "SELECT `account_level`, count(*) as `count` FROM `web_account` WHERE `account_level`<>'' AND `server_id`='{$serverId}' GROUP BY `account_level`";
 		}
 		else
 		{
-			$sql = "SELECT `account_level`, count(*) as `count` FROM `web_account` GROUP BY `account_level`";
+			$sql = "SELECT `account_level`, count(*) as `count` FROM `web_account` WHERE `account_level`<>'' GROUP BY `account_level`";
 		}
 		$result = $accountdb->query($sql)->result_array();
 		
