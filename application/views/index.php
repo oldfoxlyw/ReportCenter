@@ -132,7 +132,7 @@ function onData(data) {
 			{
 				data1.push(parseInt(json[i][j].reg_account));
 				data2.push(parseInt(json[i][j].modify_account));
-				data3.push(parseInt(json[i][j].login_account));
+				data3.push(parseInt(json[i][j].active_account));
 			}
 			obj1.data = data1;
 			obj2.data = data2;
