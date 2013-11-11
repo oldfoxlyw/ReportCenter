@@ -29,6 +29,8 @@ class Consume extends CI_Controller
 	
 	public function lists($provider = 'highchart')
 	{
+		$this->load->helper('language');
+		$this->lang->load('consume');
 		$this->load->model('mconsume');
 		$this->load->model('utils/return_format');
 
@@ -49,7 +51,7 @@ class Consume extends CI_Controller
 			$axis = array();
 			foreach($result as $row)
 			{
-				array_push($axis, $row->action_name);
+				array_push($axis, lang('consume_' . $row->action_name));
 			}
 			
 			$parameter = array(
