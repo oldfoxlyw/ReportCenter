@@ -49,9 +49,10 @@ class Consume extends CI_Controller
 		if($result !== FALSE)
 		{
 			$axis = array();
-			foreach($result as $row)
+			for($i = 0; $i<count($result); $i++)
 			{
-				array_push($axis, lang('consume_' . $row->action_name));
+				$result[$i]->action_name = lang('consume_' . $result[$i]->action_name);
+				array_push($axis, $result[$i]->action_name );
 			}
 			
 			$parameter = array(
