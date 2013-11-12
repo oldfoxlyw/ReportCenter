@@ -56,9 +56,6 @@ class Index1 extends CI_Controller
 		$sql = "SELECT * FROM `log_retention` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}'";
 		$retention = $logcachedb->query($sql)->result();
 		
-		var_dump($retention);
-		exit();
-		
 		$retentionResult = array();
 		foreach($retentionResult as $row)
 		{
