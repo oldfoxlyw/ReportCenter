@@ -81,7 +81,12 @@ $(function() {
 			{"mData": "third_current_login"},
 			{"mData": "active_account"},
 			{"mData": "flowover_account"},
-			{"mData": "next_retention"},
+			{
+				"mData": "next_retention",
+				"fnRender": function(obj) {
+					return obj.aData.next_retention / 100 + "%";
+				}
+			},
 			{"mData": "third_retention"}
 		],
 		"oLanguage": {  
