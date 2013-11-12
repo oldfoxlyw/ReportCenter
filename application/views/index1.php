@@ -84,7 +84,11 @@ $(function() {
 			{
 				"mData": "next_retention",
 				"fnRender": function(obj) {
-					return obj.aData.next_retention / 100 + "%";
+					if(obj.aData.next_retention==0) {
+						return "-";
+					} else {
+						return obj.aData.next_retention / 100 + "%";
+					}
 				}
 			},
 			{"mData": "third_retention"}
