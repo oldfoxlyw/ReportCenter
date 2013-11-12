@@ -36,11 +36,11 @@ class Job extends CI_Controller
 		$serverId = $this->input->post('server_id');
 		if(!empty($serverId))
 		{
-			$sql = "SELECT `account_job`, count(*) as `count` FROM `web_account` WHERE `account_job`<>'' AND `server_id`='{$serverId}' GROUP BY `account_job`";
+			$sql = "SELECT `account_job`, count(*) as `count` FROM `web_account` WHERE `server_id`='{$serverId}' GROUP BY `account_job`";
 		}
 		else
 		{
-			$sql = "SELECT `account_job`, count(*) as `count` FROM `web_account` WHERE `account_job`<>'' GROUP BY `account_job`";
+			$sql = "SELECT `account_job`, count(*) as `count` FROM `web_account` GROUP BY `account_job`";
 		}
 		$result = $accountdb->query($sql)->result_array();
 		for($i=0; $i<count($result); $i++)
