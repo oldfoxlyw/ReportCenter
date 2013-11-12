@@ -89,12 +89,14 @@ function onData(data) {
 		return;
 	}
 	var json = eval("(" + data + ")");
+	var chartData = [];
 	for(var i = 0; i < json.length; i++)
 	{
 		if(json[i][0] == "") {
 			json[i][0] = "由于未进行二次登录或没有创建角色无法获取职业的人数";
 		}
 		json[i][1] = parseFloat(json[i][1]);
+		chartData.push(json[i]);
 	}
 	
 	$('#chartRegCount').highcharts({
@@ -125,7 +127,7 @@ function onData(data) {
 		series: [{
 			type: 'pie',
 			name: '职业人数分布',
-			data: json
+			data: chartData
 		}]
 	});
 	
