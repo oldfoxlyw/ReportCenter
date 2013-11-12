@@ -110,7 +110,10 @@ function onData(data) {
 			text: '数据来源：数据统计平台'
 		},
 		xAxis: {
-			categories: json.category
+			categories: json.category,
+			labels: {
+				rotation: -45
+			}
 		},
 		yAxis: {
 			min: 0,
