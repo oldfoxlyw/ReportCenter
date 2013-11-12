@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Index extends CI_Controller
+class Index1 extends CI_Controller
 {
-	private $pageName = 'index';
+	private $pageName = 'index1';
 	private $user = null;
 	
 	public function __construct()
@@ -66,11 +66,15 @@ class Index extends CI_Controller
 			$re = $retentionResult[$result[$i]->log_date . '_' . $result[$i]->server_id . '_' . $result[$i]->partner_key];
 			if(!empty($re))
 			{
+				$result[$i]->prev_current_login = $re->prev_current_login;
+				$result[$i]->third_current_login = $re->third_current_login;
 				$result[$i]->next_retention = $re->next_retention;
 				$result[$i]->third_retention = $re->third_retention;
 			}
 			else
 			{
+				$result[$i]->prev_current_login = '-';
+				$result[$i]->third_current_login = '-';
 				$result[$i]->next_retention = '-';
 				$result[$i]->third_retention = '-';
 			}
