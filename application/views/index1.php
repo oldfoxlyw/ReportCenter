@@ -91,7 +91,16 @@ $(function() {
 					}
 				}
 			},
-			{"mData": "third_retention"}
+			{
+				"mData": "third_retention",
+				"fnRender": function(obj) {
+					if(obj.aData.next_retention==0) {
+						return "-";
+					} else {
+						return obj.aData.next_retention / 100 + "%";
+					}
+				}
+			},
 		],
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
