@@ -65,6 +65,7 @@ $(function() {
 		"bAutoWidth": false,
 		"bFilter": false,
 		"bLengthChange": false,
+		"bPaginate": false,
 		"bJQueryUI": true,
 		"bStateSave": true,
 		"sPaginationType": "full_numbers",
