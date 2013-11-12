@@ -57,12 +57,11 @@ class Index1 extends CI_Controller
 		$retention = $logcachedb->query($sql)->result();
 		
 		$retentionResult = array();
-		foreach($retentionResult as $row)
+		foreach($retention as $row)
 		{
 			$retentionResult[$row->log_date . '_' . $row->server_id . '_' . $row->partner_key] = $row;
 		}
-		var_dump($retentionResult);
-		exit();
+		
 		for($i=0; $i<count($result); $i++)
 		{
 			$re = $retentionResult[$result[$i]->log_date . '_' . $result[$i]->server_id . '_' . $result[$i]->partner_key];
