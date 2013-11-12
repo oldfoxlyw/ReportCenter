@@ -92,11 +92,12 @@ function onData(data) {
 	var chartData = [];
 	for(var i = 0; i < json.length; i++)
 	{
+		json[i][1] = parseFloat(json[i][1]);
 		if(json[i][0] == "") {
 			json[i][0] = "由于未进行二次登录或没有创建角色无法获取职业的人数";
+		} else {
+			chartData.push(json[i]);
 		}
-		json[i][1] = parseFloat(json[i][1]);
-		chartData.push(json[i]);
 	}
 	
 	$('#chartRegCount').highcharts({
