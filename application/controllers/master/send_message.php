@@ -38,7 +38,7 @@ class Send_message extends CI_Controller
 			$parameter = array(
 				'content'			=>	$content
 			);
-			echo $this->connector->get($ip . '/announcement', $parameter, FALSE);
+			echo $this->connector->post($ip . '/announcement', $parameter, FALSE);
 		}
 	}
 }
