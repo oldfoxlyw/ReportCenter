@@ -98,7 +98,7 @@ function onData(data) {
 	$('#chartRegCount').highcharts({
 		chart: {
 			type: 'bar',
-			height: 1200
+			height: 2000
 		},
 		title: {
 			text: '任务完成进度分布图'
