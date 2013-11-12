@@ -55,7 +55,14 @@ class Mserver extends CI_Model implements ICrud
 		{
 			foreach($parameter as $key=>$value)
 			{
-				$this->productdb->where($key, $value);
+				if($key == 'partner')
+				{
+					$this->productdb->like('partner', $value);
+				}
+				else
+				{
+					$this->productdb->where($key, $value);
+				}
 			}
 		}
 		if(!empty($extension))
