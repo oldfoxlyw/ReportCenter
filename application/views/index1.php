@@ -66,7 +66,7 @@ $(function() {
 		"bFilter": false,
 		"bLengthChange": false,
 		"bPaginate": false,
-		"bJQueryUI": true,
+		"bJQueryUI": false,
 		"bStateSave": true,
 		"sPaginationType": "full_numbers",
 		"sDom": '<"H"lr>t<"F"fp>',
