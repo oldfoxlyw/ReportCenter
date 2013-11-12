@@ -140,7 +140,8 @@ function onData(data) {
 			'sTitle': '职业',
 			'width': 200
 		},{
-			'sTitle': '人数'
+			'sTitle': '人数',
+			'width': 800
 		}],
 		"oLanguage": {  
 			"sProcessing":   "处理中...",

@@ -128,7 +128,7 @@ function onData(data) {
 	});
 	
 	dataTableHandler = $('#listTable').dataTable({
-		"bAutoWidth": false,
+		"bAutoWidth": true,
 		"bJQueryUI": true,
 		"bStateSave": true,
 		"sPaginationType": "full_numbers",
