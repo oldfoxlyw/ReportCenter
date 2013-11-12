@@ -112,7 +112,7 @@ function onData(data) {
 		xAxis: {
 			categories: json.category,
 			labels: {
-				rotation: -45
+				rotation: -90
 			}
 		},
 		yAxis: {
