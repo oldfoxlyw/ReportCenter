@@ -97,11 +97,8 @@ function onData(data) {
 	
 	$('#chartRegCount').highcharts({
 		chart: {
-			type: 'column',
-			height: 500
-		},
-		credits: {
-			enabled: false
+			type: 'bar',
+			height: 1200
 		},
 		title: {
 			text: '任务完成进度分布图'
@@ -109,20 +106,20 @@ function onData(data) {
 		subtitle: {
 			text: '数据来源：数据统计平台'
 		},
-		xAxis: {
+		xAxis: [{
 			categories: json.category,
-			labels: {
-				rotation: -90
-			}
-		},
+			reversed: false
+		}],
 		yAxis: {
-			min: 0,
 			title: {
-				text: '完成人数'
-			}
+				text: null
+			},
+			min: 0
 		},
-		tooltip: {
-			crosshairs: [false, true]
+		plotOptions: {
+			series: {
+				stacking: 'normal'
+			}
 		},
 		series: [{
 			name: $("#serverId").find("option:selected").text(),
