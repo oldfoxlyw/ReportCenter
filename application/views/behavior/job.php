@@ -137,7 +137,8 @@ function onData(data) {
 		"sDom": '<"H"lr>t<"F"fp>',
         "aaData": json,
         "aoColumns": [{
-			'sTitle': '职业'
+			'sTitle': '职业',
+			'width': 200
 		},{
 			'sTitle': '人数'
 		}],
