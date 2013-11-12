@@ -94,10 +94,10 @@ $(function() {
 			{
 				"mData": "third_retention",
 				"fnRender": function(obj) {
-					if(obj.aData.next_retention==0) {
+					if(obj.aData.third_retention==0) {
 						return "-";
 					} else {
-						return obj.aData.next_retention / 100 + "%";
+						return obj.aData.third_retention / 100 + "%";
 					}
 				}
 			},
