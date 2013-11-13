@@ -46,6 +46,50 @@
           </div>
         </div>
     </div>
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
+            <h5>新注册用户数曲线</h5>
+          </div>
+          <div class="widget-content">
+            <div class="pie"></div>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
+            <h5>有效用户曲线（角色等级大于1级）</h5>
+          </div>
+          <div class="widget-content">
+            <div class="bars"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
+            <h5>当天登录用户数曲线</h5>
+          </div>
+          <div class="widget-content">
+            <div class="pie"></div>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
+            <h5>留存率曲线</h5>
+          </div>
+          <div class="widget-content">
+            <div class="bars"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <link rel="stylesheet" href="<?php echo base_url('resources/css/select2.css'); ?>" />

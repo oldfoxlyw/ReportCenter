@@ -1594,3 +1594,13 @@ div.dataTables_wrapper .ui-widget-header {
 }
 #sidebar .content{ display:none;}
 }
+.margin-right-5 {
+	margin-right:5px;
+}
+.margin-5 {
+	margin-left:5px;
+	margin-right:5px;
+}
+.pointer {
+	cursor:pointer;
+}
