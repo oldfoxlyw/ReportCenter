@@ -124,11 +124,13 @@ function onGetEquipment(data) {
 	}
 	var json = eval("(" + data + ")");
 	
+	$("#modalGetEquipment > .modal-body").empty();
 	if(json) {
-		$("#modalGetEquipment > .modal-body").empty();
 		for(var i in json) {
 			$("#modalGetEquipment > .modal-body").append('<span class="label margin-right-5 pointer">' + json[i].equipment_name + '</span>');
 		}
+	} else {
+		$("#modalGetEquipment > .modal-body").append('<p>没有装备信息</p>');
 	}
 	
 	$("#modalGetEquipment > .modal-body").find("span").click(function() {
