@@ -55,7 +55,7 @@
             <h5>新注册用户数曲线</h5>
           </div>
           <div class="widget-content">
-            <div class="pie"></div>
+            <div id="chartRegCount"></div>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
             <h5>有效用户曲线（角色等级大于1级）</h5>
           </div>
           <div class="widget-content">
-            <div class="bars"></div>
+            <div id="chartValidCount"></div>
           </div>
         </div>
       </div>
@@ -77,17 +77,17 @@
             <h5>当天登录用户数曲线</h5>
           </div>
           <div class="widget-content">
-            <div class="pie"></div>
+            <div id="chartLoginCount"></div>
           </div>
         </div>
       </div>
       <div class="span6">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
-            <h5>留存率曲线</h5>
+            <h5>次日留存率曲线</h5>
           </div>
           <div class="widget-content">
-            <div class="bars"></div>
+            <div id="chartNextRetentionCount"></div>
           </div>
         </div>
       </div>
@@ -185,7 +185,169 @@ $(function() {
 		}
 	});
     <?php endforeach; ?>
+	$.post(<?php echo site_url('index1/charts/highchart'); ?>);
 	
 	$('select').select2();
 });
+
+function onData(data) {
+	if(data) {
+		
+		$('#chartRegCount').highcharts({
+			chart: {
+				height: 300
+			},
+			credits: {
+				enabled: false
+			},
+			title: {
+				text: '每日新注册人数曲线'
+			},
+			subtitle: {
+				text: '数据来源：数据统计平台'
+			},
+			xAxis: {
+				categories: data.axis
+			},
+			yAxis: {
+				title: {
+					text: '每日新注册人数'
+				},
+				plotLines: [{
+					value: 0,
+					width: 2,
+					color: '#808080'
+				}]
+			},
+			tooltip: {
+				crosshairs: [true, true]
+			},
+			plotOptions: {
+				line: {
+					dataLabels: {
+						enabled: true
+					}
+				}
+			},
+			series: data.register_result
+		});
+		
+		$('#chartValidCount').highcharts({
+			chart: {
+				height: 300
+			},
+			credits: {
+				enabled: false
+			},
+			title: {
+				text: '有效用户（角色等级大于1级）数量曲线'
+			},
+			subtitle: {
+				text: '数据来源：数据统计平台'
+			},
+			xAxis: {
+				categories: data.axis
+			},
+			yAxis: {
+				title: {
+					text: '有效用户数'
+				},
+				plotLines: [{
+					value: 0,
+					width: 2,
+					color: '#808080'
+				}]
+			},
+			tooltip: {
+				crosshairs: [true, true]
+			},
+			plotOptions: {
+				line: {
+					dataLabels: {
+						enabled: true
+					}
+				}
+			},
+			series: data.valid_result
+		});
+		
+		$('#chartLoginCount').highcharts({
+			chart: {
+				height: 300
+			},
+			credits: {
+				enabled: false
+			},
+			title: {
+				text: '当天登录用户数量曲线'
+			},
+			subtitle: {
+				text: '数据来源：数据统计平台'
+			},
+			xAxis: {
+				categories: data.axis
+			},
+			yAxis: {
+				title: {
+					text: '登录用户数'
+				},
+				plotLines: [{
+					value: 0,
+					width: 2,
+					color: '#808080'
+				}]
+			},
+			tooltip: {
+				crosshairs: [true, true]
+			},
+			plotOptions: {
+				line: {
+					dataLabels: {
+						enabled: true
+					}
+				}
+			},
+			series: data.login_result
+		});
+		
+		$('#chartNextRetentionCount').highcharts({
+			chart: {
+				height: 300
+			},
+			credits: {
+				enabled: false
+			},
+			title: {
+				text: '次日留存率曲线'
+			},
+			subtitle: {
+				text: '数据来源：数据统计平台'
+			},
+			xAxis: {
+				categories: data.axis
+			},
+			yAxis: {
+				title: {
+					text: '次日留存率'
+				},
+				plotLines: [{
+					value: 0,
+					width: 2,
+					color: '#808080'
+				}]
+			},
+			tooltip: {
+				crosshairs: [true, true]
+			},
+			plotOptions: {
+				line: {
+					dataLabels: {
+						enabled: true
+					}
+				}
+			},
+			series: data.next_retention_result
+		});
+	}
+}
 </script>

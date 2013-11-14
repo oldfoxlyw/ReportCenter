@@ -28,9 +28,60 @@ class Index1 extends CI_Controller
 		$this->render->render($this->pageName, $data);
 	}
 	
-	public function lists($provider = 'highchart')
+	public function charts($provider = 'highchart')
 	{
 		$this->load->model('moverview');
+		$this->load->model('utils/return_format');
+		$logcachedb = $this->load->database('logcachedb', TRUE);
+		
+		$serverId = $this->input->post('server_id');
+		
+		if(!empty($serverId))
+		{
+			$currentTime = time();
+			$lastTime = $currentTime - 86400;
+			$lastDate = date('Y-m-d', $lastTime) . ' 23:59:59';
+			$sevenDaysAgoTime = $lastTime - 7 * 86400;
+			$sevenDaysAgoDate = date('Y-m-d', $sevenDaysAgoTime) . ' 00:00:00';
+			
+			$result = array();
+			$result['axis'] = array();
+			for($i = $lastTime; $i > $sevenDaysAgoTime; $i -= 86400)
+			{
+				array_push($result['axis'], date('Y-m-d', $i));
+			}
+			$sql = "SELECT `log_date`, `reg_new_account`, `modify_new_account`, `login_account` FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` DESC";
+			$overviewResult = $logcachedb->query($sql)->result();
+			
+			$registerResult = array();
+			$validResult = array();
+			$loginResult = array();
+			$nextRetentionResult = array();
+			foreach($overviewResult as $row)
+			{
+				array_push($registerResult, $row->reg_new_account);
+				array_push($validResult, $row->modify_new_account);
+				array_push($loginResult, $row->login_account);
+			}
+
+			$sql = "SELECT * FROM `log_retention` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` DESC";
+			$retention = $logcachedb->query($sql)->result();
+			foreach($retention as $row)
+			{
+				array_push($nextRetentionResult, $row->next_retention);
+			}
+			
+			$result['register_result'] = $registerResult;
+			$result['valid_result'] = $validResult;
+			$result['login_result'] = $loginResult;
+			$result['next_retention_result'] = $nextRetentionResult;
+
+			echo $this->return_format->format($result);
+		}
+	}
+	
+	public function lists($provider = 'highchart')
+	{
 		$this->load->model('utils/return_format');
 		$logcachedb = $this->load->database('logcachedb', TRUE);
 		
