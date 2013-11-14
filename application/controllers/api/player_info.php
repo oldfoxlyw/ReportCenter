@@ -6,7 +6,7 @@ class Player_info extends CI_Controller
 		parent::__construct ();
 	}
 	
-	public function getInfoByGuid()
+	public function get_info_by_guid()
 	{
 		$this->load->model('maccount');
 		$this->load->model('utils/connector');
