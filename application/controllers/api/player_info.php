@@ -1,9 +1,20 @@
 <?php
 class Player_info extends CI_Controller
 {
+	private $pageName = 'api/player_info';
+	private $user = null;
+	
 	public function __construct()
 	{
 		parent::__construct ();
+		$this->load->model('utils/check_user', 'check');
+		$this->user = $this->check->validate();
+		$this->check->permission($this->pageName);
+	}
+	
+	public function index()
+	{
+		$this->load->view($this->pageName);
 	}
 	
 	public function get_info_by_guid()
