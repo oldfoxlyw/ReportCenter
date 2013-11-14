@@ -13,7 +13,7 @@
           <div class="widget-title">
             <ul class="nav nav-tabs" id="indexNavTab">
             	<?php foreach($server as $s): ?>
-              	<li><a data-toggle="tab" href="#tab_<?php echo $s->account_server_id; ?>"><?php echo $s->server_name ?></a></li>
+              	<li><a data-toggle="tab" href="#tab_<?php echo $s->account_server_id; ?>" server_id="<?php echo $s->account_server_id; ?>"><?php echo $s->server_name ?></a></li>
               	<?php endforeach; ?>
             </ul>
           </div>
@@ -185,7 +185,10 @@ $(function() {
 		}
 	});
     <?php endforeach; ?>
-	$.post(<?php echo site_url('index1/charts/highchart'); ?>);
+	var serverId = $("#indexNavTab > li.active").attr("server_id");
+	$.post("<?php echo site_url('index1/charts/highchart'); ?>", {
+		"serverId": serverId
+	}, onData);
 	
 	$('select').select2();
 });
