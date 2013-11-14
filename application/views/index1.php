@@ -149,8 +149,22 @@ $(function() {
 					}
 				}
 			},
-			{"mData": "orders_current_sum"},
-			{"mData": "arpu"}
+			{
+				"mData": "orders_current_sum",
+				"fnRender": function(obj) {
+					return obj.aData.orders_current_sum / 100;
+				}
+			},
+			{
+				"mData": "arpu",
+				"fnRender": function(obj) {
+					if(obj.aData.arpu == 0) {
+						return "-";
+					} else {
+						return obj.aData.arpu / 100 + "%";
+					}
+				}
+			}
 		],
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
