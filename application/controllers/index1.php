@@ -46,7 +46,7 @@ class Index1 extends CI_Controller
 			
 			$result = array();
 			$result['axis'] = array();
-			for($i = $sevenDaysAgoTime; $i < $lastTime; $i += 86400)
+			for($i = $sevenDaysAgoTime + 86400; $i <= $lastTime; $i += 86400)
 			{
 				array_push($result['axis'], date('Y-m-d', $i));
 			}
