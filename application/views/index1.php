@@ -225,7 +225,7 @@ function onData(data) {
 			xAxis: {
 				categories: data.axis,
 				labels: {
-					rotation: -45,
+					rotation: -20,
 					align: 'right'
 				}
 			},
@@ -272,7 +272,7 @@ function onData(data) {
 			xAxis: {
 				categories: data.axis,
 				labels: {
-					rotation: -45,
+					rotation: -20,
 					align: 'right'
 				}
 			},
@@ -319,7 +319,7 @@ function onData(data) {
 			xAxis: {
 				categories: data.axis,
 				labels: {
-					rotation: -45,
+					rotation: -20,
 					align: 'right'
 				}
 			},
@@ -366,7 +366,7 @@ function onData(data) {
 			xAxis: {
 				categories: data.axis,
 				labels: {
-					rotation: -45,
+					rotation: -20,
 					align: 'right'
 				}
 			},
