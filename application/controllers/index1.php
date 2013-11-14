@@ -46,11 +46,11 @@ class Index1 extends CI_Controller
 			
 			$result = array();
 			$result['axis'] = array();
-			for($i = $lastTime; $i > $sevenDaysAgoTime; $i -= 86400)
+			for($i = $sevenDaysAgoTime; $i < $lastTime; $i += 86400)
 			{
 				array_push($result['axis'], date('Y-m-d', $i));
 			}
-			$sql = "SELECT `log_date`, `reg_new_account`, `modify_new_account`, `login_account` FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` DESC";
+			$sql = "SELECT `log_date`, `reg_new_account`, `modify_new_account`, `login_account` FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` ASC";
 			$overviewResult = $logcachedb->query($sql)->result();
 			
 			$registerResult = array();
@@ -64,7 +64,7 @@ class Index1 extends CI_Controller
 				array_push($loginResult, $row->login_account);
 			}
 
-			$sql = "SELECT * FROM `log_retention` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` DESC";
+			$sql = "SELECT * FROM `log_retention` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` ASC";
 			$retention = $logcachedb->query($sql)->result();
 			foreach($retention as $row)
 			{
