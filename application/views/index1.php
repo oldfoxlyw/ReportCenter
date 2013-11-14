@@ -189,6 +189,7 @@ $(function() {
 	var parameter = {
 		"server_id": serverId
 	};
+	console.log(parameter);
 	$.post("<?php echo site_url('index1/charts/highchart'); ?>", parameter, onData);
 	
 	$('select').select2();
