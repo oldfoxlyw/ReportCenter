@@ -36,7 +36,7 @@ function send() {
 }
 
 function onSend(data) {
-	$("#console").append(data);
+	$("#console").append(data + "<br>");
 }
 </script>
 </head>

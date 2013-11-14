@@ -43,6 +43,17 @@ class Player_info extends CI_Controller
 			$data = $this->connector->post('http://115.29.195.156:8090/query_player_info', array(
 					'player_id'	=>	$guid
 			), false);
+			
+			$json = json_decode($data);
+			if(!empty($json))
+			{
+				$parameter = array(
+						'account_job'		=>	$json->job,
+						'account_level'		=>	$json->level,
+						'account_mission'	=>	($json->mission == 'null' || empty($json->mission)) ? '' : $json->mission
+				);
+				$this->maccount->update($guid, $parameter);
+			}
 			echo $data;
 		}
 	}
