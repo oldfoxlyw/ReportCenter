@@ -120,8 +120,14 @@ function onData(data) {
 	};
 	series.push(items);
 	
+	for(var i = 0; i<24; i++) {
+		var rowData = [i, 0];
+		aaData.push(rowData);
+	}
+	
 	for(var m in json) {
 		series[0].data[parseInt(json[m].hour)] = parseInt(json[m].amount) / 100;
+		aaData[parseInt(json[m].hour)][1] = parseInt(json[m].amount) / 100;
 	}
 	
 	$('#chartRegCount').highcharts({
