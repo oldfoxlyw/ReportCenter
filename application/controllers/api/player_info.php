@@ -12,7 +12,7 @@ class Player_info extends CI_Controller
 		$this->load->model('utils/connector');
 		
 
-		$data = $this->connector->post('http://112.124.37.58:8090/query_player_info', array(
+		$data = $this->connector->get('http://112.124.37.58:8090/query_player_info', array(
 				'player_id'	=>	3024
 		));
 		var_dump($data);
