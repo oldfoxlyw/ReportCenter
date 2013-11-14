@@ -76,6 +76,7 @@ class Index1 extends CI_Controller
 			$result['login_result'] = $loginResult;
 			$result['next_retention_result'] = $nextRetentionResult;
 
+			header('Content-type:text/json');
 			echo $this->return_format->format($result);
 		}
 	}
