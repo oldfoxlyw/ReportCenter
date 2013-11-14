@@ -20,10 +20,10 @@ class Player_info extends CI_Controller
 	public function get_invalid_player()
 	{
 		$parameter = array(
-				'server_id'		=>	'A',
+				'account_server_id'		=>	'A',
 				'account_job'	=>	''
 		);
-		$result = $this->maccount->read($parameter, null, 10);
+		$result = $this->maccount->read($parameter);
 
 		header('Content-type:text/json');
 		echo json_encode($result);
@@ -37,7 +37,7 @@ class Player_info extends CI_Controller
 		$parameter = array(
 				'account_job'	=>	''
 		);
-		$result = $this->maccount->read($parameter, null, 10);
+		$result = $this->maccount->read($parameter);
 		
 		for($i = 0; $i<10; $i++)
 		{
