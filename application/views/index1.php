@@ -190,7 +190,7 @@ $(function() {
 	var parameter = {
 		"server_id": serverId
 	};
-	$.post("<?php echo site_url('index1/charts/highchart'); ?>", parameter, onData);
+	//$.post("<?php echo site_url('index1/charts/highchart'); ?>", parameter, onData);
 	
 	$('select').select2();
 });
