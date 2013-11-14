@@ -29,24 +29,21 @@ class Recharge_daily extends CI_Controller
 	public function lists($provider = 'highchart')
 	{
 		$this->load->model('utils/return_format');
-		$accountdb = $this->load->database('accountdb', TRUE);
+		$accountdb = $this->load->database('fundsdb', TRUE);
 		
-		$serverId = $this->input->post('server_id');
-		if(!empty($serverId))
-		{
-			$sql = "SELECT `account_job`, count(*) as `count` FROM `web_account` WHERE `server_id`='{$serverId}' GROUP BY `account_job`";
-		}
-		else
-		{
-			$sql = "SELECT `account_job`, count(*) as `count` FROM `web_account` GROUP BY `account_job`";
-		}
-		$result = $accountdb->query($sql)->result_array();
-		for($i=0; $i<count($result); $i++)
-		{
-			$result[$i] = array_values($result[$i]);
-		}
+		$serverId = $this->input->post('serverId');
+		$startTime = $this->input->post('startTime');
 		
-		echo $this->return_format->format($result);
+		if(!empty($serverId) && !empty($startTime))
+		{
+			$startTime = strtotime("{$startTime} 00:00:00");
+			$endTime = $startTime + 86399;
+			
+			$sql = "SELECT FROM_UNIXTIME(`funds_time`, '%k') as `hour`, SUM(`funds_amount`) as `amount` FROM `funds_checkinout` WHERE `funds_flow_dir`='CHECK_IN' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} GROUP BY `hour`";
+			$result = $accountdb->query($sql)->result();
+			
+			echo $this->return_format->format($result);
+		}
 	}
 }
 

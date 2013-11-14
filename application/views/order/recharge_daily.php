@@ -34,20 +34,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label">装备类型</label>
-                    <div class="controls">
-                        <select id="itemType" name="itemType">
-                            <option value="0">全部</option>
-                            <option value="1">武器</option>
-                            <option value="2">手套</option>
-                            <option value="3">戒指</option>
-                            <option value="4">衣服</option>
-                            <option value="5">鞋子</option>
-                            <option value="6">项链</option>
-                        </select>
-                    </div>
-                </div>
                 <div class="form-actions">
                   <button id="btnSearch" type="button" class="btn btn-success">提交</button>
                 </div>
@@ -93,7 +79,6 @@
 <script src="<?php echo base_url('resources/js/jquery.dataTables.min.js'); ?>"></script>
 
 <script type="text/javascript">
-var equipmentType = ["", "武器", "手套", "戒指", "衣服", "鞋子", "项链"];
 var dataTableHandler;
 
 $(function() {
@@ -101,10 +86,9 @@ $(function() {
 	$("#btnSearch").click(function() {
 		if(dataTableHandler) dataTableHandler.fnDestroy();
 		$('#listTable').empty();
-		$.post("<?php echo site_url('order/buy_equipment/lists/highchart'); ?>", {
+		$.post("<?php echo site_url('order/recharge_daily/lists/highchart'); ?>", {
 			"serverId": $("#serverId").val(),
-			"startTime": $("#startTime").val(),
-			"itemType": $("#itemType").val()
+			"startTime": $("#startTime").val()
 		}, onData);
 	});
 	$("select").select2();
@@ -123,92 +107,50 @@ function onData(data) {
 	
 	column = [
 	{
-		"sTitle": "操作名称"
+		"sTitle": "时间段"
 	},
 	{
-		"sTitle": "消耗绿钻"
+		"sTitle": "订单总额"
 	}];
 	
-	var type = parseInt($("#itemType").val());
 	var series = [];
-	if(type == 0) {
-		for(var i = 1; i <= 6; i++) {
-			var items = {
-				name: equipmentType[i],
-				data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-			};
-			series.push(items);
-		}
-		
-		for(var m in json) {
-			for(var k in json[m]) {
-				series[m-1].data[k-1] = parseInt(json[m][k]);
-			}
-		}
-	} else {
-		var items = {
-			name: equipmentType[parseInt($("#itemType").val())],
-			data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-		};
-		series.push(items);
-		
-		for(var m in json) {
-			for(var k in json[m]) {
-				series[0].data[k-1] = parseInt(json[m][k]);
-			}
-		}
+	var items = {
+		name: "订单总额",
+		data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	};
+	series.push(items);
+	
+	for(var m in json) {
+		series[0].data[parseInt(json[m].hour)] = parseInt(json[m].amount);
 	}
 	
-	/*
-	var obj = {};
-	obj.name = "消耗绿钻";
-	var data = [];
-	var total = 0;
-	for(var i in json.data)
-	{
-		var rowData = [];
-		if(json.data[i]) {
-			data.push(parseInt(json.data[i].spend_special_gold));
-			rowData.push(json.data[i].action_name);
-			var spend = parseInt(json.data[i].spend_special_gold);
-			rowData.push(spend);
-			total += spend;
-		}
-		aaData.push(rowData);
-	}
-	aaData.push(["总计", total]);
-	obj.data = data;
-	series.push(obj);
-	*/
 	$('#chartRegCount').highcharts({
 		chart: {
 			type: 'column',
 			height: 500
 		},
 		title: {
-			text: '购买装备详细情况统计'
+			text: '每日每小时充值总额统计'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
 		},
 		xAxis: {
-			categories: ["1", "2", "3", "4", "5", "6", "7", "8",
-			"9", "10", "11", "12", "13", "14", "15", "16", "17",
-			"18", "19", "20", "21", "22", "23", "24", "25", "26",
-			"27", "28", "29", "30", "31", "32", "33", "34", "35",
-			"36", "37", "38", "39", "40"],
+			categories: ["0时-1时", "1时-2时", "2时-3时", "3时-4时", "4时-5时", "5时-6时", "6时-7时", "7时-8时", "8时-9时",
+			"9时-10时", "10时-11时", "11时-12时", "12时-13时", "13时-14时", "14时-15时", "15时-16时", "16时-17时", "17时-18时",
+			"18时-19时", "19时-20时", "20时-21时", "21时-22时", "22时-23时", "23时-24时"],
 			title: {
-				text: "等级"
+				text: "时间段"
 			}
 		},
 		yAxis: {
 			min: 0,
 			title: {
-				text: '人数'
+				text: '订单总额'
 			}
 		},
 		tooltip: {
-			valueSuffix: ' 人'
+			valueSuffix: ' 元'
 		},
 		credits: {
 			enabled: false
