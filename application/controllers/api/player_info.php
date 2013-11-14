@@ -13,9 +13,7 @@ class Player_info extends CI_Controller
 		$parameter = array(
 				'account_job'	=>	''
 		);
-		$result = $this->maccount->read($parameter);
-		var_dump($result);
-		exit();
+		$result = $this->maccount->read($parameter, null, 10);
 		
 		for($i = 0; $i<10; $i++)
 		{
