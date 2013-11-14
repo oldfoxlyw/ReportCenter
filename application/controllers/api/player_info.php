@@ -12,8 +12,8 @@ class Player_info extends CI_Controller
 		$this->load->model('utils/connector');
 		
 
-		$data = $this->connector->post('http://192.168.2.230:8090/query_player_info', array(
-				'player_id'	=>	18494
+		$data = $this->connector->post('http://112.124.37.58:8090/query_player_info', array(
+				'player_id'	=>	3024
 		));
 		var_dump($data);
 		exit();
@@ -26,8 +26,8 @@ class Player_info extends CI_Controller
 		for($i = 0; $i<10; $i++)
 		{
 			$guid = $result[$i]->GUID;
-			$data = $this->connector->post('http://192.168.2.230:8090/query_player_info', array(
-					'player_id'	=>	18494
+			$data = $this->connector->post('http://112.124.37.58:8090/query_player_info', array(
+					'player_id'	=>	3024
 			));
 			var_dump($data);
 			echo '<br><br><br>';
