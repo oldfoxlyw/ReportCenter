@@ -11,7 +11,7 @@ class Player_info extends CI_Controller
 		$this->load->model('maccount');
 		$this->load->model('utils/connector');
 		$parameter = array(
-				'account_job !='	=>	''
+				'account_job'	=>	''
 		);
 		$result = $this->maccount->read($parameter);
 		var_dump($result);
