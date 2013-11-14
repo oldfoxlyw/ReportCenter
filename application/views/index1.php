@@ -374,7 +374,10 @@ function onData(data) {
 			plotOptions: {
 				line: {
 					dataLabels: {
-						enabled: true
+						enabled: true,
+						formatter: function() {
+							return this.y / 100 + '%';
+						}
 					}
 				}
 			},
