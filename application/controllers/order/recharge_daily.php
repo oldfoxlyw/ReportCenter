@@ -20,8 +20,9 @@ class Recharge_daily extends CI_Controller
 		$serverResult = $this->mserver->read();
 		$data = array(
 			'admin'			=>	$this->user,
-			'page_name'	=>	$this->pageName,
-			'server'			=>	$serverResult
+			'page_name'		=>	$this->pageName,
+			'server'		=>	$serverResult,
+			'current_time'	=>	time()
 		);
 		$this->render->render($this->pageName, $data);
 	}
