@@ -365,7 +365,11 @@ function onData(data) {
 				}]
 			},
 			tooltip: {
-				crosshairs: [true, true]
+				crosshairs: [true, true],
+				formatter: function() {
+                    return '<b>'+ this.series.name +'</b><br/>'+
+                        this.y / 100 +'%';
+                }
 			},
 			plotOptions: {
 				line: {
