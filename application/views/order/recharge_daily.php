@@ -113,12 +113,12 @@ function onData(data) {
 		"sTitle": "时间段"
 	},
 	{
-		"sTitle": "订单总额"
+		"sTitle": "订单总额（元）"
 	}];
 	
 	var series = [];
 	var items = {
-		name: "订单总额",
+		name: "订单总额（元）",
 		data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	};
 	series.push(items);
@@ -155,7 +155,7 @@ function onData(data) {
 		yAxis: {
 			min: 0,
 			title: {
-				text: '订单总额'
+				text: '订单总额（元）'
 			}
 		},
 		tooltip: {
