@@ -19,8 +19,10 @@ class Player_info extends CI_Controller
 	
 	public function get_invalid_player()
 	{
+		$this->load->model('maccount');
+		
 		$parameter = array(
-				'account_server_id'		=>	'A',
+				'server_id'		=>	'A',
 				'account_job'	=>	''
 		);
 		$result = $this->maccount->read($parameter);
