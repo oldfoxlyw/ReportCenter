@@ -36,7 +36,7 @@ class Player_info extends CI_Controller
 		$this->load->model('maccount');
 		$this->load->model('utils/connector');
 		
-		$guid = $this->input->post('guid');
+		$guid = $this->input->get_post('guid');
 		
 		if(!empty($guid))
 		{
