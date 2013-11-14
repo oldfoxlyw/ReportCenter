@@ -6,8 +6,16 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function() {
-	$.post();
+	$.post("<?php echo site_url('api/player_info/get_invalid_player'); ?>", {}, onData);
 });
+
+function onData(data) {
+	if(data) {
+		for(var i in data) {
+			$("#container").append(data[i].GUID + ",");
+		}
+	}
+}
 </script>
 </head>
 

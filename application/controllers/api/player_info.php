@@ -17,6 +17,18 @@ class Player_info extends CI_Controller
 		$this->load->view($this->pageName);
 	}
 	
+	public function get_invalid_player()
+	{
+		$parameter = array(
+				'server_id'		=>	A,
+				'account_job'	=>	''
+		);
+		$result = $this->maccount->read($parameter, null, 10);
+
+		header('Content-type:text/json');
+		echo json_encode($result);
+	}
+	
 	public function get_info_by_guid()
 	{
 		$this->load->model('maccount');
