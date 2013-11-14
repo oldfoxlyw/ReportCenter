@@ -10,6 +10,14 @@ class Player_info extends CI_Controller
 	{
 		$this->load->model('maccount');
 		$this->load->model('utils/connector');
+		
+
+		$data = $this->connector->post('http://192.168.2.230:8090/query_player_info', array(
+				'player_id'	=>	18494
+		));
+		var_dump($data);
+		exit();
+		
 		$parameter = array(
 				'account_job'	=>	''
 		);
@@ -19,7 +27,7 @@ class Player_info extends CI_Controller
 		{
 			$guid = $result[$i]->GUID;
 			$data = $this->connector->post('http://192.168.2.230:8090/query_player_info', array(
-					'player_id'	=>	$guid
+					'player_id'	=>	18494
 			));
 			var_dump($data);
 			echo '<br><br><br>';
