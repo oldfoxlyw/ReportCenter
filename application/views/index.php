@@ -52,7 +52,7 @@
       <div class="span6">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
-            <h5>新注册用户数曲线</h5>
+            <h5>新注册用户数（包括试玩）曲线</h5>
           </div>
           <div class="widget-content">
             <div id="chartRegCount"></div>
