@@ -13,7 +13,7 @@
           <div class="widget-title">
             <ul class="nav nav-tabs" id="indexNavTab">
             	<?php foreach($server as $s): ?>
-              	<li><a data-toggle="tab" href="#tab_<?php echo $s->account_server_id; ?>" server_id="<?php echo $s->account_server_id; ?>"><?php echo $s->server_name ?></a></li>
+              	<li server_id="<?php echo $s->account_server_id; ?>"><a data-toggle="tab" href="#tab_<?php echo $s->account_server_id; ?>"><?php echo $s->server_name ?></a></li>
               	<?php endforeach; ?>
             </ul>
           </div>
