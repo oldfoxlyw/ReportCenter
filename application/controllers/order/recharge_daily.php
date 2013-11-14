@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Recharge extends CI_Controller
+class Recharge_daily extends CI_Controller
 {
-	private $pageName = 'order/recharge';
+	private $pageName = 'order/recharge_daily';
 	private $user = null;
 
 	public function __construct()
