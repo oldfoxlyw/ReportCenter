@@ -100,6 +100,7 @@
 <script src="<?php echo base_url('resources/js/matrix.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/select2.min.js'); ?>"></script> 
 <script src="<?php echo base_url('resources/js/jquery.dataTables.min.js'); ?>"></script> 
+<script src="<?php echo base_url('resources/js/highcharts.js'); ?>"></script>
 
 <script type="text/javascript">
 $(function() {
@@ -189,7 +190,6 @@ $(function() {
 	var parameter = {
 		"server_id": serverId
 	};
-	console.log(parameter);
 	$.post("<?php echo site_url('index1/charts/highchart'); ?>", parameter, onData);
 	
 	$('select').select2();
