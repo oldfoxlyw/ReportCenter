@@ -121,7 +121,7 @@ function onData(data) {
 	series.push(items);
 	
 	for(var i = 0; i<24; i++) {
-		var rowData = [i, 0];
+		var rowData = [i + "时-" + (i+1) + "时", 0];
 		aaData.push(rowData);
 	}
 	
