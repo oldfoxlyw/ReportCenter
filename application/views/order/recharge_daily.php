@@ -157,7 +157,7 @@ function onData(data) {
 		},
 		series: series
 	});
-/*
+
 	dataTableHandler = $('#listTable').dataTable({
 		"bAutoWidth": false,
 		"bJQueryUI": true,
@@ -185,7 +185,7 @@ function onData(data) {
 			}
 		}
 	});
-*/
+	
 	$("select").select2();
 }
 </script>
