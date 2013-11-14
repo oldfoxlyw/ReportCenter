@@ -197,7 +197,6 @@ $(function() {
 
 function onData(data) {
 	if(data) {
-		
 		$('#chartRegCount').highcharts({
 			chart: {
 				height: 300
@@ -234,7 +233,11 @@ function onData(data) {
 					}
 				}
 			},
-			series: data.register_result
+			series: [
+			{
+				name: "注册人数",
+				data: data.register_result
+			}]
 		});
 		
 		$('#chartValidCount').highcharts({
@@ -273,7 +276,11 @@ function onData(data) {
 					}
 				}
 			},
-			series: data.valid_result
+			series: [
+			{
+				name: "有效玩家",
+				data: data.valid_result
+			}]
 		});
 		
 		$('#chartLoginCount').highcharts({
@@ -312,7 +319,11 @@ function onData(data) {
 					}
 				}
 			},
-			series: data.login_result
+			series: [
+			{
+				name: "登录玩家",
+				data: data.login_result
+			}]
 		});
 		
 		$('#chartNextRetentionCount').highcharts({
@@ -351,7 +362,11 @@ function onData(data) {
 					}
 				}
 			},
-			series: data.next_retention_result
+			series: [
+			{
+				name: "留存率",
+				data: data.next_retention_result
+			}]
 		});
 	}
 }
