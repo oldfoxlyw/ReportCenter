@@ -33,6 +33,8 @@
                       <th>流失用户数<br />（超过一周未登录）</th>
                       <th>次日留存率</th>
                       <th>三日留存率</th>
+                      <th>当天订单总额</th>
+                      <th>充值率</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -147,6 +149,8 @@ $(function() {
 					}
 				}
 			},
+			{"mData": "orders_current_sum"},
+			{"mData": "arpu"}
 		],
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
