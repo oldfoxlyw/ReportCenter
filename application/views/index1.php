@@ -223,7 +223,11 @@ function onData(data) {
 				text: '数据来源：数据统计平台'
 			},
 			xAxis: {
-				categories: data.axis
+				categories: data.axis,
+				labels: {
+					rotation: -45,
+					align: 'right'
+				}
 			},
 			yAxis: {
 				title: {
@@ -266,7 +270,11 @@ function onData(data) {
 				text: '数据来源：数据统计平台'
 			},
 			xAxis: {
-				categories: data.axis
+				categories: data.axis,
+				labels: {
+					rotation: -45,
+					align: 'right'
+				}
 			},
 			yAxis: {
 				title: {
@@ -309,7 +317,11 @@ function onData(data) {
 				text: '数据来源：数据统计平台'
 			},
 			xAxis: {
-				categories: data.axis
+				categories: data.axis,
+				labels: {
+					rotation: -45,
+					align: 'right'
+				}
 			},
 			yAxis: {
 				title: {
@@ -352,7 +364,11 @@ function onData(data) {
 				text: '数据来源：数据统计平台'
 			},
 			xAxis: {
-				categories: data.axis
+				categories: data.axis,
+				labels: {
+					rotation: -45,
+					align: 'right'
+				}
 			},
 			yAxis: {
 				title: {
