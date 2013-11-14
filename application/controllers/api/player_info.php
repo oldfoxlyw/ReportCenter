@@ -36,19 +36,14 @@ class Player_info extends CI_Controller
 		$this->load->model('maccount');
 		$this->load->model('utils/connector');
 		
-		$parameter = array(
-				'account_job'	=>	''
-		);
-		$result = $this->maccount->read($parameter);
+		$guid = $this->input->post('guid');
 		
-		for($i = 0; $i<10; $i++)
+		if(!empty($guid))
 		{
-			$guid = $result[$i]->GUID;
-			$data = $this->connector->post('http://112.124.37.58:8090/query_player_info', array(
-					'player_id'	=>	3024
+			$data = $this->connector->post('http://115.29.195.156:8090/query_player_info', array(
+					'player_id'	=>	$guid
 			), false);
-			var_dump($data);
-			echo '<br><br><br>';
+			echo $data;
 		}
 	}
 }
