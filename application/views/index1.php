@@ -197,6 +197,18 @@ $(function() {
 
 function onData(data) {
 	if(data) {
+		for(var i in data.register_result) {
+			data.register_result[i] = parseInt(data.register_result[i]);
+		}
+		for(var i in data.valid_result) {
+			data.valid_result[i] = parseInt(data.valid_result[i]);
+		}
+		for(var i in data.login_result) {
+			data.login_result[i] = parseInt(data.login_result[i]);
+		}
+		for(var i in data.next_retention_result) {
+			data.next_retention_result[i] = parseInt(data.next_retention_result[i]);
+		}
 		$('#chartRegCount').highcharts({
 			chart: {
 				height: 300
