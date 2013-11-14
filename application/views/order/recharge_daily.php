@@ -121,7 +121,7 @@ function onData(data) {
 	series.push(items);
 	
 	for(var m in json) {
-		series[0].data[parseInt(json[m].hour)] = parseInt(json[m].amount);
+		series[0].data[parseInt(json[m].hour)] = parseInt(json[m].amount) / 100;
 	}
 	
 	$('#chartRegCount').highcharts({
