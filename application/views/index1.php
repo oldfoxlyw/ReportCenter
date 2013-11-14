@@ -187,7 +187,7 @@ $(function() {
     <?php endforeach; ?>
 	var serverId = $("#indexNavTab > li.active").attr("server_id");
 	$.post("<?php echo site_url('index1/charts/highchart'); ?>", {
-		"serverId": serverId
+		"server_id": serverId
 	}, onData);
 	
 	$('select').select2();
