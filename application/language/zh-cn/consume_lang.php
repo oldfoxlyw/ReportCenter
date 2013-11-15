@@ -9,7 +9,6 @@ $lang['consume_encourage'] = '鼓舞';
 $lang['consume_get_dungeon_card_reward'] = '获取副本卡牌奖励';
 $lang['consume_get_dungeon_info'] = '获取副本信息';
 $lang['consume_learn_formation'] = '学习阵形';
-$lang['consume_recruit_retinue'] = '购买随从翻卡';
 $lang['consume_refresh_store'] = '刷新商店';
 $lang['consume_unlock_pos'] = '解锁阵形位置';
 $lang['consume_upgrade_equipment'] = '强化装备';
