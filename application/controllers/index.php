@@ -48,7 +48,7 @@ class Index extends CI_Controller
 			$result['axis'] = array();
 			for($i = $sevenDaysAgoTime + 86400; $i <= $lastTime; $i += 86400)
 			{
-				array_push($result['axis'], date('Y-m-d', $i + 86400));
+				array_push($result['axis'], date('Y-m-d', $i));
 			}
 			$sql = "SELECT `log_date`, `reg_new_account`, `modify_new_account`, `login_account` FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` ASC";
 			$overviewResult = $logcachedb->query($sql)->result();
