@@ -60,7 +60,7 @@ class Index extends CI_Controller
 			foreach($overviewResult as $row)
 			{
 				array_push($registerResult, $row->reg_new_account);
-				array_push($validResult, $row->modify_new_account);
+				array_push($validResult, $row->level_account);
 				array_push($loginResult, $row->login_account);
 			}
 
