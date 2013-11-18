@@ -95,7 +95,7 @@ class Index extends CI_Controller
 		$currentTime = time();
 		$lastTime = $currentTime - 86400;
 		$lastDate = date('Y-m-d', $lastTime) . ' 23:59:59';
-		$sevenDaysAgoTime = $lastTime - 7 * 86400;
+		$sevenDaysAgoTime = $lastTime - 6 * 86400;
 		$sevenDaysAgoDate = date('Y-m-d', $sevenDaysAgoTime) . ' 00:00:00';
 		
 		$sql = "SELECT COUNT(*) as `numrows` FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}'";
