@@ -28,8 +28,8 @@
                 <div class="control-group">
                     <label class="control-label">时间(yyyy-mm-dd)</label>
                     <div class="controls">
-                        <div data-date="<?php echo date('Y-m-d', $current_time); ?>" class="input-append date datepicker">
-                            <input type="text" id="startTime" name="startTime" value="<?php echo date('Y-m-d', $current_time); ?>"  data-date-format="yyyy-mm-dd" >
+                        <div data-date="<?php echo date('Y-m-d', $current_time - 86400); ?>" class="input-append date datepicker">
+                            <input type="text" id="startTime" name="startTime" value="<?php echo date('Y-m-d', $current_time - 86400); ?>"  data-date-format="yyyy-mm-dd" >
                             <span class="add-on"><i class="icon-th"></i></span>
                         </div>
                     </div>
