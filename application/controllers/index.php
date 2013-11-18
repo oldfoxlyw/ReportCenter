@@ -38,7 +38,7 @@ class Index extends CI_Controller
 		
 		if(!empty($serverId))
 		{
-			$currentTime = time();
+			$currentTime = strtotime(date('Y-m-d') . ' 00:00:00');
 			$lastTime = $currentTime - 86400;
 			$lastDate = date('Y-m-d', $lastTime) . ' 23:59:59';
 			$sevenDaysAgoTime = $lastTime - 7 * 86400;
