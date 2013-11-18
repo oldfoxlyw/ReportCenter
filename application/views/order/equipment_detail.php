@@ -35,7 +35,44 @@
                           <h3>装备列表</h3>
                         </div>
                         <div class="modal-body">
-							<img src="<?php echo base_url('resources/img/loading.gif'); ?>" />
+                        	<div class="widget-box collapsible" id="equipmentList">
+                              <div class="widget-title"><a href="#collapse1" data-toggle="collapse" type="1"> <span class="icon"><i class="icon-arrow-down"></i></span>
+                                <h5>武器</h5>
+                                </a></div>
+                              <div class="collapse" id="collapse1">
+                                <div class="widget-content"><img src="<?php echo base_url('resources/img/loading.gif'); ?>" /></div>
+                              </div>
+                              <div class="widget-title"> <a href="#collapse2" data-toggle="collapse" type="2"> <span class="icon"><i class="icon-arrow-down"></i></span>
+                                <h5>手套</h5>
+                                </a> </div>
+                              <div class="collapse" id="collapse2">
+                                <div class="widget-content"><img src="<?php echo base_url('resources/img/loading.gif'); ?>" /></div>
+                              </div>
+                              <div class="widget-title"> <a href="#collapse3" data-toggle="collapse" type="3"> <span class="icon"><i class="icon-arrow-down"></i></span>
+                                <h5>戒指</h5>
+                                </a> </div>
+                              <div class="collapse" id="collapse3">
+                                <div class="widget-content"><img src="<?php echo base_url('resources/img/loading.gif'); ?>" /></div>
+                              </div>
+                              <div class="widget-title"> <a href="#collapse4" data-toggle="collapse" type="4"> <span class="icon"><i class="icon-arrow-down"></i></span>
+                                <h5>衣服</h5>
+                                </a> </div>
+                              <div class="collapse" id="collapse4">
+                                <div class="widget-content"><img src="<?php echo base_url('resources/img/loading.gif'); ?>" /></div>
+                              </div>
+                              <div class="widget-title"> <a href="#collapse5" data-toggle="collapse" type="5"> <span class="icon"><i class="icon-arrow-down"></i></span>
+                                <h5>鞋子</h5>
+                                </a> </div>
+                              <div class="collapse" id="collapse5">
+                                <div class="widget-content"><img src="<?php echo base_url('resources/img/loading.gif'); ?>" /></div>
+                              </div>
+                              <div class="widget-title"> <a href="#collapse6" data-toggle="collapse" type="6"> <span class="icon"><i class="icon-arrow-down"></i></span>
+                                <h5>项链</h5>
+                                </a> </div>
+                              <div class="collapse" id="collapse6">
+                                <div class="widget-content"><img src="<?php echo base_url('resources/img/loading.gif'); ?>" /></div>
+                              </div>
+                            </div>
                         </div>
                         <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal" id="modalGetEquipmentCancel">取消</a> <a href="#" id="modalGetEquipmentSubmit" class="btn btn-primary">确定并关闭</a> </div>
                       </div>
@@ -87,9 +124,32 @@
 
 <script type="text/javascript">
 $(function() {
+	$("#equipmentList > div.widget-title > a").click(function() {
+		if(!$(this).parent().next().hasClass("in")) {
+			var type = parseInt($(this).attr("type"));
+			$.post("<?php echo site_url('api/consume/get_equipment_name/json'); ?>", {"type": type}, onGetEquipment);
+			$(this).after("<input type=\"text\" name=\"searcher\" placeholder=\"输入名称以筛选\" value=\"\" style=\"margin-top:3px;\" />");
+			$("#equipmentList > div.widget-title > input").keyup(function() {
+				var value = $(this).val();
+				if(value) {
+					$(this).parent().next().find(".widget-content").find("span.label").each(function() {
+						var text = $(this).text();
+						if(text.indexOf(value) >= 0) {
+							$(this).show();
+						} else {
+							$(this).hide();
+						}
+					});
+				} else {
+					$(this).parent().next().find(".widget-content").find("span.label").show();
+				}
+			});
+		} else {
+			$(this).next().remove();
+		}
+	});
 	$("#btnGetEquipment").click(function() {
 		$("#modalGetEquipment").removeClass("hide");
-		$.post("<?php echo site_url('api/consume/get_equipment_name/json'); ?>", {}, onGetEquipment);
 		return false;
 	});
 	$("#modalGetEquipmentClose").click(function() {
@@ -124,17 +184,18 @@ function onGetEquipment(data) {
 	}
 	var json = eval("(" + data + ")");
 	
-	$("#modalGetEquipment > .modal-body").empty();
-	if(json) {
-		for(var i in json) {
-			$("#modalGetEquipment > .modal-body").append('<span class="label margin-right-5 pointer">' + json[i].equipment_name + '</span>');
+	var container = $("#collapse" + json.type + " > div.widget-content");
+	container.empty();
+	if(json.result) {
+		for(var i in json.result) {
+			container.append('<span class="label margin-right-5 pointer">' + json.result[i].equipment_name + '</span>');
 		}
 	} else {
-		$("#modalGetEquipment > .modal-body").append('<p>没有装备信息</p>');
+		container.append('<p>没有装备信息</p>');
 	}
 	
-	$("#modalGetEquipment > .modal-body").find("span").click(function() {
-		$("#modalGetEquipment > .modal-body").find("span").removeClass("label-success");
+	container.find("span").click(function() {
+		$("#equipmentList > .collapse > .widget-content").find("span").removeClass("label-success");
 		$(this).addClass("label-success");
 	});
 }

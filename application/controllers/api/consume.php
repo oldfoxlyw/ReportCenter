@@ -9,9 +9,21 @@ class Consume extends CI_Controller
 	
 	public function get_equipment_name($format = 'json')
 	{
+		$type = $this->input->post('type');
+		
+		if(!empty($type))
+		{
+			$parameter = array(
+					'type'	=>	intval($type)
+			);
+		}
 		$this->load->model('mequipmentname');
-		$result = $this->mequipmentname->read();
-		echo $this->return_format->format($result, $format);
+		$result = $this->mequipmentname->read($parameter);
+		$data = array(
+				'type'		=>	$type,
+				'result'	=>	$result
+		);
+		echo $this->return_format->format($data, $format);
 	}
 }
 
