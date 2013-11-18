@@ -161,7 +161,7 @@ $(function() {
 					if(obj.aData.seven_retention==0) {
 						return "-";
 					} else {
-						return obj.aData.third_retention / 100 + "%";
+						return obj.aData.seven_retention / 100 + "%";
 					}
 				}
 			},
