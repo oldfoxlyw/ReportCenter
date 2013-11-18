@@ -20,9 +20,23 @@ class Excel_EquipmentConfig_Adapter {
 			
 			for($j=2; $j<=$highestRow; $j++)
 			{
+				$id = $objPHPExcel->getActiveSheet()->getCell("A$j")->getValue();
+				$type = substr($id, strlen($id) - 1, 1);
+				$preName = $objPHPExcel->getActiveSheet()->getCell("B$j")->getValue();
+				$name = substr($preName, strlen($preName)-1, 1);
+				if($name == '#')
+				{
+					$name = substr($preName, 0, strlen($preName)-1);
+				}
+				else
+				{
+					$name = $preName;
+				}
+				
 				$row = array(
-					'id'				=>	$objPHPExcel->getActiveSheet()->getCell("A$j")->getValue(),
-					'name'				=>	$objPHPExcel->getActiveSheet()->getCell("B$j")->getValue()
+					'id'				=>	$id,
+					'name'				=>	explode('#', $name),
+					'type'				=>	$type
 				);
 				array_push($result, $row);
 			}

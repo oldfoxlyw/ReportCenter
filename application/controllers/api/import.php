@@ -46,7 +46,23 @@ class Import extends CI_Controller
 			
 			if(!empty($result))
 			{
-				var_dump($result);
+				$config = array();
+				
+				$logdb = $this->load->database('logdb', TRUE);
+				$logdb->truncate('equipment_name');
+				
+				foreach($result as $row)
+				{
+					foreach($row['name'] as $name)
+					{
+						$parameter = array(
+								'equipment_name'	=>	$name,
+								'type'				=>	$row['type']
+						);
+						$logdb->insert('equipment_name', $parameter);
+					}
+				}
+				exit('success');
 			}
 		}
 	}
