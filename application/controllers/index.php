@@ -41,12 +41,12 @@ class Index extends CI_Controller
 			$currentTime = strtotime(date('Y-m-d') . ' 00:00:00');
 			$lastTime = $currentTime - 86400;
 			$lastDate = date('Y-m-d', $lastTime) . ' 23:59:59';
-			$sevenDaysAgoTime = $lastTime - 7 * 86400;
+			$sevenDaysAgoTime = $lastTime - 6 * 86400;
 			$sevenDaysAgoDate = date('Y-m-d', $sevenDaysAgoTime) . ' 00:00:00';
 			
 			$result = array();
 			$result['axis'] = array();
-			for($i = $sevenDaysAgoTime + 86400; $i <= $lastTime; $i += 86400)
+			for($i = $sevenDaysAgoTime; $i <= $lastTime; $i += 86400)
 			{
 				array_push($result['axis'], date('Y-m-d', $i));
 			}
