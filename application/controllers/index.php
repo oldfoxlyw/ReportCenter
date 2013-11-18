@@ -123,6 +123,7 @@ class Index extends CI_Controller
 				$result[$i]->third_current_login = $re->third_current_login;
 				$result[$i]->next_retention = $re->next_retention;
 				$result[$i]->third_retention = $re->third_retention;
+				$result[$i]->seven_retention = $re->seven_retention;
 			}
 			else
 			{
@@ -130,6 +131,7 @@ class Index extends CI_Controller
 				$result[$i]->third_current_login = '-';
 				$result[$i]->next_retention = '-';
 				$result[$i]->third_retention = '-';
+				$result[$i]->seven_retention = '-';
 			}
 		}
 

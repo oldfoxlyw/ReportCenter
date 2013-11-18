@@ -35,6 +35,7 @@
                       <th>流失用户数<br />（超过一周未登录）</th>
                       <th>次日留存率</th>
                       <th>三日留存率</th>
+                      <th>七日留存率</th>
                       <th>当天订单总额</th>
                       <th>充值率</th>
                     </tr>
@@ -148,6 +149,16 @@ $(function() {
 				"mData": "third_retention",
 				"fnRender": function(obj) {
 					if(obj.aData.third_retention==0) {
+						return "-";
+					} else {
+						return obj.aData.third_retention / 100 + "%";
+					}
+				}
+			},
+			{
+				"mData": "seven_retention",
+				"fnRender": function(obj) {
+					if(obj.aData.seven_retention==0) {
 						return "-";
 					} else {
 						return obj.aData.third_retention / 100 + "%";
