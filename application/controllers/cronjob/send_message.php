@@ -13,7 +13,7 @@ class Send_message extends CI_Controller
 		$this->load->model('utils/connector');
 		
 		$ip = 'http://115.29.195.156:8090';
-		$content = '《冰与火之王》更新啦！集中修复大量BUG、闪退等现象，调低了雇佣兵价格。更多详情可前往官网查询。';
+		$content = '游戏内公告： 《冰与火之王》封测版本已于11月18日进行第二次大更新，请各位玩家及时从官网下载最新客户端，否则主线任务“紧急的战斗测试”等任务将永远无法完成。';
 		
 		if(!empty($ip) && !empty($content))
 		{
