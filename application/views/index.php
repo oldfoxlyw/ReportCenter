@@ -108,7 +108,7 @@
 
 <script type="text/javascript">
 $(function() {
-	$("table.data-table th").popover();
+	$("table.data-table th > a").popover();
 	
 	$("#indexNavTab > li:first").addClass("active");
 	$("#indexTab > div:first").addClass("active");
