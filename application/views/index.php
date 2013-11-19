@@ -23,7 +23,7 @@
                 <table class="table table-bordered data-table" id="listTable_<?php echo $s->account_server_id; ?>">
                   <thead>
                     <tr>
-                      <th>时间</th>
+                      <th data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-placement="top" data-toggle="popover" data-original-title="Popover on top">时间</th>
                       <th>总注册用户</th>
                       <!--<th>有效用户<br />（等级大于0级的用户）</th>
                       <th>有效用户<br />（等级大于1级的用户）</th>-->
