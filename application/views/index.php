@@ -24,20 +24,20 @@
                   <thead>
                     <tr>
                       <th>时间</th>
-                      <th data-content="所有已注册的帐号，包括试玩帐号" data-placement="top" data-toggle="popover" data-original-title="Tips">总注册用户</th>
+                      <th><a href="#" data-content="所有已注册的帐号，包括试玩帐号" data-placement="top" data-toggle="popover" data-original-title="Tips">总注册用户</a></th>
                       <!--<th>有效用户<br />（等级大于0级的用户）</th>
                       <th>有效用户<br />（等级大于1级的用户）</th>-->
-                      <th data-content="当日23:59:59前登录的总数，同一玩家一天内多次登录仅计算一次" data-placement="top" data-toggle="popover" data-original-title="Tips">当天登录用户</th>
-                      <th data-content="当日23:59:59前等级大于1级的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">当天注册的有效用户</th>
-                      <th data-content="昨日23:59:59前注册的有效玩家中在今日登录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">次日登录</th>
-                      <th data-content="三日前注册的有效玩家中在今日登录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">三日登录</th>
-                      <th data-content="三日前至今有过登录记录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">活跃用户</th>
-                      <th data-content="超过一周未登录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">流失用户数<br /></th>
-                      <th data-content="次日登录与昨日注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">次日留存率</th>
-                      <th data-content="三日登录与三天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">三日留存率</th>
-                      <th data-content="七日登录与七天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">七日留存率</th>
-                      <th data-content="当日23:59:59前充值的总金额（元）" data-placement="top" data-toggle="popover" data-original-title="Tips">当天订单总额</th>
-                      <th data-content="当日充值人数（去重）与当日活跃人数的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">充值率</th>
+                      <th><a href="#" data-content="当日23:59:59前登录的总数，同一玩家一天内多次登录仅计算一次" data-placement="top" data-toggle="popover" data-original-title="Tips">当天登录用户</a></th>
+                      <th><a href="#" data-content="当日23:59:59前等级大于1级的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">当天注册的有效用户</a></th>
+                      <th><a href="#" data-content="昨日23:59:59前注册的有效玩家中在今日登录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">次日登录</a></th>
+                      <th><a href="#" data-content="三日前注册的有效玩家中在今日登录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">三日登录</a></th>
+                      <th><a href="#" data-content="三日前至今有过登录记录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">活跃用户</a></th>
+                      <th><a href="#" data-content="超过一周未登录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">流失用户数</a></th>
+                      <th><a href="#" data-content="次日登录与昨日注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">次日留存率</a></th>
+                      <th><a href="#" data-content="三日登录与三天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">三日留存率</a></th>
+                      <th><a href="#" data-content="七日登录与七天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">七日留存率</a></th>
+                      <th><a href="#" data-content="当日23:59:59前充值的总金额（元）" data-placement="top" data-toggle="popover" data-original-title="Tips">当天订单总额</a></th>
+                      <th><a href="#" data-content="当日充值人数（去重）与当日活跃人数的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">充值率</a></th>
                     </tr>
                   </thead>
                   <tbody>
