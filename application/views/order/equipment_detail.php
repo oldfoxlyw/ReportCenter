@@ -26,7 +26,27 @@
                     </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label" for="equipmentName">装备名称（附带智能提示）</label>
+                    <div class="span6">
+                        <label class="control-label">开始时间(yyyy-mm-dd)</label>
+                        <div class="controls">
+                            <div data-date="<?php echo date('Y-m-d', $current_time - 7 * 86400); ?>" class="input-append date datepicker">
+                                <input type="text" id="startTime" name="startTime" value="<?php echo date('Y-m-d', $current_time - 7 * 86400); ?>"  data-date-format="yyyy-mm-dd" class="span11" >
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <label class="control-label">结束时间(yyyy-mm-dd)</label>
+                        <div class="controls">
+                            <div data-date="<?php echo date('Y-m-d', $current_time - 86400); ?>" class="input-append date datepicker">
+                                <input type="text" id="endTime" name="endTime" value="<?php echo date('Y-m-d', $current_time - 86400); ?>"  data-date-format="yyyy-mm-dd" class="span11" >
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="equipmentName">装备名称</label>
                   <div class="controls">
                     <input type="text" id="equipmentName" name="equipmentName" placeholder="装备名称" value="" /><span class="help-block"><strong><a id="btnGetEquipment" href="#">从列表选择装备</a></strong></span>
                     <div class="modal hide" id="modalGetEquipment">
@@ -124,6 +144,7 @@
 
 <script type="text/javascript">
 $(function() {
+    $('.datepicker').datepicker();
 	$("#equipmentList > div.widget-title > a").click(function() {
 		if(!$(this).parent().next().hasClass("in")) {
 			var type = parseInt($(this).attr("type"));
