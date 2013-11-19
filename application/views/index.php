@@ -25,10 +25,10 @@
                     <tr>
                       <th>时间</th>
                       <th>总注册用户</th>
-                      <th>当天新注册用户</th>
                       <!--<th>有效用户<br />（等级大于0级的用户）</th>
                       <th>有效用户<br />（等级大于1级的用户）</th>-->
                       <th>当天登录用户</th>
+                      <th>当天注册的有效用户<br />（等级大于1级的用户）</th>
                       <th>次日登录</th>
                       <th>三日登录</th>
                       <th>活跃用户<br />（三天内有登录）</th>
@@ -127,10 +127,10 @@ $(function() {
 		"aoColumns": [
 			{"mData": "log_date"},
 			{"mData": "reg_account"},
-			{"mData": "reg_new_account"},
 //			{"mData": "valid_account"},
 //			{"mData": "level_account"},
 			{"mData": "login_account"},
+			{"mData": "level_account"},
 			{"mData": "prev_current_login"},
 			{"mData": "third_current_login"},
 			{"mData": "active_account"},
