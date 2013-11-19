@@ -180,7 +180,7 @@ function onData(data) {
 			text: '玩家流失分布图（职业）'
 		},
 		subtitle: {
-			text: '数据来源：数据统计平台'
+			text: '职业为空值时，包含所有建立了帐号但是未建立角色的玩家'
 		},
 		xAxis: [{
 			categories: jobCategory,
@@ -211,7 +211,7 @@ function onData(data) {
 			text: '玩家流失分布图（等级）'
 		},
 		subtitle: {
-			text: '数据来源：数据统计平台'
+			text: '等级为0时，包含所有建立了帐号但是未建立角色的玩家'
 		},
 		xAxis: [{
 			categories: levelCategory,
@@ -236,13 +236,13 @@ function onData(data) {
 	$('#chartRegCount3').highcharts({
 		chart: {
 			type: 'bar',
-			height: 600
+			height: 1500
 		},
 		title: {
 			text: '玩家流失分布图（任务）'
 		},
 		subtitle: {
-			text: '数据来源：数据统计平台'
+			text: '任务为0时，包含所有创建帐号但未创建角色，或者建立了角色但是没有接第一个任务的玩家'
 		},
 		xAxis: [{
 			categories: missionCategory,

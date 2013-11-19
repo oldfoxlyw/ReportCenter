@@ -30,6 +30,8 @@ class Flowover_account_detail extends CI_Controller
 
 	public function lists($provider = 'highchart')
 	{
+		$this->load->helper('language');
+		$this->lang->load('job');
 		$this->load->model ( 'mflowoverdetail' );
 		$this->load->model ( 'utils/return_format' );
 		
@@ -56,6 +58,7 @@ class Flowover_account_detail extends CI_Controller
 			foreach ( $job as $j )
 			{
 				$j = explode ( ':', $j );
+				$j[0] = lang('behavior_job_' . $j[0]);
 				array_push ( $jobArray, $j );
 			}
 			$levelArray = array ();
