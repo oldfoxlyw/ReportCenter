@@ -59,6 +59,7 @@ class Flowover_account_detail extends CI_Controller
 			{
 				$j = explode ( ':', $j );
 				$j[0] = lang('behavior_job_' . $j[0]);
+				if(!$j[0]) $j[0] = '';
 				array_push ( $jobArray, $j );
 			}
 			$levelArray = array ();
