@@ -37,7 +37,7 @@
                       <th><a href="#" data-content="三日登录与三天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">三日留存率</a></th>
                       <th><a href="#" data-content="七日登录与七天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">七日留存率</a></th>
                       <th><a href="#" data-content="当日23:59:59前充值的总金额（元）" data-placement="top" data-toggle="popover" data-original-title="Tips">当天订单总额</a></th>
-                      <th><a href="#" data-content="当日充值人数（去重）与当日活跃人数的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">充值率</a></th>
+                      <th><a href="#" data-content="当日充值人数（去重）与当日活跃人数的比值" data-placement="left" data-toggle="popover" data-original-title="Tips">充值率</a></th>
                     </tr>
                   </thead>
                   <tbody>
