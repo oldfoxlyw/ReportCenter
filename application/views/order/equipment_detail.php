@@ -248,12 +248,10 @@ function onData(data) {
 	for(var i in json.data)
 	{
 		var rowData = [];
-		if(json.data[i]) {
-			data.push(parseInt(json.data[i]));
-			rowData.push(json.axis[i]);
-			var spend = parseInt(json.data[i]);
-			rowData.push(spend);
-		}
+		data.push(parseInt(json.data[i]));
+		rowData.push(json.axis[i]);
+		var spend = parseInt(json.data[i]);
+		rowData.push(spend);
 		aaData.push(rowData);
 	}
 	obj.data = data;
