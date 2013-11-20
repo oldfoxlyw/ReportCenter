@@ -42,15 +42,16 @@ $permissionArray = explode(',', $admin->permission_list);
         <?php if(in_array('behavior/progress', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'behavior/progress'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('behavior/progress'); ?>">角色游戏进度</a></li><?php endif; ?>
       </ul>
     </li>
-    <!--
     <li class="submenu"> <a href="#"><i class="icon icon-envelope"></i><span>游戏管理员</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
+        <?php if(in_array('master/send_message', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/send_message'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/send_message'); ?>">发布游戏内公告</a></li><?php endif; ?>
+        <?php if(in_array('master/send_article', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/send_article'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/send_article'); ?>">发布新闻公告</a></li><?php endif; ?>
+    	<!--
         <?php if(in_array('master/server', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/server'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/server'); ?>">开/停服务器</a></li><?php endif; ?>
-        <?php if(in_array('master/send_message', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/send_message'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/send_message'); ?>">发布游戏公告</a></li><?php endif; ?>
         <?php if(in_array('master/grant', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'master/grant'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('master/grant'); ?>">发放游戏道具</a></li><?php endif; ?>
+        -->
       </ul>
     </li>
-    -->
     <!--
     <li class="content"> <span>Monthly Bandwidth Transfer</span>
       <div class="progress progress-mini progress-danger active progress-striped">

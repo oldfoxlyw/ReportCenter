@@ -189,10 +189,11 @@ $(function() {
 	$("#btnSearch").click(function() {
 		if(dataTableHandler) dataTableHandler.fnDestroy();
 		$('#listTable').empty();
-		$.post("<?php echo site_url('order/buy_equipment/lists/highchart'); ?>", {
+		$.post("<?php echo site_url('order/equipment_detail/lists/highchart'); ?>", {
 			"serverId": $("#serverId").val(),
 			"startTime": $("#startTime").val(),
-			"itemType": $("#itemType").val()
+			"endTime": $("#endTime").val(),
+			"equipmentName": $("#equipmentName").val()
 		}, onData);
 	});
 	$("select").select2();
@@ -227,6 +228,8 @@ function onData(data) {
 		return;
 	}
 	var json = eval("(" + data + ")");
+	
+	console.log(json);
 	
 	$("select").select2();
 }
