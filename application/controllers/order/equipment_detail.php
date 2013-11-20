@@ -56,6 +56,7 @@ class Equipment_detail extends CI_Controller
 				{
 					$data['data'][$row->date] = intval($row->count);
 				}
+				$data['data'] = array_values($data['data']);
 				
 				$this->load->model('utils/return_format');
 				echo $this->return_format->format($data);

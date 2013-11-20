@@ -230,7 +230,90 @@ function onData(data) {
 	}
 	var json = eval("(" + data + ")");
 	
-	console.log(json);
+	var column = [];
+	var aaData = [];
+	var series = [];
+	
+	column = [
+	{
+		"sTitle": "日期"
+	},
+	{
+		"sTitle": "销售数量"
+	}];
+	
+	var obj = {};
+	obj.name = "销售数量";
+	var data = [];
+	for(var i in json.data)
+	{
+		var rowData = [];
+		if(json.data[i]) {
+			data.push(parseInt(json.data[i].count));
+			rowData.push(json.data[i].date);
+			var spend = parseInt(json.data[i].count);
+			rowData.push(spend);
+		}
+		aaData.push(rowData);
+	}
+	obj.data = data;
+	series.push(obj);
+	
+	$('#chartRegCount').highcharts({
+		chart: {
+			type: 'column',
+			height: 500
+		},
+		credits: {
+			enabled: false
+		},
+		title: {
+			text: '装备销售统计图'
+		},
+		subtitle: {
+			text: '数据来源：数据统计平台'
+		},
+		xAxis: {
+			categories: json.axis
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: '销售数量'
+			}
+		},
+		tooltip: {
+			crosshairs: [false, true]
+		},
+		series: series
+	});
+	dataTableHandler = $('#listTable').dataTable({
+		"bAutoWidth": false,
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"iDisplayLength": 20,
+		"sPaginationType": "full_numbers",
+		"sDom": '<"H"lr>t<"F"fp>',
+        "aaData": aaData,
+        "aoColumns": column,
+		"oLanguage": {  
+			"sProcessing":   "处理中...",
+			"sLengthMenu":   "显示 _MENU_ 项结果",
+			"sZeroRecords":  "没有匹配结果",
+			"sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+			"sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
+			"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+			"sInfoPostFix":  "",
+			"sSearch":       "搜索:",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "首页",
+				"sPrevious": "上页",
+				"sNext":     "下页",
+				"sLast":     "末页"
+			}
+		}
+	});
 	
 	$("select").select2();
 }
