@@ -249,9 +249,9 @@ function onData(data) {
 	{
 		var rowData = [];
 		if(json.data[i]) {
-			data.push(parseInt(json.data[i].count));
-			rowData.push(json.data[i].date);
-			var spend = parseInt(json.data[i].count);
+			data.push(parseInt(json.data[i]));
+			rowData.push(json.axis[i]);
+			var spend = parseInt(json.data[i]);
 			rowData.push(spend);
 		}
 		aaData.push(rowData);
