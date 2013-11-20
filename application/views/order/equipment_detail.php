@@ -143,6 +143,7 @@
 <script src="<?php echo base_url('resources/js/jquery.dataTables.min.js'); ?>"></script>
 
 <script type="text/javascript">
+var dataTableHandler;
 $(function() {
     $('.datepicker').datepicker();
 	$("#equipmentList > div.widget-title > a").click(function() {
