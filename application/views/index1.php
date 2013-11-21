@@ -253,9 +253,8 @@ $(function() {
 		}
 	});
 	
-	var serverId = $("#indexNavTab > li.active").attr("server_id");
 	var parameter = {
-		"server_id": serverId
+		"server_id": "A"
 	};
 	$.post("<?php echo site_url('index1/charts/highchart'); ?>", parameter, onData);
 	
