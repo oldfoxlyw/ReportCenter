@@ -8,6 +8,16 @@
 
 <!--Action boxes-->
   <div class="container-fluid">
+  	<div class="row-fluid">
+    	<div class="span4">
+        <strong>选择服务器</strong>
+    	<select id="serverSelect" name="serverSelect">
+			<?php for($i=0; $i<count($server); $i++): ?>
+            <option value="<?php echo $server[$i]->account_server_id; ?>"><?php echo $server[$i]->server_name ?></option>
+            <?php endfor; ?>
+        </select>
+        </div>
+    </div>
     <div class="row-fluid">
         <div class="widget-box">
           <div class="widget-title">
@@ -139,7 +149,7 @@ $(function() {
 		"sDom": '<"H"lr>t<"F"fp>',
 		"bProcessing": true,
 		"bServerSide": true,
-		"sAjaxSource": "<?php echo site_url('index/lists/overview'); ?>?server_id=A",
+		"sAjaxSource": "<?php echo site_url('index/lists/overview'); ?>?server_id=<?php echo $server[0]->account_server_id; ?>",
 		"sServerMethod": "POST",
 		"aoColumns": [
 			{"mData": "log_date"},
@@ -195,7 +205,7 @@ $(function() {
 		"sDom": '<"H"lr>t<"F"fp>',
 		"bProcessing": true,
 		"bServerSide": true,
-		"sAjaxSource": "<?php echo site_url('index/lists/retention'); ?>?server_id=A",
+		"sAjaxSource": "<?php echo site_url('index/lists/retention'); ?>?server_id=<?php echo $server[0]->account_server_id; ?>",
 		"sServerMethod": "POST",
 		"aoColumns": [
 			{"mData": "log_date"},
@@ -254,7 +264,7 @@ $(function() {
 	});
 	
 	var parameter = {
-		"server_id": "A"
+		"server_id": "<?php echo $server[0]->account_server_id; ?>"
 	};
 	$.post("<?php echo site_url('index/charts/highchart'); ?>", parameter, onData);
 	
