@@ -139,7 +139,7 @@ $(function() {
 		"sDom": '<"H"lr>t<"F"fp>',
 		"bProcessing": true,
 		"bServerSide": true,
-		"sAjaxSource": "<?php echo site_url('index/lists/overview'); ?>?server_id=<?php echo $s->account_server_id; ?>",
+		"sAjaxSource": "<?php echo site_url('index/lists/overview'); ?>?server_id=A",
 		"sServerMethod": "POST",
 		"aoColumns": [
 			{"mData": "log_date"},
@@ -195,7 +195,7 @@ $(function() {
 		"sDom": '<"H"lr>t<"F"fp>',
 		"bProcessing": true,
 		"bServerSide": true,
-		"sAjaxSource": "<?php echo site_url('index/lists/retention'); ?>?server_id=<?php echo $s->account_server_id; ?>",
+		"sAjaxSource": "<?php echo site_url('index/lists/retention'); ?>?server_id=A",
 		"sServerMethod": "POST",
 		"aoColumns": [
 			{"mData": "log_date"},
