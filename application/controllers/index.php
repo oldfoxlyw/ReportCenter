@@ -64,7 +64,7 @@ class Index extends CI_Controller
 				array_push($loginResult, $row->login_account);
 			}
 
-			$sql = "SELECT * FROM `log_retention` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` ASC";
+			$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` ASC";
 			$retention = $logcachedb->query($sql)->result();
 			foreach($retention as $row)
 			{
@@ -81,7 +81,7 @@ class Index extends CI_Controller
 		}
 	}
 	
-	public function lists($provider = 'highchart')
+	public function lists($provider = 'overview')
 	{
 		$this->load->model('utils/return_format');
 		$logcachedb = $this->load->database('logcachedb', TRUE);
@@ -97,7 +97,7 @@ class Index extends CI_Controller
 		$lastDate = date('Y-m-d', $lastTime) . ' 23:59:59';
 		$sevenDaysAgoTime = $lastTime - 6 * 86400;
 		$sevenDaysAgoDate = date('Y-m-d', $sevenDaysAgoTime) . ' 00:00:00';
-		
+
 		$sql = "SELECT COUNT(*) as `numrows` FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}'";
 		$count = $logcachedb->query($sql)->row();
 		$count = $count->numrows;
@@ -105,33 +105,38 @@ class Index extends CI_Controller
 		$sql = "SELECT * FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` DESC";
 		$result = $logcachedb->query($sql)->result();
 		
-		$sql = "SELECT * FROM `log_retention` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` DESC";
-		$retention = $logcachedb->query($sql)->result();
-		
-		$retentionResult = array();
-		foreach($retention as $row)
+		if($provider == 'retention')
 		{
-			$retentionResult[$row->log_date . '_' . $row->server_id . '_' . $row->partner_key] = $row;
-		}
-		
-		for($i=0; $i<count($result); $i++)
-		{
-			$re = $retentionResult[$result[$i]->log_date . '_' . $result[$i]->server_id . '_' . $result[$i]->partner_key];
-			if(!empty($re))
+			$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` DESC";
+			$retention = $logcachedb->query($sql)->result();
+
+			$retentionResult = array();
+			foreach($retention as $row)
 			{
-				$result[$i]->prev_current_login = $re->prev_current_login;
-				$result[$i]->third_current_login = $re->third_current_login;
-				$result[$i]->next_retention = $re->next_retention;
-				$result[$i]->third_retention = $re->third_retention;
-				$result[$i]->seven_retention = $re->seven_retention;
+				$retentionResult[$row->log_date . '_' . $row->server_id . '_' . $row->partner_key] = $row;
 			}
-			else
+			
+			for($i=0; $i<count($result); $i++)
 			{
-				$result[$i]->prev_current_login = '-';
-				$result[$i]->third_current_login = '-';
-				$result[$i]->next_retention = '-';
-				$result[$i]->third_retention = '-';
-				$result[$i]->seven_retention = '-';
+				$re = $retentionResult[$result[$i]->log_date . '_' . $result[$i]->server_id . '_' . $result[$i]->partner_key];
+				if(!empty($re))
+				{
+					$result[$i]->next_current_login = $re->next_current_login;
+					$result[$i]->third_current_login = $re->third_current_login;
+					$result[$i]->seven_current_login = $re->seven_current_login;
+					$result[$i]->next_retention = $re->next_retention;
+					$result[$i]->third_retention = $re->third_retention;
+					$result[$i]->seven_retention = $re->seven_retention;
+				}
+				else
+				{
+					$result[$i]->next_current_login = '-';
+					$result[$i]->third_current_login = '-';
+					$result[$i]->seven_current_login = '-';
+					$result[$i]->next_retention = '-';
+					$result[$i]->third_retention = '-';
+					$result[$i]->seven_retention = '-';
+				}
 			}
 		}
 
