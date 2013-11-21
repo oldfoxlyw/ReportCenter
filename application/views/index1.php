@@ -200,7 +200,7 @@ $(function() {
 		"aoColumns": [
 			{"mData": "log_date"},
 			{"mData": "level_account"},
-			{"mData": "prev_current_login"},
+			{"mData": "next_current_login"},
 			{
 				"mData": "next_retention",
 				"fnRender": function(obj) {

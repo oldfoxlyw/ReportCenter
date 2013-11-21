@@ -107,7 +107,7 @@ class Index1 extends CI_Controller
 		
 		if($provider == 'retention')
 		{
-			$sql = "SELECT * FROM `log_retention` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` DESC";
+			$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` DESC";
 			$retention = $logcachedb->query($sql)->result();
 
 			$retentionResult = array();
@@ -121,7 +121,7 @@ class Index1 extends CI_Controller
 				$re = $retentionResult[$result[$i]->log_date . '_' . $result[$i]->server_id . '_' . $result[$i]->partner_key];
 				if(!empty($re))
 				{
-					$result[$i]->prev_current_login = $re->prev_current_login;
+					$result[$i]->next_current_login = $re->next_current_login;
 					$result[$i]->third_current_login = $re->third_current_login;
 					$result[$i]->seven_current_login = $re->seven_current_login;
 					$result[$i]->next_retention = $re->next_retention;
@@ -130,7 +130,7 @@ class Index1 extends CI_Controller
 				}
 				else
 				{
-					$result[$i]->prev_current_login = '-';
+					$result[$i]->next_current_login = '-';
 					$result[$i]->third_current_login = '-';
 					$result[$i]->seven_current_login = '-';
 					$result[$i]->next_retention = '-';
