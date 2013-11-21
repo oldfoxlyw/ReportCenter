@@ -242,7 +242,7 @@ function onData(data) {
 			text: '玩家流失分布图（任务）'
 		},
 		subtitle: {
-			text: '任务为0时，包含所有创建帐号但未创建角色，或者建立了角色但是没有接第一个任务的玩家'
+			text: '任务为0时，包含所有创建帐号但未创建角色，或者建立了角色但是没有完成第一个任务的玩家'
 		},
 		xAxis: [{
 			categories: missionCategory,
