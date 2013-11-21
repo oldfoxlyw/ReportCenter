@@ -41,26 +41,27 @@ class Equipment_detail extends CI_Controller
 			$endTime = strtotime("{$endTime} 23:59:59");
 			$sql = "SELECT FROM_UNIXTIME(`log_time`, '%Y-%m-%d') as `date`, count(*) as `count`  FROM `log_consume` WHERE `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' AND `action_name`='buy_equipment' AND `item_name`='{$equipmentName}' AND `log_time`>={$startTime} AND `log_time`<={$endTime} GROUP BY `date`";
 			$result = $this->mconsume->query($sql);
+
+			$data = array();
+			$data['axis'] = array();
+			$data['data'] = array();
 			
+			for($i=$startTime; $i<=$endTime; $i+=86400)
+			{
+				array_push($data['axis'], date('Y-m-d', $i));
+				$data['data'][date('Y-m-d', $i)] = 0;
+			}
 			if(!empty($result))
 			{
-				$data = array();
-				$data['axis'] = array();
-				$data['data'] = array();
-				for($i=$startTime; $i<=$endTime; $i+=86400)
-				{
-					array_push($data['axis'], date('Y-m-d', $i));
-					$data['data'][date('Y-m-d', $i)] = 0;
-				}
 				foreach($result as $row)
 				{
 					$data['data'][$row->date] = intval($row->count);
 				}
 				$data['data'] = array_values($data['data']);
 				
-				$this->load->model('utils/return_format');
-				echo $this->return_format->format($data);
 			}
+			$this->load->model('utils/return_format');
+			echo $this->return_format->format($data);
 		}
 	}
 }
