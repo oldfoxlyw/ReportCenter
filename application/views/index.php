@@ -132,13 +132,33 @@
 <script src="<?php echo base_url('resources/js/highcharts.js'); ?>"></script>
 
 <script type="text/javascript">
+var overviewTableHandler, retentionTableHandler;
 $(function() {
 	$("table.data-table th > a").popover();
 	
 	$("#indexNavTab > li:first").addClass("active");
 	$("#indexTab > div:first").addClass("active");
 	
-	$('#listTableOverview').dataTable({
+	$("#serverSelect").change(function() {
+		var serverId = $(this).val();
+		retrieveTableData(serverId);
+		retrieveChartData(serverId);
+	});
+	
+	retrieveTableData("<?php echo $server[0]->account_server_id; ?>");
+	retrieveChartData("<?php echo $server[0]->account_server_id; ?>");
+	
+	$('select').select2();
+});
+
+function retrieveTableData(serverId) {
+	if(overviewTableHandler) {
+		overviewTableHandler.fnDestroy();
+	}
+	if(retentionTableHandler) {
+		retentionTableHandler.fnDestroy();
+	}
+	overviewTableHandler = $('#listTableOverview').dataTable({
 		"bAutoWidth": false,
 		"bFilter": false,
 		"bLengthChange": false,
@@ -149,7 +169,7 @@ $(function() {
 		"sDom": '<"H"lr>t<"F"fp>',
 		"bProcessing": true,
 		"bServerSide": true,
-		"sAjaxSource": "<?php echo site_url('index/lists/overview'); ?>?server_id=<?php echo $server[0]->account_server_id; ?>",
+		"sAjaxSource": "<?php echo site_url('index/lists/overview'); ?>?server_id=" + serverId,
 		"sServerMethod": "POST",
 		"aoColumns": [
 			{"mData": "log_date"},
@@ -194,7 +214,7 @@ $(function() {
 		}
 	});
 	
-	$('#listTableRetention').dataTable({
+	retentionTableHandler = $('#listTableRetention').dataTable({
 		"bAutoWidth": false,
 		"bFilter": false,
 		"bLengthChange": false,
@@ -205,7 +225,7 @@ $(function() {
 		"sDom": '<"H"lr>t<"F"fp>',
 		"bProcessing": true,
 		"bServerSide": true,
-		"sAjaxSource": "<?php echo site_url('index/lists/retention'); ?>?server_id=<?php echo $server[0]->account_server_id; ?>",
+		"sAjaxSource": "<?php echo site_url('index/lists/retention'); ?>?server_id=" + serverId,
 		"sServerMethod": "POST",
 		"aoColumns": [
 			{"mData": "log_date"},
@@ -262,14 +282,14 @@ $(function() {
 			}
 		}
 	});
-	
+}
+
+function retrieveChartData(serverId) {
 	var parameter = {
-		"server_id": "<?php echo $server[0]->account_server_id; ?>"
+		"server_id": serverId
 	};
 	$.post("<?php echo site_url('index/charts/highchart'); ?>", parameter, onData);
-	
-	$('select').select2();
-});
+}
 
 function onData(data) {
 	if(data) {
