@@ -2,7 +2,7 @@
 
 class Index1 extends CI_Controller
 {
-	private $pageName = 'index';
+	private $pageName = 'index1';
 	private $user = null;
 	
 	public function __construct()
