@@ -139,7 +139,7 @@ $(function() {
 		"sDom": '<"H"lr>t<"F"fp>',
 		"bProcessing": true,
 		"bServerSide": true,
-		"sAjaxSource": "<?php echo site_url('index/lists/overview'); ?>?server_id=A",
+		"sAjaxSource": "<?php echo site_url('index1/lists/overview'); ?>?server_id=A",
 		"sServerMethod": "POST",
 		"aoColumns": [
 			{"mData": "log_date"},
@@ -195,7 +195,7 @@ $(function() {
 		"sDom": '<"H"lr>t<"F"fp>',
 		"bProcessing": true,
 		"bServerSide": true,
-		"sAjaxSource": "<?php echo site_url('index/lists/retention'); ?>?server_id=A",
+		"sAjaxSource": "<?php echo site_url('index1/lists/retention'); ?>?server_id=A",
 		"sServerMethod": "POST",
 		"aoColumns": [
 			{"mData": "log_date"},
@@ -257,7 +257,7 @@ $(function() {
 	var parameter = {
 		"server_id": serverId
 	};
-	$.post("<?php echo site_url('index/charts/highchart'); ?>", parameter, onData);
+	$.post("<?php echo site_url('index1/charts/highchart'); ?>", parameter, onData);
 	
 	$('select').select2();
 });
