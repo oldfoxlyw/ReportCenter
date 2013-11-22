@@ -183,25 +183,29 @@ function retrieveTableData(serverId) {
 				"fnRender": function(obj) {
 					var hour, minutes, second;
 					var time = parseInt(obj.aData.at);
-					second = time % 60;
-					time = parseInt(time / 60);
-					if(time > 60) {
-						minutes = time % 60;
+					if(time > 0) {
+						second = time % 60;
 						time = parseInt(time / 60);
 						if(time > 60) {
-							hour = time % 60;
+							minutes = time % 60;
+							time = parseInt(time / 60);
+							if(time > 60) {
+								hour = time % 60;
+							} else {
+								hour = 0;
+							}
 						} else {
+							minutes = time;
 							hour = 0;
 						}
+						var hourText, minutesText, secondText;
+						hourText = hour < 10 ? "0" + hour : hour;
+						minutesText = minutes < 10 ? "0" + minutes : minutes;
+						secondText = second < 10 ? "0" + second : second;
+						return hourText + ":" + minutesText + ":" + secondText;
 					} else {
-						minutes = time;
-						hour = 0;
+						return "-";
 					}
-					var hourText, minutesText, secondText;
-					hourText = hour < 10 ? "0" + hour : hour;
-					minutesText = minutes < 10 ? "0" + minutes : minutes;
-					secondText = second < 10 ? "0" + second : second;
-					return hourText + ":" + minutesText + ":" + secondText;
 				}
 			},
 			{"mData": "flowover_account"},
