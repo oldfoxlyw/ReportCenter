@@ -183,10 +183,8 @@ function retrieveTableData(serverId) {
 				"fnRender": function(obj) {
 					var hour, minutes, second;
 					var time = parseInt(obj.aData.at);
-					console.log(time);
 					second = time % 60;
 					time = parseInt(time / 60);
-					console.log(time);
 					if(time > 60) {
 						minutes = time % 60;
 						time = parseInt(time / 60);
@@ -196,7 +194,7 @@ function retrieveTableData(serverId) {
 							hour = 0;
 						}
 					} else {
-						minutes = 0;
+						minutes = time;
 						hour = 0;
 					}
 					var hourText, minutesText, secondText;
