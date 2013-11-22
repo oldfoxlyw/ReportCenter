@@ -184,10 +184,10 @@ function retrieveTableData(serverId) {
 					var hour, minutes, second;
 					var time = obj.aData.at;
 					second = time % 60;
-					time = int(time / 60);
+					time = parseInt(time / 60);
 					if(time > 60) {
 						minutes = time % 60;
-						time = int(time / 60);
+						time = parseInt(time / 60);
 						if(time > 60) {
 							hour = time % 60;
 						} else {
