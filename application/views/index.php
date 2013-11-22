@@ -195,6 +195,7 @@ function retrieveTableData(serverId) {
 						}
 					} else {
 						minutes = 0;
+						hour = 0;
 					}
 					var hourText, minutesText, secondText;
 					hourText = hour < 10 ? "0" + hour : hour;
