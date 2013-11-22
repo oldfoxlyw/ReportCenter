@@ -101,7 +101,7 @@ function onData(data) {
 			height: 2000
 		},
 		title: {
-			text: '任务完成进度分布图'
+			text: '任务进度分布图'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
@@ -112,7 +112,7 @@ function onData(data) {
 		}],
 		yAxis: {
 			title: {
-				text: null
+				text: "正在进行该任务的人数"
 			},
 			min: 0
 		},
@@ -135,9 +135,9 @@ function onData(data) {
 		"sDom": '<"H"lr>t<"F"fp>',
         "aaData": json.result,
         "aoColumns": [{
-			'sTitle': '人物编号'
+			'sTitle': '任务名称'
 		},{
-			'sTitle': '人数'
+			'sTitle': '正在进行该任务的人数'
 		}],
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
