@@ -123,19 +123,31 @@ class Index extends CI_Controller
 				{
 					$result[$i]->next_current_login = $re->next_current_login;
 					$result[$i]->third_current_login = $re->third_current_login;
+					$result[$i]->third_current_login_range = $re->third_current_login_range;
 					$result[$i]->seven_current_login = $re->seven_current_login;
+					$result[$i]->seven_current_login_range = $re->seven_current_login_range;
+					$result[$i]->seven_current_login_huge = $re->seven_current_login_huge;
 					$result[$i]->next_retention = $re->next_retention;
 					$result[$i]->third_retention = $re->third_retention;
+					$result[$i]->third_retention_range = $re->third_retention_range;
 					$result[$i]->seven_retention = $re->seven_retention;
+					$result[$i]->seven_retention_range = $re->seven_retention_range;
+					$result[$i]->seven_retention_huge = $re->seven_retention_huge;
 				}
 				else
 				{
 					$result[$i]->next_current_login = '-';
 					$result[$i]->third_current_login = '-';
+					$result[$i]->third_current_login_range = '-';
 					$result[$i]->seven_current_login = '-';
+					$result[$i]->seven_current_login_range = '-';
+					$result[$i]->seven_current_login_huge = '-';
 					$result[$i]->next_retention = '-';
 					$result[$i]->third_retention = '-';
+					$result[$i]->third_retention_range = '-';
 					$result[$i]->seven_retention = '-';
+					$result[$i]->seven_retention_range = '-';
+					$result[$i]->seven_retention_huge = '-';
 				}
 			}
 		}

@@ -64,13 +64,19 @@
                       <th>次日留存率<a class="th-tips" href="#" data-content="次日登录与昨日注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>点三日登录<a class="th-tips" href="#" data-content="第一天注册，并在第三天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>点三日留存率<a class="th-tips" href="#" data-content="点三日登录与三天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>连续三日登录<a class="th-tips" href="#" data-content="第一天注册，并在第二、三天都登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>连续三日留存率<a class="th-tips" href="#" data-content="连续三日登录与三天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>点七日登录<a class="th-tips" href="#" data-content="第一天注册，并在第二天登录且第七天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>点七日留存率<a class="th-tips" href="#" data-content="点七日登录与七天前注册的有效用户的比值" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>小区间七日登录<a class="th-tips" href="#" data-content="第一天注册，并在第二天登录且第三至第七天登录过的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>小区间七日留存率<a class="th-tips" href="#" data-content="小区间七日登录与七天前注册的有效用户的比值" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>大区间七日登录<a class="th-tips" href="#" data-content="第一天注册，并在第二至第七天登录过的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>大区间七日留存率<a class="th-tips" href="#" data-content="大区间七日登录与七天前注册的有效用户的比值" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr class="gradeA">
-                      <td colspan="7">载入中...</td>
+                      <td colspan="14">载入中...</td>
                     </tr>
                   </tbody>
                 </table>
@@ -283,6 +289,17 @@ function retrieveTableData(serverId) {
 					}
 				}
 			},
+			{"mData": "third_current_login_range"},
+			{
+				"mData": "third_retention_range",
+				"fnRender": function(obj) {
+					if(obj.aData.third_retention_range==0) {
+						return "-";
+					} else {
+						return obj.aData.third_retention_range / 100 + "%";
+					}
+				}
+			},
 			{"mData": "seven_current_login"},
 			{
 				"mData": "seven_retention",
@@ -291,6 +308,28 @@ function retrieveTableData(serverId) {
 						return "-";
 					} else {
 						return obj.aData.seven_retention / 100 + "%";
+					}
+				}
+			},
+			{"mData": "seven_current_login_range"},
+			{
+				"mData": "seven_retention_range",
+				"fnRender": function(obj) {
+					if(obj.aData.seven_retention_range==0) {
+						return "-";
+					} else {
+						return obj.aData.seven_retention_range / 100 + "%";
+					}
+				}
+			},
+			{"mData": "seven_current_login_huge"},
+			{
+				"mData": "seven_retention_huge",
+				"fnRender": function(obj) {
+					if(obj.aData.seven_retention_huge==0) {
+						return "-";
+					} else {
+						return obj.aData.seven_retention_huge / 100 + "%";
 					}
 				}
 			}
