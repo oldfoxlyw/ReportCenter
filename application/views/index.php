@@ -30,13 +30,13 @@
                     <tr>
                       <th>时间</th>
                       <th>总注册用户<a href="#" data-content="所有已注册的帐号，包括试玩帐号" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th><a href="#" data-content="当日23:59:59前登录的总数，同一玩家一天内多次登录仅计算一次" data-placement="top" data-toggle="popover" data-original-title="Tips">当天登录用户</a></th>
-                      <th><a href="#" data-content="当日23:59:59前等级大于1级的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">当天注册的有效用户</a></th>
-                      <th><a href="#" data-content="三日前至今有过登录记录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">活跃用户</a></th>
-                      <!--<th><a href="#" data-content="所有玩家总在线市场除以在线玩家总数" data-placement="top" data-toggle="popover" data-original-title="Tips">平均在线时长</a></th>-->
-                      <th><a href="#" data-content="超过一周未登录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">流失用户数</a></th>
-                      <th><a href="#" data-content="当日23:59:59前充值的总金额（元）" data-placement="top" data-toggle="popover" data-original-title="Tips">当天订单总额</a></th>
-                      <th><a href="#" data-content="当日充值人数（去重）与当日活跃人数的比值" data-placement="left" data-toggle="popover" data-original-title="Tips">充值率</a></th>
+                      <th>当天登录用户<a href="#" data-content="当日23:59:59前登录的总数，同一玩家一天内多次登录仅计算一次" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>当天注册的有效用户<a href="#" data-content="当日23:59:59前等级大于1级的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>活跃用户<a href="#" data-content="三日前至今有过登录记录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <!--<th>平均在线时长<a href="#" data-content="所有玩家总在线市场除以在线玩家总数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>-->
+                      <th>流失用户数<a href="#" data-content="超过一周未登录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>当天订单总额<a href="#" data-content="当日23:59:59前充值的总金额（元）" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>充值率<a href="#" data-content="当日充值人数（去重）与当日活跃人数的比值" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -59,13 +59,13 @@
                   <thead>
                     <tr>
                       <th>时间</th>
-                      <th><a href="#" data-content="当日23:59:59前等级大于1级的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips">当天注册的有效用户</a></th>
-                      <th><a href="#" data-content="第一天注册，并在第二天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips">次日登录</a></th>
-                      <th><a href="#" data-content="次日登录与昨日注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">次日留存率</a></th>
-                      <th><a href="#" data-content="第一天注册，并在第三天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips">点三日登录</a></th>
-                      <th><a href="#" data-content="点三日登录与三天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">点三日留存率</a></th>
-                      <th><a href="#" data-content="第一天注册，并在第二天登录且第七天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips">点七日登录</a></th>
-                      <th><a href="#" data-content="点七日登录与七天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">点七日留存率</a></th>
+                      <th>当天注册的有效用户<a href="#" data-content="当日23:59:59前等级大于1级的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>次日登录<a href="#" data-content="第一天注册，并在第二天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>次日留存率<a href="#" data-content="次日登录与昨日注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>点三日登录<a href="#" data-content="第一天注册，并在第三天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>点三日留存率<a href="#" data-content="点三日登录与三天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>点七日登录<a href="#" data-content="第一天注册，并在第二天登录且第七天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>点七日留存率<a href="#" data-content="点七日登录与七天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                     </tr>
                   </thead>
                   <tbody>
