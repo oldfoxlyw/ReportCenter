@@ -1,5 +1,28 @@
+var sideBarStatus = true;
 
 $(document).ready(function(){
+	
+	$("#btnSwitchSidebar").click(function() {
+		if(sideBarStatus) {
+			$("#sidebar").hide();
+			$("#content").css("margin-left", "0");
+			$("#header > h1").css("top", "7px");
+			
+			$(this).find("i").removeClass("icon-chevron-left");
+			$(this).find("i").addClass("icon-chevron-right");
+			$(this).find("span").text(" 打开侧边栏");
+			sideBarStatus = false;
+		} else {
+			$("#sidebar").show();
+			$("#content").css("margin-left", "220px");
+			$("#header > h1").css("top", "26px");
+			
+			$(this).find("i").removeClass("icon-chevron-right");
+			$(this).find("i").addClass("icon-chevron-left");
+			$(this).find("span").text(" 关闭侧边栏");
+			sideBarStatus = true;
+		}
+	});
 	
 	var li = $('.submenu > ul').find('li.active');
 	li.parent().show();

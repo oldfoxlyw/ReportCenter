@@ -1,7 +1,10 @@
 <div id="content">
 <!--breadcrumbs-->
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a></div>
+    <div id="breadcrumb">
+        <span id="btnSwitchSidebar" class="badge margin-left-5 pointer" title="Close Sidebar"><i class="icon-chevron-left"></i><span> 关闭侧边栏</span></span>
+    	<a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+    </div>
     <h1>总览 - 7天内服务器概况（数据测试中）</h1>
   </div>
 <!--End-breadcrumbs-->
