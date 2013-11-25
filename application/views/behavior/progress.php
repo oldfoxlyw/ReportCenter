@@ -106,6 +106,9 @@ function onData(data) {
 		subtitle: {
 			text: '数据来源：数据统计平台'
 		},
+		tooltip: {
+			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		},
 		xAxis: [{
 			categories: json.category,
 			reversed: false
