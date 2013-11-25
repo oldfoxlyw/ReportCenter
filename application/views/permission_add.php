@@ -72,12 +72,19 @@
                               <td>&nbsp;</td>
                             </tr>
                             <tr>
-                              <td><input id="order_config" name="order_config" class="header_checkbox" type="checkbox" /></td>
-                              <td><strong>付费/消费数据</strong></td>
+                              <td rowspan="2"><input id="order_config" name="order_config" class="header_checkbox" type="checkbox" /></td>
+                              <td rowspan="2"><strong>消费数据</strong></td>
                               <td width="20%"><input id="order_recharge" name="order_recharge" value="order/recharge" type="checkbox"<?php if(in_array('order/recharge', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />充值记录</td>
-                              <td width="20%"><input id="order_consume" name="order_consume" value="order/consume" type="checkbox"<?php if(in_array('order/consume', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />消费记录</td>
-                              <td width="20%">&nbsp;</td>
-                              <td width="20%">&nbsp;</td>
+                              <td width="20%"><input id="order_consume" name="order_consume" value="order/consume" type="checkbox"<?php if(in_array('order/consume', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
+                              消费总体统计</td>
+                              <td width="20%"><input id="order_recharge_daily" name="order_recharge_daily" value="order/recharge_daily" type="checkbox"<?php if(in_array('order/recharge_daily', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />每日充值概况</td>
+                              <td width="20%"><input id="order_buy_equipment" name="order_buy_equipment" value="order/buy_equipment" type="checkbox"<?php if(in_array('order/buy_equipment', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />购买装备消费统计</td>
+                            </tr>
+                            <tr>
+                              <td><input id="order_equipment_detail" name="order_equipment_detail" value="order/equipment_detail" type="checkbox"<?php if(in_array('order/equipment_detail', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />装备销量统计</td>
+                              <td>&nbsp;</td>
+                              <td>&nbsp;</td>
+                              <td>&nbsp;</td>
                             </tr>
                             <tr>
                               <td><input id="behavior_config" name="behavior_config" class="header_checkbox" type="checkbox" /></td>
@@ -90,9 +97,9 @@
                             <tr>
                               <td><input id="master_config" name="master_config" class="header_checkbox" type="checkbox" /></td>
                               <td><strong>游戏管理员</strong></td>
-                              <td width="20%"><input id="master_server" name="master_server" value="master/server" type="checkbox"<?php if(in_array('master/server', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />开/停服务器</td>
                               <td width="20%"><input id="master_send_message" name="master_send_message" value="master/send_message" type="checkbox"<?php if(in_array('master/send_message', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发布游戏公告</td>
-                              <td width="20%"><input id="master_grant" name="master_grant" value="master/grant" type="checkbox"<?php if(in_array('master/grant', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发放游戏道具</td>
+                              <td width="20%"><input id="master_send_article" name="master_send_article" value="master/send_article" type="checkbox"<?php if(in_array('master/send_article', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发布新闻公告</td>
+                              <td width="20%">&nbsp;</td>
                               <td width="20%">&nbsp;</td>
                             </tr>
                           </tbody>
