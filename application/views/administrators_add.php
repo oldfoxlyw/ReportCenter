@@ -1,6 +1,6 @@
 <div id="content">
 	<div id="content-header">
-        <div id="breadcrumb"> <a href="#" title="首页" class="tip-bottom"><i class="icon-home"></i> 首页</a> <a href="#" class="current">管理员管理</a> </div>
+        <div id="breadcrumb"> <span id="btnSwitchSidebar" class="badge margin-left-5 pointer" title="Close Sidebar"><i class="icon-chevron-left"></i><span> 关闭侧边栏</span></span><a href="#" title="首页" class="tip-bottom"><i class="icon-home"></i> 首页</a> <a href="#" class="current">管理员管理</a> </div>
         <h1><?php if(empty($edit)): ?>添加<?php else: ?>修改<?php endif; ?>管理员</h1>
   	</div>
     <div class="container-fluid">
