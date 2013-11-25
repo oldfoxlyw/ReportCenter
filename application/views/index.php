@@ -29,7 +29,7 @@
                   <thead>
                     <tr>
                       <th>时间</th>
-                      <th><a href="#" data-content="所有已注册的帐号，包括试玩帐号" data-placement="top" data-toggle="popover" data-original-title="Tips">总注册用户</a></th>
+                      <th>总注册用户<a href="#" data-content="所有已注册的帐号，包括试玩帐号" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th><a href="#" data-content="当日23:59:59前登录的总数，同一玩家一天内多次登录仅计算一次" data-placement="top" data-toggle="popover" data-original-title="Tips">当天登录用户</a></th>
                       <th><a href="#" data-content="当日23:59:59前等级大于1级的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">当天注册的有效用户</a></th>
                       <th><a href="#" data-content="三日前至今有过登录记录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">活跃用户</a></th>
