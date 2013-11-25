@@ -62,10 +62,10 @@
                       <th><a href="#" data-content="当日23:59:59前等级大于1级的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">当天注册的有效用户</a></th>
                       <th><a href="#" data-content="昨日23:59:59前注册的有效玩家中在今日登录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">次日登录</a></th>
                       <th><a href="#" data-content="次日登录与昨日注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">次日留存率</a></th>
-                      <th><a href="#" data-content="三日前注册的有效玩家中在今日登录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">点三日登录</a></th>
-                      <th><a href="#" data-content="三日登录与三天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">点三日留存率</a></th>
-                      <th><a href="#" data-content="七日前注册的有效玩家中在今日登录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips">点七日登录</a></th>
-                      <th><a href="#" data-content="七日登录与七天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">点七日留存率</a></th>
+                      <th><a href="#" data-content="第一天注册，第三天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips">点三日登录</a></th>
+                      <th><a href="#" data-content="点三日登录与三天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">点三日留存率</a></th>
+                      <th><a href="#" data-content="第一天注册，第二天登录且第七天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips">点七日登录</a></th>
+                      <th><a href="#" data-content="点七日登录与七天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips">点七日留存率</a></th>
                     </tr>
                   </thead>
                   <tbody>
