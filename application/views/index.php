@@ -65,7 +65,7 @@
                       <th>点三日登录<a class="th-tips" href="#" data-content="第一天注册，并在第三天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>点三日留存率<a class="th-tips" href="#" data-content="点三日登录与三天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>点七日登录<a class="th-tips" href="#" data-content="第一天注册，并在第二天登录且第七天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th>点七日留存率<a class="th-tips" href="#" data-content="点七日登录与七天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>点七日留存率<a class="th-tips" href="#" data-content="点七日登录与七天前注册的有效用户的比值" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                     </tr>
                   </thead>
                   <tbody>
