@@ -182,7 +182,7 @@ function retrieveTableData(serverId) {
 		"sAjaxSource": "<?php echo site_url('index/lists/overview'); ?>?server_id=" + serverId,
 		"sServerMethod": "POST",
 		"aoColumns": [
-			{"mData": "log_date"},
+			{"mData": "log_date", "bSortable": false},
 			{"mData": "reg_account"},
 			{"mData": "login_account"},
 			{"mData": "level_account"},
@@ -268,7 +268,7 @@ function retrieveTableData(serverId) {
 		"sAjaxSource": "<?php echo site_url('index/lists/retention'); ?>?server_id=" + serverId,
 		"sServerMethod": "POST",
 		"aoColumns": [
-			{"mData": "log_date"},
+			{"mData": "log_date", "bSortable": false},
 			{"mData": "level_account"},
 			{"mData": "next_current_login"},
 			{
