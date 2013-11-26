@@ -167,6 +167,9 @@ function onData(data) {
 			text: '数据来源：数据统计平台'
 		},
 		xAxis: {
+			title: {
+				text: '小时'
+			},
 			categories: json.axis
 		},
 		yAxis: {
@@ -180,7 +183,11 @@ function onData(data) {
 			}]
 		},
 		tooltip: {
-			crosshairs: [true, true]
+			crosshairs: [true, true],
+			formatter: function() {
+				return '<b>' + this.series.name + '</b><br/>' +
+					this.x + '时-' this.x+1 + '时：' + this.y + '人';
+			}
 		},
 		plotOptions: {
 			line: {
