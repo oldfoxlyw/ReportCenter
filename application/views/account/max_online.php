@@ -186,7 +186,7 @@ function onData(data) {
 			crosshairs: [true, true],
 			formatter: function() {
 				return '<b>' + this.series.name + '</b><br/>' +
-					this.x + '时-' + parseInt(this.x)+1 + '时：' + this.y + '人';
+					this.x + '时-' + (parseInt(this.x)+1) + '时：' + this.y + '人';
 			}
 		},
 		plotOptions: {
