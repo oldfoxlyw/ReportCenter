@@ -41,9 +41,6 @@ class Equipment_sales extends CI_Controller
 			$endTime = strtotime("{$endTime} 23:59:59");
 			$sql = "SELECT `item_level`, count(*) as `count`  FROM `log_consume` WHERE `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' AND `action_name`='buy_equipment' AND `log_time`>={$startTime} AND `log_time`<={$endTime} GROUP BY `item_level`";
 			$result = $this->mconsume->query($sql);
-			
-			var_dump($result);
-			exit();
 
 			$data = array();
 			$data['axis'] = array();
@@ -54,6 +51,10 @@ class Equipment_sales extends CI_Controller
 				array_push($data['axis'], $i);
 				$data['data'][$i] = 0;
 			}
+			
+			$this->load->model('utils/return_format');
+			echo $this->return_format->format($data);
+			exit();
 			
 			if(!empty($result))
 			{
