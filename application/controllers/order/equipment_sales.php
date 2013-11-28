@@ -52,15 +52,14 @@ class Equipment_sales extends CI_Controller
 				$data['data'][$i] = 0;
 			}
 			
-			$this->load->model('utils/return_format');
-			echo $this->return_format->format($data);
-			exit();
-			
 			if(!empty($result))
 			{
 				foreach($result as $row)
 				{
-					$data['data'][intval($row->item_level)] = intval($row->count);
+					if($row->item_level != '0')
+					{
+						$data['data'][intval($row->item_level)] = intval($row->count);
+					}
 				}
 			}
 			$data['data'] = array_values($data['data']);
