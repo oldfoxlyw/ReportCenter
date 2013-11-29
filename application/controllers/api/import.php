@@ -99,7 +99,7 @@ class Import extends CI_Controller
 			
 			if(!empty($result))
 			{
-				
+				var_dump($result);
 			}
 		}
 	}
