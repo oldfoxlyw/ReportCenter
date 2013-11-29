@@ -19,12 +19,12 @@
     </tr>
   </table>
 </form>
-<form action="<?php echo site_url("api/import/equipment_config_submit"); ?>" method="post" enctype="multipart/form-data" name="form1" id="form1">
+<form action="<?php echo site_url("api/import/mission_config_submit"); ?>" method="post" enctype="multipart/form-data" name="form2" id="form2">
   <table width="500" border="0" cellspacing="0" cellpadding="5">
     <tr>
       <td width="50%" align="right">mission_config</td>
-      <td width="50%"><label for="equipmentConfig"></label>
-      <input type="file" name="equipmentConfig" id="equipmentConfig" /></td>
+      <td width="50%"><label for="missionConfig"></label>
+      <input type="file" name="missionConfig" id="missionConfig" /></td>
     </tr>
     <tr>
       <td align="right">&nbsp;</td>

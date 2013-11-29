@@ -20,8 +20,8 @@ class Excel_MissionConfig_Adapter {
 			
 			for($j=2; $j<=$highestRow; $j++)
 			{
-				$id = $objPHPExcel->getActiveSheet()->getCell("A$j")->getValue();
-				$level = $objPHPExcel->getActiveSheet()->getCell("B$j")->getValue();
+				$id = strval($objPHPExcel->getActiveSheet()->getCell("A$j")->getValue());
+				$level = intval($objPHPExcel->getActiveSheet()->getCell("B$j")->getValue());
 				$name = $objPHPExcel->getActiveSheet()->getCell("C$j")->getValue();
 				$row = array(
 						'id'	=>	$id,
