@@ -99,7 +99,10 @@ class Import extends CI_Controller
 			
 			if(!empty($result))
 			{
-				var_dump($result);
+				$me = dirname(__FILE__);
+				$configFile = str_replace('controllers\\api', '', $me) . 'config\\mission_config.php';
+				$file = fopen($configFile);
+				fwrite($file, $string);
 			}
 		}
 	}
