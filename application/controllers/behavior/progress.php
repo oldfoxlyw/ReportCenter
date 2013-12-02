@@ -31,6 +31,9 @@ class Progress extends CI_Controller
 		$this->load->model('utils/return_format');
 		$accountdb = $this->load->database('accountdb', TRUE);
 		
+		$this->config->load('mission_config');
+		$missionConfig = $this->config->item('mission_config');
+		
 		$serverId = $this->input->post('server_id');
 		if(!empty($serverId))
 		{
@@ -46,15 +49,17 @@ class Progress extends CI_Controller
 		$data = array();
 		for($i=0; $i<count($result); $i++)
 		{
+			$missionName = $missionConfig[$result[$i][0]]['name'];
+			
 			$result[$i] = array_values($result[$i]);
-			array_push($category, $result[$i][0]);
+			array_push($category, $missionName);
 			array_push($data, $result[$i][1]);
 		}
 		
 		$parameter = array(
 			'category'		=>	$category,
 			'data'			=>	$data,
-			'result'			=>	$result
+			'result'		=>	$result
 		); 
 		echo $this->return_format->format($parameter);
 	}
