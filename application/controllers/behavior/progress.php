@@ -49,10 +49,8 @@ class Progress extends CI_Controller
 		$data = array();
 		for($i=0; $i<count($result); $i++)
 		{
-			$missionName = $missionConfig[$result[$i][0]]['name'];
-			
 			$result[$i] = array_values($result[$i]);
-			array_push($category, $missionName);
+			array_push($category, $result[$i][0]);
 			array_push($data, $result[$i][1]);
 		}
 		
