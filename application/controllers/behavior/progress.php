@@ -50,10 +50,10 @@ class Progress extends CI_Controller
 		for($i=0; $i<count($result); $i++)
 		{
 			$result[$i] = array_values($result[$i]);
+			$result[$i][2] = $missionConfig[$result[$i][0]]['level'];
 			
 			$missionName = $missionConfig[$result[$i][0]]['name'];
-			$missionName = !empty($missionName) ? $missionName : $result[$i][0];
-			$result[$i][2] = $missionConfig[$result[$i][0]]['level'];
+			$missionName = !empty($missionName) ? $missionName . '[' . $result[$i][2] . '级]' : $result[$i][0];
 			$result[$i][0] = $missionName;
 			
 			array_push($category, $missionName);
