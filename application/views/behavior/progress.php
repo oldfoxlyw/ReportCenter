@@ -141,6 +141,8 @@ function onData(data) {
 			'sTitle': '任务名称'
 		},{
 			'sTitle': '正在进行该任务的人数'
+		},{
+			'sTitle': '任务等级'
 		}],
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
