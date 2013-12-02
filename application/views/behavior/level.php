@@ -98,7 +98,7 @@ function onData(data) {
 	$('#chartRegCount').highcharts({
 		chart: {
 			type: 'bar',
-			height: 600
+			height: 1000
 		},
 		title: {
 			text: '人物等级分布图'
