@@ -99,10 +99,22 @@ class Import extends CI_Controller
 			
 			if(!empty($result))
 			{
+				$string = "<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');\n";
+				$string .= "\$config['mission_config'] = array(\n";
+				foreach($result as $row)
+				{
+					$string .= "		'{$row['id']}' => array(\n";
+					$string .= "			'name' => '{$row['name']}',\n";
+					$string .= "			'level' => {$row['level']}\n";
+					$string .= "		),\n";
+				}
+				$string .= ");";
+				
 				$me = dirname(__FILE__);
 				$configFile = str_replace('controllers\\api', '', $me) . 'config\\mission_config.php';
-				$file = fopen($configFile);
+				$file = fopen($configFile, 'w');
 				fwrite($file, $string);
+				fclose($file);
 			}
 		}
 	}
