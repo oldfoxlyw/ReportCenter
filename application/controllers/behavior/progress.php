@@ -53,6 +53,7 @@ class Progress extends CI_Controller
 			
 			$missionName = $missionConfig[$result[$i][0]]['name'];
 			$missionName = !empty($missionName) ? $missionName : $result[$i][0];
+			$result[$i][0] = $missionName;
 			
 			array_push($category, $missionName);
 			array_push($data, $result[$i][1]);
