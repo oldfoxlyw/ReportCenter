@@ -107,7 +107,7 @@ function onData(data) {
 			text: '数据来源：数据统计平台'
 		},
 		tooltip: {
-			crosshairs: [true, false]
+			crosshairs: [false, true]
 		},
 		xAxis: [{
 			categories: json.category,
