@@ -50,7 +50,9 @@ class Progress extends CI_Controller
 		for($i=0; $i<count($result); $i++)
 		{
 			$result[$i] = array_values($result[$i]);
-			array_push($category, $result[$i][0]);
+			
+			$missionName = $missionConfig[$result[$i][0]]['name'];
+			array_push($category, $missionName);
 			array_push($data, $result[$i][1]);
 		}
 		
@@ -59,6 +61,7 @@ class Progress extends CI_Controller
 			'data'			=>	$data,
 			'result'		=>	$result
 		); 
+		
 		echo $this->return_format->format($parameter);
 	}
 }
