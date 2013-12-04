@@ -72,11 +72,18 @@ class Equipment_sales extends CI_Controller
 			$valueData = array();
 			$valueData['axis'] = array();
 			$valueData['data'] = array();
-				
+			
+			$values = array(
+					1	=>	'白色',
+					2	=>	'绿色',
+					3	=>	'蓝色',
+					4	=>	'紫色'
+			);
+			
 			for($i=1; $i<=4; $i++)
 			{
-				array_push($valueData['axis'], $i);
-				$valueData['data'][$i] = 0;
+				array_push($valueData['axis'], $values[$i]);
+				$valueData['data'][$values[$i]] = 0;
 			}
 				
 			if(!empty($result))
@@ -85,7 +92,7 @@ class Equipment_sales extends CI_Controller
 				{
 					if($row->item_value != '0')
 					{
-						$valueData['data'][intval($row->item_value)] = intval($row->count);
+						$valueData['data'][$values[intval($row->item_value)]] = intval($row->count);
 					}
 				}
 			}
