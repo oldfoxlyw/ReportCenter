@@ -11,7 +11,10 @@
     <div class="row-fluid">
         <div class="alert alert-block"> <a class="close" data-dismiss="alert" href="#">×</a>
           <h4 class="alert-heading">警告</h4>
-          由于装备销售详情统计为后期新增报表，历史记录无法获取物品品质的原因，造成按品质进行统计的报表数据不完整，且目前测试阶段只有绿钻的购买记录，故品质统计只有紫色装备，预计服务器程序下次发布时将加入金币购买装备的记录。
+          <ol>
+          <li>由于装备销售详情统计为后期新增报表，历史记录无法获取物品品质的原因，造成按品质进行统计的报表数据不完整，且目前测试阶段只有绿钻的购买记录，故品质统计只有紫色装备，预计服务器程序下次发布时将加入金币购买装备的记录。</li>
+          <li>按职业进行统计的功能将会在服务器程序下次发布更新时加入。</li>
+          </ol>
         </div>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
