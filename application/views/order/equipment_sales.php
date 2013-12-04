@@ -152,7 +152,7 @@ function onData(data) {
 			enabled: false
 		},
 		title: {
-			text: '装备销售等级统计图'
+			text: '装备销售量按【装备等级】统计图'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
