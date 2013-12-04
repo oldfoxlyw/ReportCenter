@@ -62,7 +62,7 @@
               <li><a data-toggle="tab" href="#tab3">按适用职业</a></li>
             </ul>
           </div>
-          <div class="widget-content nopadding tab-content">
+          <div id="chartContainer" class="widget-content nopadding tab-content">
             <div id="tab1" class="tab-pane active">
                 <div class="widget-content">
                     <div class="row-fluid">
@@ -118,6 +118,9 @@ $(function() {
 	$("#btnSearch").click(function() {
 		if(dataTableHandler) dataTableHandler.fnDestroy();
 		$('#listTable').empty();
+		
+		$("#chartRegCount").width($("#chartContainer").width());
+		
 		$.post("<?php echo site_url('order/equipment_sales/lists/highchart'); ?>", {
 			"serverId": $("#serverId").val(),
 			"startTime": $("#startTime").val(),
