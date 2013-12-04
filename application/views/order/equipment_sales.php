@@ -197,9 +197,9 @@ function onData(data) {
 	for(var i in json.value_data.data)
 	{
 		var rowData = [];
-		data.push(parseInt(json.level_data.data[i]));
-		rowData.push(json.level_data.axis[i]);
-		var spend = parseInt(json.level_data.data[i]);
+		data.push(parseInt(json.value_data.data[i]));
+		rowData.push(json.value_data.axis[i]);
+		var spend = parseInt(json.value_data.data[i]);
 		rowData.push(spend);
 		aaData1.push(rowData);
 	}
