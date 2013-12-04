@@ -57,8 +57,9 @@
       <div class="widget-box">
           <div class="widget-title">
             <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#tab1">图表</a></li>
-              <li><a data-toggle="tab" href="#tab2">数据</a></li>
+              <li class="active"><a data-toggle="tab" href="#tab1">按等级</a></li>
+              <li><a data-toggle="tab" href="#tab2">按品质</a></li>
+              <li><a data-toggle="tab" href="#tab3">按适用职业</a></li>
             </ul>
           </div>
           <div class="widget-content nopadding tab-content">
@@ -67,11 +68,29 @@
                     <div class="row-fluid">
                         <div id="chartRegCount"></div>
                     </div>
+                    <div class="row-fluid">
+                        <table class="table table-bordered data-table" id="listTable"></table>
+                    </div>
                 </div>
             </div>
             <div id="tab2" class="tab-pane">
                 <div class="widget-content">
-                	<table class="table table-bordered data-table" id="listTable"></table>
+                    <div class="row-fluid">
+                        <div id="chartCount1"></div>
+                    </div>
+                    <div class="row-fluid">
+                        <table class="table table-bordered data-table" id="listTable1"></table>
+                    </div>
+                </div>
+            </div>
+            <div id="tab2" class="tab-pane">
+                <div class="widget-content">
+                    <div class="row-fluid">
+                        <div id="chartCount2"></div>
+                    </div>
+                    <div class="row-fluid">
+                        <table class="table table-bordered data-table" id="listTable2"></table>
+                    </div>
                 </div>
             </div>
           </div>
@@ -116,32 +135,63 @@ function onData(data) {
 	}
 	var json = eval("(" + data + ")");
 	
-	var column = [];
-	var aaData = [];
-	var series = [];
-	
-	column = [
+	var column = [
 	{
 		"sTitle": "等级"
 	},
 	{
 		"sTitle": "销售数量"
 	}];
+	var column1 = [
+	{
+		"sTitle": "品质"
+	},
+	{
+		"sTitle": "销售数量"
+	}];
+	var column2 = [
+	{
+		"sTitle": "适用职业"
+	},
+	{
+		"sTitle": "销售数量"
+	}];
+	var aaData = [];
+	var aaData1 = [];
+	var aaData2 = [];
+	var series = [];
+	var series1 = [];
+	var series2 = [];
 	
 	var obj = {};
 	obj.name = "销售数量";
 	var data = [];
-	for(var i in json.data)
+	for(var i in json.level_data.data)
 	{
 		var rowData = [];
-		data.push(parseInt(json.data[i]));
-		rowData.push(json.axis[i]);
-		var spend = parseInt(json.data[i]);
+		data.push(parseInt(json.level_data.data[i]));
+		rowData.push(json.level_data.axis[i]);
+		var spend = parseInt(json.level_data.data[i]);
 		rowData.push(spend);
 		aaData.push(rowData);
 	}
 	obj.data = data;
 	series.push(obj);
+	
+	obj = {};
+	obj.name = "销售数量";
+	data = [];
+	for(var i in json.value_data.data)
+	{
+		var rowData = [];
+		data.push(parseInt(json.level_data.data[i]));
+		rowData.push(json.level_data.axis[i]);
+		var spend = parseInt(json.level_data.data[i]);
+		rowData.push(spend);
+		aaData1.push(rowData);
+	}
+	obj.data = data;
+	series1.push(obj);
 	
 	$('#chartRegCount').highcharts({
 		chart: {
@@ -161,7 +211,7 @@ function onData(data) {
 			title: {
 				text: '等级'
 			},
-			categories: json.axis
+			categories: json.level_data.axis
 		},
 		yAxis: {
 			min: 0,
@@ -183,6 +233,65 @@ function onData(data) {
 		"sDom": '<"H"lr>t<"F"fp>',
         "aaData": aaData,
         "aoColumns": column,
+		"oLanguage": {  
+			"sProcessing":   "处理中...",
+			"sLengthMenu":   "显示 _MENU_ 项结果",
+			"sZeroRecords":  "没有匹配结果",
+			"sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+			"sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
+			"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+			"sInfoPostFix":  "",
+			"sSearch":       "搜索:",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "首页",
+				"sPrevious": "上页",
+				"sNext":     "下页",
+				"sLast":     "末页"
+			}
+		}
+	});
+	
+	$('#chartCount1').highcharts({
+		chart: {
+			type: 'column',
+			height: 500
+		},
+		credits: {
+			enabled: false
+		},
+		title: {
+			text: '装备销售量按【装备品质】统计图'
+		},
+		subtitle: {
+			text: '数据来源：数据统计平台'
+		},
+		xAxis: {
+			title: {
+				text: '品质'
+			},
+			categories: json.value_data.axis
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: '销售数量'
+			}
+		},
+		tooltip: {
+			crosshairs: [false, true]
+		},
+		series: series1
+	});
+	dataTableHandler = $('#listTable1').dataTable({
+		"bAutoWidth": false,
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"iDisplayLength": 20,
+		"sPaginationType": "full_numbers",
+		"sDom": '<"H"lr>t<"F"fp>',
+        "aaData": aaData1,
+        "aoColumns": column1,
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
 			"sLengthMenu":   "显示 _MENU_ 项结果",
