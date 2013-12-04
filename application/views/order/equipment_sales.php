@@ -122,14 +122,14 @@ function onData(data) {
 	
 	column = [
 	{
-		"sTitle": "日期"
+		"sTitle": "等级"
 	},
 	{
 		"sTitle": "销售数量"
 	}];
 	
 	var obj = {};
-	obj.name = "销售数量";
+	obj.name = "等级";
 	var data = [];
 	for(var i in json.data)
 	{
