@@ -119,7 +119,9 @@ $(function() {
 		if(dataTableHandler) dataTableHandler.fnDestroy();
 		$('#listTable').empty();
 		
-		$("#chartRegCount").width($("#chartContainer").width());
+		$("#chartRegCount").width($("#chartContainer").width() - 30);
+		$("#chartCount1").width($("#chartContainer").width() - 30);
+		$("#chartCount2").width($("#chartContainer").width() - 30);
 		
 		$.post("<?php echo site_url('order/equipment_sales/lists/highchart'); ?>", {
 			"serverId": $("#serverId").val(),
