@@ -73,7 +73,7 @@ class Equipment_sales extends CI_Controller
 			$valueData['axis'] = array();
 			$valueData['data'] = array();
 				
-			for($i=1; $i<=45; $i++)
+			for($i=1; $i<=4; $i++)
 			{
 				array_push($valueData['axis'], $i);
 				$valueData['data'][$i] = 0;
@@ -83,9 +83,9 @@ class Equipment_sales extends CI_Controller
 			{
 				foreach($result as $row)
 				{
-					if($row->item_level != '0')
+					if($row->item_value != '0')
 					{
-						$valueData['data'][intval($row->item_level)] = intval($row->count);
+						$valueData['data'][intval($row->item_value)] = intval($row->count);
 					}
 				}
 			}

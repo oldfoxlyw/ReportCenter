@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            <div id="tab2" class="tab-pane">
+            <div id="tab3" class="tab-pane">
                 <div class="widget-content">
                     <div class="row-fluid">
                         <div id="chartCount2"></div>
