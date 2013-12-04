@@ -113,6 +113,11 @@
 <script type="text/javascript">
 var dataTableHandler;
 $(function() {
+	$(window).resize(function() {
+		$("#chartRegCount").width($("#chartContainer").width() - 30);
+		$("#chartCount1").width($("#chartContainer").width() - 30);
+		$("#chartCount2").width($("#chartContainer").width() - 30);
+	});
     $('.datepicker').datepicker();
 	
 	$("#btnSearch").click(function() {
