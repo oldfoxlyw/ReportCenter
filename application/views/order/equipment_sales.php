@@ -129,7 +129,7 @@ function onData(data) {
 	}];
 	
 	var obj = {};
-	obj.name = "等级";
+	obj.name = "销售数量";
 	var data = [];
 	for(var i in json.data)
 	{
@@ -152,12 +152,15 @@ function onData(data) {
 			enabled: false
 		},
 		title: {
-			text: '装备销售统计图'
+			text: '装备销售等级统计图'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
 		},
 		xAxis: {
+			title: {
+				text: '等级'
+			},
 			categories: json.axis
 		},
 		yAxis: {
