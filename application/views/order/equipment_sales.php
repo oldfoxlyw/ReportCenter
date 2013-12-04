@@ -112,6 +112,8 @@
 
 <script type="text/javascript">
 var dataTableHandler;
+var dataTableHandler1;
+var dataTableHandler2;
 $(function() {
 	$(window).resize(function() {
 		$("#chartRegCount").width($("#chartContainer").width() - 30);
@@ -122,6 +124,7 @@ $(function() {
 	
 	$("#btnSearch").click(function() {
 		if(dataTableHandler) dataTableHandler.fnDestroy();
+		if(dataTableHandler1) dataTableHandler1.fnDestroy();
 		$('#listTable').empty();
 		
 		$("#chartRegCount").width($("#chartContainer").width() - 30);
@@ -293,7 +296,7 @@ function onData(data) {
 		},
 		series: series1
 	});
-	dataTableHandler = $('#listTable1').dataTable({
+	dataTableHandler1 = $('#listTable1').dataTable({
 		"bAutoWidth": false,
 		"bJQueryUI": true,
 		"bStateSave": true,
