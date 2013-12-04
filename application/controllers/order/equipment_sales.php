@@ -42,7 +42,7 @@ class Equipment_sales extends CI_Controller
 			
 			$sql = "SELECT `item_level`, count(*) as `count`  FROM `log_consume` WHERE `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' AND `action_name`='buy_equipment' AND `log_time`>={$startTime} AND `log_time`<={$endTime} GROUP BY `item_level`";
 			$result = $this->mconsume->query($sql);
-
+			
 			$levelData = array();
 			$levelData['axis'] = array();
 			$levelData['data'] = array();
@@ -64,8 +64,7 @@ class Equipment_sales extends CI_Controller
 				}
 			}
 			$levelData['data'] = array_values($levelData['data']);
-
-
+			
 			$sql = "SELECT `item_value`, count(*) as `count`  FROM `log_consume` WHERE `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' AND `action_name`='buy_equipment' AND `log_time`>={$startTime} AND `log_time`<={$endTime} GROUP BY `item_value`";
 			$result = $this->mconsume->query($sql);
 			

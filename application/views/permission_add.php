@@ -81,7 +81,7 @@
                               <td width="20%"><input id="order_buy_equipment" name="order_buy_equipment" value="order/buy_equipment" type="checkbox"<?php if(in_array('order/buy_equipment', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />购买装备消费统计</td>
                             </tr>
                             <tr>
-                              <td><input id="order_equipment_detail" name="order_equipment_detail" value="order/equipment_detail" type="checkbox"<?php if(in_array('order/equipment_detail', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />装备销量统计</td>
+                              <td><input id="order_equipment_sales" name="order_equipment_sales" value="order/equipment_sales" type="checkbox"<?php if(in_array('order/equipment_sales', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />装备销量统计</td>
                               <td>&nbsp;</td>
                               <td>&nbsp;</td>
                               <td>&nbsp;</td>
