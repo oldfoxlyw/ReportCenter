@@ -17,6 +17,12 @@ class Current_online extends CI_Controller
 	{
 		$this->load->model('mserver');
 		$serverResult = $this->mserver->read();
+		for($i=0; $i<count($serverResult); $i++)
+		{
+			$serverResult[$i]->server_ip = json_decode($serverResult[$i]->server_ip);
+			$serverResult[$i]->server_ip = $serverResult[$i]->server_ip[0];
+			$serverResult[$i]->server_ip = $serverResult[$i]->server_ip->ip . ':' . $serverResult[$i]->server_ip->port;
+		}
 		
 		$data = array(
 			'admin'					=>	$this->user,
