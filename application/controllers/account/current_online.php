@@ -24,6 +24,8 @@ class Current_online extends CI_Controller
 			$serverResult[$i]->server_ip = $serverResult[$i]->server_ip->ip . ':' . $serverResult[$i]->server_ip->port;
 		}
 		
+		
+		
 		$data = array(
 			'admin'					=>	$this->user,
 			'page_name'			=>	$this->pageName,
