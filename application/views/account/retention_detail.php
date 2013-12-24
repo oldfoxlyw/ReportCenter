@@ -109,6 +109,8 @@ var dataTableHandler;
 
 $(function() {
     $('.datepicker').datepicker();
+	$("select").select2();
+	$("table.data-table th > a").popover();
 	$.post("<?php echo site_url('account/retention_detail/lists/datatable'); ?>", {
 		"serverId": $("#serverId").val(),
 		"startTime": $("#startTime").val(),
@@ -228,5 +230,6 @@ function onData(data) {
 			}
 		}
 	});
+	$("select").select2();
 }
 </script>
