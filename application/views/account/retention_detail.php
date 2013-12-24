@@ -15,6 +15,16 @@
               </div>
               <div class="widget-content nopadding">
                   <form action="" method="post" class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label">选择服务器</label>
+                        <div class="controls">
+                            <select id="serverId" name="serverId">
+                            <?php foreach($server_result as $server): ?>
+                                <option value="<?php echo $server->account_server_id; ?>"><?php echo $server->server_name; ?></option>
+                            <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
                   	<div class="span6">
                         <div class="control-group">
                             <label class="control-label">开始时间(yyyy-mm-dd)</label>
@@ -89,7 +99,7 @@
 <script src="<?php echo base_url('resources/js/jquery.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/bootstrap.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/matrix.js'); ?>"></script>
-<script src="<?php echo base_url('resources/js/highcharts.js'); ?>"></script>
+<script src="<?php echo base_url('resources/js/matrix.popover.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/bootstrap-datepicker.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/select2.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/jquery.dataTables.min.js'); ?>"></script>
@@ -100,6 +110,7 @@ var dataTableHandler;
 $(function() {
     $('.datepicker').datepicker();
 	$.post("<?php echo site_url('account/retention_detail/lists/datatable'); ?>", {
+		"serverId": $("#serverId").val(),
 		"startTime": $("#startTime").val(),
 		"endTime": $("#endTime").val()
 	}, onData);
@@ -108,6 +119,7 @@ $(function() {
 		dataTableHandler.fnDestroy();
 		$('#listTable').empty();
 		$.post("<?php echo site_url('account/retention_detail/lists/datatable'); ?>", {
+			"serverId": $("#serverId").val(),
 			"startTime": $("#startTime").val(),
 			"endTime": $("#endTime").val()
 		}, onData);
