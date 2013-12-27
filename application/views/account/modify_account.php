@@ -157,7 +157,7 @@ function onData(data) {
 			enabled: false
 		},
 		title: {
-			text: '改名总人数变化趋势图'
+			text: '手动注册总人数变化趋势图'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
@@ -167,7 +167,7 @@ function onData(data) {
 		},
 		yAxis: {
 			title: {
-				text: '改名总人数'
+				text: '手动注册总人数'
 			},
 			plotLines: [{
 				value: 0,

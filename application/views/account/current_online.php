@@ -36,7 +36,7 @@
     <div class="row-fluid">
       <div class="widget-box">
           <div class="widget-title"><span class="icon"><i class="icon-signal"></i></span>
-            <h5>7天内改名总人数变化趋势图</h5>
+            <h5>即时在线人数</h5>
           </div>
           <div class="widget-content nopadding tab-content">
             <div class="widget-content">
