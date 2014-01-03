@@ -13,7 +13,7 @@ class Send_message extends CI_Controller
 		$this->load->model('utils/connector');
 		
 		$ip = 'http://183.60.255.57:8091';
-		$content = '冰火王座盛大开测，7*24小时劲爆活动惊喜乐不停！每晚11点55，免费抢宝石！每天上午12点和晚上8点，全区狂欢，抢夺极品红包！关注冰火王座官方网站(bhwz.zqgame.com)，加入冰火官方群（38820749），尽享更多精彩活动内容！';
+		$content = '尊敬的各位玩家，《冰火王座》临近正式上线，原测试服红龙女王，将于1月4号晚24时关闭，越狱渠道封测将于10号开启，有许多新的活动和奖品，欢迎各位新老家去试玩！更多信息以及详情请关注官网！bhwz.zqgame.com';
 		
 		if(!empty($ip) && !empty($content))
 		{
