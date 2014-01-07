@@ -26,11 +26,22 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label">时间(yyyy-mm-dd)</label>
-                    <div class="controls">
-                        <div data-date="<?php echo date('Y-m-d', $current_time - 86400); ?>" class="input-append date datepicker">
-                            <input type="text" id="startTime" name="startTime" value="<?php echo date('Y-m-d', $current_time - 86400); ?>"  data-date-format="yyyy-mm-dd" >
-                            <span class="add-on"><i class="icon-th"></i></span>
+                    <div class="span6">
+                        <label class="control-label">开始时间(yyyy-mm-dd)</label>
+                        <div class="controls">
+                            <div data-date="<?php echo date('Y-m-d', $current_time - 7 * 86400); ?>" class="input-append date datepicker">
+                                <input type="text" id="startTime" name="startTime" value="<?php echo date('Y-m-d', $current_time - 7 * 86400); ?>"  data-date-format="yyyy-mm-dd" >
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <label class="control-label">结束时间(yyyy-mm-dd)</label>
+                        <div class="controls">
+                            <div data-date="<?php echo date('Y-m-d', $current_time - 86400); ?>" class="input-append date datepicker">
+                                <input type="text" id="endTime" name="endTime" value="<?php echo date('Y-m-d', $current_time - 86400); ?>"  data-date-format="yyyy-mm-dd" >
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,9 +108,11 @@ $(function() {
 	$("#btnSearch").click(function() {
 		if(dataTableHandler) dataTableHandler.fnDestroy();
 		$('#listTable').empty();
-		$.post("<?php echo site_url('order/recharge_daily/lists/highchart'); ?>", {
+		$.post("<?php echo site_url('order/recharge/lists/highchart'); ?>", {
 			"serverId": $("#serverId").val(),
-			"startTime": $("#startTime").val()
+			"partnerKey": $("#partnerKey").val(),
+			"startTime": $("#startTime").val(),
+			"endTime": $("#endTime").val()
 		}, onData);
 	});
 	$("select").select2();
@@ -118,10 +131,7 @@ function onData(data) {
 	
 	column = [
 	{
-		"sTitle": "序号"
-	},
-	{
-		"sTitle": "时间段"
+		"sTitle": "日期"
 	},
 	{
 		"sTitle": "订单总额（元）"
@@ -130,18 +140,21 @@ function onData(data) {
 	var series = [];
 	var items = {
 		name: "订单总额（元）",
-		data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+		data: []
 	};
+	for(var i = 0; i<json.axis.length; i++) {
+		items.data.push(0);
+	}
 	series.push(items);
 	
-	for(var i = 0; i<24; i++) {
-		var rowData = [i+1, i + "时-" + (i+1) + "时", 0];
+	for(var i = 0; i<json.axis.length; i++) {
+		var rowData = [i+1, json.axis[i], 0];
 		aaData.push(rowData);
 	}
 	
-	for(var m in json) {
-		series[0].data[parseInt(json[m].hour)] = parseInt(json[m].amount) / 100;
-		aaData[parseInt(json[m].hour)][2] = parseInt(json[m].amount) / 100;
+	for(var m in json.result) {
+		series[0].data[parseInt(json.result[m].date)] = parseInt(json.result[m].amount) / 100;
+		aaData[parseInt(json.result[m].date)][2] = parseInt(json.result[m].amount) / 100;
 	}
 	
 	$('#chartRegCount').highcharts({
@@ -150,17 +163,19 @@ function onData(data) {
 			height: 500
 		},
 		title: {
-			text: '每日每小时充值总额统计'
+			text: '每日充值总额统计'
 		},
 		subtitle: {
 			text: '数据来源：数据统计平台'
 		},
 		xAxis: {
-			categories: ["0时-1时", "1时-2时", "2时-3时", "3时-4时", "4时-5时", "5时-6时", "6时-7时", "7时-8时", "8时-9时",
-			"9时-10时", "10时-11时", "11时-12时", "12时-13时", "13时-14时", "14时-15时", "15时-16时", "16时-17时", "17时-18时",
-			"18时-19时", "19时-20时", "20时-21时", "21时-22时", "22时-23时", "23时-24时"],
+			categories: json.axis,
+			labels: {
+				rotation: -20,
+				align: 'right'
+			},
 			title: {
-				text: "时间段"
+				text: "日期"
 			}
 		},
 		yAxis: {

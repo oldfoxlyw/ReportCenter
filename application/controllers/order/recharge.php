@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Recharge_daily extends CI_Controller
+class Recharge extends CI_Controller
 {
-	private $pageName = 'order/recharge_daily';
+	private $pageName = 'order/recharge';
 	private $user = null;
 
 	public function __construct()
@@ -36,18 +36,39 @@ class Recharge_daily extends CI_Controller
 		$accountdb = $this->load->database('fundsdb', TRUE);
 		
 		$serverId = $this->input->post('serverId');
-		$startTime = $this->input->post('startTime');
 		$partnerKey = $this->input->post('partnerKey');
+		$startTime = $this->input->post('startTime');
+		$endTime = $this->input->post('endTime');
 		
 		if(!empty($serverId) && !empty($startTime))
 		{
-			$startTime = strtotime("{$startTime} 00:00:00");
-			$endTime = $startTime + 86399;
+			$data = array();
+			$data['axis'] = array();
+			$data['result'] = array();
 			
-			$sql = "SELECT FROM_UNIXTIME(`funds_time`, '%k') as `hour`, SUM(`funds_amount`) as `amount` FROM `funds_checkinout` WHERE `server_id`='{$serverId}' AND `funds_flow_dir`='CHECK_IN' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} GROUP BY `hour`";
+			$startTime = strtotime("{$startTime} 00:00:00");
+			$endTime = strtotime("{$endTime} 23:59:59");
+			
+			for($i=$startTime; $i<=$endTime; $i+=86400)
+			{
+				$current = date('Y-m-d', $i);
+				array_push($data['axis'], $current);
+			}
+			
+			if(!empty($partnerKey))
+			{
+				$partner = "AND `partner_key`='{$partnerKey}'";
+			}
+			
+			$sql = "SELECT FROM_UNIXTIME(`funds_time`, '%Y-%m-%d') as `date`, SUM(`funds_amount`) as `amount` FROM `funds_checkinout` WHERE `server_id`='{$serverId}' AND `funds_flow_dir`='CHECK_IN' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} {$partner} GROUP BY `date`";
 			$result = $accountdb->query($sql)->result();
 			
-			echo $this->return_format->format($result);
+			foreach($result as $row)
+			{
+				$data['result'][$row->log_date] = $row;
+			}
+			
+			echo $this->return_format->format($data);
 		}
 	}
 }
