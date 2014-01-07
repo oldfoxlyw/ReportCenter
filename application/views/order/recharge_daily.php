@@ -99,7 +99,8 @@ $(function() {
 		$('#listTable').empty();
 		$.post("<?php echo site_url('order/recharge_daily/lists/highchart'); ?>", {
 			"serverId": $("#serverId").val(),
-			"startTime": $("#startTime").val()
+			"startTime": $("#startTime").val(),
+			"partnerKey": $("#partnerKey").val(),
 		}, onData);
 	});
 	$("select").select2();
