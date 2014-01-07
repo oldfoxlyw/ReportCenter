@@ -43,8 +43,13 @@ class Recharge_daily extends CI_Controller
 		{
 			$startTime = strtotime("{$startTime} 00:00:00");
 			$endTime = $startTime + 86399;
+
+			if(!empty($partnerKey))
+			{
+				$partner = "AND `partner_key`='{$partnerKey}'";
+			}
 			
-			$sql = "SELECT FROM_UNIXTIME(`funds_time`, '%k') as `hour`, SUM(`funds_amount`) as `amount` FROM `funds_checkinout` WHERE `server_id`='{$serverId}' AND `funds_flow_dir`='CHECK_IN' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} GROUP BY `hour`";
+			$sql = "SELECT FROM_UNIXTIME(`funds_time`, '%k') as `hour`, SUM(`funds_amount`) as `amount` FROM `funds_checkinout` WHERE `server_id`='{$serverId}' AND `funds_flow_dir`='CHECK_IN' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} {$partner} GROUP BY `hour`";
 			$result = $accountdb->query($sql)->result();
 			
 			echo $this->return_format->format($result);
