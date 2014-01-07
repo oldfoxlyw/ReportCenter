@@ -154,7 +154,7 @@ function onData(data) {
 	
 	for(var m in json.result) {
 		series[0].data[parseInt(json.result[m].date)] = parseInt(json.result[m].amount) / 100;
-		aaData[parseInt(json.result[m].date)][2] = parseInt(json.result[m].amount) / 100;
+		aaData[json.axis.indexOf(json.result[m].date)][2] = parseInt(json.result[m].amount) / 100;
 	}
 	
 	$('#chartRegCount').highcharts({
