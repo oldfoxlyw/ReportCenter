@@ -146,27 +146,27 @@ function onData(data) {
 			obj.name = i;
 			var data = [];
 			var rowData = [];
-			
 			rowData.push(i);
-			for(var j = 0; j < column.length; j++)
+			for(var m in json.axis)
 			{
-				if(json[i][j])
-				{
-					rowData.push(parseInt(json[i][j].flowover_account));
-				}
-				else
-				{
-					rowData.push("-");
-				}
+				data.push(0);
+				rowData.push(0);
 			}
-			aaData.push(rowData);
 			
 			for(var j in json[i])
 			{
-				data.push(parseInt(json[i][j].flowover_account));
+				if(json[i][j])
+				{
+					rowData[json.axis.indexOf(j) + 1] = parseInt(json[i][j].flowover_account);
+				}
+				else
+				{
+					rowData[json.axis.indexOf(j) + 1] = "-";
+				}
+				data[json.axis.indexOf(j)] = parseInt(json[i][j].flowover_account);
 			}
+			aaData.push(rowData);
 			obj.data = data;
-			
 			series.push(obj);
 		}
 	}

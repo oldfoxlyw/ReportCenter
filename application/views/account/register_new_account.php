@@ -142,26 +142,27 @@ function onData(data) {
 			obj.name = i;
 			var data = [];
 			var rowData = [];
-			
 			rowData.push(i);
-			for(var j = 0; j < column.length; j++)
+			for(var m in json.axis)
+			{
+				data.push(0);
+				rowData.push(0);
+			}
+			
+			for(var j in json[i])
 			{
 				if(json[i][j])
 				{
-					rowData.push(parseInt(json[i][j].reg_new_account));
+					rowData[json.axis.indexOf(j) + 1] = parseInt(json[i][j].reg_new_account);
 				}
 				else
 				{
-					rowData.push("-");
+					rowData[json.axis.indexOf(j) + 1] = "-";
 				}
-			}
-			for(var j in json[i])
-			{
-				data.push(parseInt(json[i][j].reg_new_account));
+				data[json.axis.indexOf(j)] = parseInt(json[i][j].reg_new_account);
 			}
 			aaData.push(rowData);
 			obj.data = data;
-			
 			series.push(obj);
 		}
 	}
