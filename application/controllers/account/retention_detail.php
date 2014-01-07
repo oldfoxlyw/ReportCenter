@@ -16,13 +16,17 @@ class Retention_detail extends CI_Controller
 	public function index()
 	{
 		$this->load->model ( 'mserver' );
-		
+		$this->load->model('mpartner');
+
 		$serverResult = $this->mserver->read ();
+		$partnerResult = $this->mpartner->read();
+		
 		$data = array(
 			'admin'				=>	$this->user,
 			'page_name'			=>	$this->pageName,
 			'server_result' 	=>	$serverResult,
 			'current_time'		=>	time(),
+			'partner_result'	=>	$partnerResult
 		);
 		$this->render->render($this->pageName, $data);
 	}
@@ -35,11 +39,12 @@ class Retention_detail extends CI_Controller
 		$serverId = $this->input->post('serverId');
 		$startTime = $this->input->post('startTime');
 		$endTime = $this->input->post('endTime');
+		$partnerKey = $this->input->post('partnerKey');
 		
-		$sql = "SELECT * FROM `log_daily_statistics` WHERE `log_date`>='{$startTime}' AND `log_date`<='{$endTime}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` DESC";
+		$sql = "SELECT * FROM `log_daily_statistics` WHERE `log_date`>='{$startTime}' AND `log_date`<='{$endTime}' AND `server_id`='{$serverId}' AND `partner_key`='{$partnerKey}' ORDER BY `log_date` DESC";
 		$result = $logcachedb->query($sql)->result();
 		
-		$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$startTime}' AND `log_date`<='{$endTime}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` DESC";
+		$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$startTime}' AND `log_date`<='{$endTime}' AND `server_id`='{$serverId}' AND `partner_key`='{$partnerKey}' ORDER BY `log_date` DESC";
 		$retention = $logcachedb->query($sql)->result();
 
 		$retentionResult = array();

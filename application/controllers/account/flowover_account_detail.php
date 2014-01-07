@@ -17,13 +17,17 @@ class Flowover_account_detail extends CI_Controller
 	public function index()
 	{
 		$this->load->model ( 'mserver' );
+		$this->load->model('mpartner');
+
 		$serverResult = $this->mserver->read ();
+		$partnerResult = $this->mpartner->read();
 		
 		$data = array (
-			'admin' => $this->user,
-			'page_name' => $this->pageName,
-			'current_time' => time (),
-			'server_result' => $serverResult 
+			'admin' 			=> $this->user,
+			'page_name' 		=> $this->pageName,
+			'current_time' 		=> time (),
+			'server_result' 	=> $serverResult,
+			'partner_result'	=> $partnerResult
 		);
 		$this->render->render ( $this->pageName, $data );
 	}
@@ -37,6 +41,7 @@ class Flowover_account_detail extends CI_Controller
 		
 		$startTime = $this->input->post ( 'startTime' );
 		$serverId = $this->input->post ( 'serverId' );
+		$partnerKey = $this->input->post('partnerKey');
 		
 		if (! empty ( $serverId ))
 		{
@@ -47,9 +52,12 @@ class Flowover_account_detail extends CI_Controller
 			}
 			$parameter = array (
 				'date'			=>	$startTime,
-				'server_id'		=>	$serverId,
-				'partner_key'=>	$this->user->user_fromwhere
+				'server_id'		=>	$serverId
 			);
+			if(!empty($partnerKey))
+			{
+				$parameter['partner_key'] = $partnerKey;
+			}
 			$result = $this->mflowoverdetail->read ( $parameter );
 			$result = $result [0];
 			

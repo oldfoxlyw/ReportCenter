@@ -25,8 +25,8 @@
                             </select>
                         </div>
                     </div>
-                  	<div class="span6">
-                        <div class="control-group">
+                  	<div class="control-group">
+                        <div class="span6">
                             <label class="control-label">开始时间(yyyy-mm-dd)</label>
                             <div class="controls">
                                 <div data-date="<?php echo date('Y-m-d', $current_time - 7 * 86400); ?>" class="input-append date datepicker">
@@ -35,9 +35,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                  	<div class="span6">
-                        <div class="control-group">
+                        <div class="span6">
                             <label class="control-label">结束时间(yyyy-mm-dd)</label>
                             <div class="controls">
                                 <div data-date="<?php echo date('Y-m-d', $current_time - 86400); ?>" class="input-append date datepicker">
@@ -47,7 +45,16 @@
                             </div>
                         </div>
                     </div>
-                    <div style="clear:both"></div>
+                    <div class="control-group">
+                        <label class="control-label">选择渠道</label>
+                        <div class="controls">
+                            <select id="partnerKey" name="partnerKey">
+                            <?php foreach($partner_result as $partner): ?>
+                                <option value="<?php echo $partner->partner_key; ?>"><?php echo $partner->partner_key; ?></option>
+                            <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-actions">
                       <button id="btnSearch" type="button" class="btn btn-success">搜索</button>
                     </div>
@@ -114,7 +121,8 @@ $(function() {
 	$.post("<?php echo site_url('account/retention_detail/lists/datatable'); ?>", {
 		"serverId": $("#serverId").val(),
 		"startTime": $("#startTime").val(),
-		"endTime": $("#endTime").val()
+		"endTime": $("#endTime").val(),
+		"partnerKey": $("#partnerKey").val()
 	}, onData);
 	
 	$("#btnSearch").click(function() {
@@ -123,7 +131,8 @@ $(function() {
 		$.post("<?php echo site_url('account/retention_detail/lists/datatable'); ?>", {
 			"serverId": $("#serverId").val(),
 			"startTime": $("#startTime").val(),
-			"endTime": $("#endTime").val()
+			"endTime": $("#endTime").val(),
+			"partnerKey": $("#partnerKey").val()
 		}, onData);
 	});
 });

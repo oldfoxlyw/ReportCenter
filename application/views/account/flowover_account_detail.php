@@ -34,6 +34,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="control-group">
+                        <label class="control-label">选择渠道</label>
+                        <div class="controls">
+                            <select id="partnerKey" name="partnerKey">
+                                <option value="">全部</option>
+                            <?php foreach($partner_result as $partner): ?>
+                                <option value="<?php echo $partner->partner_key; ?>"><?php echo $partner->partner_key; ?></option>
+                            <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-actions">
                       <button id="btnSearch" type="button" class="btn btn-success">搜索</button>
                     </div>
@@ -125,7 +136,8 @@ $(function() {
 		$('#listTable3').empty();
 		$.post("<?php echo site_url('account/flowover_account_detail/lists/highchart'); ?>", {
 			"startTime": $("#startTime").val(),
-			"serverId": $("#serverId").val()
+			"serverId": $("#serverId").val(),
+			"partnerKey": $("#partnerKey").val()
 		}, onData);
 	});
 });

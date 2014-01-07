@@ -15,10 +15,14 @@ class Reflow_account extends CI_Controller
 	
 	public function index()
 	{
+		$this->load->model('mpartner');
+
+		$partnerResult = $this->mpartner->read();
 		$data = array(
-			'admin'					=>	$this->user,
+			'admin'				=>	$this->user,
 			'page_name'			=>	$this->pageName,
 			'current_time'		=>	time(),
+			'partner_result'	=>	$partnerResult
 		);
 		$this->render->render($this->pageName, $data);
 	}
@@ -30,6 +34,7 @@ class Reflow_account extends CI_Controller
 		
 		$startTime = $this->input->post('startTime');
 		$endTime = $this->input->post('endTime');
+		$partnerKey = $this->input->post('partnerKey');
 
 		if(empty($startTime) || empty($endTime))
 		{
@@ -49,9 +54,12 @@ class Reflow_account extends CI_Controller
 		}
 		$parameter = array(
 			'log_date >='		=>	$startTime,
-			'log_date <='		=>	$endTime,
-			'partner_key'			=>	$this->user->user_fromwhere
+			'log_date <='		=>	$endTime
 		);
+		if(!empty($partnerKey))
+		{
+			$parameter['partner_key'] = $partnerKey;
+		}
 		$extension = array(
 			'select'		=>	array(
 				'log_date',
