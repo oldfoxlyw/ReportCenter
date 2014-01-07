@@ -78,7 +78,14 @@ class Register_new_account extends CI_Controller
 			{
 				$data[$row->server_name] = array();
 			}
-			array_push($data[$row->server_name], $row);
+			if(!empty($data[$row->server_name][$row->log_date]))
+			{
+				$data[$row->server_name][$row->log_date]->reg_new_account += $row->reg_new_account;
+			}
+			else
+			{
+				$data[$row->server_name][$row->log_date] = $row;
+			}
 			
 			if(!in_array($row->log_date, $data['axis']))
 			{

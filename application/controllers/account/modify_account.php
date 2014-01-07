@@ -78,7 +78,14 @@ class Modify_account extends CI_Controller
 			{
 				$data[$row->server_name] = array();
 			}
-			array_push($data[$row->server_name], $row);
+			if(!empty($data[$row->server_name][$row->log_date]))
+			{
+				$data[$row->server_name][$row->log_date]->modify_account += $row->modify_account;
+			}
+			else
+			{
+				$data[$row->server_name][$row->log_date] = $row;
+			}
 			
 			if(!in_array($row->log_date, $data['axis']))
 			{
