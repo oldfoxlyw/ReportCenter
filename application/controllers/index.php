@@ -18,7 +18,7 @@ class Index extends CI_Controller
 		$serverResult = $this->mserver->read(array(
 				'server_debug'		=>	0,
 				'server_status !='	=>	9,
-				'partner'			=>	$this->user->user_fromwhere
+// 				'partner'			=>	$this->user->user_fromwhere
 		));
 		$data = array(
 			'admin'			=>	$this->user,

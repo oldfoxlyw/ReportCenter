@@ -36,7 +36,8 @@ class Administrators extends CI_Controller
 		if($this->user->user_founder != '1')
 		{
 			$parameter = array(
-				'GUID'		=>	$this->user->GUID
+				'permission_level <='	=>	$this->user->permission_level,
+				'user_founder !='		=>	1
 			);
 		}
 		
@@ -83,30 +84,36 @@ class Administrators extends CI_Controller
 		if(!empty($adminId))
 		{
 			$this->pageName = 'administrators_add';
-			if($this->user->user_founder != '1' && $this->user->GUID != $adminId)
-			{
-				showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
-			}
-			$this->load->model('madmin');
-			$this->load->model('mpermission');
-			$permissions = $this->mpermission->read();
+
 			$result = $this->madmin->read(array(
 				'GUID'		=>	$adminId
 			));
 			if($result !== FALSE)
 			{
 				$result = $result[0];
-			}
 			
-			$data = array(
-				'admin'					=>	$this->user,
-				'page_name'			=>	$this->pageName,
-				'edit'					=>	'1',
-				'admin_id'			=>	$adminId,
-				'value'					=>	$result,
-				'permissions'		=>	$permissions
-			);
-			$this->render->render($this->pageName, $data);
+				if($this->user->user_founder != '1' && $this->user->permission_level < $result->permission_level)
+				{
+					showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
+				}
+				$this->load->model('madmin');
+				$this->load->model('mpermission');
+				$permissions = $this->mpermission->read();
+				
+				$data = array(
+					'admin'				=>	$this->user,
+					'page_name'			=>	$this->pageName,
+					'edit'				=>	'1',
+					'admin_id'			=>	$adminId,
+					'value'				=>	$result,
+					'permissions'		=>	$permissions
+				);
+				$this->render->render($this->pageName, $data);
+			}
+			else
+			{
+				showMessage(MESSAGE_TYPE_ERROR, 'ADMIN_NOT_EXIST', '', 'administrators', true, 5);
+			}
 		}
 		else
 		{
@@ -118,25 +125,35 @@ class Administrators extends CI_Controller
 	{
 		if(!empty($adminId))
 		{
-			if($this->user->user_founder != '1')
-			{
-				showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
-			}
-			$this->load->model('madmin');
-			
 			$result = $this->madmin->read(array(
 				'GUID'		=>	$adminId
 			));
 			if(!empty($result))
 			{
 				$row = $result[0];
-				if($row->user_founder == '1')
+				if($this->user->user_founder != '1' && $this->user->permission_level < $row->permission_level)
 				{
-					showMessage(MESSAGE_TYPE_ERROR, 'USER_DELETE_FORBIDDEN', '', 'administrators', true, 5);
+					showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
 				}
+				$this->load->model('madmin');
+				
+				$result = $this->madmin->read(array(
+					'GUID'		=>	$adminId
+				));
+				if(!empty($result))
+				{
+					if($row->user_founder == '1')
+					{
+						showMessage(MESSAGE_TYPE_ERROR, 'USER_DELETE_FORBIDDEN', '', 'administrators', true, 5);
+					}
+				}
+				$this->madmin->delete($adminId);
+				redirect('administrators');
 			}
-			$this->madmin->delete($adminId);
-			redirect('administrators');
+			else
+			{
+				showMessage(MESSAGE_TYPE_ERROR, 'ADMIN_NOT_EXIST', '', 'administrators', true, 5);
+			}
 		}
 		else
 		{
