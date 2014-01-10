@@ -12,8 +12,8 @@ class Send_message extends CI_Controller
 	{
 		$this->load->model('utils/connector');
 		
-		$ip = 'http://183.60.255.57:8091';
-		$content = '《冰火王座》火热开服，7X24小时劲爆活动不断，丰厚奖励拿到你手软！心动不如行动，每天记得准时上线参加哦！';
+		$ip = 'http://183.60.255.76:8091';
+		$content = '亲爱的各位玩家，欢迎参加本次技术封测，本次删档测试暂不开放充值功能，请不要相信任何形式的代充、兜售绿钻的虚假信息，谨防上当受骗。';
 		
 		if(!empty($ip) && !empty($content))
 		{
