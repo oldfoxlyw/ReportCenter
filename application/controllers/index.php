@@ -38,7 +38,7 @@ class Index extends CI_Controller
 		$logcachedb = $this->load->database('logcachedb', TRUE);
 		
 		$serverId = $this->input->post('server_id');
-		$partnerKey = $this->input->post('partnerKey');
+// 		$partnerKey = $this->input->post('partnerKey');
 		
 		if(!empty($serverId))
 		{
@@ -59,7 +59,7 @@ class Index extends CI_Controller
 			{
 				array_push($result['axis'], date('Y-m-d', $i));
 			}
-			$sql = "SELECT `log_date`, `reg_new_account`, `level_account`, `login_account` FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' {$partner} ORDER BY `log_date` ASC";
+			$sql = "SELECT `log_date`, SUM(`reg_new_account`) as `reg_new_account`, SUM(`level_account`) as `level_account`, SUM(`login_account`) as `login_account` FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' {$partner} GROUP BY `log_date` ORDER BY `log_date` ASC";
 			$overviewResult = $logcachedb->query($sql)->result();
 			
 			$registerResult = array();
@@ -73,7 +73,7 @@ class Index extends CI_Controller
 				array_push($loginResult, $row->login_account);
 			}
 
-			$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' {$partner} ORDER BY `log_date` ASC";
+			$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' `partner_key`='' ORDER BY `log_date` ASC";
 			$retention = $logcachedb->query($sql)->result();
 			foreach($retention as $row)
 			{
