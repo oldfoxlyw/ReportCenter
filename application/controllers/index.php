@@ -17,13 +17,16 @@ class Index extends CI_Controller
 		$this->load->model('mserver');
 		$serverResult = $this->mserver->read(array(
 				'server_debug'		=>	0,
-				'server_status !='	=>	9,
-// 				'partner'			=>	$this->user->user_fromwhere
+				'server_status !='	=>	9
 		));
+		$this->load->model('mpartner');
+		$partnerResult = $this->mpartner->read();
+		
 		$data = array(
-			'admin'			=>	$this->user,
-			'page_name'		=>	$this->pageName,
-			'server'		=>	$serverResult
+			'admin'				=>	$this->user,
+			'page_name'			=>	$this->pageName,
+			'server'			=>	$serverResult,
+			'partner_resuylt'	=>	$partnerResult
 		);
 		$this->render->render($this->pageName, $data);
 	}
@@ -35,6 +38,7 @@ class Index extends CI_Controller
 		$logcachedb = $this->load->database('logcachedb', TRUE);
 		
 		$serverId = $this->input->post('server_id');
+		$partnerKey = $this->input->post('partnerKey');
 		
 		if(!empty($serverId))
 		{
@@ -44,13 +48,18 @@ class Index extends CI_Controller
 			$sevenDaysAgoTime = $lastTime - 6 * 86400;
 			$sevenDaysAgoDate = date('Y-m-d', $sevenDaysAgoTime) . ' 00:00:00';
 			
+			if(!empty($partnerKey))
+			{
+				$partner = "AND `partner_key`='{$partnerKey}'";
+			}
+			
 			$result = array();
 			$result['axis'] = array();
 			for($i = $sevenDaysAgoTime; $i <= $lastTime; $i += 86400)
 			{
 				array_push($result['axis'], date('Y-m-d', $i));
 			}
-			$sql = "SELECT `log_date`, `reg_new_account`, `level_account`, `login_account` FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` ASC";
+			$sql = "SELECT `log_date`, `reg_new_account`, `level_account`, `login_account` FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' {$partner} ORDER BY `log_date` ASC";
 			$overviewResult = $logcachedb->query($sql)->result();
 			
 			$registerResult = array();
@@ -64,7 +73,7 @@ class Index extends CI_Controller
 				array_push($loginResult, $row->login_account);
 			}
 
-			$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` ASC";
+			$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' {$partner} ORDER BY `log_date` ASC";
 			$retention = $logcachedb->query($sql)->result();
 			foreach($retention as $row)
 			{
@@ -87,6 +96,7 @@ class Index extends CI_Controller
 		$logcachedb = $this->load->database('logcachedb', TRUE);
 		
 		$serverId = $this->input->get('server_id');
+// 		$partnerKey = $this->input->post('partnerKey');
 		$sEcho = $this->input->get_post('sEcho');
 		$offset = $this->input->get_post('iDisplayStart');
 		$limit = $this->input->get_post('iDisplayLength');
@@ -97,17 +107,30 @@ class Index extends CI_Controller
 		$lastDate = date('Y-m-d', $lastTime) . ' 23:59:59';
 		$sevenDaysAgoTime = $lastTime - 6 * 86400;
 		$sevenDaysAgoDate = date('Y-m-d', $sevenDaysAgoTime) . ' 00:00:00';
+		
+		if(!empty($partnerKey))
+		{
+			$partner = "AND `partner_key`='{$partnerKey}'";
+		}
 
-		$sql = "SELECT COUNT(*) as `numrows` FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}'";
+		$sql = "SELECT COUNT(*) as `numrows` FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' {$partner}";
 		$count = $logcachedb->query($sql)->row();
 		$count = $count->numrows;
 		
-		$sql = "SELECT * FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` DESC";
+		$sql = "SELECT `log_date`, `server_id`, SUM(`reg_account`) AS `reg_account`, SUM(`reg_new_account`) AS `reg_new_account`";
+		$sql .= " , SUM(`valid_account`) AS `valid_account` , SUM(`level_account`) AS `level_account`";
+		$sql .= " , SUM(`modify_account`) AS `modify_account` , SUM(`modify_new_account`) AS `modify_new_account`";
+		$sql .= " , SUM(`login_account`) AS `login_account` , SUM(`old_login_account`) AS `old_login_account`";
+		$sql .= " , SUM(`active_account`) AS `active_account` , SUM(`flowover_account`) AS `flowover_account`";
+		$sql .= " , SUM(`reflow_account`) AS `reflow_account` , SUM(`orders_current_sum`) AS `orders_current_sum`";
+		$sql .= " , SUM(`orders_num`) AS `orders_num` , SUM(`orders_sum`) AS `orders_sum`";
+		$sql .= " , SUM(`recharge_account`) AS `recharge_account`, SUM(`order_count`) AS `order_count` , AVG(`at`) AS `at`";
+		$sql .= " FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' {$partner} GROUP BY `log_date` ORDER BY `log_date` DESC";
 		$result = $logcachedb->query($sql)->result();
 		
 		if($provider == 'retention')
 		{
-			$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' ORDER BY `log_date` DESC";
+			$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='' ORDER BY `log_date` DESC";
 			$retention = $logcachedb->query($sql)->result();
 
 			$retentionResult = array();
@@ -118,6 +141,7 @@ class Index extends CI_Controller
 			
 			for($i=0; $i<count($result); $i++)
 			{
+				$result[$i]->arpu = intval(($result[$i]->recharge_account / $result[$i]->active_account) * 100);
 				$re = $retentionResult[$result[$i]->log_date . '_' . $result[$i]->server_id . '_' . $result[$i]->partner_key];
 				if(!empty($re))
 				{
@@ -149,6 +173,13 @@ class Index extends CI_Controller
 					$result[$i]->seven_retention_range = '-';
 					$result[$i]->seven_retention_huge = '-';
 				}
+			}
+		}
+		else
+		{
+			for($i=0; $i<count($result); $i++)
+			{
+				$result[$i]->arpu = intval(($result[$i]->recharge_account / $result[$i]->active_account) * 100);
 			}
 		}
 
