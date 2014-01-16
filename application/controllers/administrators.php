@@ -92,7 +92,7 @@ class Administrators extends CI_Controller
 			{
 				$result = $result[0];
 			
-				if($this->user->user_founder != '1' && $this->user->user_permission < $result->user_permission)
+				if($this->user->user_founder != '1' && $this->user->user_permission <= $result->user_permission)
 				{
 					showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
 				}
@@ -131,7 +131,7 @@ class Administrators extends CI_Controller
 			if(!empty($result))
 			{
 				$row = $result[0];
-				if($this->user->user_founder != '1' && $this->user->user_permission < $row->user_permission)
+				if($this->user->user_founder != '1' && $this->user->user_permission <= $row->user_permission)
 				{
 					showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
 				}
