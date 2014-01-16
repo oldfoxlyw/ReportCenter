@@ -131,6 +131,9 @@ function onData(data) {
 	
 	column = [
 	{
+		"sTitle": "编号"
+	},
+	{
 		"sTitle": "日期"
 	},
 	{
