@@ -56,16 +56,6 @@
           <div class="widget-title">
           	<span class="icon"> <i class="icon-signal"></i> </span>
             <h5>留存率</h5>
-            <div style="float:right">
-    			<div class="span4">
-            	<select id="partnerKey" name="partnerKey">
-                    <option value="">全部</option>
-                    <?php foreach($partner_result as $partner): ?>
-                    <option value="<?php echo $partner->partner_key; ?>"><?php echo $partner->partner_key; ?></option>
-                    <?php endforeach; ?>
-                </select>
-                </div>
-            </div>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table" id="listTableRetention">

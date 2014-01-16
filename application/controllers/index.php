@@ -19,14 +19,11 @@ class Index extends CI_Controller
 				'server_debug'		=>	0,
 				'server_status !='	=>	9
 		));
-		$this->load->model('mpartner');
-		$partnerResult = $this->mpartner->read();
 		
 		$data = array(
 			'admin'				=>	$this->user,
 			'page_name'			=>	$this->pageName,
-			'server'			=>	$serverResult,
-			'partner_resuylt'	=>	$partnerResult
+			'server'			=>	$serverResult
 		);
 		$this->render->render($this->pageName, $data);
 	}
