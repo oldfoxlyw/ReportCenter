@@ -65,7 +65,7 @@ class Recharge extends CI_Controller
 			
 			foreach($result as $row)
 			{
-				$data['result'][$row->log_date] = $row;
+				$data['result'][$row->date] = $row;
 			}
 			
 			echo $this->return_format->format($data);
