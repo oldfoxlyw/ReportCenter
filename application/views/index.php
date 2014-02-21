@@ -230,7 +230,7 @@ function retrieveTableData(serverId) {
 					if(obj.aData.arpu == 0) {
 						return "-";
 					} else {
-						return obj.aData.arpu / 100 + "%";
+						return obj.aData.arpu + "%";
 					}
 				}
 			}
