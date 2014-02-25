@@ -115,8 +115,8 @@ class Index extends CI_Controller
 		$count = $count->numrows;
 		
 		$sql = "SELECT `log_date`, `server_id`, SUM(`reg_account`) AS `reg_account`, SUM(`reg_new_account`) AS `reg_new_account`";
-// 		$sql .= " , SUM(`valid_account`) AS `valid_account` , SUM(`level_account`) AS `level_account`";
-		$sql .= " , SUM(`valid_account`) AS `valid_account`";
+		$sql .= " , SUM(`valid_account`) AS `valid_account` , SUM(`level_account`) AS `level_account`";
+// 		$sql .= " , SUM(`valid_account`) AS `valid_account`";
 		$sql .= " , SUM(`modify_account`) AS `modify_account` , SUM(`modify_new_account`) AS `modify_new_account`";
 		$sql .= " , SUM(`login_account`) AS `login_account` , SUM(`old_login_account`) AS `old_login_account`";
 		$sql .= " , SUM(`active_account`) AS `active_account` , SUM(`flowover_account`) AS `flowover_account`";
