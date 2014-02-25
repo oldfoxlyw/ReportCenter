@@ -60,7 +60,7 @@ class Recharge extends CI_Controller
 				$partner = "AND `partner_key`='{$partnerKey}'";
 			}
 			
-			$sql = "SELECT FROM_UNIXTIME(`funds_time`, '%Y-%m-%d') as `date`, SUM(`funds_amount`) as `amount` FROM `funds_checkinout` WHERE `server_id`='{$serverId}' AND `funds_flow_dir`='CHECK_IN' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} {$partner} GROUP BY `date`";
+			$sql = "SELECT FROM_UNIXTIME(`funds_time`, '%Y-%m-%d') as `date`, SUM(`funds_amount`) as `amount` FROM `funds_checkinout` WHERE `server_id`='{$serverId}' AND `funds_flow_dir`='CHECK_IN' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} {$partner} AND `is_verified`=1 GROUP BY `date`";
 			$result = $accountdb->query($sql)->result();
 			
 			foreach($result as $row)
