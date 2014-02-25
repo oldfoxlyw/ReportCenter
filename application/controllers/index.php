@@ -115,8 +115,8 @@ class Index extends CI_Controller
 		$count = $count->numrows;
 		
 		$sql = "SELECT `log_date`, `server_id`, SUM(`reg_account`) AS `reg_account`, SUM(`reg_new_account`) AS `reg_new_account`";
-		$sql .= " , SUM(`valid_account`) AS `valid_account` , SUM(`level_account`) AS `level_account`";
-// 		$sql .= " , SUM(`valid_account`) AS `valid_account`";
+// 		$sql .= " , SUM(`valid_account`) AS `valid_account` , SUM(`level_account`) AS `level_account`";
+		$sql .= " , SUM(`valid_account`) AS `valid_account`";
 		$sql .= " , SUM(`modify_account`) AS `modify_account` , SUM(`modify_new_account`) AS `modify_new_account`";
 		$sql .= " , SUM(`login_account`) AS `login_account` , SUM(`old_login_account`) AS `old_login_account`";
 		$sql .= " , SUM(`active_account`) AS `active_account` , SUM(`flowover_account`) AS `flowover_account`";
@@ -126,60 +126,50 @@ class Index extends CI_Controller
 		$sql .= " FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' {$partner} GROUP BY `log_date` ORDER BY `log_date` DESC";
 		$result = $logcachedb->query($sql)->result();
 		
-		if($provider == 'retention')
-		{
-			$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='' ORDER BY `log_date` DESC";
-			$retention = $logcachedb->query($sql)->result();
+		$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' AND `partner_key`='' ORDER BY `log_date` DESC";
+		$retention = $logcachedb->query($sql)->result();
 
-			$retentionResult = array();
-			foreach($retention as $row)
-			{
-				$retentionResult[$row->log_date . '_' . $row->server_id . '_' . $row->partner_key] = $row;
-			}
-			
-			for($i=0; $i<count($result); $i++)
-			{
-				$result[$i]->arpu = intval(($result[$i]->recharge_account / $result[$i]->login_account) * 100);
-				$re = $retentionResult[$result[$i]->log_date . '_' . $result[$i]->server_id . '_' . $result[$i]->partner_key];
-				if(!empty($re))
-				{
-					$result[$i]->level_account = $re->level_account;
-					$result[$i]->next_current_login = $re->next_current_login;
-					$result[$i]->third_current_login = $re->third_current_login;
-					$result[$i]->third_current_login_range = $re->third_current_login_range;
-					$result[$i]->seven_current_login = $re->seven_current_login;
-					$result[$i]->seven_current_login_range = $re->seven_current_login_range;
-					$result[$i]->seven_current_login_huge = $re->seven_current_login_huge;
-					$result[$i]->next_retention = $re->next_retention;
-					$result[$i]->third_retention = $re->third_retention;
-					$result[$i]->third_retention_range = $re->third_retention_range;
-					$result[$i]->seven_retention = $re->seven_retention;
-					$result[$i]->seven_retention_range = $re->seven_retention_range;
-					$result[$i]->seven_retention_huge = $re->seven_retention_huge;
-				}
-				else
-				{
-					$result[$i]->level_account = '-';
-					$result[$i]->next_current_login = '-';
-					$result[$i]->third_current_login = '-';
-					$result[$i]->third_current_login_range = '-';
-					$result[$i]->seven_current_login = '-';
-					$result[$i]->seven_current_login_range = '-';
-					$result[$i]->seven_current_login_huge = '-';
-					$result[$i]->next_retention = '-';
-					$result[$i]->third_retention = '-';
-					$result[$i]->third_retention_range = '-';
-					$result[$i]->seven_retention = '-';
-					$result[$i]->seven_retention_range = '-';
-					$result[$i]->seven_retention_huge = '-';
-				}
-			}
-		}
-		else
+		$retentionResult = array();
+		foreach($retention as $row)
 		{
-			for($i=0; $i<count($result); $i++)
+			$retentionResult[$row->log_date . '_' . $row->server_id . '_' . $row->partner_key] = $row;
+		}
+		
+		for($i=0; $i<count($result); $i++)
+		{
+			$result[$i]->arpu = intval(($result[$i]->recharge_account / $result[$i]->valid_account) * 100);
+			$re = $retentionResult[$result[$i]->log_date . '_' . $result[$i]->server_id . '_' . $result[$i]->partner_key];
+			if(!empty($re))
 			{
-				$result[$i]->arpu = intval(($result[$i]->recharge_account / $result[$i]->login_account) * 100);
+				$result[$i]->level_account = $re->level_account;
+				$result[$i]->next_current_login = $re->next_current_login;
+				$result[$i]->third_current_login = $re->third_current_login;
+				$result[$i]->third_current_login_range = $re->third_current_login_range;
+				$result[$i]->seven_current_login = $re->seven_current_login;
+				$result[$i]->seven_current_login_range = $re->seven_current_login_range;
+				$result[$i]->seven_current_login_huge = $re->seven_current_login_huge;
+				$result[$i]->next_retention = $re->next_retention;
+				$result[$i]->third_retention = $re->third_retention;
+				$result[$i]->third_retention_range = $re->third_retention_range;
+				$result[$i]->seven_retention = $re->seven_retention;
+				$result[$i]->seven_retention_range = $re->seven_retention_range;
+				$result[$i]->seven_retention_huge = $re->seven_retention_huge;
+			}
+			else
+			{
+				$result[$i]->level_account = '-';
+				$result[$i]->next_current_login = '-';
+				$result[$i]->third_current_login = '-';
+				$result[$i]->third_current_login_range = '-';
+				$result[$i]->seven_current_login = '-';
+				$result[$i]->seven_current_login_range = '-';
+				$result[$i]->seven_current_login_huge = '-';
+				$result[$i]->next_retention = '-';
+				$result[$i]->third_retention = '-';
+				$result[$i]->third_retention_range = '-';
+				$result[$i]->seven_retention = '-';
+				$result[$i]->seven_retention_range = '-';
+				$result[$i]->seven_retention_huge = '-';
 			}
 		}
 
