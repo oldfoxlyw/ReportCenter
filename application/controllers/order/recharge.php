@@ -40,7 +40,7 @@ class Recharge extends CI_Controller
 		$startTime = $this->input->post('startTime');
 		$endTime = $this->input->post('endTime');
 		
-		if(!empty($serverId) && !empty($startTime))
+		if(!empty($startTime))
 		{
 			$data = array();
 			$data['axis'] = array();
@@ -60,7 +60,14 @@ class Recharge extends CI_Controller
 				$partner = "AND `partner_key`='{$partnerKey}'";
 			}
 			
-			$sql = "SELECT FROM_UNIXTIME(`funds_time`, '%Y-%m-%d') as `date`, SUM(`funds_amount`) as `amount` FROM `funds_checkinout` WHERE `server_id`='{$serverId}' AND `funds_flow_dir`='CHECK_IN' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} {$partner} AND `appstore_status`=0 GROUP BY `date`";
+			if(!empty($serverId))
+			{
+				$sql = "SELECT FROM_UNIXTIME(`funds_time`, '%Y-%m-%d') as `date`, SUM(`funds_amount`) as `amount` FROM `funds_checkinout` WHERE `server_id`='{$serverId}' AND `funds_flow_dir`='CHECK_IN' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} {$partner} AND `appstore_status`=0 GROUP BY `date`";
+			}
+			else
+			{
+				$sql = "SELECT FROM_UNIXTIME(`funds_time`, '%Y-%m-%d') as `date`, SUM(`funds_amount`) as `amount` FROM `funds_checkinout` WHERE `funds_flow_dir`='CHECK_IN' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} {$partner} AND `appstore_status`=0 GROUP BY `date`";
+			}
 			$result = $accountdb->query($sql)->result();
 			
 			foreach($result as $row)
