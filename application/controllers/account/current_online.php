@@ -21,7 +21,14 @@ class Current_online extends CI_Controller
 		{
 			$serverResult[$i]->server_ip = json_decode($serverResult[$i]->server_ip);
 			$serverResult[$i]->server_ip = $serverResult[$i]->server_ip[0];
-			$serverResult[$i]->server_ip = $serverResult[$i]->server_ip->ip . ':' . $serverResult[$i]->server_ip->port;
+			if(intval($serverResult[$i]->account_server_id) >= 103)
+			{
+				$serverResult[$i]->server_ip = $serverResult[$i]->server_ip->ip . ':8090';
+			}
+			else
+			{
+				$serverResult[$i]->server_ip = $serverResult[$i]->server_ip->ip . ':' . $serverResult[$i]->server_ip->port;
+			}
 		}
 		
 		
