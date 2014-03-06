@@ -23,7 +23,7 @@ class Current_online extends CI_Controller
 			$serverResult[$i]->server_ip = $serverResult[$i]->server_ip[0];
 			if(intval($serverResult[$i]->account_server_id) >= 103)
 			{
-				$serverResult[$i]->server_ip = $serverResult[$i]->server_ip->ip . ':8090';
+				$serverResult[$i]->server_ip = $serverResult[$i]->server_ip->ip . ':8089';
 			}
 			else
 			{
