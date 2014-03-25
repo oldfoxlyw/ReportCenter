@@ -39,7 +39,7 @@
                       <!--<th>平均在线时长<a class="th-tips" href="#" data-content="所有玩家总在线市场除以在线玩家总数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>-->
                       <th>流失用户数<a class="th-tips" href="#" data-content="超过一周未登录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>当天订单总额<a class="th-tips" href="#" data-content="当日23:59:59前充值的总金额（元）" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th>充值率<a class="th-tips" href="#" data-content="当日充值人数（去重）与当日活跃人数的比值" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>充值率<a class="th-tips" href="#" data-content="当日充值人数（去重）与当日DAU的比值" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                     </tr>
                   </thead>
                   <tbody>
