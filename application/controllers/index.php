@@ -137,7 +137,7 @@ class Index extends CI_Controller
 		
 		for($i=0; $i<count($result); $i++)
 		{
-			$result[$i]->arpu = intval(($result[$i]->recharge_account / $result[$i]->dau) * 100);
+			$result[$i]->arpu = floatval(number_format($result[$i]->recharge_account / $result[$i]->dau, 4)) * 100;
 			$re = $retentionResult[$result[$i]->log_date . '_' . $result[$i]->server_id . '_' . $result[$i]->partner_key];
 			if(!empty($re))
 			{
