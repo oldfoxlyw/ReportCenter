@@ -123,6 +123,11 @@ class Mconsume extends CI_Model implements ICrud
 		}
 		return false;
 	}
+
+	public function db()
+	{
+		return $this->logdb;
+	}
 }
 
 ?>
