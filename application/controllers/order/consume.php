@@ -36,14 +36,19 @@ class Consume extends CI_Controller
 
 		$serverId = $this->input->post ( 'serverId' );
 		$playerId = $this->input->post ( 'playerId' );
+		$startTime = $this->input->post('startTime');
+		$endTime = $this->input->post('endTime');
+		
+		$startTime = strtotime("{$startTime} 00:00:00");
+		$endTime = strtotime("{$endTime} 23:59:59");
 		
 		if(empty($playerId))
 		{
-			$sql = "SELECT `action_name`, SUM(`spend_special_gold`) as `spend_special_gold` FROM `log_consume` WHERE `server_id`='{$serverId}' GROUP BY `action_name`";
+			$sql = "SELECT `action_name`, SUM(`spend_special_gold`) as `spend_special_gold` FROM `log_consume` WHERE `server_id`='{$serverId}' AND `log_time`>={$startTime} AND `log_time`<={$endTime} GROUP BY `action_name`";
 		}
 		else
 		{
-			$sql = "SELECT `action_name`, SUM(`spend_special_gold`) as `spend_special_gold` FROM `log_consume` WHERE `server_id`='{$serverId}' AND `player_id`={$playerId} GROUP BY `action_name`";
+			$sql = "SELECT `action_name`, SUM(`spend_special_gold`) as `spend_special_gold` FROM `log_consume` WHERE `server_id`='{$serverId}' AND `player_id`={$playerId} AND `log_time`>={$startTime} AND `log_time`<={$endTime} GROUP BY `action_name`";
 		}
 		$result = $this->mconsume->query($sql);
 		if($result !== FALSE)

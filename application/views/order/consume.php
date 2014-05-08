@@ -26,6 +26,26 @@
                     </div>
                 </div>
                 <div class="control-group">
+                    <div class="span6">
+                        <label class="control-label">开始时间(yyyy-mm-dd)</label>
+                        <div class="controls">
+                            <div data-date="<?php echo date('Y-m-d', $current_time - 7 * 86400); ?>" class="input-append date datepicker">
+                                <input type="text" id="startTime" name="startTime" value="<?php echo date('Y-m-d', $current_time - 7 * 86400); ?>"  data-date-format="yyyy-mm-dd" class="span11" >
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <label class="control-label">结束时间(yyyy-mm-dd)</label>
+                        <div class="controls">
+                            <div data-date="<?php echo date('Y-m-d', $current_time - 86400); ?>" class="input-append date datepicker">
+                                <input type="text" id="endTime" name="endTime" value="<?php echo date('Y-m-d', $current_time - 86400); ?>"  data-date-format="yyyy-mm-dd" class="span11" >
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
                     <label class="control-label">玩家GUID</label>
                     <div class="controls">
                     	<input name="playerId" id="playerId" type="text" placeholder="15位数字" />
