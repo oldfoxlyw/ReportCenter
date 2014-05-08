@@ -111,6 +111,7 @@ $(function() {
 		}, onData);
 	});
 	$("select").select2();
+    $('.datepicker').datepicker();
 });
 
 function onData(data) {
