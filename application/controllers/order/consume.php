@@ -30,6 +30,7 @@ class Consume extends CI_Controller
 	
 	public function lists($provider = 'highchart')
 	{
+		error_reporting(E_ALL);
 		$this->load->helper('language');
 		$this->lang->load('consume');
 		$this->load->model('mconsume');
@@ -52,7 +53,6 @@ class Consume extends CI_Controller
 			$sql = "SELECT `action_name`, SUM(`spend_special_gold`) as `spend_special_gold` FROM `log_consume` WHERE `server_id`='{$serverId}' AND `player_id`={$playerId} AND `log_time`>={$startTime} AND `log_time`<={$endTime} GROUP BY `action_name`";
 		}
 		$result = $this->mconsume->db()->query($sql);
-		var_dump($this->mconsume->db()->last_query());
 		if($result !== FALSE)
 		{
 			$axis = array();
