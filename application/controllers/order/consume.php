@@ -30,7 +30,6 @@ class Consume extends CI_Controller
 	
 	public function lists($provider = 'highchart')
 	{
-		error_reporting(E_ALL);
 		$this->load->helper('language');
 		$this->lang->load('consume');
 		$this->load->model('mconsume');
