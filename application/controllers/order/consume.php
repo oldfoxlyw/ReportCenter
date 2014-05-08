@@ -54,6 +54,8 @@ class Consume extends CI_Controller
 		}
 		$result = $this->mconsume->db()->query($sql);
 		$result = $result->result();
+		var_dump($result);
+		exit();
 		if($result !== FALSE)
 		{
 			$axis = array();
