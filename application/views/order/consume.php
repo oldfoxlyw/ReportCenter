@@ -107,6 +107,8 @@ $(function() {
 		$.post("<?php echo site_url('order/consume/lists/highchart'); ?>", {
 			"serverId": $("#serverId").val(),
 			"playerId": $("#playerId").val(),
+			"startTime": $("#startTime").val(),
+			"endTime": $("#endTime").val(),
 			"type": $("#type").val()
 		}, onData);
 	});
