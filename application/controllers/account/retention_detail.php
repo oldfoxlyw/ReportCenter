@@ -44,10 +44,23 @@ class Retention_detail extends CI_Controller
 		if($partnerKey == 'all')
 		{
 			$partnerKey = '';
+
+			$sql = "SELECT `log_date`, `server_id`, SUM(`reg_account`) AS `reg_account`, SUM(`reg_new_account`) AS `reg_new_account`";
+			$sql .= " , SUM(`valid_account`) AS `valid_account`";
+			$sql .= " , SUM(`modify_account`) AS `modify_account` , SUM(`modify_new_account`) AS `modify_new_account`";
+			$sql .= " , SUM(`login_account`) AS `login_account` , SUM(`old_login_account`) AS `old_login_account`";
+			$sql .= " , SUM(`dau`) AS `dau` , SUM(`flowover_account`) AS `flowover_account`";
+			$sql .= " , SUM(`reflow_account`) AS `reflow_account` , SUM(`orders_current_sum`) AS `orders_current_sum`";
+			$sql .= " , SUM(`orders_sum`) AS `orders_sum`";
+			$sql .= " , SUM(`recharge_account`) AS `recharge_account`, SUM(`order_count`) AS `order_count` , AVG(`at`) AS `at`";
+			$sql .= " FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' {$partner} GROUP BY `log_date` ORDER BY `log_date` DESC";
+			$result = $logcachedb->query($sql)->result();
 		}
-		
-		$sql = "SELECT * FROM `log_daily_statistics` WHERE `log_date`>='{$startTime}' AND `log_date`<='{$endTime}' AND `server_id`='{$serverId}' AND `partner_key`='{$partnerKey}' ORDER BY `log_date` DESC";
-		$result = $logcachedb->query($sql)->result();
+		else
+		{
+			$sql = "SELECT * FROM `log_daily_statistics` WHERE `log_date`>='{$startTime}' AND `log_date`<='{$endTime}' AND `server_id`='{$serverId}' AND `partner_key`='{$partnerKey}' ORDER BY `log_date` DESC";
+			$result = $logcachedb->query($sql)->result();
+		}
 		
 		$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$startTime}' AND `log_date`<='{$endTime}' AND `server_id`='{$serverId}' AND `partner_key`='{$partnerKey}' ORDER BY `log_date` DESC";
 		$retention = $logcachedb->query($sql)->result();
