@@ -17,7 +17,7 @@ $permissionArray = explode(',', $admin->permission_list);
     </li>
     <li class="submenu"><a href="#"><i class="icon icon-file"></i><span>用户数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
       <ul>
-        <?php if(in_array('account/register_account', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'account/register_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/register_account'); ?>">服务器注册用户数</a></li><?php endif; ?>
+        <?php if(in_array('account/register_account', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'account/register_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/register_account'); ?>">注册用户总数</a></li><?php endif; ?>
         <?php if(in_array('account/modify_account', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'account/modify_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/modify_account'); ?>">手动注册用户数</a></li><?php endif; ?>
         <?php if(in_array('account/register_new_account', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'account/register_new_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/register_new_account'); ?>">新增注册用户</a></li><?php endif; ?>
         <?php if(in_array('account/modify_new_account', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'account/modify_new_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/modify_new_account'); ?>">新增手动注册用户数</a></li><?php endif; ?>
@@ -33,6 +33,7 @@ $permissionArray = explode(',', $admin->permission_list);
       <ul>
         <?php if(in_array('order/recharge', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/recharge'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/recharge'); ?>">充值总览</a></li><?php endif; ?>
         <?php if(in_array('order/recharge_daily', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/recharge_daily'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/recharge_daily'); ?>">每日充值概况（按不同时间段统计充值总额）</a></li><?php endif; ?>
+        <!--<?php if(in_array('order/recharge_mvp', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/recharge_mvp'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/recharge_mvp'); ?>">优质玩家查询统计</a></li><?php endif; ?>-->
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-heart"></i><span>消费数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
