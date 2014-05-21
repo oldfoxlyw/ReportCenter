@@ -53,7 +53,7 @@ class Retention_detail extends CI_Controller
 			$sql .= " , SUM(`reflow_account`) AS `reflow_account` , SUM(`orders_current_sum`) AS `orders_current_sum`";
 			$sql .= " , SUM(`orders_sum`) AS `orders_sum`";
 			$sql .= " , SUM(`recharge_account`) AS `recharge_account`, SUM(`order_count`) AS `order_count` , AVG(`at`) AS `at`";
-			$sql .= " FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' {$partner} GROUP BY `log_date` ORDER BY `log_date` DESC";
+			$sql .= " FROM `log_daily_statistics` WHERE `log_date`>='{$startTime}' AND `log_date`<='{$endTime}' AND `server_id`='{$serverId}' GROUP BY `log_date` ORDER BY `log_date` DESC";
 			$result = $logcachedb->query($sql)->result();
 		}
 		else
