@@ -40,6 +40,11 @@ class Retention_detail extends CI_Controller
 		$startTime = $this->input->post('startTime');
 		$endTime = $this->input->post('endTime');
 		$partnerKey = $this->input->post('partnerKey');
+
+		if($partnerKey == 'all')
+		{
+			$partnerKey = '';
+		}
 		
 		$sql = "SELECT * FROM `log_daily_statistics` WHERE `log_date`>='{$startTime}' AND `log_date`<='{$endTime}' AND `server_id`='{$serverId}' AND `partner_key`='{$partnerKey}' ORDER BY `log_date` DESC";
 		$result = $logcachedb->query($sql)->result();

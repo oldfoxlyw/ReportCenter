@@ -49,6 +49,7 @@
                         <label class="control-label">选择渠道</label>
                         <div class="controls">
                             <select id="partnerKey" name="partnerKey">
+                                <option value="all">全部</option>
                             <?php foreach($partner_result as $partner): ?>
                                 <option value="<?php echo $partner->partner_key; ?>"><?php echo $partner->partner_key; ?></option>
                             <?php endforeach; ?>
