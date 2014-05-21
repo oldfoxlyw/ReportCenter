@@ -89,7 +89,7 @@
       <div class="span6">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
-            <h5>新注册用户数（包括试玩）曲线</h5>
+            <h5>DAU曲线</h5>
           </div>
           <div class="widget-content">
             <div id="chartRegCount"></div>
@@ -365,8 +365,8 @@ function retrieveChartData(serverId) {
 
 function onData(data) {
 	if(data) {
-		for(var i in data.register_result) {
-			data.register_result[i] = parseInt(data.register_result[i]);
+		for(var i in data.dau_result) {
+			data.dau_result[i] = parseInt(data.dau_result[i]);
 		}
 		for(var i in data.valid_result) {
 			data.valid_result[i] = parseInt(data.valid_result[i]);
@@ -385,7 +385,7 @@ function onData(data) {
 				enabled: false
 			},
 			title: {
-				text: '每日新注册人数曲线'
+				text: 'DAU曲线'
 			},
 			subtitle: {
 				text: '数据来源：数据统计平台'
@@ -399,7 +399,7 @@ function onData(data) {
 			},
 			yAxis: {
 				title: {
-					text: '每日新注册人数'
+					text: 'DAU'
 				},
 				plotLines: [{
 					value: 0,
@@ -419,8 +419,8 @@ function onData(data) {
 			},
 			series: [
 			{
-				name: "注册人数",
-				data: data.register_result
+				name: "DAU",
+				data: data.dau_result
 			}]
 		});
 		

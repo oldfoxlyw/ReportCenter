@@ -56,7 +56,7 @@ class Index extends CI_Controller
 			{
 				array_push($result['axis'], date('Y-m-d', $i));
 			}
-			$sql = "SELECT `log_date`, SUM(`reg_new_account`) as `reg_new_account`, SUM(`level_account`) as `level_account`, SUM(`login_account`) as `login_account` FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' {$partner} GROUP BY `log_date` ORDER BY `log_date` ASC";
+			$sql = "SELECT `log_date`, SUM(`dau`) as `dau`, SUM(`level_account`) as `level_account`, SUM(`login_account`) as `login_account` FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' {$partner} GROUP BY `log_date` ORDER BY `log_date` ASC";
 			$overviewResult = $logcachedb->query($sql)->result();
 			
 			$registerResult = array();
@@ -65,7 +65,7 @@ class Index extends CI_Controller
 			$nextRetentionResult = array();
 			foreach($overviewResult as $row)
 			{
-				array_push($registerResult, $row->reg_new_account);
+				array_push($registerResult, $row->dau);
 				array_push($validResult, $row->level_account);
 				array_push($loginResult, $row->login_account);
 			}
@@ -77,7 +77,7 @@ class Index extends CI_Controller
 				array_push($nextRetentionResult, $row->next_retention);
 			}
 			
-			$result['register_result'] = $registerResult;
+			$result['dau_result'] = $registerResult;
 			$result['valid_result'] = $validResult;
 			$result['login_result'] = $loginResult;
 			$result['next_retention_result'] = $nextRetentionResult;
