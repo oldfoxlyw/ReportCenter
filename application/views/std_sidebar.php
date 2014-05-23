@@ -33,7 +33,7 @@ $permissionArray = explode(',', $admin->permission_list);
       <ul>
         <?php if(in_array('order/recharge', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/recharge'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/recharge'); ?>">充值总览</a></li><?php endif; ?>
         <?php if(in_array('order/recharge_daily', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/recharge_daily'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/recharge_daily'); ?>">每日充值概况（按不同时间段统计充值总额）</a></li><?php endif; ?>
-        <!--<?php if(in_array('order/recharge_mvp', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/recharge_mvp'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/recharge_mvp'); ?>">优质玩家查询统计</a></li><?php endif; ?>-->
+        <?php if(in_array('order/recharge_mvp', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/recharge_mvp'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/recharge_mvp'); ?>">玩家充值总额查询统计</a></li><?php endif; ?>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-heart"></i><span>消费数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
