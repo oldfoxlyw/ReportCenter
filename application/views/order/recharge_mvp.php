@@ -76,11 +76,15 @@
           <div class="widget-title">
             <ul class="nav nav-tabs">
               <li class="active"><a data-toggle="tab" href="#tab1">数据</a></li>
+              <li><a data-toggle="tab" href="#tab2">生成发送礼包的昵称列表</a></li>
             </ul>
           </div>
           <div class="widget-content nopadding tab-content">
             <div id="tab1" class="tab-pane active">
                 <table class="table table-bordered data-table" id="listTable"></table>
+            </div>
+            <div id="tab2" class="tab-pane">
+                
             </div>
           </div>
         </div>
@@ -140,10 +144,15 @@ function onData(data) {
 		"sTitle": "订单总额（元）"
 	}];
 	var aaData = [];
+	var nickname = "";
 	for(var i in json) {
 		var row = [json[i].account_guid, json[i].account_nickname, json[i].server_id, json[i].funds_amount / 100];
 		aaData.push(row);
+
+		nickname += json[i].account_nickname + ",";
 	}
+	nickname = nickname.substring(0, nickname.length - 1);
+	$("#tab2").text(nickname);
 
 	dataTableHandler = $('#listTable').dataTable({
 		"bAutoWidth": false,
