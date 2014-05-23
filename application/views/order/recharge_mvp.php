@@ -84,7 +84,11 @@
                 <table class="table table-bordered data-table" id="listTable"></table>
             </div>
             <div id="tab2" class="tab-pane">
-                
+                <div class="widget-content">
+                    <div class="row-fluid">
+                        <div id="chartRegCount"></div>
+                    </div>
+                </div>
             </div>
           </div>
         </div>
@@ -152,7 +156,7 @@ function onData(data) {
 		nickname += json[i].account_nickname + ",";
 	}
 	nickname = nickname.substring(0, nickname.length - 1);
-	$("#tab2").text(nickname);
+	$("#chartRegCount").text(nickname);
 
 	dataTableHandler = $('#listTable').dataTable({
 		"bAutoWidth": false,
