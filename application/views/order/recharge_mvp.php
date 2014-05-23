@@ -59,15 +59,9 @@
                 <div class="control-group">
                     <label class="control-label">充值总额阀值</label>
                     <div class="controls">
-                    	<input name="rechargeSum" id="rechargeSum" type="text" placeholder="数字" value="2" />
+                    	<input name="rechargeSum" id="rechargeSum" type="text" placeholder="数字" value="" />
                         <span class="help-block">充值总额</span>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">显示帐号列表</label>
-                    <div class="controls">
-                    	<input id="allServer" name="allServer" type="checkbox" value="" /> 是
-                  	</div>
                 </div>
                 <div class="form-actions">
                   <button id="btnSearch" type="button" class="btn btn-success">提交</button>
