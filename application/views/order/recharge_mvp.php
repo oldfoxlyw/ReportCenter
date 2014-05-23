@@ -141,7 +141,7 @@ function onData(data) {
 	}];
 	var aaData = [];
 	for(var i in json) {
-		var row = [json[i].account_guid, json[i].account_nickname, json[i].server_id, json[i].funds_amount];
+		var row = [json[i].account_guid, json[i].account_nickname, json[i].server_id, json[i].funds_amount / 100];
 		aaData.push(row);
 	}
 

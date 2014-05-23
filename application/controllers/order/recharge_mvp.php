@@ -55,7 +55,7 @@ class Recharge_mvp extends CI_Controller
 				$partner = '';
 			}
 			
-			$sql = "SELECT `account_guid`, `account_nickname`, `server_id`, SUM(`funds_amount`) AS `funds_amount` FROM `funds_checkinout` WHERE `funds_flow_dir`='CHECK_IN' AND `appstore_status`=0 AND `server_id`='{$serverId}' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} {$partner} GROUP BY `account_guid` ORDER BY `funds_amount` DESC";
+			$sql = "SELECT `account_guid`, `account_nickname`, `server_id`, SUM(`funds_amount`) AS `funds_amount` FROM `funds_checkinout` WHERE `funds_flow_dir`='CHECK_IN' AND `appstore_status`=0 AND `server_id`='{$serverId}' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} {$partner} GROUP BY `account_guid` HAVING `funds_amount`>={$rechargeSum} ORDER BY `funds_amount` DESC";
 			$result = $accountdb->query($sql)->result();
 			
 			echo $this->return_format->format($result);
