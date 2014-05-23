@@ -37,19 +37,25 @@ class Recharge_mvp extends CI_Controller
 		
 		$serverId = $this->input->post('serverId');
 		$startTime = $this->input->post('startTime');
+		$endTime = $this->input->post('endTime');
 		$partnerKey = $this->input->post('partnerKey');
+		$rechargeSum = $this->input->post('rechargeSum');
 		
-		if(!empty($serverId) && !empty($startTime))
+		if(!empty($startTime) && !empty($endTime) && !empty($serverId))
 		{
 			$startTime = strtotime("{$startTime} 00:00:00");
-			$endTime = $startTime + 86399;
+			$endTime = strtotime("{$endTime} 23:59:59");
 
 			if(!empty($partnerKey))
 			{
 				$partner = "AND `partner_key`='{$partnerKey}'";
 			}
+			else
+			{
+				$partner = '';
+			}
 			
-			$sql = "SELECT FROM_UNIXTIME(`funds_time`, '%k') as `hour`, SUM(`funds_amount`) as `amount` FROM `funds_checkinout` WHERE `server_id`='{$serverId}' AND `funds_flow_dir`='CHECK_IN' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} {$partner} GROUP BY `hour`";
+			$sql = "SELECT `account_guid`, `account_nickname`, `server_id`, SUM(`funds_amount`) AS `funds_amount` FROM `funds_checkinout` WHERE `funds_flow_dir`='CHECK_IN' AND `appstore_status`=0 AND `server_id`='{$serverId}' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} {$partner} GROUP BY `account_guid` ORDER BY `funds_amount` DESC";
 			$result = $accountdb->query($sql)->result();
 			
 			echo $this->return_format->format($result);

@@ -26,11 +26,22 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label">时间(yyyy-mm-dd)</label>
-                    <div class="controls">
-                        <div data-date="<?php echo date('Y-m-d', $current_time); ?>" class="input-append date datepicker">
-                            <input type="text" id="startTime" name="startTime" value="<?php echo date('Y-m-d', $current_time); ?>"  data-date-format="yyyy-mm-dd" >
-                            <span class="add-on"><i class="icon-th"></i></span>
+                    <div class="span6">
+                        <label class="control-label">开始时间(yyyy-mm-dd)</label>
+                        <div class="controls">
+                            <div data-date="<?php echo date('Y-m-d', $current_time - 6 * 86400); ?>" class="input-append date datepicker">
+                                <input type="text" id="startTime" name="startTime" value="<?php echo date('Y-m-d', $current_time - 6 * 86400); ?>"  data-date-format="yyyy-mm-dd" >
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <label class="control-label">结束时间(yyyy-mm-dd)</label>
+                        <div class="controls">
+                            <div data-date="<?php echo date('Y-m-d', $current_time); ?>" class="input-append date datepicker">
+                                <input type="text" id="endTime" name="endTime" value="<?php echo date('Y-m-d', $current_time); ?>"  data-date-format="yyyy-mm-dd" >
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -46,10 +57,10 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label">充值次数阀值</label>
+                    <label class="control-label">充值总额阀值</label>
                     <div class="controls">
-                    	<input name="rechargeCount" id="rechargeCount" type="text" placeholder="数字" value="2" />
-                        <span class="help-block">充值次数</span>
+                    	<input name="rechargeSum" id="rechargeSum" type="text" placeholder="数字" value="2" />
+                        <span class="help-block">充值总额</span>
                     </div>
                 </div>
                 <div class="control-group">
@@ -70,21 +81,12 @@
       <div class="widget-box">
           <div class="widget-title">
             <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#tab1">图表</a></li>
+              <li class="active"><a data-toggle="tab" href="#tab1">数据</a></li>
             </ul>
           </div>
           <div class="widget-content nopadding tab-content">
             <div id="tab1" class="tab-pane active">
-                <div class="widget-content">
-                    <div class="row-fluid">
-                		<table class="table table-bordered data-table" id="listTable"></table>
-                    </div>
-                </div>
-                <div class="widget-content">
-                    <div class="row-fluid">
-                        <div id="chartRegCount"></div>
-                    </div>
-                </div>
+                <table class="table table-bordered data-table" id="listTable"></table>
             </div>
           </div>
         </div>
@@ -108,14 +110,16 @@ var dataTableHandler;
 
 $(function() {
     $('.datepicker').datepicker();
+	$("#rechargeSum").mask("?9999999999");
 	$("#btnSearch").click(function() {
 		if(dataTableHandler) dataTableHandler.fnDestroy();
 		$('#listTable').empty();
 		$.post("<?php echo site_url('order/recharge_mvp/lists/highchart'); ?>", {
 			"serverId": $("#serverId").val(),
 			"startTime": $("#startTime").val(),
+			"endTime": $("#endTime").val(),
 			"partnerKey": $("#partnerKey").val(),
-			"rechargeCount": $("#rechargeCount").val()
+			"rechargeSum": $("#rechargeSum").val()
 		}, onData);
 	});
 	$("select").select2();
@@ -127,72 +131,25 @@ function onData(data) {
 		return;
 	}
 	var json = eval("(" + data + ")");
-	
-	var column = [];
-	var aaData = [];
-	var series = [];
-	
-	column = [
+
+	var column = [
 	{
-		"sTitle": "序号"
+		"sTitle": "GUID"
 	},
 	{
-		"sTitle": "时间段"
+		"sTitle": "昵称"
+	},
+	{
+		"sTitle": "服务器编号"
 	},
 	{
 		"sTitle": "订单总额（元）"
 	}];
-	
-	var series = [];
-	var items = {
-		name: "订单总额（元）",
-		data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	};
-	series.push(items);
-	
-	for(var i = 0; i<24; i++) {
-		var rowData = [i+1, i + "时-" + (i+1) + "时", 0];
-		aaData.push(rowData);
+	var aaData = [];
+	for(var i in json) {
+		var row = [json[i].account_guid, json[i].account_nickname, json[i].server_id, json[i].funds_amount];
+		aaData.push(row);
 	}
-	
-	for(var m in json) {
-		series[0].data[parseInt(json[m].hour)] = parseInt(json[m].amount) / 100;
-		aaData[parseInt(json[m].hour)][2] = parseInt(json[m].amount) / 100;
-	}
-	
-	$('#chartRegCount').highcharts({
-		chart: {
-			type: 'column',
-			height: 500
-		},
-		title: {
-			text: '每日每小时充值总额统计'
-		},
-		subtitle: {
-			text: '数据来源：数据统计平台'
-		},
-		xAxis: {
-			categories: ["0时-1时", "1时-2时", "2时-3时", "3时-4时", "4时-5时", "5时-6时", "6时-7时", "7时-8时", "8时-9时",
-			"9时-10时", "10时-11时", "11时-12时", "12时-13时", "13时-14时", "14时-15时", "15时-16时", "16时-17时", "17时-18时",
-			"18时-19时", "19时-20时", "20时-21时", "21时-22时", "22时-23时", "23时-24时"],
-			title: {
-				text: "时间段"
-			}
-		},
-		yAxis: {
-			min: 0,
-			title: {
-				text: '订单总额（元）'
-			}
-		},
-		tooltip: {
-			valueSuffix: ' 元'
-		},
-		credits: {
-			enabled: false
-		},
-		series: series
-	});
 
 	dataTableHandler = $('#listTable').dataTable({
 		"bAutoWidth": false,
@@ -221,7 +178,6 @@ function onData(data) {
 			}
 		}
 	});
-	
 	$("select").select2();
 }
 </script>
