@@ -118,7 +118,7 @@ class Index extends CI_Controller
 // 		$sql .= " , SUM(`valid_account`) AS `valid_account` , SUM(`level_account`) AS `level_account`";
 		$sql .= " , SUM(`valid_account`) AS `valid_account`";
 		$sql .= " , SUM(`modify_account`) AS `modify_account` , SUM(`modify_new_account`) AS `modify_new_account`";
-		$sql .= " , SUM(`login_account`) AS `login_account` , SUM(`old_login_account`) AS `old_login_account`";
+		$sql .= " , SUM(`login_account`) AS `login_account`";
 		$sql .= " , SUM(`dau`) AS `dau` , SUM(`flowover_account`) AS `flowover_account`";
 		$sql .= " , SUM(`reflow_account`) AS `reflow_account` , SUM(`orders_current_sum`) AS `orders_current_sum`";
 		$sql .= " , SUM(`orders_sum`) AS `orders_sum`";
