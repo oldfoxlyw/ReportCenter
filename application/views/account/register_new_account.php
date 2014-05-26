@@ -117,7 +117,7 @@ $(function() {
 			"startTime": $("#startTime").val(),
 			"endTime": $("#endTime").val(),
 			"partnerKey": $("#partnerKey").val(),
-			"valid": $("#valid").attr('checked') ? $("#valid").val() : "";
+			"valid": $("#valid").attr('checked') ? $("#valid").val() : ""
 		}, onData);
 	});
 });
