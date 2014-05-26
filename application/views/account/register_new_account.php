@@ -49,6 +49,12 @@
                             </select>
                         </div>
                     </div>
+                    <div class="control-group">
+                        <label class="control-label">有效注册数</label>
+                        <div class="controls">
+                            <input type="checkbox" id="valid" name="valid" value="1" /> 是
+                        </div>
+                    </div>
                     <div class="form-actions">
                       <button id="btnSearch" type="button" class="btn btn-success">搜索</button>
                     </div>
@@ -101,7 +107,8 @@ $(function() {
 	$.post("<?php echo site_url('account/register_new_account/lists/highchart'); ?>", {
 		"startTime": $("#startTime").val(),
 		"endTime": $("#endTime").val(),
-		"partnerKey": $("#partnerKey").val()
+		"partnerKey": $("#partnerKey").val(),
+		"valid": $("#valid").attr('checked') ? $("#valid").val() : "";
 	}, onData);
 	
 	$("#btnSearch").click(function() {
