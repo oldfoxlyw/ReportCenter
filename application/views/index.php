@@ -34,7 +34,7 @@
                       <th>时间</th>
                       <th>总注册角色数<a class="th-tips" href="#" data-content="所有已建立角色的帐号数量" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>当天有效登录数<a class="th-tips" href="#" data-content="当日23:59:59前登录的角色总数，同一玩家一天内多次登录仅计算一次" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th>当天注册的角色数<a class="th-tips" href="#" data-content="当日23:59:59前等级大于1级的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>当天注册的有效用户<a class="th-tips" href="#" data-content="当日23:59:59前等级大于1级的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>DAU<a class="th-tips" href="#" data-content="当天有效登录数减去当天注册角色数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>当天订单数<a class="th-tips" href="#" data-content="超过一周未登录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>当天订单总额<a class="th-tips" href="#" data-content="当日23:59:59前充值的总金额（元）" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
@@ -184,7 +184,7 @@ function retrieveTableData(serverId) {
 			{"mData": "log_date", "bSortable": false},
 			{"mData": "valid_account"},
 			{"mData": "login_account_valid"},
-			{"mData": "valid_new_account"},
+			{"mData": "level_account"},
 			{"mData": "dau"},
 /*			{
 				"mData": "at",
