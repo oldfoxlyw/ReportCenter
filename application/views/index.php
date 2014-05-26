@@ -182,7 +182,7 @@ function retrieveTableData(serverId) {
 		"sServerMethod": "POST",
 		"aoColumns": [
 			{"mData": "log_date", "bSortable": false},
-			{"mData": "reg_account"},
+			{"mData": "valid_account"},
 			{"mData": "login_account"},
 			{"mData": "level_account"},
 			{"mData": "dau"},
