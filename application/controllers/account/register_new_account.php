@@ -35,6 +35,7 @@ class Register_new_account extends CI_Controller
 		$startTime = $this->input->post('startTime');
 		$endTime = $this->input->post('endTime');
 		$partnerKey = $this->input->post('partnerKey');
+		$valid = $this->input->post('valid');
 		
 		if(empty($startTime) || empty($endTime))
 		{
@@ -64,7 +65,8 @@ class Register_new_account extends CI_Controller
 			'select'		=>	array(
 				'log_date',
 				'server_name',
-				'reg_new_account'
+				'reg_new_account',
+				'valid_new_account'
 			)
 		);
 		$result = $this->moverview->read($parameter, $extension);
@@ -80,7 +82,14 @@ class Register_new_account extends CI_Controller
 			}
 			if(!empty($data[$row->server_name][$row->log_date]))
 			{
-				$data[$row->server_name][$row->log_date]->reg_new_account += $row->reg_new_account;
+				if(!empty($valid))
+				{
+					$data[$row->server_name][$row->log_date]->reg_new_account += $row->valid_new_account;
+				}
+				else
+				{
+					$data[$row->server_name][$row->log_date]->reg_new_account += $row->reg_new_account;
+				}
 			}
 			else
 			{
