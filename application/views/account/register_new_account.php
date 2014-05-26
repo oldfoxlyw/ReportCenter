@@ -107,8 +107,7 @@ $(function() {
 	$.post("<?php echo site_url('account/register_new_account/lists/highchart'); ?>", {
 		"startTime": $("#startTime").val(),
 		"endTime": $("#endTime").val(),
-		"partnerKey": $("#partnerKey").val(),
-		"valid": $("#valid").attr('checked') ? $("#valid").val() : "";
+		"partnerKey": $("#partnerKey").val()
 	}, onData);
 	
 	$("#btnSearch").click(function() {
@@ -117,7 +116,8 @@ $(function() {
 		$.post("<?php echo site_url('account/register_new_account/lists/highchart'); ?>", {
 			"startTime": $("#startTime").val(),
 			"endTime": $("#endTime").val(),
-			"partnerKey": $("#partnerKey").val()
+			"partnerKey": $("#partnerKey").val(),
+			"valid": $("#valid").attr('checked') ? $("#valid").val() : "";
 		}, onData);
 	});
 });
