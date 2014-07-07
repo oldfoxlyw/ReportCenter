@@ -184,7 +184,7 @@ function retrieveTableData(serverId) {
 		"aoColumns": [
 			{"mData": "log_date", "bSortable": false},
 			{"mData": "valid_account"},
-			{"mData": "login_account_valid"},
+			{"mData": "login_account"},
 			{"mData": "valid_new_account"},
 			//{"mData": "level_account"},
 			{"mData": "dau"},
