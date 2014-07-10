@@ -130,10 +130,13 @@ function onData(data) {
 	},
 	{
 		"sTitle": "订单金额(USD)"
-	}];
+	},
+    {
+        "sTitle": "时间"
+    }];
 	var aaData = [];
 	for(var i in json) {
-		var row = [json[i].account_guid, json[i].account_nickname, json[i].account_level, json[i].funds_amount / 100];
+		var row = [json[i].account_guid, json[i].account_nickname, json[i].account_level, json[i].funds_amount / 100, json[i].funds_time_local];
 		aaData.push(row);
 	}
 
