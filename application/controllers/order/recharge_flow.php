@@ -56,6 +56,24 @@ class Recharge_flow extends CI_Controller
 			echo $this->return_format->format($result);
 		}
 	}
+
+	public function init()
+	{
+		$accountdb = $this->load->database('accountdb', TRUE);
+		$fundsdb = $this->load->database('fundsdb', TRUE);
+		$sql = "select `account_guid` from `funds_checkinout` WHERE `funds_flow_dir`='CHECK_IN' group by `account_guid`";
+		$result = $fundsdb->query($sql)->result();
+
+		foreach($result as $row)
+		{
+			$guid = $row->account_guid;
+			$sql = "select `account_level` from `web_account` where `GUID`={$guid}";
+			$account = $fundsdb->query($sql)->row();
+			$level = $account->account_level;
+			$sql = "update `funds_checkinout` set `account_level`={$level} where `account_guid`={$guid} AND `funds_flow_dir`='CHECK_IN'";
+			$fundsdb->query($sql);
+		}
+	}
 }
 
 ?>
