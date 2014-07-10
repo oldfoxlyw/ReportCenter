@@ -68,7 +68,7 @@ class Recharge_flow extends CI_Controller
 		{
 			$guid = $row->account_guid;
 			$sql = "select `account_level` from `web_account` where `GUID`={$guid}";
-			$account = $fundsdb->query($sql)->row();
+			$account = $accountdb->query($sql)->row();
 			$level = $account->account_level;
 			$sql = "update `funds_checkinout` set `account_level`={$level} where `account_guid`={$guid} AND `funds_flow_dir`='CHECK_IN'";
 			$fundsdb->query($sql);
