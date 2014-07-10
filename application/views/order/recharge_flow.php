@@ -120,7 +120,8 @@ function onData(data) {
 
 	var column = [
 	{
-		"sTitle": "GUID"
+		"sTitle": "GUID",
+        "bSortable": false
 	},
 	{
 		"sTitle": "昵称"
@@ -150,7 +151,7 @@ function onData(data) {
         "aaData": aaData,
         "aoColumns": column,
         "aaSorting": [
-            [ 5, "desc" ]
+            [ 4, "desc" ]
         ],
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
