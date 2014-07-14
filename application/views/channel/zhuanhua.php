@@ -18,13 +18,10 @@
             <table class="table table-bordered data-table" id="listTable">
               <thead>
                 <tr>
-                  <th>GUID</th>
-                  <th>用户名</th>
-                  <th>角色昵称</th>
-                  <th>帐号状态</th>
-                  <th>服务器编号</th>
-                  <th>渠道编号</th>
-                  <th>-</th>
+                  <th>IP</th>
+                  <th>平台</th>
+                  <th>ClickId</th>
+                  <th>时间</th>
                 </tr>
               </thead>
               <tbody>
@@ -47,59 +44,40 @@
 var dataTableHandler;
 
 $(function() {
-    $("#btnSubmit").click(function() {
-		if($("#guid").val() == "" && $("#accountName").val() == "" && $("#nickname").val() == "") {
-			alert("请至少填写一个条件");
-			return false;
-		}
-		if(dataTableHandler) {
-			dataTableHandler.fnDestroy();
-		}
-		$.post("<?php echo site_url('master/account_manage/lists'); ?>", {
-			"serverId": $("#serverId").val(),
-			"guid": $("#guid").val(),
-			"accountName": $("#accountName").val(),
-			"nickname": $("#nickname").val()
-		}, onData);
-	});
-});
-
-function onData(data) {
-	if(!data) {
-		return;
-	}
-	
-	var json = eval("(" + data + ")");
 	dataTableHandler = $('#listTable').dataTable({
 		"bAutoWidth": false,
+		"bFilter": false,
 		"bJQueryUI": true,
 		"bStateSave": true,
 		"sPaginationType": "full_numbers",
 		"sDom": '<"H"lr>t<"F"fp>',
-		"aaData": json,
+		"bProcessing": true,
+		"bServerSide": true,
+		"sAjaxSource": "<?php echo site_url('channel/zhuanhua/lists'); ?>",
+		"sServerMethod": "POST",
 		"aoColumns": [
-			{"mData": "GUID"},
-			{"mData": "account_name"},
-			{"mData": "account_nickname"},
-			{"mData": "account_status"},
-			{"mData": "server_id"},
-			{"mData": "partner_key"},
+			{"mData": "ip"},
 			{
-				"mData": null,
+				"mData": "agent",
 				"fnRender": function(obj) {
-					var freezed = "";
-					if(obj.aData.account_status != '-1') {
-						freezed = "<button class=\"btn btn-info btnFreeze\" href=\"#\">封停</button>";
-					} else {
-						freezed = "<button class=\"btn btn-info btnUnfreeze\" href=\"#\">解封</button>";
+					var sub = "CPU iPhone OS";
+					var index = obj.aData.agent.indexOf(sub);
+					var version = "";
+					if(index > -1)
+					{
+						version = obj.aData.agent.substring(index + sub.length + 1, index + sub.length + 6);
+						return "iPhone, " + version;
 					}
-					return "<div class=\"btn-group\"><button class=\"btn btn-info btnResetPassword\">重置密码</button>" + freezed + "</div>";
-					//return "<div class=\"btn-group\"><button class=\"btn btn-info btnResetPassword\">重置密码</button>" + freezed + "<button url=\"<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "\" class=\"btn btn-info btnDelete\">删除</button></div>";
-					//return "<div class=\"btn-group\"><button onclick=\"location.href='<?php echo site_url('master/account_manage/reset_password') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">重置密码</button><button onclick=\"location.href='<?php echo site_url('master/account_manage/edit') ?>/" + obj.aData.GUID + "'\" class=\"btn btn-info\">编辑</button><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\"><span class=\"caret\"></span></button><ul class=\"dropdown-menu\">" + freezed + "<li class=\"divider\"></li><li><a href=\"<?php echo site_url('master/account_manage/delete') ?>/" + obj.aData.GUID + "\">删除</a></li></ul></div>";
+					else
+					{
+						return "Other";
+					}
 				}
-			}
+			},
+			{"mData": "clickid"},
+			{"mData": "time"}
 		],
-		"oLanguage": {
+		"oLanguage": {  
 			"sProcessing":   "处理中...",
 			"sLengthMenu":   "显示 _MENU_ 项结果",
 			"sZeroRecords":  "没有匹配结果",
@@ -117,5 +95,5 @@ function onData(data) {
 			}
 		}
 	});
-}
+});
 </script>

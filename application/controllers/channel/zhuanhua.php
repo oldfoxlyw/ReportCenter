@@ -28,28 +28,28 @@ class Zhuanhua extends CI_Controller
 	
 	public function lists($provider = 'highchart')
 	{
-		$this->load->helper('language');
-		$this->lang->load('job');
 		$this->load->model('utils/return_format');
-		$accountdb = $this->load->database('accountdb', TRUE);
+		$channeldb = $this->load->database('channeldb', TRUE);
 		
-		$serverId = $this->input->post('server_id');
-		if(!empty($serverId))
-		{
-			$sql = "SELECT `account_job`, count(*) as `count` FROM `web_account` WHERE `server_id`='{$serverId}' GROUP BY `account_job`";
-		}
-		else
-		{
-			$sql = "SELECT `account_job`, count(*) as `count` FROM `web_account` GROUP BY `account_job`";
-		}
-		$result = $accountdb->query($sql)->result_array();
-		for($i=0; $i<count($result); $i++)
-		{
-			$result[$i]['account_job'] = lang('behavior_job_' . $result[$i]['account_job']);
-			$result[$i] = array_values($result[$i]);
-		}
+		$sEcho = $this->input->get_post('sEcho');
+		$offset = $this->input->get_post('iDisplayStart');
+		$limit = $this->input->get_post('iDisplayLength');
+		$keyword = $this->input->get_post('sSearch');
+
+		$limit = $limit < 0 ? 25 : $limit;
+		$count = $channeldb->count_all_results('click_table');
+
+		$result = $channeldb->query("select * from click_table order by time desc limit {$limit} offset {$offset}");
+		$result = $result->result();
+
+		$data = array(
+				'sEcho'						=>	$sEcho,
+				'iTotalRecords'				=>	$count,
+				'iTotalDisplayRecords'		=>	$count,
+				'aaData'					=>	$result
+		);
 		
-		echo $this->return_format->format($result);
+		echo $this->return_format->format($data);
 	}
 }
 
