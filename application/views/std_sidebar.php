@@ -51,6 +51,11 @@ $permissionArray = explode(',', $admin->permission_list);
         <?php if(in_array('behavior/progress', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'behavior/progress'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('behavior/progress'); ?>">角色游戏进度</a></li><?php endif; ?>
       </ul>
     </li>
+    <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>渠道数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
+      <ul>
+        <?php if(in_array('channel/zhuanhua', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'channel/zhuanhua'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('channel/zhuanhua'); ?>">第三方渠道转化效果</a></li><?php endif; ?>
+      </ul>
+    </li>
     <!--
     <li class="content"> <span>Monthly Bandwidth Transfer</span>
       <div class="progress progress-mini progress-danger active progress-striped">
