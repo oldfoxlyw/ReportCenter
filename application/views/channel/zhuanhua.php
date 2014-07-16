@@ -128,7 +128,7 @@ $(function() {
 		"sDom": '<"H"lr>t<"F"fp>',
 		"bProcessing": true,
 		"bServerSide": true,
-		"sAjaxSource": "<?php echo site_url('channel/zhuanhua/zhuanhua'); ?>",
+		"sAjaxSource": "<?php echo site_url('channel/zhuanhua/zhuanhua_list'); ?>",
 		"sServerMethod": "POST",
 		"aoColumns": [
 			{"mData": "ip"},

@@ -52,7 +52,7 @@ class Zhuanhua extends CI_Controller
 		echo $this->return_format->format($data);
 	}
 
-	public function zhuanhua()
+	public function zhuanhua_list()
 	{
 		$this->load->model('utils/return_format');
 		$channeldb = $this->load->database('channeldb', TRUE);
