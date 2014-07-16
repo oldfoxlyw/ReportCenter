@@ -65,7 +65,7 @@ class Zhuanhua extends CI_Controller
 		$limit = $limit < 0 ? 25 : $limit;
 		$count = $channeldb->count_all_results('valid_click');
 
-		$result = $channeldb->query("select * from valid_click order by date desc limit {$limit} offset {$offset}");
+		$result = $channeldb->query("select * from valid_click group by ip order by date desc limit {$limit} offset {$offset}");
 		$result = $result->result();
 
 		$data = array(
