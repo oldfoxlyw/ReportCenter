@@ -77,6 +77,21 @@ class Zhuanhua extends CI_Controller
 		
 		echo $this->return_format->format($data);
 	}
+
+	public function get_count()
+	{
+		$this->load->model('utils/return_format');
+		$channeldb = $this->load->database('channeldb', TRUE);
+		$click_count = $channeldb->count_all_results('click_table');
+		$valid_click_count = $channeldb->count_all_results('valid_click');
+
+		$data = array(
+			'click_count'		=>	$click_count,
+			'valid_click_count'	=>	$valid_click_count
+		);
+		
+		echo $this->return_format->format($data);
+	}
 }
 
 ?>

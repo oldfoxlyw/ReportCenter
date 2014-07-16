@@ -12,7 +12,7 @@
     <div class="row-fluid">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>广告点击列表</h5>
+            <h5>广告点击列表，总数 <span id="click_count"></span></h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table" id="listTable">
@@ -36,7 +36,7 @@
     <div class="row-fluid">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>转化列表</h5>
+            <h5>转化列表，总数 <span id="valid_click_count"></span></h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table" id="zhuanhuaTable">
@@ -67,7 +67,15 @@ var dataTableHandler;
 var zhuanhuaTableHandler;
 
 $(function() {
+	$.post("<?php echo site_url('channel/zhuanhua/get_count'); ?>", {}, function(data) {
+		if(data) {
+			var json = eval("(" + data + ")");
+			$("#click_count").text(json.click_count);
+			$("#valid_click_count").text(json.valid_click_count);
+		}
+	});
 	dataTableHandler = $('#listTable').dataTable({
+		"bInfo": true,
 		"bAutoWidth": false,
 		"bFilter": false,
 		"bJQueryUI": true,
