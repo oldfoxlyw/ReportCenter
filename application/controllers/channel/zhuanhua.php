@@ -63,8 +63,8 @@ class Zhuanhua extends CI_Controller
 		$keyword = $this->input->get_post('sSearch');
 
 		$limit = $limit < 0 ? 25 : $limit;
-		$result = $channeldb->query("select count(*) as `count` from valid_click group by ip")->row();
-		$count = $result->count;
+		$result = $channeldb->query("select count(*) as `count` from valid_click group by ip")->result();
+		$count = count($result);
 
 		$result = $channeldb->query("select * from valid_click group by ip order by date desc limit {$limit} offset {$offset}");
 		$result = $result->result();
@@ -84,8 +84,8 @@ class Zhuanhua extends CI_Controller
 		$this->load->model('utils/return_format');
 		$channeldb = $this->load->database('channeldb', TRUE);
 		$click_count = $channeldb->count_all_results('click_table');
-		$result = $channeldb->query("select count(*) as `count` from valid_click group by ip")->row();
-		$valid_click_count = $result->count;
+		$result = $channeldb->query("select count(*) as `count` from valid_click group by ip")->result();
+		$valid_click_count = count($result);
 
 		$data = array(
 			'click_count'		=>	$click_count,
