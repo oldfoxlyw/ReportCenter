@@ -39,7 +39,8 @@ class Equipment_detail extends CI_Controller
 		{
 			$startTime = strtotime("{$startTime} 00:00:00");
 			$endTime = strtotime("{$endTime} 23:59:59");
-			$sql = "SELECT FROM_UNIXTIME(`log_time`, '%Y-%m-%d') as `date`, count(*) as `count`  FROM `log_consume` WHERE `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' AND `action_name`='buy_equipment' AND `item_name`='{$equipmentName}' AND `log_time`>={$startTime} AND `log_time`<={$endTime} GROUP BY `date`";
+			// $sql = "SELECT FROM_UNIXTIME(`log_time`, '%Y-%m-%d') as `date`, count(*) as `count`  FROM `log_consume` WHERE `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' AND `action_name`='buy_equipment' AND `item_name`='{$equipmentName}' AND `log_time`>={$startTime} AND `log_time`<={$endTime} GROUP BY `date`";
+			$sql = "SELECT FROM_UNIXTIME(`log_time`, '%Y-%m-%d') as `date`, count(*) as `count`  FROM `log_consume` WHERE `server_id`='{$serverId}' AND `action_name`='buy_equipment' AND `item_name`='{$equipmentName}' AND `log_time`>={$startTime} AND `log_time`<={$endTime} GROUP BY `date`";
 			$result = $this->mconsume->query($sql);
 
 			$data = array();

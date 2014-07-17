@@ -40,7 +40,7 @@ class Buy_equipment extends CI_Controller
 		$parameter = array (
 			'server_id' => $serverId,
 			'date' => $logDate,
-			'partner_key' => $this->user->user_fromwhere 
+			// 'partner_key' => $this->user->user_fromwhere 
 		);
 		$result = $this->mbuyequipment->read ( $parameter );
 		

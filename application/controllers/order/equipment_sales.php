@@ -40,7 +40,8 @@ class Equipment_sales extends CI_Controller
 			$startTime = strtotime("{$startTime} 00:00:00");
 			$endTime = strtotime("{$endTime} 23:59:59");
 			
-			$sql = "SELECT `item_level`, count(*) as `count`  FROM `log_consume` WHERE `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' AND `action_name`='buy_equipment' AND `log_time`>={$startTime} AND `log_time`<={$endTime} GROUP BY `item_level`";
+			// $sql = "SELECT `item_level`, count(*) as `count`  FROM `log_consume` WHERE `server_id`='{$serverId}' AND `partner_key`='{$this->user->user_fromwhere}' AND `action_name`='buy_equipment' AND `log_time`>={$startTime} AND `log_time`<={$endTime} GROUP BY `item_level`";
+			$sql = "SELECT `item_level`, count(*) as `count`  FROM `log_consume` WHERE `server_id`='{$serverId}' AND `action_name`='buy_equipment' AND `log_time`>={$startTime} AND `log_time`<={$endTime} GROUP BY `item_level`";
 			$result = $this->mconsume->query($sql);
 			
 			$levelData = array();
