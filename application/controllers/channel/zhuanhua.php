@@ -15,13 +15,10 @@ class Zhuanhua extends CI_Controller
 	
 	public function index()
 	{
-		$this->load->model('mserver');
-		
-		$serverResult = $this->mserver->read();
 		$data = array(
 			'admin'			=>	$this->user,
-			'page_name'	=>	$this->pageName,
-			'server'			=>	$serverResult
+			'page_name'		=>	$this->pageName,
+			'current_time'	=>	time()
 		);
 		$this->render->render($this->pageName, $data);
 	}
@@ -124,10 +121,30 @@ class Zhuanhua extends CI_Controller
 	public function get_count()
 	{
 		$this->load->model('utils/return_format');
+
+		$starttime = $this->input->get_post('starttime');
+		$endtime = $this->input->get_post('endtime');
+
 		$channeldb = $this->load->database('channeldb', TRUE);
+		if(!empty($starttime))
+		{
+			$channeldb->where('time >=', "{$starttime} 00:00:00");
+		}
+		if(!empty($endtime))
+		{
+			$channeldb->where('time <=', "{$endtime} 23:59:59");
+		}
 		$click_count = $channeldb->count_all_results('click_table');
-		$result = $channeldb->query("select count(*) as `count` from valid_click group by ip")->result();
-		$valid_click_count = count($result);
+
+		if(!empty($starttime))
+		{
+			$channeldb->where('date >=', $starttime);
+		}
+		if(!empty($endtime))
+		{
+			$channeldb->where('date <=', $endtime);
+		}
+		$valid_click_count = $channeldb->count_all_results('valid_click');
 
 		$data = array(
 			'click_count'		=>	$click_count,
