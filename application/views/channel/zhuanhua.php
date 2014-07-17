@@ -86,6 +86,9 @@ $(function() {
 		"bServerSide": true,
 		"sAjaxSource": "<?php echo site_url('channel/zhuanhua/lists'); ?>",
 		"sServerMethod": "POST",
+		"fnServerData": function(sSource, aoData, fnCallback) {
+			$.post(sSource, aoData, fnCallback);
+		},
 		"aoColumns": [
 			{"mData": "ip"},
 			{
