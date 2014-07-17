@@ -56,7 +56,7 @@ class Equipment_detail extends CI_Controller
 			{
 				foreach($result as $row)
 				{
-					$data['data'][$row->date] = intval($row->count);
+					$data['data'][$row->date] += intval($row->count);
 				}
 			}
 			$data['data'] = array_values($data['data']);

@@ -60,7 +60,7 @@ class Equipment_sales extends CI_Controller
 				{
 					if($row->item_level != '0')
 					{
-						$levelData['data'][intval($row->item_level)] = intval($row->count);
+						$levelData['data'][intval($row->item_level)] += intval($row->count);
 					}
 				}
 			}
