@@ -48,34 +48,37 @@ class Buy_equipment extends CI_Controller
 		
 		if ($result !== FALSE)
 		{
-			$result = $result [0];
-			$detail = json_decode ( $result->level_detail );
-			if (empty ( $itemType ))
+			foreach ($result as $row)
 			{
-				foreach ( $detail as $key => $value )
+				// $row = $result [0];
+				$detail = json_decode ( $row->level_detail );
+				if (empty ( $itemType ))
 				{
-					if(!empty($value))
+					foreach ( $detail as $key => $value )
 					{
-						$value = explode ( ',', $value );
-						foreach ( $value as $row )
+						if(!empty($value))
 						{
-							$row = explode ( ':', $row );
-							$parameter [$key] [$row [0]] = $row [1];
+							$value = explode ( ',', $value );
+							foreach ( $value as $row )
+							{
+								$row = explode ( ':', $row );
+								$parameter [$key] [$row [0]] += $row [1];
+							}
+						}
+						else
+						{
+							$parameter [$key] = "";
 						}
 					}
-					else
-					{
-						$parameter [$key] = "";
-					}
-				}
-			} else
-			{
-				$detail = $detail->{$itemType};
-				$detail = explode ( ',', $detail );
-				foreach ( $detail as $row )
+				} else
 				{
-					$row = explode ( ':', $row );
-					$parameter ["{$itemType}"] [$row [0]] = $row [1];
+					$detail = $detail->{$itemType};
+					$detail = explode ( ',', $detail );
+					foreach ( $detail as $row )
+					{
+						$row = explode ( ':', $row );
+						$parameter ["{$itemType}"] [$row [0]] += $row [1];
+					}
 				}
 			}
 		} else
