@@ -50,7 +50,7 @@ class Recharge_flow extends CI_Controller
 				$l = "limit {$limit}";
 			}
 			
-			$sql = "SELECT `account_guid`, `account_nickname`, `account_level`, `funds_amount`, FROM_UNIXTIME(`funds_time`, '%Y-%m-%d') FROM `funds_checkinout` WHERE `funds_flow_dir`='CHECK_IN' AND `appstore_status`=0 AND `server_id`='{$serverId}' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} ORDER BY `funds_id` DESC {$l}";
+			$sql = "SELECT `account_guid`, `account_nickname`, `account_level`, `funds_amount`, FROM_UNIXTIME(`funds_time`, '%Y-%m-%d') as `funds_time_local` FROM `funds_checkinout` WHERE `funds_flow_dir`='CHECK_IN' AND `appstore_status`=0 AND `server_id`='{$serverId}' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} ORDER BY `funds_id` DESC {$l}";
 			$result = $fundsdb->query($sql)->result();
 			
 			echo $this->return_format->format($result);
