@@ -23,3 +23,6 @@ $lang['consume_get_dungeon_card_reward_exchange_gold'] = '绿钻兑换金币（�
 $lang['consume_magic_enchant_equipment_exchange_gold'] = '绿钻兑换金币（附魔）';
 $lang['consume_recruit_ally_exchange_gold'] = '绿钻兑换金币（招募盟友）';
 $lang['consume_recruit_retinue_exchange_gold'] = '绿钻兑换金币（购买随从翻卡）';
+$lang['consume_get_buy_activity_reward'] = '购买类型的活动';
+$lang['consume_strengthen_retinue'] = '随从练体';
+$lang['consume_buy_pvp_times'] = '购买PVP次数';
