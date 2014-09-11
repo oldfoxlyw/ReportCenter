@@ -150,7 +150,7 @@ function onData(data) {
 	var aaData = [];
 	var nickname = "";
 	for(var i in json) {
-		var row = [json[i].account_guid, json[i].account_nickname, json[i].server_id, json[i].funds_item_amount];
+		var row = [json[i].account_guid, json[i].account_nickname, json[i].server_id, -json[i].funds_item_amount];
 		aaData.push(row);
 
 		nickname += json[i].account_nickname + ",";
