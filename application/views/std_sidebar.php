@@ -42,6 +42,7 @@ $permissionArray = explode(',', $admin->permission_list);
         <?php if(in_array('order/consume', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/consume'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/consume'); ?>">消费总体统计</a></li><?php endif; ?>
         <?php if(in_array('order/buy_equipment', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/buy_equipment'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/buy_equipment'); ?>">购买装备消费统计</a></li><?php endif; ?>
         <?php if(in_array('order/equipment_sales', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/equipment_sales'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/equipment_sales'); ?>">装备销量统计</a></li><?php endif; ?>
+        <?php if(in_array('order/consume_mvp', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/consume_mvp'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/consume_mvp'); ?>">玩家消耗绿钻总额查询</a></li><?php endif; ?>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>游戏行为监控</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
