@@ -74,7 +74,7 @@
             </ul>
           </div>
           <div class="widget-content nopadding tab-content">
-          	<div class="row-fluid">总计金额：<span id="amount" class="badge badge-important"></span></div>
+          	<div class="row-fluid" style="padding-left:10px;">总计金额：<span id="amount" class="badge badge-important"></span></div>
             <div id="tab1" class="tab-pane active">
                 <div class="widget-content">
                     <div class="row-fluid">
