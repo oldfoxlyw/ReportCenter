@@ -74,6 +74,7 @@
             </ul>
           </div>
           <div class="widget-content nopadding tab-content">
+          	<p>总计金额：<span id="amount" class="badge badge-important"></span></p>
             <div id="tab1" class="tab-pane active">
                 <div class="widget-content">
                     <div class="row-fluid">
@@ -141,6 +142,7 @@ function onData(data) {
 		"sTitle": "订单总额（元）"
 	}];
 	
+	var sum = 0;
 	var series = [];
 	var items = {
 		name: "订单总额（元）",
@@ -159,7 +161,10 @@ function onData(data) {
 	for(var m in json.result) {
 		series[0].data[json.axis.indexOf(json.result[m].date)] = parseInt(json.result[m].amount) / 100;
 		aaData[json.axis.indexOf(json.result[m].date)][2] = parseInt(json.result[m].amount) / 100;
+		sum += (parseInt(json.result[m].amount) / 100);
 	}
+
+	$("#amount").text(sum);
 	
 	$('#chartRegCount').highcharts({
 		chart: {
