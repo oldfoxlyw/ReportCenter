@@ -153,8 +153,8 @@ function onData(data) {
 		}
 		aaData.push(rowData);
 	}
-	aaData.push(["总计消耗金币", totalGold]);
-	aaData.push(["总计消耗绿钻", totalSpecial]);
+	aaData.push(["总计消耗金币", totalGold, '', '', '', '']);
+	aaData.push(["总计消耗绿钻", '', totalSpecial, '', '', '']);
 	dataTableHandler = $('#listTable').dataTable({
 		"bAutoWidth": false,
 		"bJQueryUI": true,
