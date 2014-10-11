@@ -164,7 +164,9 @@ function onData(data) {
 		"sDom": '<"H"lr>t<"F"fp>',
         "aaData": aaData,
         "aoColumns": column,
-        "aaSorting": [[5, 'desc']],
+        "aaSorting": [
+        	[4, 'desc']
+        ],
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
 			"sLengthMenu":   "显示 _MENU_ 项结果",
