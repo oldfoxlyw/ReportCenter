@@ -144,7 +144,7 @@ function onData(data) {
 			var spendSpecial = parseInt(json.data[i].spend_special_gold);
 			var spendGold = parseInt(json.data[i].spend_gold);
 			rowData.push(spendGold);
-			rowData.push(totalSpecial);
+			rowData.push(spendSpecial);
 			rowData.push(json.data[i].item_name);
 			rowData.push(json.data[i].item_level);
 			rowData.push(json.data[i].log_time);
