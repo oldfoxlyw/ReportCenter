@@ -165,7 +165,7 @@ function onData(data) {
         "aaData": aaData,
         "aoColumns": column,
         "aaSorting": [
-        	[3, 'desc']
+        	[4, 'desc']
         ],
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
