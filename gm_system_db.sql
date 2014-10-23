@@ -19,6 +19,7 @@ SET time_zone = "+00:00";
 --
 -- 数据库: `gm_system_db`
 --
+DROP DATABASE IF EXISTS `gm_system_db`;
 CREATE DATABASE IF NOT EXISTS `gm_system_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `gm_system_db`;
 
