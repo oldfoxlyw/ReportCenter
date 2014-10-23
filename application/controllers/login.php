@@ -57,7 +57,7 @@ class Login extends CI_Controller
 			{
 				$row = $result[0];
 				$cookie = array(
-						'admin_id'			=>		$row->GUID,
+						'admin_id'			=>		$row->guid,
 						'admin_name'		=>		$accountName,
 						'user_founder'		=>		$row->user_founder
 				);

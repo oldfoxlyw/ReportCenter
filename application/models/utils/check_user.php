@@ -6,32 +6,51 @@ class Check_user extends CI_Model {
 	private $user = null;
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('madmin');
 	}
 	
-	public function validate($redirect = true) {
+	public function validate($redirect = true)
+	{
 		$this->load->helper('security');
 		$this->load->helper('cookie');
 		$redirectUrl = 'login?redirect=' . urlencode($this->input->server('REQUEST_URI'));
 		$cookieName = $this->config->item('cookie_prefix') . 'admin';
-		if(!$this->input->cookie($cookieName, TRUE)) {
+		if(!$this->input->cookie($cookieName, TRUE))
+		{
 
 			if($redirect)
 				showMessage(MESSAGE_TYPE_ERROR, 'USER_CHECK_EXPIRED', '', $redirectUrl, true, 5);
 			
-		} else {
+		}
+		else
+		{
 			$cookie = $this->input->cookie($cookieName, TRUE);
 			$cookie = _authcode($cookie);
 			$json = json_decode($cookie);
 			$id = $json->admin_id;
 			$parameter = array(
-				'GUID'	=>	$id
+				'guid'	=>	$id
 			);
+
+			$this->load->model('madmin');
 			$result = $this->madmin->read($parameter);
-			if($result != FALSE) {
+			if($result != FALSE)
+			{
 				$this->user = $result[0];
+
+				$parameter = array(
+						'permission_level'	=>	$this->user->permission_level
+				);
+				$this->load->model('mpermission');
+				$this->load->helper('object');
+				$permissionResult = $this->mpermission->read($parameter);
+				if(!empty($permissionResult))
+				{
+					$this->user = merge_object($permissionResult[0], $this->user);
+				}
 				return $this->user;
-			} else {
+			}
+			else
+			{
 				$this->resetCookie();
 				if($redirect)
 				{
@@ -64,7 +83,7 @@ class Check_user extends CI_Model {
 			'name'		=> 'admin',
 			'domain'	=> $this->config->item('cookie_domain'),
 			'path'		=> $this->config->item('cookie_path'),
-			'prefix'		=> $this->config->item('cookie_prefix')
+			'prefix'	=> $this->config->item('cookie_prefix')
 		);
 		delete_cookie($cookie);
 	}
