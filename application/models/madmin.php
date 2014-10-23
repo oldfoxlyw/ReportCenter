@@ -4,7 +4,7 @@ require_once('ICrud.php');
 
 class Madmin extends CI_Model implements ICrud
 {
-	private $table = 'system_user';
+	private $table = 'report_user';
 	private $admindb = null;
 	
 	public function __construct()

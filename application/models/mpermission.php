@@ -4,7 +4,7 @@ require_once('ICrud.php');
 
 class Mpermission extends CI_Model implements ICrud
 {
-	private $accountTable = 'system_permission';
+	private $accountTable = 'report_permission';
 	private $admindb = null;
 	
 	public function __construct()

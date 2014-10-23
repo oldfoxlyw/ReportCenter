@@ -36,7 +36,7 @@ class Administrators extends CI_Controller
 		if($this->user->user_founder != '1')
 		{
 			$parameter = array(
-				'user_permission <='	=>	$this->user->user_permission,
+				'permission_level <='	=>	$this->user->permission_level,
 				'user_founder !='		=>	1
 			);
 		}
@@ -45,7 +45,7 @@ class Administrators extends CI_Controller
 		if(!empty($keyword))
 		{
 			$like = array(
-				array('GUID', $keyword),
+				array('guid', $keyword),
 				array('user_name', $keyword),
 				array('permission_name', $keyword)
 			);
@@ -54,10 +54,10 @@ class Administrators extends CI_Controller
 		$count = $this->madmin->count($parameter);
 		$result = $this->madmin->read($parameter, $extension, $limit, $offset);
 		$data = array(
-			'sEcho'							=>	$sEcho,
-			'iTotalRecords'				=>	$count,
+			'sEcho'					=>	$sEcho,
+			'iTotalRecords'			=>	$count,
 			'iTotalDisplayRecords'	=>	$count,
-			'aaData'						=>	$result
+			'aaData'				=>	$result
 		);
 		
 		echo $this->return_format->format($data);
@@ -72,7 +72,7 @@ class Administrators extends CI_Controller
 		$permissions = $this->mpermission->read();
 		
 		$data = array(
-			'admin'					=>	$this->user,
+			'admin'				=>	$this->user,
 			'page_name'			=>	$this->pageName,
 			'permissions'		=>	$permissions
 		);
@@ -86,13 +86,13 @@ class Administrators extends CI_Controller
 			$this->pageName = 'administrators_add';
 
 			$result = $this->madmin->read(array(
-				'GUID'		=>	$adminId
+					'guid'		=>	$adminId
 			));
 			if($result !== FALSE)
 			{
 				$result = $result[0];
 			
-				if($this->user->user_founder != '1' && $this->user->user_permission <= $result->user_permission)
+				if($this->user->user_founder != '1' && $this->user->permission_level < $result->permission_level)
 				{
 					showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
 				}
@@ -126,19 +126,19 @@ class Administrators extends CI_Controller
 		if(!empty($adminId))
 		{
 			$result = $this->madmin->read(array(
-				'GUID'		=>	$adminId
+				'guid'		=>	$adminId
 			));
 			if(!empty($result))
 			{
 				$row = $result[0];
-				if($this->user->user_founder != '1' && $this->user->user_permission <= $row->user_permission)
+				if($this->user->user_founder != '1' && $this->user->permission_level < $row->permission_level)
 				{
 					showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
 				}
 				$this->load->model('madmin');
 				
 				$result = $this->madmin->read(array(
-					'GUID'		=>	$adminId
+					'guid'		=>	$adminId
 				));
 				if(!empty($result))
 				{
@@ -148,6 +148,9 @@ class Administrators extends CI_Controller
 					}
 				}
 				$this->madmin->delete($adminId);
+				
+				$this->load->model('mlog');
+				$this->mlog->writeLog($this->user, 'administrators/delete');
 				redirect('administrators');
 			}
 			else
@@ -164,7 +167,6 @@ class Administrators extends CI_Controller
 	public function submit()
 	{
 		$this->load->model('madmin');
-		$this->load->model('mpartner');
 		$this->load->helper('security');
 		
 		$edit = $this->input->post('edit');
@@ -175,20 +177,26 @@ class Administrators extends CI_Controller
 		$partnerKey = $this->input->post('partnerKey');
 		
 		$partnerKey = empty($partnerKey) ? 'default' : $partnerKey;
+		$userPermission = empty($userPermission) ? 0 : intval($userPermission);
 		
-		$partnerResult = $this->mpartner->read(array(
-			'partner_key'		=>	$partnerKey
-		));
-		if(empty($partnerResult))
+		if(!empty($edit) && !empty($adminId))
 		{
-			$this->mpartner->create(array(
-				'partner_key'		=>	$partnerKey
+			$result = $this->madmin->read(array(
+					'guid'		=>	$adminId
 			));
-		}
+			if(!empty($result))
+			{
+				$result = $result[0];
 
-		if($this->user->user_founder != '1' && $this->user->GUID != $adminId)
-		{
-			showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
+				if($this->user->user_founder != '1' && $this->user->permission_level < $row->permission_level)
+				{
+					showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'administrators', true, 5);
+				}
+			}
+			else
+			{
+				showMessage(MESSAGE_TYPE_ERROR, 'ADMIN_NOT_EXIST', '', 'administrators', true, 5);
+			}
 		}
 		
 		if(empty($adminAccount) || (empty($edit) && empty($adminPass)))
@@ -196,26 +204,42 @@ class Administrators extends CI_Controller
 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'administrators', true, 5);
 		}
 		
-		$row = array(
-			'user_name'			=>	$adminAccount,
-			'user_permission'	=>	$userPermission,
-			'user_fromwhere'	=>	$partnerKey
-		);
-		
-		if(!empty($edit))
+		$this->load->model('mpermission');
+		$permission = $this->mpermission->read(array(
+				'permission_level'	=>	$userPermission
+		));
+		if(!empty($permission))
 		{
-			if(!empty($adminPass))
+			$permission = $permission[0];
+			
+			$row = array(
+				'user_name'			=>	$adminAccount,
+				'permission_level'	=>	$userPermission,
+				'permission_name'	=>	$permission->permission_name,
+				'user_fromwhere'	=>	$partnerKey
+			);
+			
+			if(!empty($edit))
+			{
+				if(!empty($adminPass))
+				{
+					$row['user_pass'] = encrypt_pass($adminPass);
+				}
+				$this->madmin->update($adminId, $row);
+				
+				$this->load->model('mlog');
+				$this->mlog->writeLog($this->user, 'administrators/submit/edit');
+			}
+			else
 			{
 				$row['user_pass'] = encrypt_pass($adminPass);
+				$this->madmin->create($row);
+				
+				$this->load->model('mlog');
+				$this->mlog->writeLog($this->user, 'administrators/submit/add');
 			}
-			$this->madmin->update($adminId, $row);
+			redirect('administrators');
 		}
-		else
-		{
-			$row['user_pass'] = encrypt_pass($adminPass);
-			$this->madmin->create($row);
-		}
-		redirect('administrators');
 	}
 }
 
