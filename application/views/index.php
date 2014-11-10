@@ -11,14 +11,59 @@
 
 <!--Action boxes-->
   <div class="container-fluid">
-  	<div class="row-fluid">
-    	<div class="span4">
-        <strong>选择服务器</strong>
-    	<select id="serverSelect" name="serverSelect">
-			<?php for($i=0; $i<count($server); $i++): ?>
-            <option value="<?php echo $server[$i]->account_server_id; ?>"><?php echo $server[$i]->server_name ?></option>
-            <?php endfor; ?>
-        </select>
+    <div class="row-fluid">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>搜索</h5>
+          </div>
+          <div class="widget-content nopadding">
+              <form action="" method="post" class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label">选择服务器</label>
+                    <div class="controls">
+                        <select id="serverId" name="serverId">
+                        <?php foreach($server_result as $server): ?>
+                            <option value="<?php echo $server->account_server_id; ?>"><?php echo $server->server_name; ?></option>
+                        <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="span6">
+                        <label class="control-label">开始时间(yyyy-mm-dd)</label>
+                        <div class="controls">
+                            <div data-date="<?php echo date('Y-m-d', $current_time - 7 * 86400); ?>" class="input-append date datepicker">
+                                <input type="text" id="startTime" name="startTime" value="<?php echo date('Y-m-d', $current_time - 7 * 86400); ?>"  data-date-format="yyyy-mm-dd" >
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <label class="control-label">结束时间(yyyy-mm-dd)</label>
+                        <div class="controls">
+                            <div data-date="<?php echo date('Y-m-d', $current_time - 86400); ?>" class="input-append date datepicker">
+                                <input type="text" id="endTime" name="endTime" value="<?php echo date('Y-m-d', $current_time - 86400); ?>"  data-date-format="yyyy-mm-dd" >
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">选择渠道</label>
+                    <div class="controls">
+                        <select id="partnerKey" name="partnerKey">
+                            <option value="" selected="selected">全部</option>
+                        <?php foreach($partner_result as $partner): ?>
+                            <option value="<?php echo $partner->partner_key; ?>"><?php echo $partner->partner_key; ?></option>
+                        <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                  <button id="btnSearch" type="button" class="btn btn-success">提交</button>
+                </div>
+              </form>
+          </div>
         </div>
     </div>
     <div class="row-fluid">
@@ -132,6 +177,7 @@
     </div>
   </div>
 </div>
+<link rel="stylesheet" href="<?php echo base_url('resources/css/datepicker.css'); ?>" />
 <link rel="stylesheet" href="<?php echo base_url('resources/css/select2.css'); ?>" />
 <script src="<?php echo base_url('resources/js/jquery.min.js'); ?>"></script>
 <script src="<?php echo base_url('resources/js/bootstrap.min.js'); ?>"></script>
@@ -140,6 +186,7 @@
 <script src="<?php echo base_url('resources/js/select2.min.js'); ?>"></script> 
 <script src="<?php echo base_url('resources/js/jquery.dataTables.min.js'); ?>"></script> 
 <script src="<?php echo base_url('resources/js/highcharts.js'); ?>"></script>
+<script src="<?php echo base_url('resources/js/bootstrap-datepicker.js'); ?>"></script>
 
 <script type="text/javascript">
 var overviewTableHandler, retentionTableHandler;
@@ -148,26 +195,34 @@ $(function() {
 	
 	$("#indexNavTab > li:first").addClass("active");
 	$("#indexTab > div:first").addClass("active");
-	
-	$("#serverSelect").change(function() {
-		var serverId = $(this).val();
-		retrieveTableData(serverId);
-		retrieveChartData(serverId);
+	$("#btnSearch").attr('disabled', 'disabled');
+	$("#btnSearch").click(function() {
+		$(this).attr('disabled', 'disabled');
+		var serverId = $("#serverId").val();
+		var startTime = $("#startTime").val();
+		var endTime = $("#endTime").val();
+		var partnerKey = $("#partnerKey").val();
+		retrieveTableData(serverId, startTime, endTime, partnerKey);
+		retrieveChartData(serverId, startTime, endTime, partnerKey);
 	});
 	
-	retrieveTableData("<?php echo $server[0]->account_server_id; ?>");
-	retrieveChartData("<?php echo $server[0]->account_server_id; ?>");
+	retrieveTableData("<?php echo $server_result[0]->account_server_id; ?>");
+	retrieveChartData("<?php echo $server_result[0]->account_server_id; ?>");
 	
 	$('select').select2();
+    $('.datepicker').datepicker();
 });
 
-function retrieveTableData(serverId) {
+function retrieveTableData(serverId, start, end, partner) {
 	if(overviewTableHandler) {
 		overviewTableHandler.fnDestroy();
 	}
 	if(retentionTableHandler) {
 		retentionTableHandler.fnDestroy();
 	}
+	start = start ? start : '';
+	end = end ? end : '';
+	partner = partner ? partner : '';
 	overviewTableHandler = $('#listTableOverview').dataTable({
 		"bAutoWidth": false,
 		"bFilter": false,
@@ -179,7 +234,7 @@ function retrieveTableData(serverId) {
 		"sDom": '<"H"lr>t<"F"fp>',
 		"bProcessing": true,
 		"bServerSide": true,
-		"sAjaxSource": "<?php echo site_url('index/lists/overview'); ?>?server_id=" + serverId,
+		"sAjaxSource": "<?php echo site_url('index/lists/overview'); ?>?server_id=" + serverId + "&start=" + start + "&end=" + end + "&partner=" + partner,
 		"sServerMethod": "POST",
 		"aoColumns": [
 			{"mData": "log_date", "bSortable": false},
@@ -266,7 +321,7 @@ function retrieveTableData(serverId) {
 		"sDom": '<"H"lr>t<"F"fp>',
 		"bProcessing": true,
 		"bServerSide": true,
-		"sAjaxSource": "<?php echo site_url('index/lists/retention'); ?>?server_id=" + serverId,
+		"sAjaxSource": "<?php echo site_url('index/lists/retention'); ?>?server_id=" + serverId + "&start=" + start + "&end=" + end + "&partner=" + partner,
 		"sServerMethod": "POST",
 		"aoColumns": [
 			{"mData": "log_date", "bSortable": false},
@@ -358,14 +413,21 @@ function retrieveTableData(serverId) {
 	});
 }
 
-function retrieveChartData(serverId) {
+function retrieveChartData(serverId, start, end, partner) {
+	start = start ? start : '';
+	end = end ? end : '';
+	partner = partner ? partner : '';
 	var parameter = {
-		"server_id": serverId
+		"server_id": serverId,
+		"start": start,
+		"end": end,
+		"partner": partner
 	};
 	$.post("<?php echo site_url('index/charts/highchart'); ?>", parameter, onData);
 }
 
 function onData(data) {
+	$("#btnSearch").removeAttr('disabled');
 	if(data) {
 		for(var i in data.dau_result) {
 			data.dau_result[i] = parseInt(data.dau_result[i]);

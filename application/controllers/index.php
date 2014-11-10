@@ -15,6 +15,8 @@ class Index extends CI_Controller
 	public function index()
 	{
 		$this->load->model('mserver');
+		$this->load->model('mpartner');
+		$partnerResult = $this->mpartner->read();
 		$serverResult = $this->mserver->read(array(
 				'server_debug'		=>	0,
 				'server_status !='	=>	9
@@ -23,7 +25,9 @@ class Index extends CI_Controller
 		$data = array(
 			'admin'				=>	$this->user,
 			'page_name'			=>	$this->pageName,
-			'server'			=>	$serverResult
+			'server_result'		=>	$serverResult,
+			'current_time'		=>	time(),
+			'partner_result'	=>	$partnerResult
 		);
 		$this->render->render($this->pageName, $data);
 	}
@@ -35,15 +39,27 @@ class Index extends CI_Controller
 		$logcachedb = $this->load->database('logcachedb', TRUE);
 		
 		$serverId = $this->input->post('server_id');
-// 		$partnerKey = $this->input->post('partnerKey');
+		$startTime = $this->input->post('start');
+		$endTime = $this->input->post('end');
+		$partnerKey = $this->input->post('partner');
 		
 		if(!empty($serverId))
 		{
-			$currentTime = strtotime(date('Y-m-d') . ' 00:00:00');
-			$lastTime = $currentTime - 86400;
-			$lastDate = date('Y-m-d', $lastTime) . ' 23:59:59';
-			$sevenDaysAgoTime = $lastTime - 6 * 86400;
-			$sevenDaysAgoDate = date('Y-m-d', $sevenDaysAgoTime) . ' 00:00:00';
+			if(empty($startTime) || empty($endTime))
+			{
+				$currentTime = time();
+				$lastTime = $currentTime - 86400;
+				$lastDate = date('Y-m-d', $lastTime) . ' 23:59:59';
+				$sevenDaysAgoTime = $lastTime - 6 * 86400;
+				$sevenDaysAgoDate = date('Y-m-d', $sevenDaysAgoTime) . ' 00:00:00';
+			}
+			else
+			{
+				$lastDate = $endTime;
+				$lastTime = strtotime($lastDate);
+				$sevenDaysAgoDate = $startTime;
+				$sevenDaysAgoTime = strtotime($sevenDaysAgoDate);
+			}
 			
 			if(!empty($partnerKey))
 			{
@@ -93,17 +109,27 @@ class Index extends CI_Controller
 		$logcachedb = $this->load->database('logcachedb', TRUE);
 		
 		$serverId = $this->input->get('server_id');
-// 		$partnerKey = $this->input->post('partnerKey');
+		$startTime = $this->input->get('start');
+		$endTime = $this->input->get('end');
+		$partnerKey = $this->input->get('partner');
 		$sEcho = $this->input->get_post('sEcho');
 		$offset = $this->input->get_post('iDisplayStart');
 		$limit = $this->input->get_post('iDisplayLength');
 		$keyword = $this->input->get_post('sSearch');
 		
-		$currentTime = time();
-		$lastTime = $currentTime - 86400;
-		$lastDate = date('Y-m-d', $lastTime) . ' 23:59:59';
-		$sevenDaysAgoTime = $lastTime - 6 * 86400;
-		$sevenDaysAgoDate = date('Y-m-d', $sevenDaysAgoTime) . ' 00:00:00';
+		if(empty($startTime) || empty($endTime))
+		{
+			$currentTime = time();
+			$lastTime = $currentTime - 86400;
+			$lastDate = date('Y-m-d', $lastTime) . ' 23:59:59';
+			$sevenDaysAgoTime = $lastTime - 6 * 86400;
+			$sevenDaysAgoDate = date('Y-m-d', $sevenDaysAgoTime) . ' 00:00:00';
+		}
+		else
+		{
+			$lastDate = $endTime;
+			$sevenDaysAgoDate = $startTime;
+		}
 		
 		if(!empty($partnerKey))
 		{
