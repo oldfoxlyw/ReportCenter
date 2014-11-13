@@ -52,6 +52,12 @@
                     </div>
                 </div>
                 <div class="control-group">
+                    <label class="control-label">GUID</label>
+                    <div class="controls">
+                        <input type="text" id="account_id" name="account_id" value="" />
+                    </div>
+                </div>
+                <div class="control-group">
                     <label class="control-label">只取最近100条记录</label>
                     <div class="controls">
                         <input type="checkbox" id="limit" name="limit" value="100" checked="checked" />
@@ -105,6 +111,7 @@ $(function() {
 			"startTime": $("#startTime").val(),
 			"endTime": $("#endTime").val(),
 			"nickname": $("#nickname").val(),
+            "account_id": $("#account_id").val(),
             "limit": $("#limit").is(":checked") ? $("#limit").val() : 0
 		}, onData);
 	});

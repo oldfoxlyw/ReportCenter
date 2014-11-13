@@ -39,6 +39,7 @@ class Recharge_flow extends CI_Controller
 		$startTime = $this->input->post('startTime');
 		$endTime = $this->input->post('endTime');
 		$nickname = $this->input->post('nickname');
+		$account_id = $this->input->post('account_id');
 		$limit = $this->input->post('limit');
 		
 		if(!empty($startTime) && !empty($endTime) && !empty($serverId))
@@ -53,6 +54,11 @@ class Recharge_flow extends CI_Controller
 			if(!empty($nickname))
 			{
 				$nickname = "AND `account_nickname`='{$nickname}'";
+			}
+
+			if(!empty($account_id))
+			{
+				$account_id = "AND `account_guid`={$account_id}";
 			}
 			
 			$sql = "SELECT `account_guid`, `account_nickname`, `account_level`, `funds_amount`, FROM_UNIXTIME(`funds_time`, '%Y-%m-%d %H:%i:%s') as `funds_time_local` FROM `funds_checkinout` WHERE `funds_flow_dir`='CHECK_IN' {$nickname} AND `appstore_status`=0 AND `server_id`='{$serverId}' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} ORDER BY `funds_id` DESC {$l}";
