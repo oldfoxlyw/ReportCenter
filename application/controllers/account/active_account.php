@@ -64,7 +64,7 @@ class Active_account extends CI_Controller
 			'select'		=>	array(
 				'log_date',
 				'server_name',
-				'active_account'
+				'dau'
 			)
 		);
 		$result = $this->moverview->read($parameter, $extension);
@@ -80,7 +80,7 @@ class Active_account extends CI_Controller
 			}
 			if(!empty($data[$row->server_name][$row->log_date]))
 			{
-				$data[$row->server_name][$row->log_date]->active_account += $row->active_account;
+				$data[$row->server_name][$row->log_date]->dau += $row->dau;
 			}
 			else
 			{

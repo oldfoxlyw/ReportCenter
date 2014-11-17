@@ -157,13 +157,13 @@ function onData(data) {
 			{
 				if(json[i][j])
 				{
-					rowData[json.axis.indexOf(j) + 1] = parseInt(json[i][j].active_account);
+					rowData[json.axis.indexOf(j) + 1] = parseInt(json[i][j].dau);
 				}
 				else
 				{
 					rowData[json.axis.indexOf(j) + 1] = "-";
 				}
-				data[json.axis.indexOf(j)] = parseInt(json[i][j].active_account);
+				data[json.axis.indexOf(j)] = parseInt(json[i][j].dau);
 			}
 			aaData.push(rowData);
 			obj.data = data;
