@@ -27,6 +27,7 @@ $permissionArray = explode(',', $admin->permission_list);
         <?php if(in_array('account/reflow_account', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'account/reflow_account'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/reflow_account'); ?>">服务器回流用户数</a></li><?php endif; ?>
         <?php if(in_array('account/flowover_account_detail', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'account/flowover_account_detail'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/flowover_account_detail'); ?>">服务器流失用户详情</a></li><?php endif; ?>
         <?php if(in_array('account/retention_detail', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'account/retention_detail'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/retention_detail'); ?>">留存率统计</a></li><?php endif; ?>
+        <?php if(in_array('account/pay_account_info', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'account/pay_account_info'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('account/pay_account_info'); ?>">付费用户信息</a></li><?php endif; ?>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-heart"></i><span>充值数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
