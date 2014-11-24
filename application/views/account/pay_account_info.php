@@ -71,6 +71,7 @@
                       <th>最后充值金额</th>
                       <th>累计充值绿钻数</th>
                       <th>累计充值金额</th>
+                      <th>ArcUid</th>
                     </tr>
                   </thead>
                 </table>
@@ -135,7 +136,8 @@ function onData(data) {
 			{"mData": "last_paid_count"},
 			{"mData": "last_paid_amount"},
 			{"mData": "total_paid_count"},
-			{"mData": "total_paid_amount"}
+			{"mData": "total_paid_amount"},
+      {"mData": "partner_id"}
 		],
 		"oLanguage": {  
 			"sProcessing":   "处理中...",

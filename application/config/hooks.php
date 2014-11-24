@@ -10,10 +10,17 @@
 |
 */
 
-$hook['post_controller_constructor'] = array(
+$hook['post_controller_constructor'][] = array(
 	'class'		=>	'SystemHook',
 	'function'	=>	'checkAvailable',
 	'filename'	=>	'systemhook.php',
+	'filepath'	=>	'hooks'
+);
+
+$hook['post_controller_constructor'][] = array(
+	'class'		=>	'SecurityHook',
+	'function'	=>	'checkIp',
+	'filename'	=>	'securityhook.php',
 	'filepath'	=>	'hooks'
 );
 
