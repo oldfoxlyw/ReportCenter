@@ -17,12 +17,5 @@ $hook['post_controller_constructor'][] = array(
 	'filepath'	=>	'hooks'
 );
 
-$hook['post_controller_constructor'][] = array(
-	'class'		=>	'SecurityHook',
-	'function'	=>	'checkIp',
-	'filename'	=>	'securityhook.php',
-	'filepath'	=>	'hooks'
-);
-
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */
