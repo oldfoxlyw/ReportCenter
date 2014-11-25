@@ -111,6 +111,9 @@ class Permission extends CI_Controller
 	{
 		if(!empty($permissionId))
 		{
+			$this->pageName = 'permission_add';
+			$this->check->permission($this->pageName);
+
 			if($permissionId > $this->user->permission_level)
 			{
 				showMessage(MESSAGE_TYPE_ERROR, 'USER_NO_PERMISSION', '', 'permission', true, 5);
@@ -134,6 +137,9 @@ class Permission extends CI_Controller
 	
 	public function submit()
 	{
+		$this->pageName = 'permission_add';
+		$this->check->permission($this->pageName);
+		
 		$this->load->model('mpermission');
 		
 		$post = $this->input->post();
