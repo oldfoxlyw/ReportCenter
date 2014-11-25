@@ -124,19 +124,91 @@ function onData(data) {
         "aaData": json,
         "aoColumns": [
 			{"mData": "server_id"},
-			{"mData": "guid"},
+			{"mData": "GUID"},
 			{"mData": "account_nickname"},
 			{"mData": "account_level"},
 			{"mData": "account_regtime"},
 			{"mData": "account_lastlogin"},
-			{"mData": "first_paid_time"},
-			{"mData": "last_paid_time"},
-			{"mData": "first_paid_count"},
-			{"mData": "first_paid_amount"},
-			{"mData": "last_paid_count"},
-			{"mData": "last_paid_amount"},
-			{"mData": "total_paid_count"},
-			{"mData": "total_paid_amount"},
+			{
+        "mData": null,
+        "fnRender": function(obj) {
+          if(obj.aData.first_paid_time) {
+            return obj.aData.first_paid_time;
+          } else {
+            return 'N/A';
+          }
+        }
+      },
+      {
+        "mData": null,
+        "fnRender": function(obj) {
+          if(obj.aData.last_paid_time) {
+            return obj.aData.last_paid_time;
+          } else {
+            return 'N/A';
+          }
+        }
+      },
+      {
+        "mData": null,
+        "fnRender": function(obj) {
+          if(obj.aData.first_paid_count) {
+            return obj.aData.first_paid_count;
+          } else {
+            return 'N/A';
+          }
+        }
+      },
+      {
+        "mData": null,
+        "fnRender": function(obj) {
+          if(obj.aData.first_paid_amount) {
+            return obj.aData.first_paid_amount;
+          } else {
+            return 'N/A';
+          }
+        }
+      },
+      {
+        "mData": null,
+        "fnRender": function(obj) {
+          if(obj.aData.last_paid_count) {
+            return obj.aData.last_paid_count;
+          } else {
+            return 'N/A';
+          }
+        }
+      },
+      {
+        "mData": null,
+        "fnRender": function(obj) {
+          if(obj.aData.last_paid_amount) {
+            return obj.aData.last_paid_amount;
+          } else {
+            return 'N/A';
+          }
+        }
+      },
+      {
+        "mData": null,
+        "fnRender": function(obj) {
+          if(obj.aData.total_paid_count) {
+            return obj.aData.total_paid_count;
+          } else {
+            return 'N/A';
+          }
+        }
+      },
+      {
+        "mData": null,
+        "fnRender": function(obj) {
+          if(obj.aData.total_paid_amount) {
+            return obj.aData.total_paid_amount;
+          } else {
+            return 'N/A';
+          }
+        }
+      },
       {"mData": "partner_id"}
 		],
 		"oLanguage": {  
