@@ -163,7 +163,7 @@ function onData(data) {
         "mData": null,
         "fnRender": function(obj) {
           if(obj.aData.first_paid_amount) {
-            return obj.aData.first_paid_amount;
+            return obj.aData.first_paid_amount / 100;
           } else {
             return 'N/A';
           }
@@ -183,7 +183,7 @@ function onData(data) {
         "mData": null,
         "fnRender": function(obj) {
           if(obj.aData.last_paid_amount) {
-            return obj.aData.last_paid_amount;
+            return obj.aData.last_paid_amount / 100;
           } else {
             return 'N/A';
           }
@@ -203,7 +203,7 @@ function onData(data) {
         "mData": null,
         "fnRender": function(obj) {
           if(obj.aData.total_paid_amount) {
-            return obj.aData.total_paid_amount;
+            return obj.aData.total_paid_amount / 100;
           } else {
             return 'N/A';
           }
