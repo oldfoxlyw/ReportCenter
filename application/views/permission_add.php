@@ -74,29 +74,39 @@
                             <tr>
                               <td rowspan="2"><input id="order_config" name="order_config" class="header_checkbox" type="checkbox" /></td>
                               <td rowspan="2"><strong>充值数据</strong></td>
-                              <td width="20%"><input id="order_recharge" name="order_recharge" value="order/recharge" type="checkbox"<?php if(in_array('order/recharge', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />充值记录</td>
-                              <td width="20%"><input id="order_consume" name="order_consume" value="order/consume" type="checkbox"<?php if(in_array('order/consume', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
-                              消费总体统计</td>
-                              <td width="20%"><input id="order_recharge_daily" name="order_recharge_daily" value="order/recharge_daily" type="checkbox"<?php if(in_array('order/recharge_daily', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />每日充值概况</td>
-                              <td width="20%"><input id="order_buy_equipment" name="order_buy_equipment" value="order/buy_equipment" type="checkbox"<?php if(in_array('order/buy_equipment', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />购买装备消费统计</td>
+                              <td width="20%"><input id="order_recharge" name="order_recharge" value="order/recharge" type="checkbox"<?php if(in_array('order/recharge', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
+                              充值总览</td>
+                              <td width="20%"><input id="order_recharge_daily" name="order_recharge_daily" value="order/recharge_daily" type="checkbox"<?php if(in_array('order/recharge_daily', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
+                              每日充值概况</td>
+                              <td width="20%"><input id="order_recharge_mvp" name="order_recharge_mvp" value="order/recharge_mvp" type="checkbox"<?php if(in_array('order/recharge_mvp', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
+                              玩家充值总额查询</td>
+                              <td width="20%"><input id="order_recharge_top30" name="order_recharge_top30" value="order/recharge_top30" type="checkbox"<?php if(in_array('order/recharge_top30', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
+                              每日Top30累充</td>
                             </tr>
                             <tr>
-                              <td><input id="order_equipment_sales" name="order_equipment_sales" value="order/equipment_sales" type="checkbox"<?php if(in_array('order/equipment_sales', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />装备销量统计</td>
-                              <td>&nbsp;</td>
-                              <td>&nbsp;</td>
+                              <td><input id="order_recharge_top50" name="order_recharge_top50" value="order/recharge_top50" type="checkbox"<?php if(in_array('order/recharge_top50', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
+                              历史Top50累充</td>
+                              <td><input id="order_recharge_flow" name="order_recharge_flow" value="order/recharge_flow" type="checkbox"<?php if(in_array('order/recharge_flow', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
+                                玩家充值流水查询</td>
+                              <td><input id="order_lifetime" name="order_lifetime" value="order/lifetime" type="checkbox"<?php if(in_array('order/lifetime', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
+玩家生命周期</td>
                               <td>&nbsp;</td>
                             </tr>
                             <tr>
                               <td rowspan="2"><input id="order_config" name="order_config" class="header_checkbox" type="checkbox" /></td>
                               <td rowspan="2"><strong>消费数据</strong></td>
-                              <td width="20%"><input id="order_recharge" name="order_recharge" value="order/recharge" type="checkbox"<?php if(in_array('order/recharge', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />充值记录</td>
                               <td width="20%"><input id="order_consume" name="order_consume" value="order/consume" type="checkbox"<?php if(in_array('order/consume', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
                               消费总体统计</td>
-                              <td width="20%"><input id="order_recharge_daily" name="order_recharge_daily" value="order/recharge_daily" type="checkbox"<?php if(in_array('order/recharge_daily', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />每日充值概况</td>
-                              <td width="20%"><input id="order_buy_equipment" name="order_buy_equipment" value="order/buy_equipment" type="checkbox"<?php if(in_array('order/buy_equipment', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />购买装备消费统计</td>
+                              <td width="20%"><input id="order_buy_equipment" name="order_buy_equipment" value="order/buy_equipment" type="checkbox"<?php if(in_array('order/buy_equipment', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
+                                购买装备消费统计</td>
+                              <td width="20%"><input id="order_equipment_sales" name="order_equipment_sales" value="order/equipment_sales" type="checkbox"<?php if(in_array('order/equipment_sales', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
+                              装备销量统计</td>
+                              <td width="20%"><input id="order_consume_mvp" name="order_consume_mvp" value="order/consume_mvp" type="checkbox"<?php if(in_array('order/consume_mvp', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
+                              玩家消耗绿钻总额查询</td>
                             </tr>
                             <tr>
-                              <td><input id="order_equipment_sales" name="order_equipment_sales" value="order/equipment_sales" type="checkbox"<?php if(in_array('order/equipment_sales', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />装备销量统计</td>
+                              <td><input id="order_consume_detail" name="order_consume_detail" value="order/consume_detail" type="checkbox"<?php if(in_array('order/consume_detail', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />
+                              玩家消耗详单查询</td>
                               <td>&nbsp;</td>
                               <td>&nbsp;</td>
                               <td>&nbsp;</td>
@@ -107,14 +117,6 @@
                               <td width="20%"><input id="behavior_job" name="behavior_job" value="behavior/job" type="checkbox"<?php if(in_array('behavior/job', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />职业数量分布</td>
                               <td width="20%"><input id="behavior_level" name="behavior_level" value="behavior/level" type="checkbox"<?php if(in_array('behavior/level', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />等级分布</td>
                               <td width="20%"><input id="behavior_progress" name="behavior_progress" value="behavior/progress" type="checkbox"<?php if(in_array('behavior/progress', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />角色游戏进度</td>
-                              <td width="20%">&nbsp;</td>
-                            </tr>
-                            <tr>
-                              <td><input id="master_config" name="master_config" class="header_checkbox" type="checkbox" /></td>
-                              <td><strong>游戏管理员</strong></td>
-                              <td width="20%"><input id="master_send_message" name="master_send_message" value="master/send_message" type="checkbox"<?php if(in_array('master/send_message', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发布游戏公告</td>
-                              <td width="20%"><input id="master_send_article" name="master_send_article" value="master/send_article" type="checkbox"<?php if(in_array('master/send_article', $permission_check) || in_array('All', $permission_check)): ?> checked="checked"<?php endif; ?> />发布新闻公告</td>
-                              <td width="20%">&nbsp;</td>
                               <td width="20%">&nbsp;</td>
                             </tr>
                           </tbody>
