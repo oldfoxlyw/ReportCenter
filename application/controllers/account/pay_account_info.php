@@ -61,9 +61,9 @@ class Pay_account_info extends CI_Controller
 				$info = $this->mpaidaccount->read(array(
 					'guid'	=>	$guid
 				));
-		echo $this->return_format->format($info);
-		exit();
 				$row = array_merge((array)$result[0], (array)$info[0]);
+		echo $this->return_format->format($row);
+		exit();
 				array_push($data, $row);
 			}
 
