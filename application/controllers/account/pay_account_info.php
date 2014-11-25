@@ -62,17 +62,27 @@ class Pay_account_info extends CI_Controller
 					'guid'	=>	$guid
 				));
 				$row = array_merge((array)$result[0], (array)$info[0]);
-		echo $this->return_format->format($row);
-		exit();
 				array_push($data, $row);
 			}
 
 			for($i = 0; $i < count($data); $i++)
 			{
-				$data[$i]['account_regtime'] = date('Y-m-d H:i:s', $data[$i]['account_regtime']);
-				$data[$i]['account_lastlogin'] = date('Y-m-d H:i:s', $data[$i]['account_lastlogin']);
-				$data[$i]['first_paid_time'] = date('Y-m-d H:i:s', $data[$i]['first_paid_time']);
-				$data[$i]['last_paid_time'] = date('Y-m-d H:i:s', $data[$i]['last_paid_time']);
+				if(!empty($data[$i]['account_regtime']))
+				{
+					$data[$i]['account_regtime'] = date('Y-m-d H:i:s', $data[$i]['account_regtime']);
+				}
+				if(!empty($data[$i]['account_lastlogin']))
+				{
+					$data[$i]['account_lastlogin'] = date('Y-m-d H:i:s', $data[$i]['account_lastlogin']);
+				}
+				if(!empty($data[$i]['first_paid_time']))
+				{
+					$data[$i]['first_paid_time'] = date('Y-m-d H:i:s', $data[$i]['first_paid_time']);
+				}
+				if(!empty($data[$i]['last_paid_time']))
+				{
+					$data[$i]['last_paid_time'] = date('Y-m-d H:i:s', $data[$i]['last_paid_time']);
+				}
 			}
 		}
 		
