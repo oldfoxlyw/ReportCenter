@@ -64,6 +64,8 @@ class Pay_account_info extends CI_Controller
 				$row = array_merge((array)$result[0], (array)$info[0]);
 				array_push($data, $row);
 			}
+		echo $this->return_format->format($data);
+		exit();
 
 			for($i = 0; $i < count($data); $i++)
 			{
