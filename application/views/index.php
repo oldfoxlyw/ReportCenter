@@ -127,7 +127,7 @@
                   </thead>
                   <tbody>
                     <tr class="gradeA">
-                      <td colspan="14">载入中...</td>
+                      <td colspan="15">载入中...</td>
                     </tr>
                   </tbody>
                 </table>
