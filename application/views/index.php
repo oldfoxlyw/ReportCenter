@@ -92,7 +92,7 @@
                   </thead>
                   <tbody>
                     <tr class="gradeA">
-                      <td colspan="10">载入中...</td>
+                      <td colspan="11">载入中...</td>
                     </tr>
                   </tbody>
                 </table>
@@ -127,7 +127,7 @@
                   </thead>
                   <tbody>
                     <tr class="gradeA">
-                      <td colspan="15">载入中...</td>
+                      <td colspan="14">载入中...</td>
                     </tr>
                   </tbody>
                 </table>
