@@ -89,10 +89,11 @@ function onData(data) {
 		return;
 	}
 	var json = eval("(" + data + ")");
-	
+	var total = 0;
 	for(var i = 0; i < json.data.length; i++)
 	{
 		json.data[i] = parseInt(json.data[i]);
+		total += json.data[i];
 	}
 	
 	$('#chartRegCount').highcharts({
@@ -124,7 +125,12 @@ function onData(data) {
 		series: [{
 			name: $("#serverId").find("option:selected").text(),
 			data: json.data
-		}]
+		}],
+		tooltip: {
+			formatter: function() {
+				return '<strong>' + this.x + '级</strong><br/><strong>人数: </strong>' + this.y + ' 人<br/><strong>总数: </strong>' + total + ' 人<br/><strong>比例: </strong>' + parseInt((this.y / total) * 10000) / 100 + '%'
+			}
+		}
 	});
 	
 	dataTableHandler = $('#listTable').dataTable({
