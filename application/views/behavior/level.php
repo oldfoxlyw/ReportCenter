@@ -89,10 +89,11 @@ function onData(data) {
 		return;
 	}
 	var json = eval("(" + data + ")");
-	
+	var total = 0;
 	for(var i = 0; i < json.data.length; i++)
 	{
 		json.data[i] = parseInt(json.data[i]);
+		total += json.data[i];
 	}
 	
 	$('#chartRegCount').highcharts({
@@ -124,7 +125,11 @@ function onData(data) {
 		series: [{
 			name: $("#serverId").find("option:selected").text(),
 			data: json.data
-		}]
+		}],
+		tooltip: {
+			headerFormat: '<strong>{point.y}级</strong>',
+			pointFormat: '{point.x}, {point.percentage: .2f}%'
+		}
 	});
 	
 	dataTableHandler = $('#listTable').dataTable({
