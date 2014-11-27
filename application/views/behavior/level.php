@@ -127,8 +127,9 @@ function onData(data) {
 			data: json.data
 		}],
 		tooltip: {
-			headerFormat: '<strong>{point.y}级</strong>',
-			pointFormat: '{point.x}, {point.percentage: .2f}%'
+			formatter: function() {
+				return '<strong>' + this.x + '级</strong><br/><strong>人数: </strong>' + this.y + ' 人<br/><strong>总数: </strong>' + total + ' 人<br/><strong>比例: </strong>' + parseInt((this.y / total) * 10000) / 100 + '%'
+			}
 		}
 	});
 	
