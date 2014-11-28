@@ -87,6 +87,7 @@
                       <th>充值率<a class="th-tips" href="#" data-content="当日充值人数（去重）与当日DAU的比值" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>ARPPU<a class="th-tips" href="#" data-content="平均付费金额（当日订单总额/当日付费人数）" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>当天首次付费人数<a class="th-tips" href="#" data-content="当天首次付费总人数" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>当天付费人数<a class="th-tips" href="#" data-content="当天付费总人数" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>累计付费人数<a class="th-tips" href="#" data-content="开服至今付费总人数" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                     </tr>
                   </thead>
@@ -303,6 +304,7 @@ function retrieveTableData(serverId, start, end, partner) {
         }
       },
       {"mData": "first_recharge_account"},
+      {"mData": "recharge_account"},
       {"mData": "recharge_account_sum"}
 		],
 		"oLanguage": {  
