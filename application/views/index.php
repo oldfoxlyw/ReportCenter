@@ -124,11 +124,17 @@
                       <th>小区间七日留存率<a class="th-tips" href="#" data-content="小区间七日登录与七天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>大区间七日登录<a class="th-tips" href="#" data-content="第一天注册，并在第二至第七天登录过的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>大区间七日留存率<a class="th-tips" href="#" data-content="大区间七日登录与七天前注册的有效用户的比值" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>30日登录<a class="th-tips" href="#" data-content="第一天注册，在第30天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>30日留存率<a class="th-tips" href="#" data-content="30日登录与30天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>60日登录<a class="th-tips" href="#" data-content="第一天注册，在第60天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>60日留存率<a class="th-tips" href="#" data-content="60日登录与60天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>180日登录<a class="th-tips" href="#" data-content="第一天注册，在第180天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>180日留存率<a class="th-tips" href="#" data-content="180日登录与180天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr class="gradeA">
-                      <td colspan="14">载入中...</td>
+                      <td colspan="20">载入中...</td>
                     </tr>
                   </tbody>
                 </table>
@@ -407,7 +413,40 @@ function retrieveTableData(serverId, start, end, partner) {
 						return obj.aData.seven_retention_huge / 100 + "%";
 					}
 				}
-			}
+			},
+      {"mData": "current_login_30"},
+      {
+        "mData": "retention_30",
+        "fnRender": function(obj) {
+          if(obj.aData.retention_30==0) {
+            return "-";
+          } else {
+            return obj.aData.retention_30 / 100 + "%";
+          }
+        }
+      },
+      {"mData": "current_login_60"},
+      {
+        "mData": "retention_60",
+        "fnRender": function(obj) {
+          if(obj.aData.retention_60==0) {
+            return "-";
+          } else {
+            return obj.aData.retention_60 / 100 + "%";
+          }
+        }
+      },
+      {"mData": "current_login_180"},
+      {
+        "mData": "retention_180",
+        "fnRender": function(obj) {
+          if(obj.aData.retention_180==0) {
+            return "-";
+          } else {
+            return obj.aData.retention_180 / 100 + "%";
+          }
+        }
+      }
 		],
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
