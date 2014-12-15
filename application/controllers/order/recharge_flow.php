@@ -55,7 +55,7 @@ class Recharge_flow extends CI_Controller
 				$nickname = "AND `account_nickname`='{$nickname}'";
 			}
 			
-			$sql = "SELECT `account_guid`, `account_nickname`, `account_level`, `funds_amount`, FROM_UNIXTIME(`funds_time`, '%Y-%m-%d %H:%i:%s') as `funds_time_local` FROM `funds_checkinout` WHERE `funds_flow_dir`='CHECK_IN' {$nickname} AND `appstore_status`=0 AND `server_id`='{$serverId}' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} ORDER BY `funds_id` DESC {$l}";
+			$sql = "SELECT `account_guid`, `account_nickname`, `account_level`, `agent1_account_db`.`web_account`.`account_regtime` AS `account_regtime`,  `funds_amount`, `funds_time_local` FROM `funds_checkinout` INNER JOIN `agent1_account_db`.`web_account` ON `funds_checkinout`.`account_guid`=`agent1_account_db`.`web_account`.`GUID` WHERE `funds_flow_dir`='CHECK_IN' {$nickname} AND `appstore_status`=0 AND `server_id`='{$serverId}' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} ORDER BY `funds_id` DESC {$l}";
 			$result = $fundsdb->query($sql)->result();
 			
 			echo $this->return_format->format($result);
