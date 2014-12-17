@@ -131,6 +131,12 @@ function onData(data) {
     	"sTitle": '当天注册角色数<a class="th-tips" href="#" data-content="当天23:59:59前注册的角色数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url("resources/img/question.png"); ?>" /></a>'
 	},
     {
+        "sTitle": '付费总人数<a class="th-tips" href="#" data-content="到当天为止付费的角色数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url("resources/img/question.png"); ?>" /></a>'
+    },
+    {
+        "sTitle": '付费总额<a class="th-tips" href="#" data-content="当天为止总收入" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url("resources/img/question.png"); ?>" /></a>'
+    },
+    {
         "sTitle": '当天付费人数<a class="th-tips" href="#" data-content="当天注册并付费的角色数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url("resources/img/question.png"); ?>" /></a>'
     },
     {
@@ -246,6 +252,8 @@ function onData(data) {
             json[i].server_id,
             json[i].partner_key,
             json[i].register_count,
+            json[i].recharge_amount_sum,
+            json[i].order_sum,
             json[i].paid_count_1,
             json[i].paid_rate_1 / 100 + '%',
             json[i].recharge_amount_1 / 100,
