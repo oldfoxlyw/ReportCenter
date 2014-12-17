@@ -253,7 +253,7 @@ function onData(data) {
             json[i].partner_key,
             json[i].register_count,
             json[i].recharge_amount_sum,
-            json[i].order_sum,
+            json[i].order_sum / 100 + '%',
             json[i].paid_count_1,
             json[i].paid_rate_1 / 100 + '%',
             json[i].recharge_amount_1 / 100,
