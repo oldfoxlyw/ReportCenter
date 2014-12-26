@@ -52,7 +52,7 @@ class Recharge_flow extends CI_Controller
 
 			if(!empty($nickname))
 			{
-				$nickname = "AND `account_nickname`='{$nickname}'";
+				$nickname = "AND `funds_checkinout`.`account_nickname`='{$nickname}'";
 			}
 			
 			$sql = "SELECT `account_guid`, `funds_checkinout`.`account_nickname`, `funds_checkinout`.`account_level`, `agent1_account_db`.`web_account`.`account_regtime` AS `account_regtime`,  `funds_amount`, `funds_time` FROM `funds_checkinout` INNER JOIN `agent1_account_db`.`web_account` ON `funds_checkinout`.`account_guid`=`agent1_account_db`.`web_account`.`GUID` WHERE `funds_flow_dir`='CHECK_IN' {$nickname} AND `appstore_status`=0 AND `funds_checkinout`.`server_id`='{$serverId}' AND `funds_time`>={$startTime} AND `funds_time`<={$endTime} ORDER BY `funds_id` DESC {$l}";
