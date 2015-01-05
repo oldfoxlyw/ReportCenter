@@ -2,7 +2,7 @@
 $lang['consume_buy_equipment'] = '购买装备';
 $lang['consume_buy_item'] = '购买道具';
 $lang['consume_buy_mercenary_army'] = '购买雇佣军';
-$lang['consume_buy_retinue'] = '十连抽随从';
+$lang['consume_buy_retinue'] = '购买五星随从';
 $lang['consume_buy_retinue_exchange_gold'] = '十连抽随从（绿钻）';
 $lang['consume_recruit_retinue'] = '二十连抽随从';
 $lang['consume_buy_skill_points'] = '购买技能点';
