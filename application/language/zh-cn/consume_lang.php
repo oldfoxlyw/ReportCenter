@@ -27,3 +27,5 @@ $lang['consume_get_buy_activity_reward'] = '购买类型的活动';
 $lang['consume_get_change_gold_reward'] = '兑换类型的活动';
 $lang['consume_strengthen_retinue'] = '随从练体';
 $lang['consume_buy_pvp_times'] = '购买PVP次数';
+$lang['consume_dungeon_battle_result'] = '购买挑战副本次数';
+$lang['consume_multiplayer_dungeon_encourage'] = '多人副本鼓舞';
