@@ -103,7 +103,7 @@ $(function() {
             dataTableHandler = null;
         }
 		$('#listTable').empty();
-		$.post("<?php echo site_url('logs/blue_crystal_log/lists'); ?>", {
+		$.post("<?php echo site_url('logs/gold_log/lists'); ?>", {
 			"serverId": $("#serverId").val(),
 			"startTime": $("#startTime").val(),
 			"endTime": $("#endTime").val(),
