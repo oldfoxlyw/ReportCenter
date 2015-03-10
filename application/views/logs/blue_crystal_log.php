@@ -98,7 +98,10 @@ var dataTableHandler;
 $(function() {
     $('.datepicker').datepicker();
 	$("#btnSearch").click(function() {
-		if(dataTableHandler) dataTableHandler.fnDestroy();
+		if(dataTableHandler) {
+            dataTableHandler.fnDestroy();
+            dataTableHandler = null;
+        }
 		$('#listTable').empty();
 		$.post("<?php echo site_url('logs/blue_crystal_log/lists'); ?>", {
 			"serverId": $("#serverId").val(),
