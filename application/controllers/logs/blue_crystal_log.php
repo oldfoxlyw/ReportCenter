@@ -72,6 +72,8 @@ class Blue_crystal_log extends CI_Controller
 					exit();
 				}
 			}
+
+			$result = $cache_db->get('blue_crystal_logs')->result();
 			
 			echo $this->return_format->format(array(
 				'code'		=>	0,

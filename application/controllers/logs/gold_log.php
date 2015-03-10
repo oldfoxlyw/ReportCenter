@@ -72,6 +72,8 @@ class Gold_log extends CI_Controller
 					exit();
 				}
 			}
+
+			$result = $cache_db->get('gold_logs')->result();
 			
 			echo $this->return_format->format(array(
 				'code'		=>	0,
