@@ -72,6 +72,10 @@ class Gold_log extends CI_Controller
 					exit();
 				}
 			}
+			if(!empty($limit))
+			{
+				$cache_db->limit(intval($limit));
+			}
 
 			$result = $cache_db->get('gold_logs')->result();
 			

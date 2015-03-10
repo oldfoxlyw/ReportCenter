@@ -72,6 +72,10 @@ class Blue_crystal_log extends CI_Controller
 					exit();
 				}
 			}
+			if(!empty($limit))
+			{
+				$cache_db->limit(intval($limit));
+			}
 
 			$result = $cache_db->get('blue_crystal_logs')->result();
 			
