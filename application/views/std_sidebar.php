@@ -38,7 +38,7 @@ $permissionArray = explode(',', $admin->permission_list);
         <?php if(in_array('order/recharge_top30', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/recharge_top30'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/recharge_top30'); ?>">每日Top30累充查询</a></li><?php endif; ?>
         <?php if(in_array('order/recharge_top50', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/recharge_top50'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/recharge_top50'); ?>">历史Top50累充查询</a></li><?php endif; ?>
         <?php if(in_array('order/recharge_flow', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/recharge_flow'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/recharge_flow'); ?>">玩家充值流水查询</a></li><?php endif; ?>
-        <?php if(in_array('order/lifetime', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/lifetime'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/lifetime'); ?>">玩家生命周期报表</a></li><?php endif; ?>
+        <!-- <?php if(in_array('order/lifetime', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'order/lifetime'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('order/lifetime'); ?>">玩家生命周期报表</a></li><?php endif; ?> -->
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-heart"></i><span>消费数据</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
