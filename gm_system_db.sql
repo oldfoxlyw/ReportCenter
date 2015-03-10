@@ -1,57 +1,41 @@
--- phpMyAdmin SQL Dump
--- version 4.0.5
--- http://www.phpmyadmin.net
---
--- 主机: localhost
--- 生成日期: 2014 �?10 �?23 �?13:40
--- 服务器版本: 5.6.14-log
--- PHP 版本: 5.5.3
+/*
+Navicat MySQL Data Transfer
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+Source Server         : localhost
+Source Server Version : 50614
+Source Host           : localhost:3306
+Source Database       : gm_system_db
 
+Target Server Type    : MYSQL
+Target Server Version : 50614
+File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+Date: 2015-03-10 11:04:23
+*/
 
---
--- 数据库: `gm_system_db`
---
-DROP DATABASE IF EXISTS `gm_system_db`;
-CREATE DATABASE IF NOT EXISTS `gm_system_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `gm_system_db`;
+SET FOREIGN_KEY_CHECKS=0;
 
--- --------------------------------------------------------
-
---
--- 表的结构 `report_permission`
---
-
+-- ----------------------------
+-- Table structure for report_permission
+-- ----------------------------
 DROP TABLE IF EXISTS `report_permission`;
-CREATE TABLE IF NOT EXISTS `report_permission` (
+CREATE TABLE `report_permission` (
   `permission_level` int(11) NOT NULL,
   `permission_name` char(16) NOT NULL,
   `permission_list` text NOT NULL,
   PRIMARY KEY (`permission_level`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- 转存表中的数据 `report_permission`
---
+-- ----------------------------
+-- Records of report_permission
+-- ----------------------------
+INSERT INTO `report_permission` VALUES ('999', '超级管理员', 'All');
 
-INSERT INTO `report_permission` (`permission_level`, `permission_name`, `permission_list`) VALUES
-(999, '超级管理员', 'All');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `report_user`
---
-
+-- ----------------------------
+-- Table structure for report_user
+-- ----------------------------
 DROP TABLE IF EXISTS `report_user`;
-CREATE TABLE IF NOT EXISTS `report_user` (
+CREATE TABLE `report_user` (
   `guid` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_name` char(32) NOT NULL,
   `user_pass` char(64) NOT NULL,
@@ -62,23 +46,18 @@ CREATE TABLE IF NOT EXISTS `report_user` (
   `user_fromwhere` char(16) NOT NULL,
   `user_status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`guid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30016078106 ;
+) ENGINE=InnoDB AUTO_INCREMENT=30016078102 DEFAULT CHARSET=utf8;
 
---
--- 转存表中的数据 `report_user`
---
+-- ----------------------------
+-- Records of report_user
+-- ----------------------------
+INSERT INTO `report_user` VALUES ('30016078101', 'johnnyeven', 'b40714d351a35e8f0d2f15ee977da4a9f5a7e2cd', '1', '0', '999', '超级管理员', 'default', '1');
 
-INSERT INTO `report_user` (`guid`, `user_name`, `user_pass`, `user_founder`, `user_lastlogin`, `permission_level`, `permission_name`, `user_fromwhere`, `user_status`) VALUES
-(30016078101, 'johnnyeven', 'b40714d351a35e8f0d2f15ee977da4a9f5a7e2cd', 1, 0, 999, '超级管理员', 'en_default', 1);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `system_log`
---
-
+-- ----------------------------
+-- Table structure for system_log
+-- ----------------------------
 DROP TABLE IF EXISTS `system_log`;
-CREATE TABLE IF NOT EXISTS `system_log` (
+CREATE TABLE `system_log` (
   `log_id` int(11) NOT NULL AUTO_INCREMENT,
   `log_action` varchar(64) NOT NULL,
   `log_uri` varchar(128) NOT NULL,
@@ -87,37 +66,33 @@ CREATE TABLE IF NOT EXISTS `system_log` (
   `log_guid` bigint(20) NOT NULL,
   `log_name` char(16) NOT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of system_log
+-- ----------------------------
 
---
--- 表的结构 `system_permission`
---
-
+-- ----------------------------
+-- Table structure for system_permission
+-- ----------------------------
 DROP TABLE IF EXISTS `system_permission`;
-CREATE TABLE IF NOT EXISTS `system_permission` (
+CREATE TABLE `system_permission` (
   `permission_level` int(11) NOT NULL,
   `permission_name` char(16) NOT NULL,
   `permission_list` text NOT NULL,
   PRIMARY KEY (`permission_level`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- 转存表中的数据 `system_permission`
---
+-- ----------------------------
+-- Records of system_permission
+-- ----------------------------
+INSERT INTO `system_permission` VALUES ('999', '超级管理员', 'All');
 
-INSERT INTO `system_permission` (`permission_level`, `permission_name`, `permission_list`) VALUES
-(999, '超级管理员', 'All');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `system_user`
---
-
+-- ----------------------------
+-- Table structure for system_user
+-- ----------------------------
 DROP TABLE IF EXISTS `system_user`;
-CREATE TABLE IF NOT EXISTS `system_user` (
+CREATE TABLE `system_user` (
   `guid` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_name` char(32) NOT NULL,
   `user_pass` char(64) NOT NULL,
@@ -128,15 +103,9 @@ CREATE TABLE IF NOT EXISTS `system_user` (
   `user_fromwhere` char(16) NOT NULL,
   `user_status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`guid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30016078105 ;
+) ENGINE=InnoDB AUTO_INCREMENT=30016078102 DEFAULT CHARSET=utf8;
 
---
--- 转存表中的数据 `system_user`
---
-
-INSERT INTO `system_user` (`guid`, `user_name`, `user_pass`, `user_founder`, `user_lastlogin`, `permission_level`, `permission_name`, `user_fromwhere`, `user_status`) VALUES
-(30016078101, 'johnnyeven', 'b40714d351a35e8f0d2f15ee977da4a9f5a7e2cd', 1, 0, 999, '超级管理员', 'en_default', 1);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- ----------------------------
+-- Records of system_user
+-- ----------------------------
+INSERT INTO `system_user` VALUES ('30016078101', 'johnnyeven', 'b40714d351a35e8f0d2f15ee977da4a9f5a7e2cd', '1', '0', '999', '超级管理员', 'default', '1');
