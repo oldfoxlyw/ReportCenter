@@ -69,6 +69,7 @@ class Blue_crystal_log extends CI_Controller
 						'code'		=>	-1,
 						'data'		=>	null
 					));
+					exit();
 				}
 			}
 			
