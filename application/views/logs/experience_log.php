@@ -139,9 +139,6 @@ function onData(data) {
 	{
 		"sTitle": "操作名称"
 	},
-    {
-        "sTitle": "装备ID"
-    },
 	{
 		"sTitle": "目标类型"
 	},
