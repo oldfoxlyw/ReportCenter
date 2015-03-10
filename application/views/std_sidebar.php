@@ -57,6 +57,18 @@ $permissionArray = explode(',', $admin->permission_list);
         <?php if(in_array('behavior/progress', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'behavior/progress'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('behavior/progress'); ?>">角色游戏进度</a></li><?php endif; ?>
       </ul>
     </li>
+    <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i><span>游戏日志查询</span><span class="label label-important"><i class="icon icon-arrow-down"></i></span></a>
+      <ul>
+        <?php if(in_array('logs/blue_crystal_log', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'logs/blue_crystal_log'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('logs/blue_crystal_log'); ?>">蓝钻消费日志</a></li><?php endif; ?>
+        <?php if(in_array('logs/gold_log', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'logs/gold_log'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('logs/gold_log'); ?>">金币日志</a></li><?php endif; ?>
+        <?php if(in_array('logs/equipment_log', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'logs/equipment_log'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('logs/equipment_log'); ?>">装备日志</a></li><?php endif; ?>
+        <?php if(in_array('logs/experience_log', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'logs/experience_log'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('logs/experience_log'); ?>">经验日志</a></li><?php endif; ?>
+        <?php if(in_array('logs/guild_contribution_log', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'logs/guild_contribution_log'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('logs/guild_contribution_log'); ?>">工会贡献日志</a></li><?php endif; ?>
+        <?php if(in_array('logs/item_log', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'logs/item_log'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('logs/item_log'); ?>">物品道具日志</a></li><?php endif; ?>
+        <?php if(in_array('logs/retinue_log', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'logs/retinue_log'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('logs/retinue_log'); ?>">随从日志</a></li><?php endif; ?>
+        <?php if(in_array('logs/role_info_log', $permissionArray) || in_array('All', $permissionArray)): ?><li<?php if($page_name == 'logs/role_info_log'): ?> class="active"<?php endif; ?>><a href="<?php echo site_url('logs/role_info_log'); ?>">角色属性日志</a></li><?php endif; ?>
+      </ul>
+    </li>
     <!--
     <li class="content"> <span>Monthly Bandwidth Transfer</span>
       <div class="progress progress-mini progress-danger active progress-striped">
