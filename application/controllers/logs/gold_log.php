@@ -36,6 +36,8 @@ class Gold_log extends CI_Controller
 		$startTime = $this->input->post('startTime');
 		$endTime = $this->input->post('endTime');
 		$nickname = $this->input->post('nickname');
+		$accountId = $this->input->post('accountId');
+		$roleId = $this->input->post('roleId');
 		$limit = $this->input->post('limit');
 		
 		if(!empty($serverId))
@@ -51,25 +53,39 @@ class Gold_log extends CI_Controller
 				$endTime = strtotime("{$endTime} 23:59:59");
 				$cache_db->where('time <=', $endTime);
 			}
-			if(!empty($nickname))
+			if(!empty($roleId))
 			{
-				$this->load->model('maccount');
-				$result = $this->maccount->read(array(
-					'account_nickname'	=>	$nickname
-				));
-				if(!empty($result))
+				$cache_db->where('role_id', $roleId);
+			}
+			else
+			{
+				if(!empty($accountId))
 				{
-					$row = $result[0];
-					$guid = $row->GUID;
-					$cache_db->where('guid', $guid);
+					$cache_db->where('guid', $accountId);
 				}
 				else
 				{
-					echo $this->return_format->format(array(
-						'code'		=>	-1,
-						'data'		=>	null
-					));
-					exit();
+					if(!empty($nickname))
+					{
+						$this->load->model('maccount');
+						$result = $this->maccount->read(array(
+							'account_nickname'	=>	$nickname
+						));
+						if(!empty($result))
+						{
+							$row = $result[0];
+							$guid = $row->GUID;
+							$cache_db->where('guid', $guid);
+						}
+						else
+						{
+							echo $this->return_format->format(array(
+								'code'		=>	-1,
+								'data'		=>	null
+							));
+							exit();
+						}
+					}
 				}
 			}
 			if(!empty($limit))
