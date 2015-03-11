@@ -146,7 +146,7 @@ class Index extends CI_Controller
 		$sql .= " , SUM(`login_account`) AS `login_account` , SUM(`login_account_valid`) AS `login_account_valid`";
 		$sql .= " , SUM(`dau`) AS `dau` , SUM(`flowover_account`) AS `flowover_account`";
 		$sql .= " , SUM(`reflow_account`) AS `reflow_account` , SUM(`orders_current_sum`) AS `orders_current_sum`";
-		$sql .= " , SUM(`orders_sum`) AS `orders_sum`, SUM(`first_recharge_account`) AS `first_recharge_account`";
+		$sql .= " , SUM(`orders_sum`) AS `orders_sum`";
 		$sql .= " , SUM(`recharge_account`) AS `recharge_account`, SUM(`recharge_account_sum`) AS `recharge_account_sum`, SUM(`order_count`) AS `order_count` , AVG(`at`) AS `at`";
 		$sql .= " FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' {$partner} GROUP BY `log_date` ORDER BY `log_date` DESC";
 		$result = $logcachedb->query($sql)->result();
