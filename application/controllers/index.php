@@ -163,7 +163,7 @@ class Index extends CI_Controller
 		for($i=0; $i<count($result); $i++)
 		{
 			$result[$i]->arpu = floatval(number_format($result[$i]->recharge_account / $result[$i]->dau, 4)) * 100;
-			$result[$i]->arppu = floatval(number_format(($result[$i]->orders_current_sum / 100) / $result[$i]->recharge_account, 2));
+			$result[$i]->arppu = floatval(number_format($result[$i]->orders_current_sum / $result[$i]->recharge_account, 4));
 			$re = $retentionResult[$result[$i]->log_date . '_' . $result[$i]->server_id . '_' . $result[$i]->partner_key];
 			if(!empty($re))
 			{
@@ -180,12 +180,6 @@ class Index extends CI_Controller
 				$result[$i]->seven_retention = $re->seven_retention;
 				$result[$i]->seven_retention_range = $re->seven_retention_range;
 				$result[$i]->seven_retention_huge = $re->seven_retention_huge;
-				$result[$i]->current_login_30 = $re->current_login_30;
-				$result[$i]->retention_30 = $re->retention_30;
-				$result[$i]->current_login_60 = $re->current_login_60;
-				$result[$i]->retention_60 = $re->retention_60;
-				$result[$i]->current_login_180 = $re->current_login_180;
-				$result[$i]->retention_180 = $re->retention_180;
 			}
 			else
 			{
@@ -202,12 +196,6 @@ class Index extends CI_Controller
 				$result[$i]->seven_retention = '-';
 				$result[$i]->seven_retention_range = '-';
 				$result[$i]->seven_retention_huge = '-';
-				$result[$i]->current_login_30 = '-';
-				$result[$i]->retention_30 = '-';
-				$result[$i]->current_login_60 = '-';
-				$result[$i]->retention_60 = '-';
-				$result[$i]->current_login_180 = '-';
-				$result[$i]->retention_180 = '-';
 			}
 		}
 

@@ -86,14 +86,12 @@
                       <th>当天订单总额<a class="th-tips" href="#" data-content="当日23:59:59前充值的总金额（元）" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>充值率<a class="th-tips" href="#" data-content="当日充值人数（去重）与当日DAU的比值" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>ARPPU<a class="th-tips" href="#" data-content="平均付费金额（当日订单总额/当日付费人数）" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th>当天首次付费人数<a class="th-tips" href="#" data-content="当天首次付费总人数" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th>当天付费人数<a class="th-tips" href="#" data-content="当天付费总人数" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>累计付费人数<a class="th-tips" href="#" data-content="开服至今付费总人数" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr class="gradeA">
-                      <td colspan="11">载入中...</td>
+                      <td colspan="10">载入中...</td>
                     </tr>
                   </tbody>
                 </table>
@@ -118,23 +116,17 @@
                       <th>点三日留存率<a class="th-tips" href="#" data-content="点三日登录与三天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>连续三日登录<a class="th-tips" href="#" data-content="第一天注册，并在第二、三天都登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>连续三日留存率<a class="th-tips" href="#" data-content="连续三日登录与三天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th>点七日登录<a class="th-tips" href="#" data-content="第一天注册，在第七天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
+                      <th>点七日登录<a class="th-tips" href="#" data-content="第一天注册，并在第二天登录且第七天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>点七日留存率<a class="th-tips" href="#" data-content="点七日登录与七天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>小区间七日登录<a class="th-tips" href="#" data-content="第一天注册，并在第二天登录且第三至第七天登录过的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>小区间七日留存率<a class="th-tips" href="#" data-content="小区间七日登录与七天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>大区间七日登录<a class="th-tips" href="#" data-content="第一天注册，并在第二至第七天登录过的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>大区间七日留存率<a class="th-tips" href="#" data-content="大区间七日登录与七天前注册的有效用户的比值" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th>30日登录<a class="th-tips" href="#" data-content="第一天注册，在第30天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th>30日留存率<a class="th-tips" href="#" data-content="30日登录与30天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th>60日登录<a class="th-tips" href="#" data-content="第一天注册，在第60天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th>60日留存率<a class="th-tips" href="#" data-content="60日登录与60天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th>180日登录<a class="th-tips" href="#" data-content="第一天注册，在第180天登录的玩家数" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th>180日留存率<a class="th-tips" href="#" data-content="180日登录与180天前注册的有效用户的比值" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr class="gradeA">
-                      <td colspan="20">载入中...</td>
+                      <td colspan="14">载入中...</td>
                     </tr>
                   </tbody>
                 </table>
@@ -309,8 +301,6 @@ function retrieveTableData(serverId, start, end, partner) {
           return obj.aData.arppu;
         }
       },
-      {"mData": "first_recharge_account"},
-      {"mData": "recharge_account"},
       {"mData": "recharge_account_sum"}
 		],
 		"oLanguage": {  
@@ -413,40 +403,7 @@ function retrieveTableData(serverId, start, end, partner) {
 						return obj.aData.seven_retention_huge / 100 + "%";
 					}
 				}
-			},
-      {"mData": "current_login_30"},
-      {
-        "mData": "retention_30",
-        "fnRender": function(obj) {
-          if(obj.aData.retention_30==0) {
-            return "-";
-          } else {
-            return obj.aData.retention_30 / 100 + "%";
-          }
-        }
-      },
-      {"mData": "current_login_60"},
-      {
-        "mData": "retention_60",
-        "fnRender": function(obj) {
-          if(obj.aData.retention_60==0) {
-            return "-";
-          } else {
-            return obj.aData.retention_60 / 100 + "%";
-          }
-        }
-      },
-      {"mData": "current_login_180"},
-      {
-        "mData": "retention_180",
-        "fnRender": function(obj) {
-          if(obj.aData.retention_180==0) {
-            return "-";
-          } else {
-            return obj.aData.retention_180 / 100 + "%";
-          }
-        }
-      }
+			}
 		],
 		"oLanguage": {  
 			"sProcessing":   "处理中...",
