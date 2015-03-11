@@ -141,32 +141,32 @@ function onData(data) {
     }
 
 	var column = [
-	{
-		"sTitle": "服务器ID",
-	},
     {
-        "sTitle": "帐号ID",
-    },
-	{
-		"sTitle": "角色ID"
-	},
-	{
-		"sTitle": "操作名称"
-	},
-    {
-        "sTitle": "装备ID"
-    },
-	{
-		"sTitle": "current_info"
-	},
-    {
-        "sTitle": "info"
+        "sTitle": "服务器ID(server_id)",
     },
     {
-        "sTitle": "操作时间"
+        "sTitle": "帐号ID(guid)",
     },
     {
-        "sTitle": "额外信息"
+        "sTitle": "角色ID(role_id)"
+    },
+    {
+        "sTitle": "操作名称(action_name)"
+    },
+    {
+        "sTitle": "装备ID(equipment_id)"
+    },
+	{
+		"sTitle": "当前属性(current_info)"
+	},
+    {
+        "sTitle": "变化的属性(info)"
+    },
+    {
+        "sTitle": "操作时间(time)"
+    },
+    {
+        "sTitle": "额外信息(desc)"
     }];
 	var aaData = [];
 	for(var i in json.data) {

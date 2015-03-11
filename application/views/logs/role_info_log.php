@@ -115,7 +115,7 @@ $(function() {
             dataTableHandler = null;
         }
 		$('#listTable').empty();
-		$.post("<?php echo site_url('logs/blue_crystal_log/lists'); ?>", {
+		$.post("<?php echo site_url('logs/role_info_log/lists'); ?>", {
 			"serverId": $("#serverId").val(),
 			"startTime": $("#startTime").val(),
 			"endTime": $("#endTime").val(),
@@ -141,24 +141,30 @@ function onData(data) {
     }
 
 	var column = [
-    {
-        "sTitle": "服务器ID(server_id)",
-    },
+	{
+		"sTitle": "服务器ID(server_id)",
+	},
     {
         "sTitle": "帐号ID(guid)",
     },
+	{
+		"sTitle": "角色ID(role_id)"
+	},
+	{
+		"sTitle": "操作名称(action_name)"
+	},
     {
-        "sTitle": "角色ID(role_id)"
-    },
-    {
-        "sTitle": "操作名称(action_name)"
-    },
-    {
-        "sTitle": "现有蓝钻(current_blue_crystal)"
+        "sTitle": "属性(attrs_type)"
     },
 	{
-		"sTitle": "变化蓝钻(spend_blue_crystal)"
+		"sTitle": "当前拥有值(current_value)"
 	},
+    {
+        "sTitle": "变化值(value)"
+    },
+    {
+        "sTitle": "总值(total_value)"
+    },
     {
         "sTitle": "操作时间(time)"
     },
@@ -167,7 +173,7 @@ function onData(data) {
     }];
 	var aaData = [];
 	for(var i in json.data) {
-		var row = [json.data[i].server_id, json.data[i].guid, json.data[i].role_id, json.data[i].action_name, json.data[i].current_blue_crystal, json.data[i].spend_blue_crystal, json.data[i].time, json.data[i].desc];
+		var row = [json.data[i].server_id, json.data[i].guid, json.data[i].role_id, json.data[i].action_name, json.data[i].retinue_id, json.data[i].current_info, json.data[i].info, json.data[i].time, json.data[i].desc];
 		aaData.push(row);
 	}
 

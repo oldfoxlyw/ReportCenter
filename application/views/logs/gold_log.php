@@ -141,29 +141,29 @@ function onData(data) {
     }
 
 	var column = [
-	{
-		"sTitle": "服务器ID",
-	},
     {
-        "sTitle": "帐号ID",
-    },
-	{
-		"sTitle": "角色ID"
-	},
-	{
-		"sTitle": "操作名称"
-	},
-    {
-        "sTitle": "现有金币"
-    },
-	{
-		"sTitle": "消耗金币"
-	},
-    {
-        "sTitle": "操作时间"
+        "sTitle": "服务器ID(server_id)",
     },
     {
-        "sTitle": "额外信息"
+        "sTitle": "帐号ID(guid)",
+    },
+    {
+        "sTitle": "角色ID(role_id)"
+    },
+    {
+        "sTitle": "操作名称(action_name)"
+    },
+    {
+        "sTitle": "现有金币(current_gold)"
+    },
+	{
+		"sTitle": "变化金币(spend_gold)"
+	},
+    {
+        "sTitle": "操作时间(time)"
+    },
+    {
+        "sTitle": "额外信息(desc)"
     }];
 	var aaData = [];
 	for(var i in json.data) {

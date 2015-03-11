@@ -141,29 +141,29 @@ function onData(data) {
     }
 
 	var column = [
-	{
-		"sTitle": "服务器ID",
-	},
     {
-        "sTitle": "帐号ID",
-    },
-	{
-		"sTitle": "角色ID"
-	},
-	{
-		"sTitle": "操作名称"
-	},
-    {
-        "sTitle": "总贡献值"
+        "sTitle": "服务器ID(server_id)",
     },
     {
-        "sTitle": "增加的贡献值"
+        "sTitle": "帐号ID(guid)",
     },
     {
-        "sTitle": "操作时间"
+        "sTitle": "角色ID(role_id)"
     },
     {
-        "sTitle": "额外信息"
+        "sTitle": "操作名称(action_name)"
+    },
+    {
+        "sTitle": "总贡献值(current_contribution)"
+    },
+    {
+        "sTitle": "变化的贡献值(spend_contribution)"
+    },
+    {
+        "sTitle": "操作时间(time)"
+    },
+    {
+        "sTitle": "额外信息(desc)"
     }];
 	var aaData = [];
 	for(var i in json.data) {

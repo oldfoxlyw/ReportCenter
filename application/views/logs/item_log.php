@@ -115,7 +115,7 @@ $(function() {
             dataTableHandler = null;
         }
 		$('#listTable').empty();
-		$.post("<?php echo site_url('logs/blue_crystal_log/lists'); ?>", {
+		$.post("<?php echo site_url('logs/item_log/lists'); ?>", {
 			"serverId": $("#serverId").val(),
 			"startTime": $("#startTime").val(),
 			"endTime": $("#endTime").val(),
@@ -154,11 +154,14 @@ function onData(data) {
         "sTitle": "操作名称(action_name)"
     },
     {
-        "sTitle": "现有蓝钻(current_blue_crystal)"
+        "sTitle": "现有总数(total_count)"
     },
 	{
-		"sTitle": "变化蓝钻(spend_blue_crystal)"
+		"sTitle": "变化数(spend_count)"
 	},
+    {
+        "sTitle": "物品ID(item_const_id)"
+    },
     {
         "sTitle": "操作时间(time)"
     },
@@ -167,7 +170,7 @@ function onData(data) {
     }];
 	var aaData = [];
 	for(var i in json.data) {
-		var row = [json.data[i].server_id, json.data[i].guid, json.data[i].role_id, json.data[i].action_name, json.data[i].current_blue_crystal, json.data[i].spend_blue_crystal, json.data[i].time, json.data[i].desc];
+		var row = [json.data[i].server_id, json.data[i].guid, json.data[i].role_id, json.data[i].action_name, json.data[i].total_count, json.data[i].spend_count, json.data[i].item_const_id, json.data[i].time, json.data[i].desc];
 		aaData.push(row);
 	}
 
