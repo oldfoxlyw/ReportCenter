@@ -55,7 +55,7 @@ class Retention_detail extends CI_Controller
 			$result = $logcachedb->query($sql)->result();
 		}
 		
-		$sql = "SELECT * FROM `log_retention1` WHERE `log_date`>='{$startTime}' AND `log_date`<='{$endTime}' AND `server_id`='{$serverId}' AND `partner_key`='{$partnerKey}' ORDER BY `log_date` DESC";
+		$sql = "SELECT * FROM `log_retention` WHERE `log_date`>='{$startTime}' AND `log_date`<='{$endTime}' AND `server_id`='{$serverId}' AND `partner_key`='{$partnerKey}' ORDER BY `log_date` DESC";
 		$retention = $logcachedb->query($sql)->result();
 
 		$retentionResult = array();
