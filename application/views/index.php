@@ -85,13 +85,11 @@
                       <th>当天订单数<a class="th-tips" href="#" data-content="超过一周未登录的玩家数量" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>当天订单总额<a class="th-tips" href="#" data-content="当日23:59:59前充值的总金额（元）" data-placement="top" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                       <th>充值率<a class="th-tips" href="#" data-content="当日充值人数（去重）与当日DAU的比值" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th>ARPPU<a class="th-tips" href="#" data-content="平均付费金额（当日订单总额/当日付费人数）" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
-                      <th>累计付费人数<a class="th-tips" href="#" data-content="开服至今付费总人数" data-placement="left" data-toggle="popover" data-original-title="Tips"><img src="<?php echo base_url('resources/img/question.png'); ?>" /></a></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr class="gradeA">
-                      <td colspan="10">载入中...</td>
+                      <td colspan="9">载入中...</td>
                     </tr>
                   </tbody>
                 </table>
@@ -291,17 +289,7 @@ function retrieveTableData(serverId, start, end, partner) {
 						return obj.aData.arpu + "%";
 					}
 				}
-			},
-      {
-        "mData": "arppu",
-        "fnRender": function(obj) {
-          if(obj.aData.arppu == 0) {
-            return "-";
-          }
-          return obj.aData.arppu;
-        }
-      },
-      {"mData": "recharge_account_sum"}
+			}
 		],
 		"oLanguage": {  
 			"sProcessing":   "处理中...",

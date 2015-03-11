@@ -147,7 +147,7 @@ class Index extends CI_Controller
 		$sql .= " , SUM(`dau`) AS `dau` , SUM(`flowover_account`) AS `flowover_account`";
 		$sql .= " , SUM(`reflow_account`) AS `reflow_account` , SUM(`orders_current_sum`) AS `orders_current_sum`";
 		$sql .= " , SUM(`orders_sum`) AS `orders_sum`";
-		$sql .= " , SUM(`recharge_account`) AS `recharge_account`, SUM(`recharge_account_sum`) AS `recharge_account_sum`, SUM(`order_count`) AS `order_count` , AVG(`at`) AS `at`";
+		$sql .= " , SUM(`recharge_account`) AS `recharge_account`, SUM(`order_count`) AS `order_count` , AVG(`at`) AS `at`";
 		$sql .= " FROM `log_daily_statistics` WHERE `log_date`>='{$sevenDaysAgoDate}' AND `log_date`<='{$lastDate}' AND `server_id`='{$serverId}' {$partner} GROUP BY `log_date` ORDER BY `log_date` DESC";
 		$result = $logcachedb->query($sql)->result();
 		
@@ -163,7 +163,6 @@ class Index extends CI_Controller
 		for($i=0; $i<count($result); $i++)
 		{
 			$result[$i]->arpu = floatval(number_format($result[$i]->recharge_account / $result[$i]->dau, 4)) * 100;
-			$result[$i]->arppu = floatval(number_format($result[$i]->orders_current_sum / $result[$i]->recharge_account, 4));
 			$re = $retentionResult[$result[$i]->log_date . '_' . $result[$i]->server_id . '_' . $result[$i]->partner_key];
 			if(!empty($re))
 			{
